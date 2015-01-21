@@ -1,0 +1,1 @@
+php apigen.phar generate -s Magrathea/ -d Documentation/ --debug
