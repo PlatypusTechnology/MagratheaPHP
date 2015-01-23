@@ -51,7 +51,7 @@
 		$htmlParts = explode(".", $html);
 		$code = file_get_contents($docFolder.$html);
 		$code = stripHTML($code);
-//		$code = changeUrls($code);
+		$code = changeUrls($code);
 		file_put_contents($outFolder.implode(".", $htmlParts).".php", $code);
 	}
 
@@ -64,7 +64,8 @@
 	}
 
 	function changeUrls($code){
-		$code = str_replace(search, replace, subject);
+		$code = str_replace('.html"', '.html.php"', $code);
+		$code = str_replace('.html#', '.html.php#', $code);
 		return $code;
 	}
 

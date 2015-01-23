@@ -1,6 +1,61 @@
 
 var ApiGen = ApiGen || {};
-ApiGen.config = {"options":{"elementDetailsCollapsed":true,"elementsOrder":"natural"},"name":"Twitter Bootstrap theme","templatesPath":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap","resources":{"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/resources":"resources"},"templates":{"overview":{"filename":"index.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/overview.latte"},"combined":{"filename":"resources\/combined.js","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/combined.js.latte"},"elementlist":{"filename":"elementlist.js","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/elementlist.js.latte"},"404":{"filename":"404.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/404.latte"},"package":{"filename":"package-%s.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/package.latte"},"namespace":{"filename":"namespace-%s.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/namespace.latte"},"class":{"filename":"class-%s.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/class.latte"},"constant":{"filename":"constant-%s.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/constant.latte"},"function":{"filename":"function-%s.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/function.latte"},"source":{"filename":"source-%s.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/source.latte"},"tree":{"filename":"tree.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/tree.latte"},"deprecated":{"filename":"deprecated.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/deprecated.latte"},"todo":{"filename":"todo.html","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/todo.latte"},"sitemap":{"filename":"sitemap.xml","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/sitemap.xml.latte"},"opensearch":{"filename":"opensearch.xml","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/opensearch.xml.latte"},"robots":{"filename":"robots.txt","template":"phar:\/\/\/Users\/paulohenrique\/www\/MagratheaPHP\/apigen.phar\/src\/templates\/bootstrap\/robots.txt.latte"}}};
+ApiGen.config = {  
+   "options":{  
+      "elementDetailsCollapsed":true,
+      "elementsOrder":"natural"
+   },
+   "templates":{  
+      "overview":{  
+         "filename":"index.php"
+      },
+      "combined":{  
+         "filename":"resources\/combined.js"
+      },
+      "elementlist":{  
+         "filename":"elementlist.js"
+      },
+      "404":{  
+         "filename":"404.html.php"
+      },
+      "package":{  
+         "filename":"package-%s.html.php"
+      },
+      "namespace":{  
+         "filename":"namespace-%s.html.php"
+      },
+      "class":{  
+         "filename":"class-%s.html.php"
+      },
+      "constant":{  
+         "filename":"constant-%s.html.php"
+      },
+      "function":{  
+         "filename":"function-%s.html.php"
+      },
+      "source":{  
+         "filename":"source-%s.html.php"
+      },
+      "tree":{  
+         "filename":"tree.html.php"
+      },
+      "deprecated":{  
+         "filename":"deprecated.html.php"
+      },
+      "todo":{  
+         "filename":"todo.html.php"
+      },
+      "sitemap":{  
+         "filename":"sitemap.xml"
+      },
+      "opensearch":{  
+         "filename":"opensearch.xml"
+      },
+      "robots":{  
+         "filename":"robots.txt"
+     }
+   }
+};
 
 
 	/*! jQuery v1.10.2 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license

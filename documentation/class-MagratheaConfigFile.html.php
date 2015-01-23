@@ -11,78 +11,78 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html">Magdb</a></li>
-				<li><a href="class-MagratheaAdmin.html">MagratheaAdmin</a></li>
-				<li><a href="class-MagratheaCompressor.html">MagratheaCompressor</a></li>
-				<li><a href="class-MagratheaConfig.html">MagratheaConfig</a></li>
-				<li class="active"><a href="class-MagratheaConfigFile.html">MagratheaConfigFile</a></li>
-				<li><a href="class-MagratheaController.html">MagratheaController</a></li>
-				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
-				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
-				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
-				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
-				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
-				<li><a href="class-MagratheaQuery.html">MagratheaQuery</a></li>
-				<li><a href="class-MagratheaQueryDelete.html">MagratheaQueryDelete</a></li>
-				<li><a href="class-MagratheaQueryInsert.html">MagratheaQueryInsert</a></li>
-				<li><a href="class-MagratheaServer.html">MagratheaServer</a></li>
-				<li><a href="class-MagratheaView.html">MagratheaView</a></li>
-				<li><a href="class-PhpClosure.html">PhpClosure</a></li>
-				<li><a href="class-UploadHandler.html">UploadHandler</a></li>
+				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
+				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
+				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
+				<li class="active"><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
+				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
+				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
+				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
+				<li><a href="class-MagratheaImageBase.html.php">MagratheaImageBase</a></li>
+				<li><a href="class-MagratheaImageControl.html.php">MagratheaImageControl</a></li>
+				<li><a href="class-MagratheaImageControlBase.html.php">MagratheaImageControlBase</a></li>
+				<li><a href="class-MagratheaLogger.html.php">MagratheaLogger</a></li>
+				<li><a href="class-MagratheaModel.html.php">MagratheaModel</a></li>
+				<li><a href="class-MagratheaModelControl.html.php">MagratheaModelControl</a></li>
+				<li><a href="class-MagratheaQuery.html.php">MagratheaQuery</a></li>
+				<li><a href="class-MagratheaQueryDelete.html.php">MagratheaQueryDelete</a></li>
+				<li><a href="class-MagratheaQueryInsert.html.php">MagratheaQueryInsert</a></li>
+				<li><a href="class-MagratheaServer.html.php">MagratheaServer</a></li>
+				<li><a href="class-MagratheaView.html.php">MagratheaView</a></li>
+				<li><a href="class-PhpClosure.html.php">PhpClosure</a></li>
+				<li><a href="class-UploadHandler.html.php">UploadHandler</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html">Magdb</a></li>
-				<li><a href="class-MagratheaAdmin.html">MagratheaAdmin</a></li>
-				<li><a href="class-MagratheaCompressor.html">MagratheaCompressor</a></li>
-				<li><a href="class-MagratheaConfig.html">MagratheaConfig</a></li>
-				<li class="active"><a href="class-MagratheaConfigFile.html">MagratheaConfigFile</a></li>
-				<li><a href="class-MagratheaController.html">MagratheaController</a></li>
-				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
-				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
-				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
-				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
-				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
-				<li><a href="class-MagratheaQuery.html">MagratheaQuery</a></li>
-				<li><a href="class-MagratheaQueryDelete.html">MagratheaQueryDelete</a></li>
-				<li><a href="class-MagratheaQueryInsert.html">MagratheaQueryInsert</a></li>
-				<li><a href="class-MagratheaServer.html">MagratheaServer</a></li>
-				<li><a href="class-MagratheaView.html">MagratheaView</a></li>
-				<li><a href="class-PhpClosure.html">PhpClosure</a></li>
-				<li><a href="class-UploadHandler.html">UploadHandler</a></li>
+				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
+				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
+				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
+				<li class="active"><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
+				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
+				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
+				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
+				<li><a href="class-MagratheaImageBase.html.php">MagratheaImageBase</a></li>
+				<li><a href="class-MagratheaImageControl.html.php">MagratheaImageControl</a></li>
+				<li><a href="class-MagratheaImageControlBase.html.php">MagratheaImageControlBase</a></li>
+				<li><a href="class-MagratheaLogger.html.php">MagratheaLogger</a></li>
+				<li><a href="class-MagratheaModel.html.php">MagratheaModel</a></li>
+				<li><a href="class-MagratheaModelControl.html.php">MagratheaModelControl</a></li>
+				<li><a href="class-MagratheaQuery.html.php">MagratheaQuery</a></li>
+				<li><a href="class-MagratheaQueryDelete.html.php">MagratheaQueryDelete</a></li>
+				<li><a href="class-MagratheaQueryInsert.html.php">MagratheaQueryInsert</a></li>
+				<li><a href="class-MagratheaServer.html.php">MagratheaServer</a></li>
+				<li><a href="class-MagratheaView.html.php">MagratheaView</a></li>
+				<li><a href="class-PhpClosure.html.php">PhpClosure</a></li>
+				<li><a href="class-UploadHandler.html.php">UploadHandler</a></li>
 			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-MagratheaConfigException.html">MagratheaConfigException</a></li>
-				<li><a href="class-MagratheaControllerException.html">MagratheaControllerException</a></li>
-				<li><a href="class-MagratheaDBException.html">MagratheaDBException</a></li>
-				<li><a href="class-MagratheaException.html">MagratheaException</a></li>
-				<li><a href="class-MagratheaModelException.html">MagratheaModelException</a></li>
-				<li><a href="class-MagratheaViewException.html">MagratheaViewException</a></li>
+				<li><a href="class-MagratheaConfigException.html.php">MagratheaConfigException</a></li>
+				<li><a href="class-MagratheaControllerException.html.php">MagratheaControllerException</a></li>
+				<li><a href="class-MagratheaDBException.html.php">MagratheaDBException</a></li>
+				<li><a href="class-MagratheaException.html.php">MagratheaException</a></li>
+				<li><a href="class-MagratheaModelException.html.php">MagratheaModelException</a></li>
+				<li><a href="class-MagratheaViewException.html.php">MagratheaViewException</a></li>
 			</ul>
 
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-createDirInApps.html">createDirInApps</a></li>
-				<li><a href="function-Debug.html">Debug</a></li>
-				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
-				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html">mascara</a></li>
-				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
-				<li><a href="function-now.html">now</a></li>
-				<li><a href="function-p_r.html">p_r</a></li>
+				<li><a href="function-createDirInApps.html.php">createDirInApps</a></li>
+				<li><a href="function-Debug.html.php">Debug</a></li>
+				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
+				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
+				<li><a href="function-mascara.html.php">mascara</a></li>
+				<li><a href="function-nice_p_r.html.php">nice_p_r</a></li>
+				<li><a href="function-now.html.php">now</a></li>
+				<li><a href="function-p_r.html.php">p_r</a></li>
 			</ul>
 		</div>
 	</div>
@@ -114,7 +114,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaConfigFile.html#119-267" title="Go to source code">Config.class.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaConfigFile.html.php#119-267" title="Go to source code">Config.class.php</a>
 		<br>
 	</div>
 
@@ -133,7 +133,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#128-130" title="Go to source code">__construct</a>( )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#128-130" title="Go to source code">__construct</a>( )</code>
 
 			<div class="description short">
 				
@@ -162,7 +162,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setPath">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#132-139" title="Go to source code">setPath</a>( <span>string <var>$p</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#132-139" title="Go to source code">setPath</a>( <span>string <var>$p</var></span> )</code>
 
 			<div class="description short">
 				<p>Set the path to the confi file</p>
@@ -196,7 +196,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setConfig">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#140-147" title="Go to source code">setConfig</a>( <span>array <var>$c</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#140-147" title="Go to source code">setConfig</a>( <span>array <var>$c</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the config information</p>
@@ -230,7 +230,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setFile">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#148-155" title="Go to source code">setFile</a>( <span>string <var>$filePath</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#148-155" title="Go to source code">setFile</a>( <span>string <var>$filePath</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the name of the config file</p>
@@ -264,7 +264,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createFileIfNotExists">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#164-173" title="Go to source code">createFileIfNotExists</a>( )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#164-173" title="Go to source code">createFileIfNotExists</a>( )</code>
 
 			<div class="description short">
 				<p>Creates the configuration file if it doesn't exists. And saves it.</p>
@@ -297,7 +297,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfig">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#174-193" title="Go to source code">getConfig</a>( <span>string <var>$config_name</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#174-193" title="Go to source code">getConfig</a>( <span>string <var>$config_name</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
 
 			<div class="description short">
 				<p>Gets configuration</p>
@@ -336,7 +336,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfigSection">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#194-209" title="Go to source code">getConfigSection</a>( <span>string <var>$section_name</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#194-209" title="Go to source code">getConfigSection</a>( <span>string <var>$section_name</var></span> )</code>
 
 			<div class="description short">
 				<p>Gets a full config section</p>
@@ -374,7 +374,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Save">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html#210-262" title="Go to source code">Save</a>( <span>boolean <var>$save_sections</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#210-262" title="Go to source code">Save</a>( <span>boolean <var>$save_sections</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				<p>Saves the config file</p>

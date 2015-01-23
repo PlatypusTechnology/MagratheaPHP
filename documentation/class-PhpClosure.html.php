@@ -11,78 +11,78 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html">Magdb</a></li>
-				<li><a href="class-MagratheaAdmin.html">MagratheaAdmin</a></li>
-				<li><a href="class-MagratheaCompressor.html">MagratheaCompressor</a></li>
-				<li><a href="class-MagratheaConfig.html">MagratheaConfig</a></li>
-				<li><a href="class-MagratheaConfigFile.html">MagratheaConfigFile</a></li>
-				<li><a href="class-MagratheaController.html">MagratheaController</a></li>
-				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
-				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
-				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
-				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
-				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
-				<li><a href="class-MagratheaQuery.html">MagratheaQuery</a></li>
-				<li><a href="class-MagratheaQueryDelete.html">MagratheaQueryDelete</a></li>
-				<li><a href="class-MagratheaQueryInsert.html">MagratheaQueryInsert</a></li>
-				<li><a href="class-MagratheaServer.html">MagratheaServer</a></li>
-				<li><a href="class-MagratheaView.html">MagratheaView</a></li>
-				<li class="active"><a href="class-PhpClosure.html">PhpClosure</a></li>
-				<li><a href="class-UploadHandler.html">UploadHandler</a></li>
+				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
+				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
+				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
+				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
+				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
+				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
+				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
+				<li><a href="class-MagratheaImageBase.html.php">MagratheaImageBase</a></li>
+				<li><a href="class-MagratheaImageControl.html.php">MagratheaImageControl</a></li>
+				<li><a href="class-MagratheaImageControlBase.html.php">MagratheaImageControlBase</a></li>
+				<li><a href="class-MagratheaLogger.html.php">MagratheaLogger</a></li>
+				<li><a href="class-MagratheaModel.html.php">MagratheaModel</a></li>
+				<li><a href="class-MagratheaModelControl.html.php">MagratheaModelControl</a></li>
+				<li><a href="class-MagratheaQuery.html.php">MagratheaQuery</a></li>
+				<li><a href="class-MagratheaQueryDelete.html.php">MagratheaQueryDelete</a></li>
+				<li><a href="class-MagratheaQueryInsert.html.php">MagratheaQueryInsert</a></li>
+				<li><a href="class-MagratheaServer.html.php">MagratheaServer</a></li>
+				<li><a href="class-MagratheaView.html.php">MagratheaView</a></li>
+				<li class="active"><a href="class-PhpClosure.html.php">PhpClosure</a></li>
+				<li><a href="class-UploadHandler.html.php">UploadHandler</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html">Magdb</a></li>
-				<li><a href="class-MagratheaAdmin.html">MagratheaAdmin</a></li>
-				<li><a href="class-MagratheaCompressor.html">MagratheaCompressor</a></li>
-				<li><a href="class-MagratheaConfig.html">MagratheaConfig</a></li>
-				<li><a href="class-MagratheaConfigFile.html">MagratheaConfigFile</a></li>
-				<li><a href="class-MagratheaController.html">MagratheaController</a></li>
-				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
-				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
-				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
-				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
-				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
-				<li><a href="class-MagratheaQuery.html">MagratheaQuery</a></li>
-				<li><a href="class-MagratheaQueryDelete.html">MagratheaQueryDelete</a></li>
-				<li><a href="class-MagratheaQueryInsert.html">MagratheaQueryInsert</a></li>
-				<li><a href="class-MagratheaServer.html">MagratheaServer</a></li>
-				<li><a href="class-MagratheaView.html">MagratheaView</a></li>
-				<li class="active"><a href="class-PhpClosure.html">PhpClosure</a></li>
-				<li><a href="class-UploadHandler.html">UploadHandler</a></li>
+				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
+				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
+				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
+				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
+				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
+				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
+				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
+				<li><a href="class-MagratheaImageBase.html.php">MagratheaImageBase</a></li>
+				<li><a href="class-MagratheaImageControl.html.php">MagratheaImageControl</a></li>
+				<li><a href="class-MagratheaImageControlBase.html.php">MagratheaImageControlBase</a></li>
+				<li><a href="class-MagratheaLogger.html.php">MagratheaLogger</a></li>
+				<li><a href="class-MagratheaModel.html.php">MagratheaModel</a></li>
+				<li><a href="class-MagratheaModelControl.html.php">MagratheaModelControl</a></li>
+				<li><a href="class-MagratheaQuery.html.php">MagratheaQuery</a></li>
+				<li><a href="class-MagratheaQueryDelete.html.php">MagratheaQueryDelete</a></li>
+				<li><a href="class-MagratheaQueryInsert.html.php">MagratheaQueryInsert</a></li>
+				<li><a href="class-MagratheaServer.html.php">MagratheaServer</a></li>
+				<li><a href="class-MagratheaView.html.php">MagratheaView</a></li>
+				<li class="active"><a href="class-PhpClosure.html.php">PhpClosure</a></li>
+				<li><a href="class-UploadHandler.html.php">UploadHandler</a></li>
 			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-MagratheaConfigException.html">MagratheaConfigException</a></li>
-				<li><a href="class-MagratheaControllerException.html">MagratheaControllerException</a></li>
-				<li><a href="class-MagratheaDBException.html">MagratheaDBException</a></li>
-				<li><a href="class-MagratheaException.html">MagratheaException</a></li>
-				<li><a href="class-MagratheaModelException.html">MagratheaModelException</a></li>
-				<li><a href="class-MagratheaViewException.html">MagratheaViewException</a></li>
+				<li><a href="class-MagratheaConfigException.html.php">MagratheaConfigException</a></li>
+				<li><a href="class-MagratheaControllerException.html.php">MagratheaControllerException</a></li>
+				<li><a href="class-MagratheaDBException.html.php">MagratheaDBException</a></li>
+				<li><a href="class-MagratheaException.html.php">MagratheaException</a></li>
+				<li><a href="class-MagratheaModelException.html.php">MagratheaModelException</a></li>
+				<li><a href="class-MagratheaViewException.html.php">MagratheaViewException</a></li>
 			</ul>
 
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-createDirInApps.html">createDirInApps</a></li>
-				<li><a href="function-Debug.html">Debug</a></li>
-				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
-				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html">mascara</a></li>
-				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
-				<li><a href="function-now.html">now</a></li>
-				<li><a href="function-p_r.html">p_r</a></li>
+				<li><a href="function-createDirInApps.html.php">createDirInApps</a></li>
+				<li><a href="function-Debug.html.php">Debug</a></li>
+				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
+				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
+				<li><a href="function-mascara.html.php">mascara</a></li>
+				<li><a href="function-nice_p_r.html.php">nice_p_r</a></li>
+				<li><a href="function-now.html.php">now</a></li>
+				<li><a href="function-p_r.html.php">p_r</a></li>
 			</ul>
 		</div>
 	</div>
@@ -130,7 +130,7 @@ details on the compiler options.</p>
 		
 		
 
-			<b>Located at</b> <a href="source-class-PhpClosure.html#20-419" title="Go to source code">libs/phpclosure.php</a>
+			<b>Located at</b> <a href="source-class-PhpClosure.html.php#20-419" title="Go to source code">libs/phpclosure.php</a>
 		<br>
 	</div>
 
@@ -149,7 +149,7 @@ details on the compiler options.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_PhpClosure">#</a>
-			<code><a href="source-class-PhpClosure.html#55" title="Go to source code">PhpClosure</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#55" title="Go to source code">PhpClosure</a>( )</code>
 
 			<div class="description short">
 				
@@ -178,7 +178,7 @@ details on the compiler options.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_add">#</a>
-			<code><a href="source-class-PhpClosure.html#57-64" title="Go to source code">add</a>( <span> <var>$file</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#57-64" title="Go to source code">add</a>( <span> <var>$file</var></span> )</code>
 
 			<div class="description short">
 				<p>Adds a source file to the list of files to compile.  Files will be
@@ -209,7 +209,7 @@ concatenated in the order they are added.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_cacheDir">#</a>
-			<code><a href="source-class-PhpClosure.html#66-74" title="Go to source code">cacheDir</a>( <span> <var>$dir</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#66-74" title="Go to source code">cacheDir</a>( <span> <var>$dir</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the directory where the compilation results should be cached, if
@@ -242,7 +242,7 @@ for every request (NOTE: this will hit ratelimits pretty fast!)</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_useClosureLibrary">#</a>
-			<code><a href="source-class-PhpClosure.html#76-83" title="Go to source code">useClosureLibrary</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#76-83" title="Go to source code">useClosureLibrary</a>( )</code>
 
 			<div class="description short">
 				<p>Sets whether to use the Closure Library.  i.e. goog.requires will be
@@ -273,7 +273,7 @@ resolved and the library code made available.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_useCodeUrl">#</a>
-			<code><a href="source-class-PhpClosure.html#85-110" title="Go to source code">useCodeUrl</a>( <span> <var>$code_url_prefix</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#85-110" title="Go to source code">useCodeUrl</a>( <span> <var>$code_url_prefix</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the URL prefix to use with the Closure Compiler service's code_url
@@ -318,7 +318,7 @@ URL.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_prettyPrint">#</a>
-			<code><a href="source-class-PhpClosure.html#112-118" title="Go to source code">prettyPrint</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#112-118" title="Go to source code">prettyPrint</a>( )</code>
 
 			<div class="description short">
 				<p>Tells the compiler to pretty print the output.</p>
@@ -347,7 +347,7 @@ URL.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_hideDebugInfo">#</a>
-			<code><a href="source-class-PhpClosure.html#120-127" title="Go to source code">hideDebugInfo</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#120-127" title="Go to source code">hideDebugInfo</a>( )</code>
 
 			<div class="description short">
 				<p>Turns of the debug info.
@@ -378,7 +378,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_whitespaceOnly">#</a>
-			<code><a href="source-class-PhpClosure.html#129-135" title="Go to source code">whitespaceOnly</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#129-135" title="Go to source code">whitespaceOnly</a>( )</code>
 
 			<div class="description short">
 				<p>Sets the compilation mode to optimize whitespace only.</p>
@@ -407,7 +407,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_simpleMode">#</a>
-			<code><a href="source-class-PhpClosure.html#137-143" title="Go to source code">simpleMode</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#137-143" title="Go to source code">simpleMode</a>( )</code>
 
 			<div class="description short">
 				<p>Sets the compilation mode to simple optimizations.</p>
@@ -436,7 +436,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_advancedMode">#</a>
-			<code><a href="source-class-PhpClosure.html#145-151" title="Go to source code">advancedMode</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#145-151" title="Go to source code">advancedMode</a>( )</code>
 
 			<div class="description short">
 				<p>Sets the compilation mode to advanced optimizations (recommended).</p>
@@ -465,7 +465,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getModeFromUrl">#</a>
-			<code><a href="source-class-PhpClosure.html#153-162" title="Go to source code">getModeFromUrl</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#153-162" title="Go to source code">getModeFromUrl</a>( )</code>
 
 			<div class="description short">
 				<p>Gets the compilation mode from the URL, set the mode param to
@@ -496,7 +496,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_quiet">#</a>
-			<code><a href="source-class-PhpClosure.html#164-170" title="Go to source code">quiet</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#164-170" title="Go to source code">quiet</a>( )</code>
 
 			<div class="description short">
 				<p>Sets the warning level to QUIET.</p>
@@ -525,7 +525,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_defaultWarnings">#</a>
-			<code><a href="source-class-PhpClosure.html#172-178" title="Go to source code">defaultWarnings</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#172-178" title="Go to source code">defaultWarnings</a>( )</code>
 
 			<div class="description short">
 				<p>Sets the default warning level.</p>
@@ -554,7 +554,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_verbose">#</a>
-			<code><a href="source-class-PhpClosure.html#180-186" title="Go to source code">verbose</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#180-186" title="Go to source code">verbose</a>( )</code>
 
 			<div class="description short">
 				<p>Sets the warning level to VERBOSE.</p>
@@ -583,7 +583,7 @@ By default statistics, errors and warnings are logged to the console.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_write">#</a>
-			<code><a href="source-class-PhpClosure.html#188-220" title="Go to source code">write</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#188-220" title="Go to source code">write</a>( )</code>
 
 			<div class="description short">
 				<p>Writes the compiled response.  Reading from either the cache, or
@@ -614,7 +614,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__isRecompileNeeded">#</a>
-			<code><a href="source-class-PhpClosure.html#224-242" title="Go to source code">_isRecompileNeeded</a>( <span> <var>$cache_file</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#224-242" title="Go to source code">_isRecompileNeeded</a>( <span> <var>$cache_file</var></span> )</code>
 
 			<div class="description short">
 				
@@ -643,7 +643,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__compile">#</a>
-			<code><a href="source-class-PhpClosure.html#244-288" title="Go to source code">_compile</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#244-288" title="Go to source code">_compile</a>( )</code>
 
 			<div class="description short">
 				
@@ -672,7 +672,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__printWarnings">#</a>
-			<code><a href="source-class-PhpClosure.html#290-301" title="Go to source code">_printWarnings</a>( <span> <var>$warnings</var></span>, <span> <var>$level</var> = <span class="php-quote">&quot;log&quot;</span></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#290-301" title="Go to source code">_printWarnings</a>( <span> <var>$warnings</var></span>, <span> <var>$level</var> = <span class="php-quote">&quot;log&quot;</span></span> )</code>
 
 			<div class="description short">
 				
@@ -701,7 +701,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__getCacheFileName">#</a>
-			<code><a href="source-class-PhpClosure.html#303-305" title="Go to source code">_getCacheFileName</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#303-305" title="Go to source code">_getCacheFileName</a>( )</code>
 
 			<div class="description short">
 				
@@ -730,7 +730,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__getHash">#</a>
-			<code><a href="source-class-PhpClosure.html#307-314" title="Go to source code">_getHash</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#307-314" title="Go to source code">_getHash</a>( )</code>
 
 			<div class="description short">
 				
@@ -759,7 +759,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__getParams">#</a>
-			<code><a href="source-class-PhpClosure.html#316-322" title="Go to source code">_getParams</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#316-322" title="Go to source code">_getParams</a>( )</code>
 
 			<div class="description short">
 				
@@ -788,7 +788,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__getParamList">#</a>
-			<code><a href="source-class-PhpClosure.html#324-346" title="Go to source code">_getParamList</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#324-346" title="Go to source code">_getParamList</a>( )</code>
 
 			<div class="description short">
 				
@@ -817,7 +817,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__readSources">#</a>
-			<code><a href="source-class-PhpClosure.html#348-354" title="Go to source code">_readSources</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#348-354" title="Go to source code">_readSources</a>( )</code>
 
 			<div class="description short">
 				
@@ -846,7 +846,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__makeRequest">#</a>
-			<code><a href="source-class-PhpClosure.html#356-385" title="Go to source code">_makeRequest</a>( )</code>
+			<code><a href="source-class-PhpClosure.html.php#356-385" title="Go to source code">_makeRequest</a>( )</code>
 
 			<div class="description short">
 				
@@ -875,7 +875,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__unchunk">#</a>
-			<code><a href="source-class-PhpClosure.html#387-399" title="Go to source code">_unchunk</a>( <span> <var>$data</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#387-399" title="Go to source code">_unchunk</a>( <span> <var>$data</var></span> )</code>
 
 			<div class="description short">
 				
@@ -904,7 +904,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__parseXml">#</a>
-			<code><a href="source-class-PhpClosure.html#401-404" title="Go to source code">_parseXml</a>( <span> <var>$data</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#401-404" title="Go to source code">_parseXml</a>( <span> <var>$data</var></span> )</code>
 
 			<div class="description short">
 				
@@ -933,7 +933,7 @@ invoking a recompile, if necessary.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#__parseXmlHelper">#</a>
-			<code><a href="source-class-PhpClosure.html#406-418" title="Go to source code">_parseXmlHelper</a>( <span> <var>$xml</var></span> )</code>
+			<code><a href="source-class-PhpClosure.html.php#406-418" title="Go to source code">_parseXmlHelper</a>( <span> <var>$xml</var></span> )</code>
 
 			<div class="description short">
 				
@@ -973,7 +973,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#46" title="Go to source code"><var>$_srcs</var></a>
+					<a href="source-class-PhpClosure.html.php#46" title="Go to source code"><var>$_srcs</var></a>
 
 				<div class="description short">
 					
@@ -998,7 +998,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#47" title="Go to source code"><var>$_mode</var></a>
+					<a href="source-class-PhpClosure.html.php#47" title="Go to source code"><var>$_mode</var></a>
 
 				<div class="description short">
 					
@@ -1023,7 +1023,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#48" title="Go to source code"><var>$_warning_level</var></a>
+					<a href="source-class-PhpClosure.html.php#48" title="Go to source code"><var>$_warning_level</var></a>
 
 				<div class="description short">
 					
@@ -1048,7 +1048,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#49" title="Go to source code"><var>$_use_closure_library</var></a>
+					<a href="source-class-PhpClosure.html.php#49" title="Go to source code"><var>$_use_closure_library</var></a>
 
 				<div class="description short">
 					
@@ -1073,7 +1073,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#50" title="Go to source code"><var>$_pretty_print</var></a>
+					<a href="source-class-PhpClosure.html.php#50" title="Go to source code"><var>$_pretty_print</var></a>
 
 				<div class="description short">
 					
@@ -1098,7 +1098,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#51" title="Go to source code"><var>$_debug</var></a>
+					<a href="source-class-PhpClosure.html.php#51" title="Go to source code"><var>$_debug</var></a>
 
 				<div class="description short">
 					
@@ -1123,7 +1123,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#52" title="Go to source code"><var>$_cache_dir</var></a>
+					<a href="source-class-PhpClosure.html.php#52" title="Go to source code"><var>$_cache_dir</var></a>
 
 				<div class="description short">
 					
@@ -1148,7 +1148,7 @@ invoking a recompile, if necessary.</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-PhpClosure.html#53" title="Go to source code"><var>$_code_url_prefix</var></a>
+					<a href="source-class-PhpClosure.html.php#53" title="Go to source code"><var>$_code_url_prefix</var></a>
 
 				<div class="description short">
 					

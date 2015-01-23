@@ -39,14 +39,17 @@
     <div class="container">
       <ul class="nav navbar-nav">
         <li class="active">
-          <a href="index.php">MagratheaPHP</a>
+          <a href="index.php">
+            <img src="inc/magrathea_small.png" alt="Magrathea" title="Magrathea" class="small_logo" />
+            MagratheaPHP
+          </a>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-rocket"></i> Get started! <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
             <li class="divider"></li>
-            <li><a href="config.php"><i class="icon-cogs"></i> Config File</a></li>
+            <li><a href="config.php"><i class="icon-wrench"></i> Config File</a></li>
             <li><a href="htaccess.php"><i class="icon-cog"></i> .htaccess</a></li>
             <li class="divider"></li>
             <li><a href="Smarty"><i class="icon-th-large"></i> Smarty</a></li>
@@ -66,14 +69,33 @@
           </ul>
         </li>
         <li class="divider-vertical"></li>
-        <li><a href="index.html.php"><i class="icon-puzzle-piece"></i> Docs</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-puzzle-piece"></i> Docs <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html.php"><i class="icon-book"></i> Summary</a></li>
+            <li class="divider"></li>
+            <li><a href="docs/-API-documentation.zip"><i class="icon-download"></i> Download API</a></li>
+            <li class="divider"></li>
+            <li><a href="deprecated.html.php"><i class="icon-warning-sign"></i> deprecated</a></li>
+            <li><a href="todo.html.php"><i class="icon-tasks"></i> todo</a></li>
+          </ul>
+        </li>
         <li>
           <form class="navbar-search pull-left" id="search" action="">
           <input type="text" class="search-query ac_input" name="q" placeholder="Search in docs">
           </form>
        </li>
         <li class="divider-vertical"></li>
-        <li><a href="#contact"><i class="icon-envelope"></i> Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-group"></i> About <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP"><i class="icon-github"></i> Repository</a></li>
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/fork"><i class="icon-code-fork"></i> Fork me!</a></li>
+            <li class="divider"></li>
+            <li><a href="http://www.platypusweb.com.br"><i class="icon-info-sign"></i> Platypus Technology</a></li>
+            <li><a href="#"><i class="icon-envelope"></i> Contact</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

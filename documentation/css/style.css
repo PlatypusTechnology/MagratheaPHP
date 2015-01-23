@@ -3,6 +3,12 @@
     left: 20%; 
 }
 
+.small_logo {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
 .main_container {
     padding-top: 70px;
     padding-bottom: 150px;
