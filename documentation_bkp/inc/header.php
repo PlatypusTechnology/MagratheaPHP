@@ -27,7 +27,7 @@
 <link href='css/bootstrap/prettify.css' rel='stylesheet'>
 <link href='css/bootstrap/font-awesome.min.css' rel='stylesheet'>
 <link href='css/style.css' rel='stylesheet'>
-<link rel="stylesheet" href="resources/style.css">
+<link rel="stylesheet" href="docs/resources/style.css">
     
   </head>
   <body> 
@@ -41,32 +41,20 @@
         <li class="active">
           <a href="index.php">MagratheaPHP</a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-rocket"></i> Get started! <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
-            <li class="divider"></li>
-            <li><a href="config.php"><i class="icon-cogs"></i> Config File</a></li>
-            <li><a href="htaccess.php"><i class="icon-cog"></i> .htaccess</a></li>
-            <li class="divider"></li>
-            <li><a href="Smarty"><i class="icon-th-large"></i> Smarty</a></li>
-          </ul>
-        </li>
+        <li><a href="#about"><i class="icon-rocket"></i> Get started!</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-dashboard"></i> Website Admin <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="admin_php.php"><i class="icon-user"></i> admin.php</a></li>
-            <li><a href="#"><i class="icon-table"></i> Table management</a></li>
-            <li><a href="#"><i class="icon-inbox"></i> Creating objects</a></li>
-            <li><a href="#"><i class="icon-cogs"></i> Configuration</a></li>
-            <li><a href="#"><i class="icon-pencil"></i> Generate Code</a></li>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
             <li class="divider"></li>
-            <li><a href="plugins.php"><i class="icon-bullseye"></i> Plugins</a></li>
-            <li><a href="#"><i class="icon-beaker"></i> Tests</a></li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
         <li class="divider-vertical"></li>
-        <li><a href="index.html.php"><i class="icon-puzzle-piece"></i> Docs</a></li>
+        <li><a href="docs.php"><i class="icon-book"></i> Docs</a></li>
         <li>
           <form class="navbar-search pull-left" id="search" action="">
           <input type="text" class="search-query ac_input" name="q" placeholder="Search in docs">
