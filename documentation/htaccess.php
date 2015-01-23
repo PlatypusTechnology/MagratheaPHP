@@ -1,10 +1,11 @@
 <?php include("inc/header.php"); ?>
 
-	<h1> .htaccess </h1>
-	<p>If you want to develop with mod_rewrite, you will have to configure your .htaccess file in thte app folder of your project.</p>
+	<div class="container main_container">
+		<h1> .htaccess </h1>
+		<p>If you want to develop with mod_rewrite, you will have to configure your .htaccess file in thte app folder of your project.</p>
 
-	<h3>Creating your htaccess file:</h3>
-	<p>
+		<h3>Creating your htaccess file:</h3>
+		<p>
 
 		<pre class="prettyprint linenums">
 RewriteEngine On
@@ -25,7 +26,8 @@ RewriteEngine On
 
 &lt;/IfModule&gt;</pre>
 
-	</p>
+		</p>
+	</div>
 
 
 <?php include("inc/footer.php"); ?>

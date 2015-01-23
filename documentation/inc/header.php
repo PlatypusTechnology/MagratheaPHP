@@ -52,10 +52,11 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
             <li class="divider"></li>
+            <li><a href="tree.php"><i class="icon-sitemap"></i> Project tree</a></li>
             <li><a href="config.php"><i class="icon-wrench"></i> Config File</a></li>
             <li><a href="htaccess.php"><i class="icon-cog"></i> .htaccess</a></li>
             <li class="divider"></li>
-            <li><a href="Smarty"><i class="icon-th-large"></i> Smarty</a></li>
+            <li><a href="smarty.php"><i class="icon-lightbulb"></i> Smarty</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -103,16 +104,3 @@
     </div>
   </div>
 </div>
-    <!--div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="#">Magrathea</a>
-            <div class="nav-collapse collapse navbar-inverse-collapse">
-              <form class="navbar-search pull-left" action="">
-              <input type="text" class="search-query span2" placeholder="Search">
-              </form>
-            </div>
-        </div>
-      </div>
-    </div-->
-

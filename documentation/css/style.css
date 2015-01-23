@@ -10,12 +10,20 @@
 }
 
 .main_container {
-    padding-top: 70px;
+    padding-top: 20px;
     padding-bottom: 150px;
 }
 
 .clear {
    clear:both   
+}
+
+.right { 
+    float: right;
+}
+
+.image { 
+    
 }
 
 h1 > i {
