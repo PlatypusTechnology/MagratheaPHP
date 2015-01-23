@@ -75,7 +75,6 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-createDirInApps.html.php">createDirInApps</a></li>
 				<li><a href="function-Debug.html.php">Debug</a></li>
 				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
@@ -315,10 +314,6 @@
 
 <h2>Functions summary</h2>
 <table class="summary table table-bordered table-striped" id="functions">
-<tr>
-	<td class="name"><a href="function-createDirInApps.html.php">createDirInApps</a></td>
-	<td></td>
-</tr>
 <tr>
 	<td class="name"><a href="function-Debug.html.php">Debug</a></td>
 	<td>Class for debugging and logging Control</td>

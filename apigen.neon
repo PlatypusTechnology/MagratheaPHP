@@ -6,3 +6,5 @@ todo: true
 download: true
 #main: Magrathea
 #baseUrl: http://magrathea.platypusweb.com.br/docs
+exclude:
+ - *install_magrathea.php

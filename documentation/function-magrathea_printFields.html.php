@@ -75,7 +75,6 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-createDirInApps.html.php">createDirInApps</a></li>
 				<li><a href="function-Debug.html.php">Debug</a></li>
 				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
 				<li class="active"><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>

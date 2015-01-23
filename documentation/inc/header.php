@@ -28,7 +28,10 @@
 <link href='css/bootstrap/font-awesome.min.css' rel='stylesheet'>
 <link href='css/style.css' rel='stylesheet'>
 <link rel="stylesheet" href="resources/style.css">
-    
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
   </head>
   <body> 
 
