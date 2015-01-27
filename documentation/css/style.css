@@ -22,8 +22,8 @@
     float: right;
 }
 
-.image { 
-    
+.image.left { 
+    float: left;
 }
 
 h1 > i {

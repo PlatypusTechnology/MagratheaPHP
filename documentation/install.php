@@ -4,7 +4,10 @@
 		<h1> Install </h1>
 		<p>Copy the full sample project folder to the directory where your project will be hosted.</p>
 
-		<h3>For development in MacOS:</h3>
+		<h2>Create a virtual host</h2>
+
+
+		<h4>For development in MacOS:</h4>
 		<p>
 			Working with Mac OSX 10.7:<br/><br/>
 			Open the terminal and go to:

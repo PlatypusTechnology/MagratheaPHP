@@ -50,6 +50,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-rocket"></i> Get started! <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/archive/master.zip"><i class="icon-download"></i> Download <i class="icon-github-alt"></i></a></li>
             <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
             <li class="divider"></li>
             <li><a href="tree.php"><i class="icon-sitemap"></i> Project tree</a></li>
@@ -57,6 +58,8 @@
             <li><a href="htaccess.php"><i class="icon-cog"></i> .htaccess</a></li>
             <li class="divider"></li>
             <li><a href="smarty.php"><i class="icon-lightbulb"></i> Smarty</a></li>
+            <li class="divider"></li>
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaSample"><i class="icon-compass"></i> Project Sample <i class="icon-github-alt"></i></a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -78,7 +81,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="index.html.php"><i class="icon-book"></i> Summary</a></li>
             <li class="divider"></li>
-            <li><a href="docs/-API-documentation.zip"><i class="icon-download"></i> Download API</a></li>
+            <li><a href="docs/-API-documentation.zip"><i class="icon-download"></i> Download API <i class="icon-github-alt"></i></a></li>
             <li class="divider"></li>
             <li><a href="deprecated.html.php"><i class="icon-warning-sign"></i> deprecated</a></li>
             <li><a href="todo.html.php"><i class="icon-tasks"></i> todo</a></li>
@@ -93,10 +96,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-group"></i> About <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP"><i class="icon-github"></i> Repository</a></li>
-            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/fork"><i class="icon-code-fork"></i> Fork me!</a></li>
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP"><i class="icon-github"></i> Repository <i class="icon-github-alt"></i></a></li>
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/fork"><i class="icon-code-fork"></i> Fork me! <i class="icon-github-alt"></i></a></li>
             <li class="divider"></li>
-            <li><a href="http://www.platypusweb.com.br"><i class="icon-info-sign"></i> Platypus Technology</a></li>
+            <li><a href="http://www.platypusweb.com.br" target="_blank"><i class="icon-info-sign"></i> Platypus Technology  <i class="icon-external-link"></i></a></li>
             <li><a href="#"><i class="icon-envelope"></i> Contact</a></li>
           </ul>
         </li>
