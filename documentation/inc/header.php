@@ -51,13 +51,15 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-rocket"></i> Get started! <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/archive/master.zip"><i class="icon-download"></i> Download <i class="icon-github-alt"></i></a></li>
+            <li><a href="smarty.php"><i class="icon-lightbulb"></i> Smarty</a></li>
+            <li><a href="pear.php"><i class="icon-lemon"></i> Pear</a></li>
             <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
             <li class="divider"></li>
             <li><a href="tree.php"><i class="icon-sitemap"></i> Project tree</a></li>
             <li><a href="config.php"><i class="icon-wrench"></i> Config File</a></li>
             <li><a href="htaccess.php"><i class="icon-cog"></i> .htaccess</a></li>
-            <li class="divider"></li>
-            <li><a href="smarty.php"><i class="icon-lightbulb"></i> Smarty</a></li>
+            <li><a href="globalphp.php"><i class="icon-globe"></i> global.php</a></li>
+            <li><a href="indexphp.php"><i class="icon-file"></i> index.php</a></li>
             <li class="divider"></li>
             <li><a href="https://github.com/PlatypusTechnology/MagratheaSample"><i class="icon-compass"></i> Project Sample <i class="icon-github-alt"></i></a></li>
           </ul>
@@ -81,7 +83,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="index.html.php"><i class="icon-book"></i> Summary</a></li>
             <li class="divider"></li>
-            <li><a href="docs/-API-documentation.zip"><i class="icon-download"></i> Download API <i class="icon-github-alt"></i></a></li>
+            <li><a href="docs/-API-documentation.zip"><i class="icon-download"></i> Download Full Docs <i class="icon-github-alt"></i></a></li>
             <li class="divider"></li>
             <li><a href="deprecated.html.php"><i class="icon-warning-sign"></i> deprecated</a></li>
             <li><a href="todo.html.php"><i class="icon-tasks"></i> todo</a></li>

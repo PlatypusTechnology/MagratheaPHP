@@ -18,8 +18,8 @@
 
 			<pre class="prettyprint linenums">
 	&lt;VirtualHost *&gt;
-		ServerName MagratheProject
-		ServerAlias MagratheaProject
+		ServerName magrathea.localhost.com
+		ServerAlias magrathea.localhost.com
 		DocumentRoot /Users/[user]/Sites/[path]/app
 		&lt;Directory /Users/[user]/Sites/[path]/app&gt;
 			Options Indexes FollowSymLinks MultiViews
@@ -33,8 +33,8 @@
 
 			In the terminal, then, go to <code>cd /private/etc/</code> and edit hosts file, adding the line:
 
-			<pre class="prettyprint">127.0.0.1 	path.name.to.my.project</pre>
-			, where <code>path.name.to.my.project</code> is the internal URL that will be used to reach the website.<br/><br/>
+			<pre class="prettyprint">127.0.0.1 	magrathea.localhost.com</pre>
+			, where <code>magrathea.localhost.com</code> is the internal URL that will be used to reach the website.<br/><br/>
 
 			finally, restart apache, typing in the terminal: <code>sudo apachectl restart</code>
 
