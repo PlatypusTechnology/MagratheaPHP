@@ -8,6 +8,10 @@ function loadPluginsList($installed=false){
 	} else {
 		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path").'plugins/';
 	}
+	if(!is_dir($plugins_path)){
+		echo '<div class="alert alert-error"><strong>Directory doesn\'t exists!</strong><br/>Directory: <br/>[<b>'.$plugins_path.'</b>]<br/> does not exists. Create it with write permissions, please...</div>';
+		return;
+	}
 	$results = scandir($plugins_path);
 	$plugins = array();
 	foreach ($results as $result) {
@@ -35,7 +39,7 @@ function loadPluginsList($installed=false){
 
 
 <div class="row-fluid">
-<div class="span12">
+<div class="span12" id="install_response">
 	<div class="alert alert-info">
 		<button class="close" data-dismiss="alert" type="button" id="warning_objexists_bt">×</button>
 		<strong>Remember, remember...</strong><br/><del>the fifth of November.</del><br/>
@@ -90,18 +94,20 @@ function loadPluginsList($installed=false){
 		<content>
 			<?
 			$plugins = loadPluginsList(true);
-			$even = false;
-			$line_number = 1;
-			foreach($plugins as $p){
-				?>
-				<div class='row-fluid <?=($even ? "even" : "")?>' style="padding: 5px;">
-					<div class="span9" style="padding-left: 20px;"><?=$p?></div>
-					<div class="span3 right" style="padding-right: 20px;">
-						<button class="btn btn-default" onClick="removePlugin('<?=$p?>');"><i class="fa fa-trash-o"></i>&nbsp;Unninstal</button>
+			if($plugins){
+				$even = false;
+				$line_number = 1;
+				foreach($plugins as $p){
+					?>
+					<div class='row-fluid <?=($even ? "even" : "")?>' style="padding: 5px;">
+						<div class="span9" style="padding-left: 20px;"><?=$p?></div>
+						<div class="span3 right" style="padding-right: 20px;">
+							<button class="btn btn-default" onClick="removePlugin('<?=$p?>');"><i class="fa fa-trash-o"></i>&nbsp;Unninstal</button>
+						</div>
 					</div>
-				</div>
-				<?
-				$even = !$even;
+					<?
+					$even = !$even;
+				}
 			}
 			?>
 		</content>
@@ -139,7 +145,12 @@ function installPlugin(pluginFolder){
 			action: "install"
 		}, 
 		success: function(data){
-			loadPlugins();
+			console.info(data);
+			if(data.trim() == ""){
+				loadPlugins();
+			} else {
+				$("#install_response").html(data);
+			}
 		}
 	});
 }

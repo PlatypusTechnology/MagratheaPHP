@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 $query = $_POST["sql"];
 $queryArr = explode(";", $query);
 
-@$result = $magdb->QueryTransaction($queryArr);
+@$result = $magdb->QueryAll($queryArr);
 //p_r($result);
 
 ?>
@@ -16,5 +16,9 @@ $queryArr = explode(";", $query);
 	<button class="close" data-dismiss="alert" type="button">×</button>
 	<strong>Query executed!</strong><br/>
 	Query: <br/>
-	<? p_r($query); ?>
+	<? p_r($query); ?><br/>
+	Result: <br/>
+	<textarea class="textarea_large"><?=$result?></textarea><br/>
+	Extended Result: <br/>
+	<textarea class="textarea_large"><?=print_r($result)?></textarea><br/>
 </div>

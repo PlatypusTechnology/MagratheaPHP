@@ -5,7 +5,11 @@
 * 
 */
 
-
+/**
+ * Debugs what is sent, according with debug configurations
+ * @param 	object 	$this object to debug
+ * @todo  debug_backtrace
+ */
 function Debug($this){
 	MagratheaDebugger::Instance()->Add($this);
 }

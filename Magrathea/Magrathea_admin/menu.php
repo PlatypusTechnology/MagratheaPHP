@@ -3,11 +3,13 @@
 require_once ("admin_load.php");
 
 $tables = getAllTables($configSection["db_name"]);
+//p_r($tables);
 $objects = getAllObjects();
 
 ?>
 
   <ul class="nav nav-list bs-docs-sidenav menu">
+	<li><a onClick="loadConfig();" id="menu_config"><i class="fa fa-cogs"></i> Configuration</a></li>
     <li class="submenu"><a href="#"><i class="fa fa-table"></i> Tables <span class="number"><?=count($tables)?></span></a>
     	<ul class="nav nav-list menu_sublist" style="display: none;">
 		<?
@@ -30,10 +32,9 @@ $objects = getAllObjects();
 		?>
 			</ul>
     </li>
-	<li><a onClick="loadDatabaseManager();" id="menu_migration"><i class="fa fa-upload"></i> Database Migration</a></li>
-	<li><a onClick="loadConfig();" id="menu_config"><i class="fa fa-cogs"></i> Configuration</a></li>
     <li><a onClick="loadCoder();" id="menu_coder"><i class="fa fa-pencil"></i> Generate Code</a></li>
     <li><a onClick="loadPlugins();" id="menu_plugins"><i class="fa fa-thumb-tack"></i> Plugins</a></li>
+	<li><a onClick="loadDatabaseManager();" id="menu_migration"><i class="fa fa-database"></i> Database</a></li>
     <li class="submenu"><a onClick="loadTests();" id="menu_tests"><i class="fa fa-flask"></i> Tests</a>
     	<div id="tests_response"></div>
     </li>

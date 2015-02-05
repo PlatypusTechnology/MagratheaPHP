@@ -1,14 +1,21 @@
 <?php
 
 $path = __DIR__."/";
-require ($path."Exceptions.class.php");
+include_once($path."libs/Smarty/Smarty.class.php");
+
+// database changing:
+//require ($path."Database.php");
+require ($path."MagratheaDatabase.php");
+
+
+
+require ($path."Exceptions.php");
 require ($path."Functions.php");
-require ($path."Database.class.php");
-require ($path."Config.class.php");
-require ($path."Controller.class.php");
-require ($path."Model.class.php");
-require ($path."ModelControl.class.php");
-require ($path."View.class.php");
+require ($path."MagratheaConfig.php");
+require ($path."MagratheaController.php");
+require ($path."Model.php");
+require ($path."MagratheaModelControl.php");
+require ($path."MagratheaView.php");
 
 include ($path."MagratheaCompressor.php");
 require ($path."MagratheaQuery.php");

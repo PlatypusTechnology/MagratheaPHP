@@ -4,7 +4,7 @@
 	<img src="inc/magrathea.png" alt="MagratheaPHP" title="MagratheaPHP" class="image right"/>
 	<h1>Magrathea</h1>
 
-	<h3>Magra what?</h3>
+	<h3>Magra-what?</h3>
 	<p>
 		Magrathea is an ancient planet located in orbit around the twin suns Soulianis and Rahm in the heart of the Horsehead Nebula.<br/>
 		It was the home a new form of specialist industry: custom-made, luxury planet building. 

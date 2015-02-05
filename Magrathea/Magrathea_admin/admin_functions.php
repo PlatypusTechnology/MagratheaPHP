@@ -4,8 +4,8 @@
 function getAllTables($db){
 	$magdb = Magdb::Instance();
 	try	{
-		$sql = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' AND TABLE_NAME NOT LIKE 'magrathea_%' ORDER BY TABLE_NAME";
-		$sqlAllTables = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' ORDER BY TABLE_NAME";
+		$sql = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' AND TABLE_NAME NOT LIKE 'magrathea_%' ORDER BY TABLE_NAME";
+		$sqlAllTables = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' ORDER BY TABLE_NAME";
 //		$tables = $magdb->queryAll($sql);
 		$tables = $magdb->queryAll($sqlAllTables);
 		return $tables;

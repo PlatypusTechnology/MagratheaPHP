@@ -16,10 +16,11 @@
 #######################################################################################
 
 function p_r($debugme, $beautyme=false){
+	$trace = debug_backtrace();
 	if( $beautyme ){
 		echo nice_p_r($debugme); 
 	} else { 
-		echo "<pre>"; print_r($debugme); echo "</pre>";
+		echo "<pre>".$trace[0]["file"].":".$trace[0]["line"]."\n"; print_r($debugme); echo "</pre>";
 	}
 }
 
@@ -54,16 +55,12 @@ function magrathea_printFields($fields_arr, $selected = null){
 	return $selected;
 }
 
+
 function magrathea_getTypesArr(){
-	$types = array("int", "string", "text", "float", "datetime");
+	$types = array("int", "boolean", "string", "text", "float", "datetime");
 	return $types;
 }
 
-function now(){
-	return date("Y-m-d H:i:s");
-}
-
-function mascara($val, $mask) { $maskared = ''; $k = 0; for($i = 0; $i<=strlen($mask)-1; $i++) { if($mask[$i] == '#') { if(isset($val[$k])) $maskared .= $val[$k++]; } else { if(isset($mask[$i])) $maskared .= $mask[$i]; } } return $maskared; }
 
 
 

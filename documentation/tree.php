@@ -10,46 +10,49 @@
 
 Tree:
 		<pre>
-|---  app
-|  |---  Controls
-|  |  |-->  _Controller.php
+├───  app
+|  ├───  Controls
+|  |  └──>  _Controller.php
 |  |
-|  |---  css
-|  |  |---  _compressed			// write permission required
-|  |  |---  bootstrap
-|  |  |-->  style.css 
+|  ├───  css
+|  |  ├───  _compressed			// write permission required
+|  |  ├───  bootstrap
+|  |  └──>  style.css 
 |  |
-|  |---  inc
-|  |  |-->  global.php
+|  ├───  inc
+|  |  └──>  global.php
 |  |
-|  |---  javascript
-|  |  |---  _compressed			// write permission required
-|  |  |---  bootstrap
-|  |  |---  jquery
-|  |  |-->  javascript.js 
+|  ├───  javascript
+|  |  ├───  _compressed			// write permission required
+|  |  ├───  bootstrap
+|  |  ├───  jquery
+|  |  └──>  javascript.js 
 |  |
-|  |---  Models 
-|  |  |---  Base 		// write permission required
+|  ├───  Models 
+|  |  └───  Base 		// write permission required
 |  | 
-|  |---  plugins 		// write permission required
-|  |---  Views
-|  |  |---  _cache			// for Smarty use
-|  |  |---  _compiled		// for Smarty use
-|  |  |---  configs			// for Smarty use
-|  |     |-->  site.conf 		// for Smarty use
+|  ├───  Views
+|  |  ├───  _cache			// for Smarty use
+|  |  ├───  _compiled		// for Smarty use
+|  |  └───  configs			// for Smarty use
+|  |     └──>  site.conf 		// for Smarty use
 |  | 
-|  |-->  admin.php
-|  |-->  index.php
+|  ├──>  admin.php
+|  └──>  index.php
 |
-|---  configs 			// write permission required
-|  |-->  index.html 		// empty file
-|  |-->  magrathea.conf 		// based on magrathea.conf.default
-|  |-->  magrathea_objects.conf
+├───  configs 			// write permission required
+|  ├──>  index.html 		// empty file
+|  ├──>  magrathea.conf 		// based on magrathea.conf.default
+|  └──>  magrathea_objects.conf
 |
-|---  Magrathea  		// Magrathea framework
-|---  Magrathea_admin 		// Magrathea Admin
-|---  Smarty 		// Smarty
-|---  Tests
+├───  Magrathea  		// Magrathea framework
+|  └─── libs
+|  |  ├───  pear	 		// pear
+|  |  └───  Smarty 			// Smarty
+|  └─── Magrathea Admin 
+|		// Magrathea Admin
+├───  plugins 			// write permission required
+└───  Tests
 </pre>
 
 	<br/>

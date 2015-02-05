@@ -60,8 +60,46 @@ $environment = MagratheaConfig::Instance()->GetEnvironment();
 </div>
 </form>
 
+
 <div id="LoadConfigSection">
 	<?
 	include("load_configuration_section.php");
 	?>
 </div>
+
+<div class="row-fluid">
+	<div class="span12 mag_section">
+		<header class="hide_opt">
+				<h3>Database testing</h3>
+				<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa-chevron-down"></i></a></span>
+		</header>
+		<content>
+			<div class='row-fluid'>
+				<div class='span6 center'>
+					<button class='btn' onClick='testConnection();'><i class="fa fa-arrow-right"></i><i class="fa fa-database"></i>&nbsp;&nbsp;&nbsp;&nbsp;Test Connection</button><br/>
+				</div>
+				<div class="span6" id="database_result">
+				</div>
+			</div>
+		</content>
+	</div>
+</div>
+
+<script type="text/javascript">
+function testConnection(){
+	var conn = {
+		host: $("input#db_host").val(),
+		user: $("input#db_user").val(),
+		pass: $("input#db_pass").val(),
+		name: $("input#db_name").val()
+	};
+	$.ajax({
+			url: "?page=database_test.php",
+			type: "POST",
+			data: conn, 
+			success: function(data){
+				$("#database_result").html(data);
+			}
+		});
+}
+</script>

@@ -54,10 +54,7 @@ $createSql .= "CREATE TRIGGER `".$obj["table_name"]."_create` BEFORE INSERT ON `
 $createSql .= "CREATE TRIGGER `".$obj["table_name"]."_update` BEFORE UPDATE ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.updated_at = NOW();\n";
 
 
-echo "<textarea class='textarea_large' id='".$object_name."_query'>".$createSql."</textarea>";
-echo "<br/>";
-echo '<button class="btn btn-default" onClick="databaseRun(\''.$object_name.'\');"><i class="fa fa-cog"></i>&nbsp;Run Query</button>';
-die;
+die($createSql);
 
 /*
 CREATE TABLE `empresas` (

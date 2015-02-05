@@ -19,7 +19,7 @@
     <title>Magrathea</title>
     
     <!-- ===================== CSS ===================== -->
-    <? include("css/inside_page.php") ?>
+    <? include("resources/css.php") ?>
 
   </head>
   <body> 
@@ -50,6 +50,6 @@
 </body>
 
     <!-- ===================== JS ===================== -->
-    <? include("javascript/inside_page.php") ?>
+    <? include("resources/javascript.php") ?>
 
 </html>

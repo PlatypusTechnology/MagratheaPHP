@@ -3,7 +3,7 @@
 require ("admin_load.php");
 
 $table = $_POST["table"];
-$query = "SHOW COLUMNS FROM ".$table;
+$query = "SHOW columns FROM ".$table;
 $columns = $magdb->queryAll($query);
 
 //p_r($columns);
