@@ -10,7 +10,7 @@
 ####
 #######################################################################################
 ####
-####	MagratheaDatabase Class
+####	Database Class
 ####	Database connection class
 ####	
 ####	created: 2012-12 by Paulo Martins
@@ -22,7 +22,7 @@
 * This class will provide a layer for connecting with mysql
 * 
 */
-class MagratheaDatabase{
+class Magdb{
 
 	const FETCH_ASSOC = 1;
 	const FETCH_OBJECT = 2;
@@ -45,11 +45,11 @@ class MagratheaDatabase{
 	/**
 	* This is a singleton!
 	* Instance loader
-	* @return 	MagratheaDatabase 	Instance of the object
+	* @return 	Magdb 	Instance of the object
 	*/
 	public static function Instance(){
 		if (self::$inst === null) {
-			self::$inst = new MagratheaDatabase();
+			self::$inst = new Magdb();
 		}
 		return self::$inst;
 	}
@@ -59,7 +59,7 @@ class MagratheaDatabase{
 	* Should be called by private method Instance.
 	* Don't implement new ones
 	*/
-	public function MagratheaDatabase(){
+	public function Magdb(){
 	}
 	/**
 	* Sets the connection array object
@@ -187,21 +187,30 @@ class MagratheaDatabase{
 	 */
 	private function FetchResult($result, $firstLineOnly=false){
 		$arrResult = array();
+		$isArrayResponse = false;
 		switch($this->fetchmode){
 			case @FETCH_OBJECT:
 				$fetch_fn = "fetch_object";
 			break;
 			case @FETCH_NUM:
 				$fetch_fn = "fetch_num";
+				$isArrayResponse = true;
 			break;
 			case @FETCH_ASSOC:
 			default:
 				$fetch_fn = "fetch_assoc";
+				$isArrayResponse = true;
 			break;
 		}
-		if($firstLineOnly) $arrResult = $result->$fetch_fn();
+		if($firstLineOnly){
+			$arrResult = $result->$fetch_fn();
+			if($isArrayResponse)
+				$arrResult = array_change_key_case($arrResult, CASE_LOWER);
+		}
 		else 
-			while( $obj = @array_change_key_case($result->$fetch_fn(), CASE_LOWER) ){
+			while( $obj = $result->$fetch_fn() ){
+				if($isArrayResponse)
+					$obj = array_change_key_case($obj, CASE_LOWER);
 				array_push($arrResult, $obj);
 			}
 		return $arrResult;
@@ -218,7 +227,8 @@ class MagratheaDatabase{
 		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
-		$this->count = $result->num_rows;
+		if(is_object($result))
+			$this->count = $result->num_rows;
 		$this->CloseConnectionThanks();
 		return $result;
 	}

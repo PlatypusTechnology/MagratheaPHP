@@ -5,7 +5,7 @@ abstract class MagratheaModelControl{
 	protected static $dbTable;
 
 	public static function RunQuery($sql){
-		$magdb = MagratheaDatabase::Instance();
+		$magdb = Magdb::Instance();
 		$objects = array();
 		$result = $magdb->queryAll($sql);
 		foreach($result as $item){
@@ -19,7 +19,7 @@ abstract class MagratheaModelControl{
 		return $objects;
 	}
 	public static function RunRow($sql){
-		$magdb = MagratheaDatabase::Instance();
+		$magdb = Magdb::Instance();
 		$row = $magdb->QueryRow($sql);
 		$new_object = null;
 		if(!empty($row)){
@@ -29,10 +29,10 @@ abstract class MagratheaModelControl{
 		return $new_object;
 	}
 	public static function QueryResult($sql){
-		return MagratheaDatabase::Instance()->queryAll($sql);
+		return Magdb::Instance()->queryAll($sql);
 	}
 	public static function QueryOne($sql){
-		return MagratheaDatabase::Instance()->queryOne($sql);
+		return Magdb::Instance()->queryOne($sql);
 	}
 
 
@@ -102,7 +102,7 @@ abstract class MagratheaModelControl{
 
 		// db:
 		$objects = array();
-		$result = MagratheaDatabase::Instance()->queryAll($magQuery->SQL());
+		$result = Magdb::Instance()->queryAll($magQuery->SQL());
 
 		foreach($result as $item){
 			// we have the result... but we have to separate it in the objects... shit, how can I do that?

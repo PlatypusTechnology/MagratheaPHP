@@ -2,7 +2,7 @@
 
 // load tables:
 function getAllTables($db){
-	$magdb = MagratheaDatabase::Instance();
+	$magdb = Magdb::Instance();
 	try	{
 		$sql = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' AND TABLE_NAME NOT LIKE 'magrathea_%' ORDER BY TABLE_NAME";
 		$sqlAllTables = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' ORDER BY TABLE_NAME";

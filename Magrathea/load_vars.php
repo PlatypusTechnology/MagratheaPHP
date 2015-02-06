@@ -8,7 +8,7 @@ if(isset($site_path)){
 $magdb = null;
 try	{
 	$configSection = MagratheaConfig::Instance()->GetConfigSection(MagratheaConfig::Instance()->GetEnvironment());
-	$magdb = MagratheaDatabase::Instance();
+	$magdb = Magdb::Instance();
 	$magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
 } catch (Exception $ex){
 	$error_msg = "Error: ".$ex->getMessage();

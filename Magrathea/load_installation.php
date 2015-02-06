@@ -15,7 +15,7 @@ $magdb = null;
 try	{
 	$environment = MagratheaConfigStatic::GetConfig("general/use_environment");
 	$configSection = MagratheaConfigStatic::GetConfigSection($environment);
-	$magdb = new MagratheaDatabase();
+	$magdb = new Magdb();
 	$magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
 } catch (Exception $ex){
 	$ready_to_install = false;
