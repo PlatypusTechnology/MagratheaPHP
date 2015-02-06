@@ -11,12 +11,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li class="active"><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -37,12 +38,13 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li class="active"><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -75,13 +77,27 @@
 
 			<h3>Functions</h3>
 			<ul>
+				<li><a href="function-buildTypesSelect.html.php">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html.php">Debug</a></li>
+				<li><a href="function-DeleteRelation.html.php">DeleteRelation</a></li>
+				<li><a href="function-ExtractRelFromRelArray.html.php">ExtractRelFromRelArray</a></li>
+				<li><a href="function-getAllObjects.html.php">getAllObjects</a></li>
+				<li><a href="function-getAllTables.html.php">getAllTables</a></li>
+				<li><a href="function-getObject.html.php">getObject</a></li>
+				<li><a href="function-getObjectByTable.html.php">getObjectByTable</a></li>
+				<li><a href="function-GetRelationByName.html.php">GetRelationByName</a></li>
+				<li><a href="function-GetRelations.html.php">GetRelations</a></li>
+				<li><a href="function-GetRelationsByObject.html.php">GetRelationsByObject</a></li>
+				<li><a href="function-getSelectedField.html.php">getSelectedField</a></li>
+				<li><a href="function-loadConfig.html.php">loadConfig</a></li>
+				<li><a href="function-loadPluginsList.html.php">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html.php">mascara</a></li>
 				<li><a href="function-nice_p_r.html.php">nice_p_r</a></li>
-				<li><a href="function-now.html.php">now</a></li>
 				<li><a href="function-p_r.html.php">p_r</a></li>
+				<li><a href="function-rcopy.html.php">rcopy</a></li>
+				<li><a href="function-rrmdir.html.php">rrmdir</a></li>
+				<li><a href="function-writeFile.html.php">writeFile</a></li>
 			</ul>
 		</div>
 	</div>
@@ -113,7 +129,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaConfigFile.html.php#119-267" title="Go to source code">Config.class.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaConfigFile.html.php#120-262" title="Go to source code">MagratheaConfig.php</a>
 		<br>
 	</div>
 
@@ -132,7 +148,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#128-130" title="Go to source code">__construct</a>( )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#129-131" title="Go to source code">__construct</a>( )</code>
 
 			<div class="description short">
 				
@@ -161,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setPath">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#132-139" title="Go to source code">setPath</a>( <span>string <var>$p</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#133-139" title="Go to source code">setPath</a>( <span>string <var>$p</var></span> )</code>
 
 			<div class="description short">
 				<p>Set the path to the confi file</p>
@@ -195,7 +211,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setConfig">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#140-147" title="Go to source code">setConfig</a>( <span>array <var>$c</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#140-146" title="Go to source code">setConfig</a>( <span>array <var>$c</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the config information</p>
@@ -229,7 +245,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setFile">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#148-155" title="Go to source code">setFile</a>( <span>string <var>$filePath</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#147-153" title="Go to source code">setFile</a>( <span>string <var>$filePath</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the name of the config file</p>
@@ -263,7 +279,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createFileIfNotExists">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#164-173" title="Go to source code">createFileIfNotExists</a>( )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#162-170" title="Go to source code">createFileIfNotExists</a>( )</code>
 
 			<div class="description short">
 				<p>Creates the configuration file if it doesn't exists. And saves it.</p>
@@ -296,7 +312,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfig">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#174-193" title="Go to source code">getConfig</a>( <span>string <var>$config_name</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#171-188" title="Go to source code">getConfig</a>( <span>string <var>$config_name</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
 
 			<div class="description short">
 				<p>Gets configuration</p>
@@ -335,7 +351,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getConfigSection">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#194-209" title="Go to source code">getConfigSection</a>( <span>string <var>$section_name</var></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#189-204" title="Go to source code">getConfigSection</a>( <span>string <var>$section_name</var></span> )</code>
 
 			<div class="description short">
 				<p>Gets a full config section</p>
@@ -373,7 +389,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Save">#</a>
-			<code><a href="source-class-MagratheaConfigFile.html.php#210-262" title="Go to source code">Save</a>( <span>boolean <var>$save_sections</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code><a href="source-class-MagratheaConfigFile.html.php#205-257" title="Go to source code">Save</a>( <span>boolean <var>$save_sections</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
 				<p>Saves the config file</p>

@@ -10,7 +10,7 @@
 ####
 #######################################################################################
 ####
-####	Database Class
+####	MagratheaDatabase Class
 ####	Database connection class
 ####	
 ####	created: 2012-12 by Paulo Martins
@@ -22,7 +22,7 @@
 * This class will provide a layer for connecting with mysql
 * 
 */
-class Magdb{
+class MagratheaDatabase{
 
 	const FETCH_ASSOC = 1;
 	const FETCH_OBJECT = 2;
@@ -45,11 +45,11 @@ class Magdb{
 	/**
 	* This is a singleton!
 	* Instance loader
-	* @return 	Magdb 	Instance of the object
+	* @return 	MagratheaDatabase 	Instance of the object
 	*/
 	public static function Instance(){
 		if (self::$inst === null) {
-			self::$inst = new Magdb();
+			self::$inst = new MagratheaDatabase();
 		}
 		return self::$inst;
 	}
@@ -59,7 +59,7 @@ class Magdb{
 	* Should be called by private method Instance.
 	* Don't implement new ones
 	*/
-	public function Magdb(){
+	public function MagratheaDatabase(){
 	}
 	/**
 	* Sets the connection array object

@@ -75,7 +75,7 @@ abstract class MagratheaModel{
 	public function GetById($id){
 		if( empty($id) ) return null;
 		$sql = "SELECT * FROM ".$this->dbTable." WHERE ".$this->dbPk." = ".$id;
-		$result = Magdb::Instance()->queryRow($sql);
+		$result = MagratheaDatabase::Instance()->queryRow($sql);
 		if( empty($result) ) throw new MagratheaModelException("Could not find ".get_class($this)." with id ".$id."!");
 		$this->LoadObjectFromTableRow($result);
 	}
@@ -83,7 +83,7 @@ abstract class MagratheaModel{
 	// Gets the next auto increment id for object:
 	public function GetNextID(){
 		$sql = "SHOW TABLE STATUS LIKE '".$this->dbTable."'";
-		$data = Magdb::Instance()->QueryRow($sql);
+		$data = MagratheaDatabase::Instance()->QueryRow($sql);
 		return $data['auto_increment'];
 	}
 
@@ -109,7 +109,7 @@ abstract class MagratheaModel{
 		// old query, for pear mdb2 driver
 		// $query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (:".implode(",:", $arr_Fields).") ";
 		$query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (".implode(", ", array_fill(0, count($arr_Fields), "?")).") ";
-		$lastId = Magdb::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
+		$lastId = MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 		$pk = $this->dbPk;
 		$this->$pk = $lastId;
 		return $lastId;
@@ -129,7 +129,7 @@ abstract class MagratheaModel{
 
 		$arr_Values[$pkField] = $this->$pkField;
 		$arr_Types[$pkField] = $this->GetDataTypeFromField($pkField);
-		Magdb::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
+		MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 		return true;
 	}
 	public function Delete(){
@@ -139,7 +139,7 @@ abstract class MagratheaModel{
 		// old query, for pear mdb2 driver
 		// $query_run = "DELETE FROM ".$this->dbTable." WHERE ".$this->dbPk."=:".$this->dbPk;
 		$query_run = "DELETE FROM ".$this->dbTable." WHERE ".$this->dbPk."= ? ";
-		return Magdb::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
+		return MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 	}
 
 	public function __get($key){

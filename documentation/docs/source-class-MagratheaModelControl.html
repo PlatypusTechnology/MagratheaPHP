@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
 
-	<title>File ModelControl.class.php | MagratheaPHP</title>
+	<title>File MagratheaModelControl.php | MagratheaPHP</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
 	<link rel="stylesheet" href="resources/style.css?062e9e59e0b8c44fbaaded5b7ffc21f907b78669">
@@ -30,7 +30,7 @@
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li>
-							<a href="function-p_r.html" title="Summary of p_r"><span>Function</span></a>
+							<a href="function-writeFile.html" title="Summary of writeFile"><span>Function</span></a>
 						</li>
 
 						<li class="divider-vertical"></li>
@@ -69,12 +69,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html">Magdb</a></li>
+				<li><a href="class-Magdb_.html" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
@@ -95,12 +96,13 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html">Magdb</a></li>
+				<li><a href="class-Magdb_.html" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
@@ -133,13 +135,27 @@
 
 			<h3>Functions</h3>
 			<ul>
+				<li><a href="function-buildTypesSelect.html">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html">Debug</a></li>
+				<li><a href="function-DeleteRelation.html">DeleteRelation</a></li>
+				<li><a href="function-ExtractRelFromRelArray.html">ExtractRelFromRelArray</a></li>
+				<li><a href="function-getAllObjects.html">getAllObjects</a></li>
+				<li><a href="function-getAllTables.html">getAllTables</a></li>
+				<li><a href="function-getObject.html">getObject</a></li>
+				<li><a href="function-getObjectByTable.html">getObjectByTable</a></li>
+				<li><a href="function-GetRelationByName.html">GetRelationByName</a></li>
+				<li><a href="function-GetRelations.html">GetRelations</a></li>
+				<li><a href="function-GetRelationsByObject.html">GetRelationsByObject</a></li>
+				<li><a href="function-getSelectedField.html">getSelectedField</a></li>
+				<li><a href="function-loadConfig.html">loadConfig</a></li>
+				<li><a href="function-loadPluginsList.html">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html">mascara</a></li>
 				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
-				<li><a href="function-now.html">now</a></li>
-				<li class="active"><a href="function-p_r.html">p_r</a></li>
+				<li><a href="function-p_r.html">p_r</a></li>
+				<li><a href="function-rcopy.html">rcopy</a></li>
+				<li><a href="function-rrmdir.html">rrmdir</a></li>
+				<li class="active"><a href="function-writeFile.html">writeFile</a></li>
 			</ul>
 		</div>
 	</div>
@@ -156,7 +172,7 @@
 </span><span id="5" class="l"><a href="#5">  5 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">static</span> <span class="php-var">$dbTable</span>;
 </span><span id="6" class="l"><a href="#6">  6 </a>
 </span><span id="7" class="l"><a href="#7">  7 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> RunQuery(<span class="php-var">$sql</span>){
-</span><span id="8" class="l"><a href="#8">  8 </a>        <span class="php-var">$magdb</span> = Magdb::Instance();
+</span><span id="8" class="l"><a href="#8">  8 </a>        <span class="php-var">$magdb</span> = MagratheaDatabase::Instance();
 </span><span id="9" class="l"><a href="#9">  9 </a>        <span class="php-var">$objects</span> = <span class="php-keyword1">array</span>();
 </span><span id="10" class="l"><a href="#10"> 10 </a>        <span class="php-var">$result</span> = <span class="php-var">$magdb</span>-&gt;queryAll(<span class="php-var">$sql</span>);
 </span><span id="11" class="l"><a href="#11"> 11 </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$result</span> <span class="php-keyword1">as</span> <span class="php-var">$item</span>){
@@ -170,7 +186,7 @@
 </span><span id="19" class="l"><a href="#19"> 19 </a>        <span class="php-keyword1">return</span> <span class="php-var">$objects</span>;
 </span><span id="20" class="l"><a href="#20"> 20 </a>    }
 </span><span id="21" class="l"><a href="#21"> 21 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> RunRow(<span class="php-var">$sql</span>){
-</span><span id="22" class="l"><a href="#22"> 22 </a>        <span class="php-var">$magdb</span> = Magdb::Instance();
+</span><span id="22" class="l"><a href="#22"> 22 </a>        <span class="php-var">$magdb</span> = MagratheaDatabase::Instance();
 </span><span id="23" class="l"><a href="#23"> 23 </a>        <span class="php-var">$row</span> = <span class="php-var">$magdb</span>-&gt;QueryRow(<span class="php-var">$sql</span>);
 </span><span id="24" class="l"><a href="#24"> 24 </a>        <span class="php-var">$new_object</span> = <span class="php-keyword1">null</span>;
 </span><span id="25" class="l"><a href="#25"> 25 </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword1">empty</span>(<span class="php-var">$row</span>)){
@@ -180,10 +196,10 @@
 </span><span id="29" class="l"><a href="#29"> 29 </a>        <span class="php-keyword1">return</span> <span class="php-var">$new_object</span>;
 </span><span id="30" class="l"><a href="#30"> 30 </a>    }
 </span><span id="31" class="l"><a href="#31"> 31 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> QueryResult(<span class="php-var">$sql</span>){
-</span><span id="32" class="l"><a href="#32"> 32 </a>        <span class="php-keyword1">return</span> Magdb::Instance()-&gt;queryAll(<span class="php-var">$sql</span>);
+</span><span id="32" class="l"><a href="#32"> 32 </a>        <span class="php-keyword1">return</span> MagratheaDatabase::Instance()-&gt;queryAll(<span class="php-var">$sql</span>);
 </span><span id="33" class="l"><a href="#33"> 33 </a>    }
 </span><span id="34" class="l"><a href="#34"> 34 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> QueryOne(<span class="php-var">$sql</span>){
-</span><span id="35" class="l"><a href="#35"> 35 </a>        <span class="php-keyword1">return</span> Magdb::Instance()-&gt;queryOne(<span class="php-var">$sql</span>);
+</span><span id="35" class="l"><a href="#35"> 35 </a>        <span class="php-keyword1">return</span> MagratheaDatabase::Instance()-&gt;queryOne(<span class="php-var">$sql</span>);
 </span><span id="36" class="l"><a href="#36"> 36 </a>    }
 </span><span id="37" class="l"><a href="#37"> 37 </a>
 </span><span id="38" class="l"><a href="#38"> 38 </a>
@@ -253,7 +269,7 @@
 </span><span id="102" class="l"><a href="#102">102 </a>
 </span><span id="103" class="l"><a href="#103">103 </a>        <span class="php-comment">// db:</span>
 </span><span id="104" class="l"><a href="#104">104 </a>        <span class="php-var">$objects</span> = <span class="php-keyword1">array</span>();
-</span><span id="105" class="l"><a href="#105">105 </a>        <span class="php-var">$result</span> = Magdb::Instance()-&gt;queryAll(<span class="php-var">$magQuery</span>-&gt;SQL());
+</span><span id="105" class="l"><a href="#105">105 </a>        <span class="php-var">$result</span> = MagratheaDatabase::Instance()-&gt;queryAll(<span class="php-var">$magQuery</span>-&gt;SQL());
 </span><span id="106" class="l"><a href="#106">106 </a>
 </span><span id="107" class="l"><a href="#107">107 </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$result</span> <span class="php-keyword1">as</span> <span class="php-var">$item</span>){
 </span><span id="108" class="l"><a href="#108">108 </a>            <span class="php-comment">// we have the result... but we have to separate it in the objects... shit, how can I do that?</span>
@@ -299,7 +315,7 @@
 		MagratheaPHP API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
 </div>
-<script src="resources/combined.js?d2e719ce85ef87f75a9946dd1e623ee5a5c9b587"></script>
-<script src="elementlist.js?95e52afd9db895590361d01bbc6b97df59174d3f"></script>
+<script src="resources/combined.js?396e5abc57886c99e34f12a176566235146ad438"></script>
+<script src="elementlist.js?7b284201300ce3a88b82a3e00d0b33a1c3fd2e15"></script>
 </body>
 </html>

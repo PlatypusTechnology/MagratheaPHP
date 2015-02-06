@@ -4,7 +4,9 @@ title: MagratheaPHP
 deprecated: true
 todo: true
 download: true
+sourceCode: 
 #main: Magrathea
 #baseUrl: http://magrathea.platypusweb.com.br/docs
 exclude:
  - *install_magrathea.php
+ - libs/Smarty

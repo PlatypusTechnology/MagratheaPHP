@@ -11,12 +11,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li class="active"><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -37,12 +38,13 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li class="active"><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -75,13 +77,27 @@
 
 			<h3>Functions</h3>
 			<ul>
+				<li><a href="function-buildTypesSelect.html.php">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html.php">Debug</a></li>
+				<li><a href="function-DeleteRelation.html.php">DeleteRelation</a></li>
+				<li><a href="function-ExtractRelFromRelArray.html.php">ExtractRelFromRelArray</a></li>
+				<li><a href="function-getAllObjects.html.php">getAllObjects</a></li>
+				<li><a href="function-getAllTables.html.php">getAllTables</a></li>
+				<li><a href="function-getObject.html.php">getObject</a></li>
+				<li><a href="function-getObjectByTable.html.php">getObjectByTable</a></li>
+				<li><a href="function-GetRelationByName.html.php">GetRelationByName</a></li>
+				<li><a href="function-GetRelations.html.php">GetRelations</a></li>
+				<li><a href="function-GetRelationsByObject.html.php">GetRelationsByObject</a></li>
+				<li><a href="function-getSelectedField.html.php">getSelectedField</a></li>
+				<li><a href="function-loadConfig.html.php">loadConfig</a></li>
+				<li><a href="function-loadPluginsList.html.php">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html.php">mascara</a></li>
 				<li><a href="function-nice_p_r.html.php">nice_p_r</a></li>
-				<li><a href="function-now.html.php">now</a></li>
 				<li><a href="function-p_r.html.php">p_r</a></li>
+				<li><a href="function-rcopy.html.php">rcopy</a></li>
+				<li><a href="function-rrmdir.html.php">rrmdir</a></li>
+				<li><a href="function-writeFile.html.php">writeFile</a></li>
 			</ul>
 		</div>
 	</div>
@@ -110,7 +126,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaDebugger.html.php#13-131" title="Go to source code">MagratheaDebugger.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaDebugger.html.php#17-135" title="Go to source code">MagratheaDebugger.php</a>
 		<br>
 	</div>
 
@@ -129,7 +145,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Instance">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#23-31" title="Go to source code">Instance</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#27-35" title="Go to source code">Instance</a>( )</code>
 
 			<div class="description short">
 				<p>Static singleton way to get the debugger instance</p>
@@ -158,7 +174,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_MagratheaDebugger">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#32-33" title="Go to source code">MagratheaDebugger</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#36-37" title="Go to source code">MagratheaDebugger</a>( )</code>
 
 			<div class="description short">
 				
@@ -187,7 +203,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_SetType">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#35-48" title="Go to source code">SetType</a>( <span> <var>$dType</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#39-52" title="Go to source code">SetType</a>( <span> <var>$dType</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the debugger method
@@ -233,7 +249,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_SetTemp">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#50-59" title="Go to source code">SetTemp</a>( <span>string <var>$dType</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#54-63" title="Go to source code">SetTemp</a>( <span>string <var>$dType</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets a debugger type temporarily
@@ -269,7 +285,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_BackTemp">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#61-67" title="Go to source code">BackTemp</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#65-71" title="Go to source code">BackTemp</a>( )</code>
 
 			<div class="description short">
 				<p>After temporarily setting a debugging type, gets it back to what it was</p>
@@ -298,7 +314,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_GetType">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#69-76" title="Go to source code">GetType</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#73-80" title="Go to source code">GetType</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the debug type</p>
@@ -331,7 +347,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Add">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#78-98" title="Go to source code">Add</a>( <span>string <var>$debug</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#82-102" title="Go to source code">Add</a>( <span>string <var>$debug</var></span> )</code>
 
 			<div class="description short">
 				<p>Add an item to the debug array object</p>
@@ -365,7 +381,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_AddQuery">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#100-113" title="Go to source code">AddQuery</a>( <span>string <var>$sql</var></span>, <span>string <var>$values</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#104-117" title="Go to source code">AddQuery</a>( <span>string <var>$sql</var></span>, <span>string <var>$values</var></span> )</code>
 
 			<div class="description short">
 				<p>Adds a query to the debug</p>
@@ -401,7 +417,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Show">#</a>
-			<code><a href="source-class-MagratheaDebugger.html.php#115-122" title="Go to source code">Show</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html.php#119-126" title="Go to source code">Show</a>( )</code>
 
 			<div class="description short">
 				<p>Prints the debug</p>
@@ -441,7 +457,7 @@ Default: <strong>Log</strong></p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-MagratheaDebugger.html.php#18" title="Go to source code"><var>$inst</var></a>
+					<a href="source-class-MagratheaDebugger.html.php#22" title="Go to source code"><var>$inst</var></a>
 
 				<div class="description short">
 					

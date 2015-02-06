@@ -11,12 +11,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -37,12 +38,13 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -75,13 +77,27 @@
 
 			<h3>Functions</h3>
 			<ul>
+				<li><a href="function-buildTypesSelect.html.php">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html.php">Debug</a></li>
+				<li><a href="function-DeleteRelation.html.php">DeleteRelation</a></li>
+				<li><a href="function-ExtractRelFromRelArray.html.php">ExtractRelFromRelArray</a></li>
+				<li><a href="function-getAllObjects.html.php">getAllObjects</a></li>
+				<li><a href="function-getAllTables.html.php">getAllTables</a></li>
+				<li><a href="function-getObject.html.php">getObject</a></li>
+				<li><a href="function-getObjectByTable.html.php">getObjectByTable</a></li>
+				<li><a href="function-GetRelationByName.html.php">GetRelationByName</a></li>
+				<li><a href="function-GetRelations.html.php">GetRelations</a></li>
+				<li><a href="function-GetRelationsByObject.html.php">GetRelationsByObject</a></li>
+				<li><a href="function-getSelectedField.html.php">getSelectedField</a></li>
+				<li><a href="function-loadConfig.html.php">loadConfig</a></li>
+				<li><a href="function-loadPluginsList.html.php">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html.php">mascara</a></li>
 				<li><a href="function-nice_p_r.html.php">nice_p_r</a></li>
-				<li><a href="function-now.html.php">now</a></li>
-				<li class="active"><a href="function-p_r.html.php">p_r</a></li>
+				<li><a href="function-p_r.html.php">p_r</a></li>
+				<li><a href="function-rcopy.html.php">rcopy</a></li>
+				<li><a href="function-rrmdir.html.php">rrmdir</a></li>
+				<li class="active"><a href="function-writeFile.html.php">writeFile</a></li>
 			</ul>
 		</div>
 	</div>
@@ -101,8 +117,8 @@
 <h2>Classes summary</h2>
 <table class="summary table table-bordered table-striped" id="classes">
 <tr>
-	<td class="name"><a href="class-Magdb.html.php">Magdb</a></td>
-	<td></td>
+	<td class="name"><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></td>
+	<td>This class will provide a layer for connecting with mysql</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></td>
@@ -123,6 +139,10 @@
 <tr>
 	<td class="name"><a href="class-MagratheaController.html.php">MagratheaController</a></td>
 	<td>This class will manage the controllers for displaying pages</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></td>
+	<td>This class will provide a layer for connecting with mysql</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></td>
@@ -193,8 +213,8 @@
 <h2>Interfaces summary</h2>
 <table class="summary table table-bordered table-striped" id="interfaces">
 <tr>
-	<td class="name"><a href="class-Magdb.html.php">Magdb</a></td>
-	<td></td>
+	<td class="name"><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></td>
+	<td>This class will provide a layer for connecting with mysql</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></td>
@@ -215,6 +235,10 @@
 <tr>
 	<td class="name"><a href="class-MagratheaController.html.php">MagratheaController</a></td>
 	<td>This class will manage the controllers for displaying pages</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></td>
+	<td>This class will provide a layer for connecting with mysql</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></td>
@@ -315,8 +339,60 @@
 <h2>Functions summary</h2>
 <table class="summary table table-bordered table-striped" id="functions">
 <tr>
+	<td class="name"><a href="function-buildTypesSelect.html.php">buildTypesSelect</a></td>
+	<td></td>
+</tr>
+<tr>
 	<td class="name"><a href="function-Debug.html.php">Debug</a></td>
-	<td>Class for debugging and logging Control</td>
+	<td>Debugs what is sent, according with debug configurations</td>
+</tr>
+<tr>
+	<td class="name"><a href="function-DeleteRelation.html.php">DeleteRelation</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-ExtractRelFromRelArray.html.php">ExtractRelFromRelArray</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-getAllObjects.html.php">getAllObjects</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-getAllTables.html.php">getAllTables</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-getObject.html.php">getObject</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-getObjectByTable.html.php">getObjectByTable</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-GetRelationByName.html.php">GetRelationByName</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-GetRelations.html.php">GetRelations</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-GetRelationsByObject.html.php">GetRelationsByObject</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-getSelectedField.html.php">getSelectedField</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-loadConfig.html.php">loadConfig</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-loadPluginsList.html.php">loadPluginsList</a></td>
+	<td></td>
 </tr>
 <tr>
 	<td class="name"><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></td>
@@ -327,19 +403,23 @@
 	<td></td>
 </tr>
 <tr>
-	<td class="name"><a href="function-mascara.html.php">mascara</a></td>
-	<td></td>
-</tr>
-<tr>
 	<td class="name"><a href="function-nice_p_r.html.php">nice_p_r</a></td>
 	<td></td>
 </tr>
 <tr>
-	<td class="name"><a href="function-now.html.php">now</a></td>
+	<td class="name"><a href="function-p_r.html.php">p_r</a></td>
 	<td></td>
 </tr>
 <tr>
-	<td class="name"><a href="function-p_r.html.php">p_r</a></td>
+	<td class="name"><a href="function-rcopy.html.php">rcopy</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-rrmdir.html.php">rrmdir</a></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="name"><a href="function-writeFile.html.php">writeFile</a></td>
 	<td></td>
 </tr>
 </table>

@@ -52,7 +52,6 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/archive/master.zip"><i class="icon-download"></i> Download <i class="icon-github-alt"></i></a></li>
             <li><a href="smarty.php"><i class="icon-lightbulb"></i> Smarty</a></li>
-            <li><a href="pear.php"><i class="icon-lemon"></i> Pear</a></li>
             <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
             <li class="divider"></li>
             <li><a href="tree.php"><i class="icon-sitemap"></i> Project tree</a></li>

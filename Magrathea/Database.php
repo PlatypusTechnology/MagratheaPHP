@@ -22,9 +22,9 @@ require 'MDB2.php';
 
 /**
 * This class will provide a layer for connecting with mysql
-* 
+* 	@deprecated
 */
-class Magdb{
+class Magdb_{
 	private $mdb2;
 	private $dsn = array();
 	private $pear;
@@ -146,14 +146,14 @@ class Magdb{
 	}
 	
 	/**
-	* Handle connection errors @todo
+	* Handle connection errors
 	* @throws	MagratheaDbException
 	*/
 	private function ConnectionErrorHandle($msg=""){ 
 		throw new MagratheaDBException($msg);
 	}
 	/**
-	* Handle errors @todo
+	* Handle errors
 	* @throws	MagratheaDbException
 	*/
 	private function ErrorHandle($result, $sql){ 

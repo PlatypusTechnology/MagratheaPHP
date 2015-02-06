@@ -9,7 +9,7 @@
 
 	$success = false;
 	try {
-		$db = Magdb::Instance();
+		$db = MagratheaDatabase::Instance();
 		$magdb->SetConnection($host, $name, $user, $pass);
 		$success = $magdb->OpenConnectionPlease();
 		$magdb->CloseConnectionThanks();

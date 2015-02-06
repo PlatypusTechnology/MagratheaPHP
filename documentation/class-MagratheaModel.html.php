@@ -11,12 +11,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -37,12 +38,13 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Magdb.html.php">Magdb</a></li>
+				<li><a href="class-Magdb_.html.php" class="deprecated">Magdb_</a></li>
 				<li><a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a></li>
 				<li><a href="class-MagratheaCompressor.html.php">MagratheaCompressor</a></li>
 				<li><a href="class-MagratheaConfig.html.php">MagratheaConfig</a></li>
 				<li><a href="class-MagratheaConfigFile.html.php">MagratheaConfigFile</a></li>
 				<li><a href="class-MagratheaController.html.php">MagratheaController</a></li>
+				<li><a href="class-MagratheaDatabase.html.php">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html.php">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html.php">MagratheaEmail</a></li>
 				<li><a href="class-MagratheaImage.html.php">MagratheaImage</a></li>
@@ -75,13 +77,27 @@
 
 			<h3>Functions</h3>
 			<ul>
+				<li><a href="function-buildTypesSelect.html.php">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html.php">Debug</a></li>
+				<li><a href="function-DeleteRelation.html.php">DeleteRelation</a></li>
+				<li><a href="function-ExtractRelFromRelArray.html.php">ExtractRelFromRelArray</a></li>
+				<li><a href="function-getAllObjects.html.php">getAllObjects</a></li>
+				<li><a href="function-getAllTables.html.php">getAllTables</a></li>
+				<li><a href="function-getObject.html.php">getObject</a></li>
+				<li><a href="function-getObjectByTable.html.php">getObjectByTable</a></li>
+				<li><a href="function-GetRelationByName.html.php">GetRelationByName</a></li>
+				<li><a href="function-GetRelations.html.php">GetRelations</a></li>
+				<li><a href="function-GetRelationsByObject.html.php">GetRelationsByObject</a></li>
+				<li><a href="function-getSelectedField.html.php">getSelectedField</a></li>
+				<li><a href="function-loadConfig.html.php">loadConfig</a></li>
+				<li><a href="function-loadPluginsList.html.php">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html.php">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html.php">magrathea_printFields</a></li>
-				<li><a href="function-mascara.html.php">mascara</a></li>
 				<li><a href="function-nice_p_r.html.php">nice_p_r</a></li>
-				<li><a href="function-now.html.php">now</a></li>
 				<li><a href="function-p_r.html.php">p_r</a></li>
+				<li><a href="function-rcopy.html.php">rcopy</a></li>
+				<li><a href="function-rrmdir.html.php">rrmdir</a></li>
+				<li><a href="function-writeFile.html.php">writeFile</a></li>
 			</ul>
 		</div>
 	</div>
@@ -122,7 +138,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaModel.html.php#32-193" title="Go to source code">Model.class.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaModel.html.php#32-206" title="Go to source code">Model.php</a>
 		<br>
 	</div>
 
@@ -460,7 +476,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Insert">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#97-114" title="Go to source code">Insert</a>( )</code>
+			<code><a href="source-class-MagratheaModel.html.php#97-116" title="Go to source code">Insert</a>( )</code>
 
 			<div class="description short">
 				
@@ -489,7 +505,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Update">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#115-128" title="Go to source code">Update</a>( )</code>
+			<code><a href="source-class-MagratheaModel.html.php#117-134" title="Go to source code">Update</a>( )</code>
 
 			<div class="description short">
 				
@@ -518,7 +534,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Delete">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#129-135" title="Go to source code">Delete</a>( )</code>
+			<code><a href="source-class-MagratheaModel.html.php#135-143" title="Go to source code">Delete</a>( )</code>
 
 			<div class="description short">
 				
@@ -547,7 +563,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___get">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#137-152" title="Go to source code">__get</a>( <span> <var>$key</var></span> )</code>
+			<code><a href="source-class-MagratheaModel.html.php#145-160" title="Go to source code">__get</a>( <span> <var>$key</var></span> )</code>
 
 			<div class="description short">
 				
@@ -576,7 +592,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___set">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#154-164" title="Go to source code">__set</a>( <span> <var>$key</var></span>, <span> <var>$value</var></span> )</code>
+			<code><a href="source-class-MagratheaModel.html.php#162-174" title="Go to source code">__set</a>( <span> <var>$key</var></span>, <span> <var>$value</var></span> )</code>
 
 			<div class="description short">
 				
@@ -605,7 +621,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___toString">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#166-177" title="Go to source code">__toString</a>( )</code>
+			<code><a href="source-class-MagratheaModel.html.php#176-187" title="Go to source code">__toString</a>( )</code>
 
 			<div class="description short">
 				
@@ -634,7 +650,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_GetDataTypeFromField">#</a>
-			<code><a href="source-class-MagratheaModel.html.php#179-191" title="Go to source code">GetDataTypeFromField</a>( <span> <var>$field</var></span> )</code>
+			<code><a href="source-class-MagratheaModel.html.php#189-204" title="Go to source code">GetDataTypeFromField</a>( <span> <var>$field</var></span> )</code>
 
 			<div class="description short">
 				
