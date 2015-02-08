@@ -10,10 +10,9 @@ require ($path."MagratheaDatabase.php");
 
 
 require ($path."Exceptions.php");
-require ($path."Functions.php");
 require ($path."MagratheaConfig.php");
 require ($path."MagratheaController.php");
-require ($path."Model.php");
+require ($path."MagratheaModel.php");
 require ($path."MagratheaModelControl.php");
 require ($path."MagratheaView.php");
 
@@ -21,6 +20,9 @@ include ($path."MagratheaCompressor.php");
 require ($path."MagratheaQuery.php");
 require ($path."MagratheaDebugger.php");
 require ($path."MagratheaLogger.php");
+
+require ($path."Functions.php");
+
 
 include("load_vars.php");
 

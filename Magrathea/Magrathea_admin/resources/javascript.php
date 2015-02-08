@@ -208,6 +208,22 @@ function loadTable(table_name){
 	});
 }
 
+function loadTableData(table_name){
+	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=tabledata"+table_name);
+	$.ajax({
+		url: "?page=load_tableData.php",
+		type: "POST",
+		data: { 
+			table: table_name
+		}, 
+		success: function(data){
+			$("#main_content").html(data);
+			$("#pageTitle").html("Table: "+table_name);
+		}
+	});
+}
+
+
 function loadObject(obj_name){
 	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=obj"+obj_name);
 	$.ajax({
@@ -268,7 +284,7 @@ function loadPlugins(){
 
 
 function loadTests(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=tests");
+	history.replaceState({}, "Magrathea Admin - Testing...", "admin.php?area=tests");
 	$.ajax({
 		url: "?page=load_tests.php",
 		success: function(data){
@@ -278,14 +294,19 @@ function loadTests(){
 				var url = $(this).attr("href");
 				$(this).attr("href", "javascript: loadUnitTest('"+url+"');");
 			});
+			$("#pageTitle").html("Tests");
+			$("#main_content").html("That's it! Keep testing...");
 		}
 	});
 }
 function loadUnitTest(test){
+	history.replaceState({}, "Magrathea Admin - Test", "admin.php?area=tests&load="+test);
 	$.ajax({
 		url: "?page=load_tests.php&test="+test,
 		success: function(data){
 			$("#main_content").html(data);
+			$("#main_content h1").html(test);
+			$("#pageTitle").html("Testing: " + test);
 		}
 	});
 }
@@ -377,7 +398,12 @@ function selectMenu(menu){
 	if(@$_GET["area"]){
 		echo "selectMenu('".$_GET["area"]."');";
 	}
+	if(@$_GET["load"]){
+		echo "loadUnitTest('".$_GET["load"]."');";
+	}
+
 ?>
+
 
 
 </script>

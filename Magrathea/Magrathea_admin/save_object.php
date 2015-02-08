@@ -114,7 +114,7 @@ require ("admin_load.php");
 	$objdata["relations"] = $relations;
 	
 	$mconfig->setConfig($objdata);
-	if( !$mconfig->Save(true) ){ 
+	if( !@$mconfig->Save(true) ){ 
 		echo "<!--false-->";
 		?>
 		<div class="alert alert-error">

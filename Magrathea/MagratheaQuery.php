@@ -9,6 +9,7 @@
 class MagratheaQuery{
 
 	protected $select;
+	protected $selectDefaultArr;
 	protected $selectArr;
 	protected $obj_base;
 	protected $obj_array;
@@ -39,6 +40,7 @@ class MagratheaQuery{
 		$this->obj_array = array();
 		$this->select = "SELECT ";
 		$this->selectArr = array();
+		$this->selectDefaultArr = array();
 		$this->join = "";
 		$this->joinArr = array();
 		$this->where = "";
@@ -70,6 +72,14 @@ class MagratheaQuery{
 		$this->tables = $t;
 		return $this;
 	}
+
+	/**
+	 * Alias for Obj
+	 * @param 	string or object 	$obj 	Object to query
+	 */
+	public function Object($obj){
+		return $this->Obj($obj);
+	}
 	public function Obj($obj){
 		$obj = $this->GiveMeThisObjectCorrect($obj);
 		$this->obj_base = $obj;
@@ -78,6 +88,14 @@ class MagratheaQuery{
 		return $this;
 	}
 
+	public function Fields($fields){
+		if(is_array($fields)){
+			$this->selectArr = array_merge($this->selectArr, $fields);
+		} else {
+			array_push($this->selectArr, $fields);
+		}
+		return $this;
+	}
 	public function SelectStr($sel) {
 		if(!empty($sel)){
 			array_push($this->selectArr, $sel);
@@ -86,13 +104,13 @@ class MagratheaQuery{
 	}
 	public function SelectObj($obj){
 		$fields = $obj->GetFieldsForSelect();
-		array_push($this->selectArr, $fields);
+		array_push($this->selectDefaultArr, $fields);
 		return $this;
 	}
 	public function SelectArrObj($arrObj){
 		foreach ($arrObj as $key => $value) {
 			$sThis = $value->GetFieldsForSelect();
-			array_push($this->selectArr, $sThis);
+			array_push($this->selectDefaultArr, $sThis);
 		}
 		return $this;
 	}
@@ -102,17 +120,27 @@ class MagratheaQuery{
 		return $this;
 	}
 	public function HasOne($object, $field){
-		$object = $this->GiveMeThisObjectCorrect($object);
-		$this->SelectObj($object);
-		$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$this->obj_base->GetDbTable().".".$field." = ".$object->GetDbTable().".".$object->GetPkName();
+		try{
+			if(!$this->obj_base) throw new MagratheaModelException("Object Base is not an object");
+			$object = $this->GiveMeThisObjectCorrect($object);
+			$this->SelectObj($object);
+			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$this->obj_base->GetDbTable().".".$field." = ".$object->GetDbTable().".".$object->GetPkName();
+		} catch(Exception $ex){
+			throw new MagratheaModelException("MagratheaQuery 'HasOne' must be used with MagratheaModels");
+		}
 		array_push($this->joinArr, $joinGlue);
 		array_push($this->obj_array, $object);
 		return $this;
 	}
 	public function BelongsTo($object, $field){
-		$object = $this->GiveMeThisObjectCorrect($object);
-		$this->SelectObj($object);
-		$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$object->GetDbTable().".".$field." = ".$this->obj_base->GetDbTable().".".$this->obj_base->GetPkName();
+		try{
+			if(!$this->obj_base) throw new MagratheaModelException("Object Base is not an object");
+			$object = $this->GiveMeThisObjectCorrect($object);
+			$this->SelectObj($object);
+			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$object->GetDbTable().".".$object->GetPkName()." = ".$this->obj_base->GetDbTable().".".$field;
+		} catch(Exception $ex){
+			throw new MagratheaModelException("MagratheaQuery 'BelongsTo' must be used with MagratheaModels => ".$ex->getMessage());
+		}
 		array_push($this->joinArr, $joinGlue);
 		return $this;
 	}
@@ -160,8 +188,10 @@ class MagratheaQuery{
 	public function SQL(){
 		$this->sql = "";
 		$sqlSelect = $this->select;
-		if(count($this->selectArr) > 1){
+		if(count($this->selectArr) > 0){
 			$sqlSelect .= implode(', ', $this->selectArr);
+		} else if(count($this->selectDefaultArr) > 1){
+			$sqlSelect .= implode(', ', $this->selectDefaultArr);
 		} else {
 			$sqlSelect .= "*";
 		}

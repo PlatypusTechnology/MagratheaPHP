@@ -21,6 +21,17 @@ $objects = getAllObjects();
 		?>
     	</ul>
     </li>
+    <li class="submenu"><a href="#"><i class="fa fa-list"></i> Table Data <span class="number"><?=count($tables)?></span></a>
+    	<ul class="nav nav-list menu_sublist" style="display: none;">
+		<?
+		if(is_array($tables)){
+			foreach($tables as $tb){
+				echo '<li><a onClick="loadTableData(\''.$tb['table_name'].'\');" id="menu_tabledata'.$tb['table_name'].'"><i class="fa fa-chevron-right icon_light"></i> '.$tb['table_name'].'</a></li>';
+			}
+		}
+		?>
+    	</ul>
+    </li>
     <li class="submenu"><a href="#"><i class="fa fa-inbox"></i> Objects <span class="number"><?=count($objects)?></span></a>
 			<ul class="nav nav-list menu_sublist" style="display: none;">
 		<?

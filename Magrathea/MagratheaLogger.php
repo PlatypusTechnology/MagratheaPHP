@@ -2,8 +2,8 @@
 
 class MagratheaLogger {
 
-	public static function Log($logThis, $logFile){
-		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."../logs/";
+	public static function Log($logThis, $logFile=null){
+		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs/";
 		if(empty($logFile)) $logFile = "log_".@date("Ym").".txt";
 		$date = @date("Y-m-d h:i:s");
 		$line = "[".$date."] = ".$logThis."\n\n";
@@ -14,8 +14,8 @@ class MagratheaLogger {
 		}
 		file_put_contents($file, $line, FILE_APPEND | LOCK_EX);
 	}
-	public static function LogError($error, $filename){
-		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."../logs/";
+	public static function LogError($error, $filename=null){
+		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs/";
 		if(empty($filename)) $filename = "log_error";
 		$date = @date("Y-m-d_his");
 		$filename .= $date.".txt";
@@ -24,7 +24,6 @@ class MagratheaLogger {
 			throw new MagratheaException("error trying to save file at ".$path." - confirm permission for writing");
 			return;
 		}
-		throw new MagratheaException("error trying to save file at ".$path." - confirm permission for writing");
 	}
 
 }

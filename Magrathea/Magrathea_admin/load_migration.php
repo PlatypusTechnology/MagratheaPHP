@@ -26,7 +26,7 @@ $config = MagratheaConfig::Instance()->GetConfig();
 		</header>
 		<content>
 			<div class="row-fluid"><div class="span12">
-				<textarea class="textarea_large" id="query_run">SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = 'smple' ORDER BY TABLE_NAME</textarea>
+				<textarea class="textarea_large" id="query_run">SELECT TABLE_NAME FROM information_schema.tables ORDER BY TABLE_NAME</textarea>
 			</div></div>
 			<div class='row-fluid'>
 				<div class='span9'>&nbsp;</div>
@@ -35,10 +35,11 @@ $config = MagratheaConfig::Instance()->GetConfig();
 				</div>
 			</div>
 			<br/>
-			<div class="row-fluid"><div class="span12" id="database_result"></div></div>
 		</content>
 	</div>
 </div>
+
+<div id="database_result"></div>
 
 <div class="row-fluid">
 	<div class="span12 mag_section">

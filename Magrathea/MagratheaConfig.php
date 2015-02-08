@@ -84,6 +84,15 @@ class MagratheaConfig {
 	}
 
 	/**
+	 * Alias for GetConfigFromDefault
+	 * @param [type]
+  	 * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
+ 	 * @return 	string
+	 */
+	public function GetFromDefault($config_name){
+		return $this->GetConfigFromDefault($config_name);
+	}
+	/**
 	* This function will get the $config_name property from `magrathea.conf`.
 	* It will get from the section defined on `general/use_environment`.
 	* @param 	string 	$config_name Item to be returned from the `magrathea.conf`.
@@ -242,7 +251,7 @@ class MagratheaConfigFile {
 		} 
 //		echo "saving to ".$this->path.$this->config_file_name;
 		if(file_exists($this->path.$this->config_file_name)){
-			unlink($this->path.$this->config_file_name);
+			@unlink($this->path.$this->config_file_name);
 		}
 		if (!$handle = @fopen($this->path.$this->config_file_name, 'w')) { 
 			throw new MagratheaConfigException("Oh noes! Could not open File: ".$this->path.$this->config_file_name, 1);

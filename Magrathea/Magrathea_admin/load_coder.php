@@ -37,10 +37,10 @@ require ("admin_load.php");
 					<?
 					$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
 					$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
-					if(file_exists($site_path."../configs/magrathea_objects.conf")){
+					if(file_exists($site_path."/../configs/magrathea_objects.conf")){
 					?>
 				<div class='span3'>
-						<button class="btn btn-success" onClick="generateCode();"><i class="awesome-pencil"></i>&nbsp;Generate Code</button>
+						<button class="btn btn-success" onClick="generateCode();"><i class="fa fa-pencil"></i>&nbsp;Generate Code</button>
 				</div>
 				<div class='span9'>&nbsp;</div>
 					<?

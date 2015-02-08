@@ -5,7 +5,16 @@
 	<p>
 		After the project is installed, you should be able to access the admin, simply going to <code>your.project/admin.php</code><br/><br/>
 		The admin.php will give you all the tools for you to configurate your project and database and internal development relations etc. It will even create the initial code for you to keep developing...<br/><br/>
+<pre class="prettyprint linenums">&lt;?php
+	include("inc/global.php");
+	include($magrathea_path."/MagratheaAdmin.php"); // $magrathea_path should already be declared
+
+	$admin = new MagratheaAdmin(); // adds the admin file
+	$admin->Load(); // load!
+
+?&gt;</pre><br/>
 	</p>
+
 
 	<h3>Plugins</h3>
 	<p>

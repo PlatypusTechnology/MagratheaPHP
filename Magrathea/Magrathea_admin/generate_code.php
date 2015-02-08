@@ -9,7 +9,7 @@ require ("admin_load.php");
 
 	$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
 	$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
-	$models_dir = $site_path."Models";
+	$models_dir = $site_path."/Models";
 	$base_dir = $models_dir."/Base";
 
 	echo "<br/><pre>";
@@ -56,13 +56,15 @@ require ("admin_load.php");
 		$code .= "\tpublic \$created_at, \$updated_at;\n";
 		$code .= "\tprotected \$lazyLoad = ".$data["lazy_load"].";\n\n";
 		
-		$code .= "\tpublic function __construct( \$".$data["db_pk"]."=0 ){ \n";
+		$code .= "\tpublic function __construct( ".( ($data["db_pk"]) ? " \$".$data["db_pk"]."=0 " : "\$id=0" )." ){ \n";
 			$code .= "\t\t\$this->Start();\n";
-			$code .= "\t\tif( !empty(\$".$data["db_pk"].") ){\n";
-				$code .= "\t\t\t\$pk = \$this->dbPk;\n";
-				$code .= "\t\t\t\$this->\$pk = \$".$data["db_pk"].";\n";
-				$code .= "\t\t\t\$this->GetById(\$".$data["db_pk"].");\n";
-			$code .= "\t\t}\n";
+			if($data["db_pk"]){
+				$code .= "\t\tif( !empty(\$".$data["db_pk"].") ){\n";
+					$code .= "\t\t\t\$pk = \$this->dbPk;\n";
+					$code .= "\t\t\t\$this->\$pk = \$".$data["db_pk"].";\n";
+					$code .= "\t\t\t\$this->GetById(\$".$data["db_pk"].");\n";
+				$code .= "\t\t}\n";
+			}
 		$code .= "\t}\n";
 		$code .= "\tpublic function Start(){\n";
 			$code .= "\t\t\$this->dbTable = \"".$data["table_name"]."\";\n";

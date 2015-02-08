@@ -22,10 +22,12 @@
 * This class will provide a layer for connecting with mysql
 * 
 */
-class Magdb{
+class MagratheaDatabase{
 
 	const FETCH_ASSOC = 1;
 	const FETCH_OBJECT = 2;
+	const FETCH_NUM = 3;
+	const FETCH_ARRAY = 4;
 
 	private $mysqli;
 	private $connDetails;
@@ -45,11 +47,11 @@ class Magdb{
 	/**
 	* This is a singleton!
 	* Instance loader
-	* @return 	Magdb 	Instance of the object
+	* @return 	MagratheaDatabase 	Instance of the object
 	*/
 	public static function Instance(){
 		if (self::$inst === null) {
-			self::$inst = new Magdb();
+			self::$inst = new MagratheaDatabase();
 		}
 		return self::$inst;
 	}
@@ -59,7 +61,7 @@ class Magdb{
 	* Should be called by private method Instance.
 	* Don't implement new ones
 	*/
-	public function Magdb(){
+	public function MagratheaDatabase(){
 	}
 	/**
 	* Sets the connection array object
@@ -140,8 +142,8 @@ class Magdb{
 			if($this->mysqli->connect_errno){
 				throw new MagratheaDBException("Failed to connect to MySQL: (".$this->mysqli->connect_errno.") ".$this->mysqli->connect_error);
 			}
+			$this->mysqli->set_charset("utf8");
 		} catch (Exception $ex) {
-			p_r($ex);
 			throw new MagratheaDBException($ex->getMessage());
 		}
 		return true;
@@ -196,6 +198,10 @@ class Magdb{
 				$fetch_fn = "fetch_num";
 				$isArrayResponse = true;
 			break;
+			case @FETCH_ARRAY:
+				$fetch_fn = "fetch_array";
+				$isArrayResponse = true;
+			break;
 			case @FETCH_ASSOC:
 			default:
 				$fetch_fn = "fetch_assoc";
@@ -244,7 +250,8 @@ class Magdb{
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
 		if(!$result){
-			$this->ErrorHandle($query);
+			$this->ErrorHandle($this->mysqli->error, $sql);
+			throw new MagratheaDBException($this->mysqli->error);
 		}
 		if(is_object($result) ){
 			$this->count = $result->num_rows;
@@ -265,8 +272,9 @@ class Magdb{
 		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
-		$this->count = $result->num_rows;
 		if($result){
+			$this->count = $result->num_rows;
+			if($this->count == 0) return $arrRetorno;
 			$arrRetorno = $this->FetchResult($result, true);
 			$result->close();
 		}

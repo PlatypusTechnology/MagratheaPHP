@@ -245,9 +245,8 @@ foreach( $relations as $rel ){
 		</header>
 		<content>
 				<?php
-					$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
-					$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
-					$base_dir = $site_path."Models/Base";
+					$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+					$base_dir = $site_path."/Models/Base";
 
 					$file_name = $obj_name."Base.php";
 					if( !file_exists($base_dir."/".$file_name) ){

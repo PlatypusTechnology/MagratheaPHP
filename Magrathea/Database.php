@@ -22,9 +22,9 @@ require 'MDB2.php';
 
 /**
 * This class will provide a layer for connecting with mysql
-* 
+* @deprecated 
 */
-class Magdb{
+class Magdb_{
 	private $mdb2;
 	private $dsn = array();
 	private $pear;

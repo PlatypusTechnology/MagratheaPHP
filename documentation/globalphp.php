@@ -15,14 +15,10 @@
 	error_reporting(E_ALL ^ E_STRICT);
 
 	// set the path of magrathea framework (this way is possible to have only one instance of the framework for multiple projects)
-	$magrathea_path = "/Users/paulohenrique/www/magrathea_sample/Magrathea";
-	// ... and the path of the site:
-	$site_path = "/Users/paulohenrique/www/magrathea_sample";
-
+	$magrathea_path = "/Users/username/Sites/Magrathea";
 
 	// looooooaaaadddiiiiiinnnnnnggggg.....
 	include($magrathea_path."/LOAD.php");
-	include($magrathea_path."/Smarty/Smarty/Smarty.class.php");
 
 	// wanna debug? here's your debug!
 //	MagratheaDebugger::Instance()->SetType("debug");
@@ -42,6 +38,9 @@
 	// for printing the paths of your css and javascript (that will be included in the index.php)
 	$View->IsRelativePath(false);
 
+	// debugging settings:
+	// options: dev; debug; log; none;
+	MagratheaDebugger::Instance()->SetType(MagratheaDebugger::DEBUG);
 ?&gt;</pre><br/>
 
 		As you can see, there are two global variables ($magrathea_path and $site_path). Sorry about that.<br/>

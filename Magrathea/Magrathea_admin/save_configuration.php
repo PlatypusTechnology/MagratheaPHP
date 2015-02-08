@@ -3,10 +3,16 @@
 require ("admin_load.php");
 	
 	$data = $_POST;
+	if(@$data["use_environment"]){
+		$path = MagratheaConfig::Instance()->GetConfig($data["use_environment"]."/site_path");
+	} else {
+		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+	}
 
 	$mconfig = new MagratheaConfigFile();
-	$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path"));
+	$mconfig->setPath($path);
 	$mconfig->setFile("/../configs/magrathea.conf");
+
 	$config = $mconfig->getConfig();
 
 	if(empty($data["magrathea_use_environment"]))
