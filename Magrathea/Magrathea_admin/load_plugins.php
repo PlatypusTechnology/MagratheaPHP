@@ -4,9 +4,9 @@ require ("admin_load.php");
 
 function loadPluginsList($installed=false){
 	if($installed) {
-		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path").'plugins/';
+		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path").'/plugins/';
 	} else {
-		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path").'plugins/';
+		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path").'/plugins/';
 	}
 	if(!is_dir($plugins_path)){
 		echo '<div class="alert alert-error"><strong>Directory doesn\'t exists!</strong><br/>Directory: <br/>[<b>'.$plugins_path.'</b>]<br/> does not exists. Create it with write permissions, please...</div>';
