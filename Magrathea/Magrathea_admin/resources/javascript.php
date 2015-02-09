@@ -180,6 +180,21 @@ jQuery(function($){$(document).on("click",".submenu > a",function(){var parent=$
 /*
 * javascript.js
 */
+
+
+function MagratheaPost(page, data){
+	console.info(data);
+	url = "admin.php?page=load_customadmin.php&custom=" + page;
+	$.ajax({
+		url: url, type: "POST", data: data,
+		success: function(data){
+			console.info(data);
+			$("#main_content").html(data);
+		}
+	})
+}
+
+
 function loadCoder(){
 	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=coder");
 	$.ajax({
@@ -190,7 +205,6 @@ function loadCoder(){
 
 		}
 	});
-
 }
 
 function loadTable(table_name){
@@ -299,6 +313,7 @@ function loadTests(){
 		}
 	});
 }
+
 function loadUnitTest(test){
 	history.replaceState({}, "Magrathea Admin - Test", "admin.php?area=tests&load="+test);
 	$.ajax({
@@ -309,6 +324,34 @@ function loadUnitTest(test){
 			$("#pageTitle").html("Testing: " + test);
 		}
 	});
+}
+
+function loadCustom(){
+	history.replaceState({}, "Magrathea Admin", "admin.php?area=custom");
+	$.ajax({
+		url: "?page=load_customadmin.php",
+		success: function(data){
+			$("#admin_response").html(data);
+			$("#admin_response > ul").addClass("nav").addClass("nav-list").addClass("menu_sublist");
+			$("#admin_response").find("a").each(function(){
+				var url = $(this).attr("href");
+				$(this).attr("href", "javascript: loadCustomAdmin('"+url+"');");
+			});
+			$("#pageTitle").html("Admin");
+			$("#main_content").html("Custom Admin");
+		}
+	});
+}
+
+function loadCustomAdmin(custom){
+	history.replaceState({}, "Magrathea Admin", "admin.php?area=custom&custom="+custom);
+	$.ajax({
+		url: "?page=load_customadmin.php&custom="+custom,
+		success: function(data){
+			$("#main_content").html(data);
+		}
+	});
+
 }
 
 function loadPhpInfo(){
@@ -400,6 +443,9 @@ function selectMenu(menu){
 	}
 	if(@$_GET["load"]){
 		echo "loadUnitTest('".$_GET["load"]."');";
+	}
+	if(@$_GET["custom"]){
+		echo "loadCustomAdmin('".$_GET["custom"]."');";
 	}
 
 ?>

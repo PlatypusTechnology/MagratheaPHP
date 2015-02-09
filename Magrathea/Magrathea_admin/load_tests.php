@@ -30,7 +30,7 @@
 				echo '<li><a href="'.$file.'"><i class="fa fa-chevron-right icon_light"></i> '.$file.'</a></li>';
 			}
 		} else {
-			echo '<li><a><i class="fa fa-exclamation-triangle"></i> ERROR! <br/>Tests Folder setup missed! <br/>'.
+			echo '<li><a><i class="fa fa-exclamation-triangle"></i> ERROR! <br/>Tests folder setup missed! <br/>'.
 				'test folder: <br/>[...'.substr($sitePath, -18).'/<b>Tests</b>]</a></li>';
 		}
 		echo '</ul>';

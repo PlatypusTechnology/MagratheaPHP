@@ -11,3 +11,4 @@ exclude:
  - *install_magrathea.php
  - libs/Smarty
  - libs/simpletest
+ - Magrathea_admin
