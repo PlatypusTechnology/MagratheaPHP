@@ -16,6 +16,8 @@
 
 	// set the path of magrathea framework (this way is possible to have only one instance of the framework for multiple projects)
 	$magrathea_path = "/Users/username/Sites/Magrathea";
+	// set the path of your site (you can set this manually as well)
+	$site_path = __DIR__."/../..";
 
 	// looooooaaaadddiiiiiinnnnnnggggg.....
 	include($magrathea_path."/LOAD.php");
@@ -44,7 +46,6 @@
 ?&gt;</pre><br/>
 
 		As you can see, there are two global variables ($magrathea_path and $site_path). Sorry about that.<br/>
-		If <a href="pear.php">pear</a> packages are not installed, you should include the loading of them here, in the beginning of this file.<br/><br/>
 		The fun is just starting... Now, let's go to the <a href="indexphp.php">index.php</a>...<br/>
 
 	</p>
