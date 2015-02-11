@@ -25,13 +25,21 @@ require ("admin_load.php");
 
 
 	$mconfig->setConfig($config);
-	if( !$mconfig->Save(true) ){ 
+	try{
+		$success = $mconfig->Save(true);
+	} catch(Exception $ex) {
+		MagratheaDebugger::Instance()->Error($ex);
+		$error = $ex->getMessage();
+		$success = false;
+	}
+	if( !$success ){ 
 		echo "<!--false-->";
 		?>
 		<div class="alert alert-error">
 			<button class="close" data-dismiss="alert" type="button">×</button>
 			<strong>Shit... What the fuck happened?!</strong><br/>
-			Could not create object config file. Please, be sure that PHP can write in the folder "Magrathea/configs/"...
+			Could not create object config file. Please, be sure that PHP can write in the folder "Magrathea/configs/"...<br/>
+			<?=(!empty($error) ? $error : "")?>
 		</div>
 		<?
 		die;
