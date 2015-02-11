@@ -43,7 +43,7 @@
 
 	<h3>Documentation</h3>
 	<p>
-		This documentation (complete incomplete, <i>mea culpa</i>) tries to give the basics for start developing with this framework.<br/>
+		This documentation (completely incomplete, <i>mea culpa</i>) tries to give the basics for start developing with this framework.<br/>
 		If any questions remains, please, feel free to contact me via github or send me an email. I will try to help anyone as soon as possible.<br/>
 		In order to help anyone that would like to go deep into <em>Magrathea</em> development, I have this <a href="https://github.com/PlatypusTechnology/MagratheaSample" target="_blank">sample project ( <i class="icon-github-alt"></i> <i class="icon-external-link"></i> )</a> here that may help you as well!
 	</p>
