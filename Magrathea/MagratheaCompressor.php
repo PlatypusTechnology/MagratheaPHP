@@ -19,7 +19,7 @@ include(__DIR__."/libs/phpclosure.php");
 ####
 #######################################################################################
 
-
+// @todo
 class MagratheaCompressor {
 
   const COMPRESS_JS = 1;

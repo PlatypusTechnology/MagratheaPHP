@@ -190,10 +190,15 @@ function MagratheaPost(page, data){
 		success: function(data){
 			console.info(data);
 			$("#main_content").html(data);
+			$scrollTop();
 		}
 	})
 }
 
+
+function scrollTop(){
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+}
 
 function loadCoder(){
 	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=coder");
@@ -202,7 +207,7 @@ function loadCoder(){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Let's code!");
-
+			$scrollTop();
 		}
 	});
 }
@@ -218,6 +223,7 @@ function loadTable(table_name){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Table: "+table_name);
+			$scrollTop();
 		}
 	});
 }
@@ -233,6 +239,7 @@ function loadTableData(table_name){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Table: "+table_name);
+			$scrollTop();
 		}
 	});
 }
@@ -249,6 +256,7 @@ function loadObject(obj_name){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Object: "+obj_name);
+			$scrollTop();
 		}
 	});
 }
@@ -260,6 +268,7 @@ function loadDatabaseManager(){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Database");
+			$scrollTop();
 		}
 	});
 }
@@ -272,6 +281,7 @@ function loadConfig(){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Magrathea Configuration");
+			$scrollTop();
 		}
 	});
 }
@@ -281,6 +291,7 @@ function loadConfigSection(){
 		url: "?page=load_configuration_section.php&section="+section,
 		success: function(data){
 			$("#LoadConfigSection").html(data);
+			$scrollTop();
 		}
 	});
 }
@@ -292,6 +303,7 @@ function loadPlugins(){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Plugins");
+			$scrollTop();
 		}
 	});
 }
@@ -310,6 +322,7 @@ function loadTests(){
 			});
 			$("#pageTitle").html("Tests");
 			$("#main_content").html("That's it! Keep testing...");
+			$scrollTop();
 		}
 	});
 }
@@ -322,6 +335,7 @@ function loadUnitTest(test){
 			$("#main_content").html(data);
 			$("#main_content h1").html(test);
 			$("#pageTitle").html("Testing: " + test);
+			$scrollTop();
 		}
 	});
 }
@@ -339,6 +353,7 @@ function loadCustom(){
 			});
 			$("#pageTitle").html("Admin");
 			$("#main_content").html("Custom Admin");
+			$scrollTop();
 		}
 	});
 }
@@ -349,6 +364,7 @@ function loadCustomAdmin(custom){
 		url: "?page=load_customadmin.php&custom="+custom,
 		success: function(data){
 			$("#main_content").html(data);
+			$scrollTop();
 		}
 	});
 
@@ -360,6 +376,7 @@ function loadPhpInfo(){
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("PHP Info");
+			$scrollTop();
 		}
 	});
 }
@@ -373,6 +390,7 @@ function createFieldInTable(table_name){
 		}, 
 		success: function(data){
 			loadTable(table_name);
+			$scrollTop();
 		}
 	});
 }
@@ -384,6 +402,7 @@ function createObject(){
 			var success = data.substr(0, 12);
 			$("#object_result").html(data);
 			loadMenu(".tables");
+			$scrollTop();
 		}
 	);
 }
@@ -394,7 +413,7 @@ function saveObject(){
 		function (data){
 			var success = data.substr(0, 12);
 			$("#object_result").html(data);
-			$("html, body").animate({ scrollTop: 0 }, "slow");
+			$scrollTop();
 		}
 	);
 }
@@ -415,6 +434,7 @@ function saveConfig(specific){
 			var success_var = data.substr(0, 12);
 //			console.info(success_var);
 			$("#config_result").html(data);
+			$scrollTop();
 		}
 	});
 }
@@ -428,7 +448,7 @@ function loadMenu(clickhere){
 				$(clickhere).click();
 			}
 			$("#warning_objexists_bt").click();
-			$("html, body").animate({ scrollTop: 0 }, "slow");
+			$scrollTop();
 		}
 	});
 }

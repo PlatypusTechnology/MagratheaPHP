@@ -146,14 +146,14 @@ class Magdb_{
 	}
 	
 	/**
-	* Handle connection errors @todo
+	* Handle connection errors
 	* @throws	MagratheaDbException
 	*/
 	private function ConnectionErrorHandle($msg=""){ 
 		throw new MagratheaDBException($msg);
 	}
 	/**
-	* Handle errors @todo
+	* Handle errors
 	* @throws	MagratheaDbException
 	*/
 	private function ErrorHandle($result, $sql){ 
@@ -242,7 +242,6 @@ class Magdb_{
 
 	/**
 	* receives an array of queries and executes them all
-	*	@todo confirms if this is working properly
 	* @param 	array 		$query_array  	Array of queries to be executed
 	* @throws 	MagratheaDBException
 	*/
@@ -275,7 +274,6 @@ class Magdb_{
 	
 	/**
 	* Prepares and execute a query and returns the inserted id (if any)
-	* 	@todo validates types and avoids injection. Does it?
 	* @param 	string 		$query 		Query to be executed
 	* @param 	array 		$arrTypes 	Array of types from the values to be inserted
 	* @param 	array 		$arrValues 	Array of values to be inserted

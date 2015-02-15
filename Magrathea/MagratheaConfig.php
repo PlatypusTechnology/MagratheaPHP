@@ -70,7 +70,7 @@ class MagratheaConfig {
 	public function GetConfig($config_name=""){
 		if( $this->configs == null ){
 			$this->loadFile();
-			$this->configs = parse_ini_file($this->path."/".$this->config_file_name, true);
+			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
 			if( !$this->configs ){
 				throw new MagratheaException("There was an error trying to load the config file.<br/>");
 			}
@@ -85,7 +85,6 @@ class MagratheaConfig {
 
 	/**
 	 * Alias for GetConfigFromDefault
-	 * @param [type]
   	 * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
  	 * @return 	string
 	 */
@@ -101,7 +100,7 @@ class MagratheaConfig {
 	public function GetConfigFromDefault($config_name){
 		if( $this->configs == null ){
 			$this->loadFile();
-			$this->configs = parse_ini_file($this->path."/".$this->config_file_name, true);
+			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
 			if( !$this->configs ){
 				throw new MagratheaException("There was an error trying to load the config file.<br/>");
 			}
@@ -117,7 +116,7 @@ class MagratheaConfig {
 	*/
 	public function GetConfigSection($section_name){
 		$this->loadFile();
-		$configSection = parse_ini_file($this->path."/".$this->config_file_name, true);
+		$configSection = @parse_ini_file($this->path."/".$this->config_file_name, true);
 		if( !$configSection ){
 			throw new MagratheaException("There was an error trying to load the config file.<br/>");
 		}
@@ -186,7 +185,7 @@ class MagratheaConfigFile {
 	public function getConfig($config_name=""){
 		if( is_null($this->configs) ){
 			$this->loadFile();
-			$this->configs = parse_ini_file($this->path.$this->config_file_name, true);
+			$this->configs = @parse_ini_file($this->path.$this->config_file_name, true);
 		}
 		if( empty($config_name) ){
 			return $this->configs;

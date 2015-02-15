@@ -17,7 +17,9 @@
 ####
 #######################################################################################
 
-	
+/**
+ * Some functions that will help you control the view layer of the project
+ */
 class MagratheaView{
 
 	private $javascript_files = array();
@@ -55,7 +57,7 @@ class MagratheaView{
 
 	public function IncludeJavascript($js_file){
 		array_push($this->javascript_files, $js_file);
-		$file_full = $this->site_path.$js_file;
+		$file_full = $this->site_path."/".$js_file;
 		if(file_exists($file_full)){
 			$lastm = filemtime($file_full);
 		} else {
@@ -65,7 +67,7 @@ class MagratheaView{
 	}
 	public function IncludeCSS($css_file){
 		array_push($this->css_files, $css_file);
-		$file_full = $this->site_path.$css_file;
+		$file_full = $this->site_path."/".$css_file;
 		if(file_exists($file_full)){
 			$lastm = filemtime($file_full);
 		} else {
@@ -74,6 +76,11 @@ class MagratheaView{
 		array_push($this->css_lastmodified_arr, $lastm);
 	}
 	
+	/**
+	 * Prints all the javascripts files on page
+	 * @param 		boolean 	$compression 		should the code be compressed?
+	 * @return  	string 		Include of Javascripts
+	 */
 	public function Javascripts($compression=null){
 		$compression = ($compression==null ? $this->ShouldCompressJavascript() : $compression );
 		$array_files = array_unique($this->javascript_files);
@@ -112,6 +119,11 @@ class MagratheaView{
 		return $jsContent;
 	}
 
+	/**
+	 * Prints all the css files on page
+	 * @param 		boolean 	$compression 		should the code be compressed?
+	 * @return  	string 		Include of CSSs
+	 */
 	public function CSSs($compression=null){
 		$compression = ($compression==null ? $this->ShouldCompressCss() : $compression );
 		$array_files = array_unique($this->css_files);

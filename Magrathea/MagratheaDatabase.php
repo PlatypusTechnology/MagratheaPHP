@@ -108,11 +108,11 @@ class MagratheaDatabase{
 	public function SetFetchMode($fetch){
 		switch($fetch){
 			case "object":
-			$this->fetchmode = @FETCH_OBJECT;
+			$this->fetchmode = self::FETCH_OBJECT;
 			break;
 			case "assoc":
 			default:
-			$this->fetchmode = @FETCH_ASSOC;
+			$this->fetchmode = self::FETCH_ASSOC;
 			break;
 		}
 	}
@@ -160,7 +160,6 @@ class MagratheaDatabase{
 	* @throws	MagratheaDbException
 	*/
 	private function ConnectionErrorHandle($msg="", $data){ 
-		p_r($data);
 		throw new MagratheaDBException($msg);
 	}
 	/**
@@ -191,18 +190,18 @@ class MagratheaDatabase{
 		$arrResult = array();
 		$isArrayResponse = false;
 		switch($this->fetchmode){
-			case @FETCH_OBJECT:
+			case self::FETCH_OBJECT:
 				$fetch_fn = "fetch_object";
 			break;
-			case @FETCH_NUM:
+			case self::FETCH_NUM:
 				$fetch_fn = "fetch_num";
 				$isArrayResponse = true;
 			break;
-			case @FETCH_ARRAY:
+			case self::FETCH_ARRAY:
 				$fetch_fn = "fetch_array";
 				$isArrayResponse = true;
 			break;
-			case @FETCH_ASSOC:
+			case self::FETCH_ASSOC:
 			default:
 				$fetch_fn = "fetch_assoc";
 				$isArrayResponse = true;

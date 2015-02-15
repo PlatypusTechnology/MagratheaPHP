@@ -20,13 +20,14 @@
 
 class MagratheaException extends Exception {
     public function __construct($message = "Magrathea has failed... =(", $code = 0, Exception $previous = null) {
+        MagratheaDebugger::Instance()->Add($this);
         parent::__construct($message, $code, $previous);
     }
 
     public $killerError = true;
     
     public function __toString() {
-        return __CLASS__ . ": {$this->message}\n";
+        return get_class($this).": {".$this->getMessage()."}\n@ ".$this->getFile().":".$this->getLine();
     }
 
     public function display(){

@@ -12,3 +12,4 @@ exclude:
  - libs/Smarty
  - libs/simpletest
  - Magrathea_admin
+ - plugins

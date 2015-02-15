@@ -98,17 +98,16 @@ class MagratheaDebugger {
 	*/
 	public function Add($debug){
 		switch ($this->debugType) {
-			case @NONE:
+			case self::NONE:
 				return;
 				break;
-			case @LOG:
+			case self::LOG:
 				MagratheaLogger::Log($debug);
 				return;
 				break;
-			case @DEV:
-				$this->printsDebug($debug);
-				$this->Trace();
-			case @DEBUG:
+			case self::DEV:
+				echo "<pre>".$debug."</pre>";
+			case self::DEBUG:
 				array_push($this->debugItems, $debug);
 				break;
 		}
@@ -138,24 +137,63 @@ class MagratheaDebugger {
 	}
 
 	/**
+	 * Adds an error to the debugger
+	 * @param Exception		$err 	Exception
+	 */
+	public function Error($err){
+		$this->Add($err->getMessage());
+	}
+
+	/**
 	* Prints the debug
-	* 	@todo  print it in a wonderful way in the end of the page
 	*/
 	public function Show(){
+		if(empty($this->debugItems)) return;
+		echo "<div style='width: 95%; border: 2px solid red; background-color: yellow; padding: 10px; margin: 10px;'>";
+		echo "MAGRATHEA DEBUG<br/><br/>";
 		foreach ($this->debugItems as $item) {
-			$this->printsDebug($item);
+			echo $this->printsDebug($item);
 		}
+		echo "</div>";
 	}
 
 	/**
 	 * prints every single line in p_r()
 	 * @param  	object 		$debugToPrint 		object to debug
 	 */	
-	private function printsDebug($debugToPrint){
-		p_r($debugToPrint);
-
+	private function printsDebug($deb){
+		$html = "";
+		if(is_a($deb, "MagratheaException")){
+			$html .= "<div style='padding: 10px; border: 1px dotted black; margin-bottom: 5px; line-height: 120%;'>";
+			$html .= "<span style='color: red; font-weight: bold;'>".get_class($deb)."</span><br/>";
+			$html .= "<span>".$deb->getMessage()."</span><br/>";
+			$html .= "<span style='padding-left: 20px;'><b>at: </b> ==> ";
+			$html .= "<b>File: </b>".$deb->getFile()." / <b>line: </b>[".$deb->getLine()."]</span><br/>";
+			$html .= "<div style='padding-left: 20px;'><b>trace: </b> ==> <br/>";
+			$html .= "<div style='padding-left: 10px;'>".$this->printTrace($deb->getTrace())."</div></div>";
+			$html .= "</div>";
+		} else {
+			$html .= "<div style='padding: 10px; border: 1px dotted black; margin-bottom: 5px; line-height: 120%;'>";
+			$html .= "<span>".$deb."</span><br/>";
+			$html .= "</div>";
+		}
+		return $html;
 	}
 
+	/**
+	 * gets a trace array and returns a beautiful way of it printed
+	 * @param  	array 		$trace 		trace
+	 * @return 	string        			html of the trace printed
+	 */
+	private function printTrace($trace){
+		$html = "";
+		foreach ($trace as $key => $val) {
+			$html .= "[".$key."]<br/>";
+			$html .= "&nbsp;&nbsp;&nbsp;&nbsp;<b>[file]</b> = ".$val["file"]." <b>[line]</b> = ".$val["line"]."<br/>";
+			$html .= "&nbsp;&nbsp;&nbsp;&nbsp;<b>[class]</b> = ".$val["class"]." <b>[function]</b> = ".$val["function"]."<br/>";
+		}
+		return $html;
+	}
 
 
 }

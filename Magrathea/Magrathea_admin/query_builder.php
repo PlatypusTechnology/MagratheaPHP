@@ -7,6 +7,11 @@ error_reporting(1);
 
 $code = $_POST["exec"];
 eval("\$query = ".$code);
-echo $query;
+
+if(!empty($code) && empty($query)){
+	echo "Error on code";
+} else {
+	echo $query;
+}
 
 ?>

@@ -5,8 +5,36 @@ require ("admin_load.php");
 $plugin = $_POST["plugin_folder"];
 $action = $_POST["action"];
 
-$magrathea_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path")."plugins/".$plugin;
-$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."plugins/".$plugin;
+$magrathea_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path")."/plugins/".$plugin;
+$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/plugins";
+
+if(!is_dir($magrathea_path)){
+  echo "<!--false-->";
+  ?>
+  <div class="alert alert-error">
+    <button class="close" data-dismiss="alert" type="button">×</button>
+    <strong>Oh noes =(</strong></br/>
+    Error installing plugin!<br/>
+    It seems that source path is incorrect<br/>
+    [path: <?=$magrathea_path?>]
+  </div>
+  <?
+}
+
+if(!is_writable($site_path)){
+  echo "<!--false-->";
+  ?>
+  <div class="alert alert-error">
+    <button class="close" data-dismiss="alert" type="button">×</button>
+    <strong>Oh noes =(</strong></br/>
+    Error installing plugin!<br/>
+    It seems that destination path is incorrect or you don't have permissions<br/>
+    [path: <?=$site_path?>]
+  </div>
+  <?
+}
+
+$site_path .= "/".$plugin;
 
 
 function rrmdir($dir) {
@@ -31,6 +59,7 @@ function rcopy($src, $dst) {
   else if (file_exists($src)) copy($src, $dst);
 }
 
+//echo "false";
 
 try{
 
@@ -39,12 +68,12 @@ try{
     rrmdir($site_path);
   } else {
     $cmd = "copying: ".$magrathea_path." => ".$site_path;
-  //  echo "executing... ".$cmd;
+    // echo "executing... ".$cmd;
     rcopy($magrathea_path, $site_path);
   }
   // removes files and non-empty directories
 } catch(Exception $ex) { 
-  echo "false";
+  echo "<!--false-->";
 }
 
 ?>

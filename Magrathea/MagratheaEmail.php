@@ -1,6 +1,11 @@
 <?php
 
-require "Mail.php";
+
+/**
+ * we are using a MDB2 lib for mail
+ * @todo use another lib
+ */
+//require "Mail.php";
 
 class MagratheaEmail{
 	

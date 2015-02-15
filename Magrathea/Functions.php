@@ -22,7 +22,7 @@
  * @param  	boolean  	$beautyme	How beautifull do you want your object printed?
  */
 function p_r($debugme, $beautyme=false){
-	$trace = debug_backtrace();
+//	$trace = debug_backtrace();
 	if( $beautyme ){
 		echo nice_p_r($debugme); 
 	} else { 
@@ -36,19 +36,21 @@ function p_r($debugme, $beautyme=false){
  * @param  	string  	$prev_char 	separator
  */	
 function nice_p_r($debugme, $prev_char = ""){
-	echo (empty($prev_char) ? "<div>" : "");
+	$html = "";
+	$html .= (empty($prev_char) ? "<div>" : "");
 	if( is_array( $debugme ) ){
-		echo $prev_char."<span class='p_r_title'> Array: [</span><br/><div style='margin-right: 20px;'>";
+		$html .= $prev_char."<span class='p_r_title'> Array: [</span><br/><div style='margin-right: 20px;'>";
 		foreach( $debugme as $key => $item ){
-			echo "<div style='padding-right: 20px;'><span class='p_r_title'>[".$key."] =></span><br/>";
-			echo nice_p_r($item, $prev_char."&nbsp;");
-			echo "</div>";
+			$html .= "<div style='padding-right: 20px;'><span class='p_r_title'>[".$key."] =></span><br/>";
+			$html .= nice_p_r($item, $prev_char."&nbsp;");
+			$html .= "</div>";
 		}
-		echo $prev_char."</div><hr/>";
+		$html .= $prev_char."</div><hr/>";
 	} else {
-		echo $prev_char.$debugme;
+		$html .= $prev_char.$debugme;
 	}
-	echo (empty($prev_char) ? "</div>" : "");
+	$html .= (empty($prev_char) ? "</div>" : "");
+	return $html;
 }
 
 /**
