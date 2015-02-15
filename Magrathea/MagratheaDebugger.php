@@ -114,6 +114,14 @@ class MagratheaDebugger {
 		}
 	}
 
+	/**
+	 * Adds an error to the debugger
+	 * @param Exception		$err 	Exception
+	 */
+	public function Error($err){
+		$this->Add($err->getMessage());
+	}
+
 	/** 
 	* Adds a query to the debug
 	*

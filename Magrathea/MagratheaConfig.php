@@ -250,10 +250,14 @@ class MagratheaConfigFile {
 			} 
 		} 
 //		echo "saving to ".$this->path.$this->config_file_name;
+		if(!is_writable($this->path.$this->config_file_name)){
+			throw new MagratheaConfigException("Permission denied on file: ".$this->path.$this->config_file_name, 1);
+			return false; 
+		}
 		if(file_exists($this->path.$this->config_file_name)){
 			@unlink($this->path.$this->config_file_name);
 		}
-		if (!$handle = @fopen($this->path.$this->config_file_name, 'w')) { 
+		if (!$handle = fopen($this->path.$this->config_file_name, 'w')) { 
 			throw new MagratheaConfigException("Oh noes! Could not open File: ".$this->path.$this->config_file_name, 1);
 			return false; 
 		} 
