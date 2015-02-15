@@ -76,10 +76,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li class="active"><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -103,10 +99,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li class="active"><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -133,27 +125,12 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-buildTypesSelect.html">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html">Debug</a></li>
-				<li><a href="function-DeleteRelation.html">DeleteRelation</a></li>
-				<li><a href="function-ExtractRelFromRelArray.html">ExtractRelFromRelArray</a></li>
-				<li><a href="function-getAllObjects.html">getAllObjects</a></li>
-				<li><a href="function-getAllTables.html">getAllTables</a></li>
-				<li><a href="function-getObject.html">getObject</a></li>
-				<li><a href="function-getObjectByTable.html">getObjectByTable</a></li>
-				<li><a href="function-GetRelationByName.html">GetRelationByName</a></li>
-				<li><a href="function-GetRelations.html">GetRelations</a></li>
-				<li><a href="function-GetRelationsByObject.html">GetRelationsByObject</a></li>
-				<li><a href="function-getSelectedField.html">getSelectedField</a></li>
-				<li><a href="function-loadConfig.html">loadConfig</a></li>
-				<li><a href="function-loadPluginsList.html">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
 				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
 				<li><a href="function-p_r.html">p_r</a></li>
-				<li><a href="function-rcopy.html">rcopy</a></li>
-				<li><a href="function-rrmdir.html">rrmdir</a></li>
-				<li><a href="function-writeFile.html">writeFile</a></li>
+				<li><a href="function-shutdown.html">shutdown</a></li>
 			</ul>
 		</div>
 	</div>
@@ -167,6 +144,11 @@
 	<h1>Class MagratheaLogger</h1>
 
 
+	<div class="description">
+	<p>Magrathea class for logging anything
+The log will be created in <em>logs</em> folder in the root of the project (same dir level as <em>app</em>)
+By default, the message is written with a timestamp before it. - For <em>Log</em> function, the default file is saved with a timestamp in the name - For <em>LogError</em> function, by default, all the data is saved in a same file called <em>log_error.txt</em></p>
+	</div>
 
 
 
@@ -182,7 +164,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaLogger.html#3-22" title="Go to source code">MagratheaLogger.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaLogger.html#4-51" title="Go to source code">MagratheaLogger.php</a>
 		<br>
 	</div>
 
@@ -201,18 +183,29 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Log">#</a>
-			<code><a href="source-class-MagratheaLogger.html#5-12" title="Go to source code">Log</a>( <span> <var>$logThis</var></span> )</code>
+			<code><a href="source-class-MagratheaLogger.html#13-31" title="Go to source code">Log</a>( <span>string <var>$logThis</var></span>, <span>string <var>$logFile</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Logs a message - any message</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Logs a message - any message</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$logThis</var></dt>
+						<dd>message to be logged</dd>
+						<dt><var>$logFile</var></dt>
+						<dd>file name that should be written</dd>
+					</dl></div>
 
 
+					<h4>Throws</h4>
+					<div class="list">
+						Exception<br>If path is not writablle
+					</div>
 
 
 
@@ -230,18 +223,29 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_LogError">#</a>
-			<code><a href="source-class-MagratheaLogger.html#13-20" title="Go to source code">LogError</a>( <span> <var>$error</var></span>, <span> <var>$filename</var></span> )</code>
+			<code><a href="source-class-MagratheaLogger.html#32-50" title="Go to source code">LogError</a>( <span>string <var>$error</var></span>, <span>string <var>$filename</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Logs an error</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Logs an error</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$error</var></dt>
+						<dd>$logThis    error to be logged</dd>
+						<dt><var>$filename</var></dt>
+						<dd>$logFile    file name that should be written</dd>
+					</dl></div>
 
 
+					<h4>Throws</h4>
+					<div class="list">
+						Exception<br>If path is not writablle
+					</div>
 
 
 

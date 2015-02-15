@@ -76,10 +76,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -103,10 +99,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -133,27 +125,12 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-buildTypesSelect.html">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html">Debug</a></li>
-				<li><a href="function-DeleteRelation.html">DeleteRelation</a></li>
-				<li><a href="function-ExtractRelFromRelArray.html">ExtractRelFromRelArray</a></li>
-				<li><a href="function-getAllObjects.html">getAllObjects</a></li>
-				<li><a href="function-getAllTables.html">getAllTables</a></li>
-				<li><a href="function-getObject.html">getObject</a></li>
-				<li><a href="function-getObjectByTable.html">getObjectByTable</a></li>
-				<li><a href="function-GetRelationByName.html">GetRelationByName</a></li>
-				<li><a href="function-GetRelations.html">GetRelations</a></li>
-				<li><a href="function-GetRelationsByObject.html">GetRelationsByObject</a></li>
-				<li><a href="function-getSelectedField.html">getSelectedField</a></li>
-				<li><a href="function-loadConfig.html">loadConfig</a></li>
-				<li><a href="function-loadPluginsList.html">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
 				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
 				<li><a href="function-p_r.html">p_r</a></li>
-				<li><a href="function-rcopy.html">rcopy</a></li>
-				<li><a href="function-rrmdir.html">rrmdir</a></li>
-				<li><a href="function-writeFile.html">writeFile</a></li>
+				<li><a href="function-shutdown.html">shutdown</a></li>
 			</ul>
 		</div>
 	</div>
@@ -185,7 +162,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaConfig.html#17-117" title="Go to source code">MagratheaConfig.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaConfig.html#17-125" title="Go to source code">MagratheaConfig.php</a>
 		<br>
 	</div>
 
@@ -335,6 +312,44 @@ If <code>$config_name</code> is empty, the function will return the full config 
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="GetFromDefault" id="_GetFromDefault">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_GetFromDefault">#</a>
+			<code><a href="source-class-MagratheaConfig.html#86-93" title="Go to source code">GetFromDefault</a>( <span>string <var>$config_name</var></span> )</code>
+
+			<div class="description short">
+				<p>Alias for GetConfigFromDefault</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Alias for GetConfigFromDefault</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$config_name</var></dt>
+						<dd>Item to be returned from the <code>magrathea.conf</code>.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="GetConfigFromDefault" id="_GetConfigFromDefault">
 
 			<td class="attributes"><code>
@@ -346,7 +361,7 @@ If <code>$config_name</code> is empty, the function will return the full config 
 
 			<td class="name"><div>
 			<a class="anchor" href="#_GetConfigFromDefault">#</a>
-			<code><a href="source-class-MagratheaConfig.html#86-102" title="Go to source code">GetConfigFromDefault</a>( <span>string <var>$config_name</var></span> )</code>
+			<code><a href="source-class-MagratheaConfig.html#94-110" title="Go to source code">GetConfigFromDefault</a>( <span>string <var>$config_name</var></span> )</code>
 
 			<div class="description short">
 				<p>This function will get the $config_name property from <code>magrathea.conf</code>.
@@ -386,7 +401,7 @@ It will get from the section defined on <code>general/use_environment</code>.</p
 
 			<td class="name"><div>
 			<a class="anchor" href="#_GetConfigSection">#</a>
-			<code><a href="source-class-MagratheaConfig.html#104-116" title="Go to source code">GetConfigSection</a>( <span>string <var>$section_name</var></span> )</code>
+			<code><a href="source-class-MagratheaConfig.html#112-124" title="Go to source code">GetConfigSection</a>( <span>string <var>$section_name</var></span> )</code>
 
 			<div class="description short">
 				<p><code>$section_name</code> is the name of the section that will be returned as an array.</p>

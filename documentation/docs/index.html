@@ -29,7 +29,7 @@
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li>
-							<a href="function-writeFile.html" title="Summary of writeFile"><span>Function</span></a>
+							<a href="function-shutdown.html" title="Summary of shutdown"><span>Function</span></a>
 						</li>
 
 						<li class="divider-vertical"></li>
@@ -77,10 +77,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -104,10 +100,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -134,27 +126,12 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-buildTypesSelect.html">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html">Debug</a></li>
-				<li><a href="function-DeleteRelation.html">DeleteRelation</a></li>
-				<li><a href="function-ExtractRelFromRelArray.html">ExtractRelFromRelArray</a></li>
-				<li><a href="function-getAllObjects.html">getAllObjects</a></li>
-				<li><a href="function-getAllTables.html">getAllTables</a></li>
-				<li><a href="function-getObject.html">getObject</a></li>
-				<li><a href="function-getObjectByTable.html">getObjectByTable</a></li>
-				<li><a href="function-GetRelationByName.html">GetRelationByName</a></li>
-				<li><a href="function-GetRelations.html">GetRelations</a></li>
-				<li><a href="function-GetRelationsByObject.html">GetRelationsByObject</a></li>
-				<li><a href="function-getSelectedField.html">getSelectedField</a></li>
-				<li><a href="function-loadConfig.html">loadConfig</a></li>
-				<li><a href="function-loadPluginsList.html">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
 				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
 				<li><a href="function-p_r.html">p_r</a></li>
-				<li><a href="function-rcopy.html">rcopy</a></li>
-				<li><a href="function-rrmdir.html">rrmdir</a></li>
-				<li class="active"><a href="function-writeFile.html">writeFile</a></li>
+				<li class="active"><a href="function-shutdown.html">shutdown</a></li>
 			</ul>
 		</div>
 	</div>
@@ -210,24 +187,12 @@
 	<td></td>
 </tr>
 <tr>
-	<td class="name"><a href="class-MagratheaImage.html">MagratheaImage</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></td>
-	<td></td>
-</tr>
-<tr>
 	<td class="name"><a href="class-MagratheaLogger.html">MagratheaLogger</a></td>
-	<td></td>
+	<td><p>Magrathea class for logging anything
+The log will be created in <em>logs</em> folder in the root of the project (same dir level as <em>app</em>)
+By default, the message is written with a timestamp before it.
+        - For <em>Log</em> function, the default file is saved with a timestamp in the name
+        - For <em>LogError</em> function, by default, all the data is saved in a same file called <em>log_error.txt</em></p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaModel.html">MagratheaModel</a></td>
@@ -255,7 +220,7 @@
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaView.html">MagratheaView</a></td>
-	<td></td>
+	<td>Some functions that will help you control the view layer of the project</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-PhpClosure.html">PhpClosure</a></td>
@@ -306,24 +271,12 @@
 	<td></td>
 </tr>
 <tr>
-	<td class="name"><a href="class-MagratheaImage.html">MagratheaImage</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></td>
-	<td></td>
-</tr>
-<tr>
 	<td class="name"><a href="class-MagratheaLogger.html">MagratheaLogger</a></td>
-	<td></td>
+	<td><p>Magrathea class for logging anything
+The log will be created in <em>logs</em> folder in the root of the project (same dir level as <em>app</em>)
+By default, the message is written with a timestamp before it.
+        - For <em>Log</em> function, the default file is saved with a timestamp in the name
+        - For <em>LogError</em> function, by default, all the data is saved in a same file called <em>log_error.txt</em></p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaModel.html">MagratheaModel</a></td>
@@ -351,7 +304,7 @@
 </tr>
 <tr>
 	<td class="name"><a href="class-MagratheaView.html">MagratheaView</a></td>
-	<td></td>
+	<td>Some functions that will help you control the view layer of the project</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-PhpClosure.html">PhpClosure</a></td>
@@ -396,88 +349,29 @@
 <h2>Functions summary</h2>
 <table class="summary table table-bordered table-striped" id="functions">
 <tr>
-	<td class="name"><a href="function-buildTypesSelect.html">buildTypesSelect</a></td>
-	<td></td>
-</tr>
-<tr>
 	<td class="name"><a href="function-Debug.html">Debug</a></td>
 	<td>Debugs what is sent, according with debug configurations</td>
 </tr>
 <tr>
-	<td class="name"><a href="function-DeleteRelation.html">DeleteRelation</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-ExtractRelFromRelArray.html">ExtractRelFromRelArray</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-getAllObjects.html">getAllObjects</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-getAllTables.html">getAllTables</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-getObject.html">getObject</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-getObjectByTable.html">getObjectByTable</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-GetRelationByName.html">GetRelationByName</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-GetRelations.html">GetRelations</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-GetRelationsByObject.html">GetRelationsByObject</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-getSelectedField.html">getSelectedField</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-loadConfig.html">loadConfig</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-loadPluginsList.html">loadPluginsList</a></td>
-	<td></td>
-</tr>
-<tr>
 	<td class="name"><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></td>
-	<td></td>
+	<td>Array of types available at Magrathea</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-magrathea_printFields.html">magrathea_printFields</a></td>
-	<td></td>
+	<td>gets an array and prints a select</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-nice_p_r.html">nice_p_r</a></td>
-	<td></td>
+	<td>Prints wonderfull debugs!</td>
 </tr>
 <tr>
 	<td class="name"><a href="function-p_r.html">p_r</a></td>
-	<td></td>
+	<td>Prints easily and beautifully</td>
 </tr>
 <tr>
-	<td class="name"><a href="function-rcopy.html">rcopy</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-rrmdir.html">rrmdir</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="function-writeFile.html">writeFile</a></td>
-	<td></td>
+	<td class="name"><a href="function-shutdown.html">shutdown</a></td>
+	<td><p>Function that will be executed after script is complete!
+in Magrathea, will print debug, if available...</p></td>
 </tr>
 </table>
 </div>
@@ -487,7 +381,7 @@
 		MagratheaPHP API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
 </div>
-<script src="resources/combined.js?396e5abc57886c99e34f12a176566235146ad438"></script>
-<script src="elementlist.js?7b284201300ce3a88b82a3e00d0b33a1c3fd2e15"></script>
+<script src="resources/combined.js?51766e704c5fb8d7116600138340cf0f25ffa8db"></script>
+<script src="elementlist.js?6b1b03749897c995096edc111b8629395515d8ac"></script>
 </body>
 </html>

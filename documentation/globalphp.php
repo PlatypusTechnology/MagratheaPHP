@@ -22,10 +22,7 @@
 	// looooooaaaadddiiiiiinnnnnnggggg.....
 	include($magrathea_path."/LOAD.php");
 
-	// wanna debug? here's your debug!
-//	MagratheaDebugger::Instance()->SetType("debug");
-
-	// initialize Smarty. eh.. I don't think there is a more beautiful way of doing this
+	// initialize Smarty. eh.. I don't think there is a more beautiful way of doing this (I want to be transparent as well, see?)
 	$Smarty = new Smarty;
 	$Smarty->template_dir = $site_path."/app/Views/";
 	$Smarty->compile_dir  = $site_path."/app/Views/_compiled";
@@ -40,7 +37,7 @@
 	// for printing the paths of your css and javascript (that will be included in the index.php)
 	$View->IsRelativePath(false);
 
-	// debugging settings:
+	// wanna debug? here's your debug!
 	// options: dev; debug; log; none;
 	MagratheaDebugger::Instance()->SetType(MagratheaDebugger::DEBUG);
 ?&gt;</pre><br/>

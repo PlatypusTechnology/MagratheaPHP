@@ -76,10 +76,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li class="active"><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -103,10 +99,6 @@
 				<li><a href="class-MagratheaDatabase.html">MagratheaDatabase</a></li>
 				<li class="active"><a href="class-MagratheaDebugger.html">MagratheaDebugger</a></li>
 				<li><a href="class-MagratheaEmail.html">MagratheaEmail</a></li>
-				<li><a href="class-MagratheaImage.html">MagratheaImage</a></li>
-				<li><a href="class-MagratheaImageBase.html">MagratheaImageBase</a></li>
-				<li><a href="class-MagratheaImageControl.html">MagratheaImageControl</a></li>
-				<li><a href="class-MagratheaImageControlBase.html">MagratheaImageControlBase</a></li>
 				<li><a href="class-MagratheaLogger.html">MagratheaLogger</a></li>
 				<li><a href="class-MagratheaModel.html">MagratheaModel</a></li>
 				<li><a href="class-MagratheaModelControl.html">MagratheaModelControl</a></li>
@@ -133,27 +125,12 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-buildTypesSelect.html">buildTypesSelect</a></li>
 				<li><a href="function-Debug.html">Debug</a></li>
-				<li><a href="function-DeleteRelation.html">DeleteRelation</a></li>
-				<li><a href="function-ExtractRelFromRelArray.html">ExtractRelFromRelArray</a></li>
-				<li><a href="function-getAllObjects.html">getAllObjects</a></li>
-				<li><a href="function-getAllTables.html">getAllTables</a></li>
-				<li><a href="function-getObject.html">getObject</a></li>
-				<li><a href="function-getObjectByTable.html">getObjectByTable</a></li>
-				<li><a href="function-GetRelationByName.html">GetRelationByName</a></li>
-				<li><a href="function-GetRelations.html">GetRelations</a></li>
-				<li><a href="function-GetRelationsByObject.html">GetRelationsByObject</a></li>
-				<li><a href="function-getSelectedField.html">getSelectedField</a></li>
-				<li><a href="function-loadConfig.html">loadConfig</a></li>
-				<li><a href="function-loadPluginsList.html">loadPluginsList</a></li>
 				<li><a href="function-magrathea_getTypesArr.html">magrathea_getTypesArr</a></li>
 				<li><a href="function-magrathea_printFields.html">magrathea_printFields</a></li>
 				<li><a href="function-nice_p_r.html">nice_p_r</a></li>
 				<li><a href="function-p_r.html">p_r</a></li>
-				<li><a href="function-rcopy.html">rcopy</a></li>
-				<li><a href="function-rrmdir.html">rrmdir</a></li>
-				<li><a href="function-writeFile.html">writeFile</a></li>
+				<li><a href="function-shutdown.html">shutdown</a></li>
 			</ul>
 		</div>
 	</div>
@@ -182,7 +159,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-MagratheaDebugger.html#17-135" title="Go to source code">MagratheaDebugger.php</a>
+			<b>Located at</b> <a href="source-class-MagratheaDebugger.html#17-180" title="Go to source code">MagratheaDebugger.php</a>
 		<br>
 	</div>
 
@@ -201,7 +178,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Instance">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#27-35" title="Go to source code">Instance</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html#32-40" title="Go to source code">Instance</a>( )</code>
 
 			<div class="description short">
 				<p>Static singleton way to get the debugger instance</p>
@@ -230,7 +207,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_MagratheaDebugger">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#36-37" title="Go to source code">MagratheaDebugger</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html#41-42" title="Go to source code">MagratheaDebugger</a>( )</code>
 
 			<div class="description short">
 				
@@ -259,26 +236,26 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_SetType">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#39-52" title="Go to source code">SetType</a>( <span> <var>$dType</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html#44-57" title="Go to source code">SetType</a>( <span> <var>$dType</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets the debugger method
-It can be: <em>Dev</em>, <em>Debug</em>, <em>Log</em>, <em>None</em>
-<strong>Dev</strong> Will print the debugs as it appears in the code
-<strong>Debug</strong> Will store all the debugs and print it later
-<strong>Log</strong> Will log queries and other debugs in the code
-<strong>None</strong> Well... nothing to do, heh?
-Default: <strong>Log</strong></p>
+It can be: <em>DEV</em>, <em>DEBUG</em>, <em>LOG</em>, <em>NONE</em> =>
+<strong>MagratheaDebugger::DEV</strong> = Will print the debugs as it appears in the code
+<strong>MagratheaDebugger::DEBUG</strong> = Will store all the debugs and print it later
+<strong>MagratheaDebugger::LOG</strong> = Will log queries and other debugs in the code
+<strong>MagratheaDebugger::NONE</strong> = Well... nothing to do, heh?
+Default: <strong>LOG</strong></p>
 			</div>
 
 			<div class="description detailed hidden">
 				<p>Sets the debugger method
-It can be: <em>Dev</em>, <em>Debug</em>, <em>Log</em>, <em>None</em>
-<strong>Dev</strong> Will print the debugs as it appears in the code
-<strong>Debug</strong> Will store all the debugs and print it later
-<strong>Log</strong> Will log queries and other debugs in the code
-<strong>None</strong> Well... nothing to do, heh?
-Default: <strong>Log</strong></p>
+It can be: <em>DEV</em>, <em>DEBUG</em>, <em>LOG</em>, <em>NONE</em> =>
+<strong>MagratheaDebugger::DEV</strong> = Will print the debugs as it appears in the code
+<strong>MagratheaDebugger::DEBUG</strong> = Will store all the debugs and print it later
+<strong>MagratheaDebugger::LOG</strong> = Will log queries and other debugs in the code
+<strong>MagratheaDebugger::NONE</strong> = Well... nothing to do, heh?
+Default: <strong>LOG</strong></p>
 
 
 					<h4>Parameters</h4>
@@ -286,6 +263,35 @@ Default: <strong>Log</strong></p>
 						<dt><var>$dType</var></dt>
 						<dd>type to be set</dd>
 					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="Trace" id="_Trace">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_Trace">#</a>
+			<code><a href="source-class-MagratheaDebugger.html#59-64" title="Go to source code">Trace</a>( )</code>
+
+			<div class="description short">
+				<p>Trace error location</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Trace error location</p>
+
+
 
 
 
@@ -305,7 +311,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_SetTemp">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#54-63" title="Go to source code">SetTemp</a>( <span>string <var>$dType</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html#66-75" title="Go to source code">SetTemp</a>( <span>string <var>$dType</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets a debugger type temporarily
@@ -341,7 +347,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_BackTemp">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#65-71" title="Go to source code">BackTemp</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html#77-83" title="Go to source code">BackTemp</a>( )</code>
 
 			<div class="description short">
 				<p>After temporarily setting a debugging type, gets it back to what it was</p>
@@ -370,7 +376,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_GetType">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#73-80" title="Go to source code">GetType</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html#85-92" title="Go to source code">GetType</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the debug type</p>
@@ -403,7 +409,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Add">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#82-102" title="Go to source code">Add</a>( <span>string <var>$debug</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html#94-115" title="Go to source code">Add</a>( <span>string <var>$debug</var></span> )</code>
 
 			<div class="description short">
 				<p>Add an item to the debug array object</p>
@@ -437,7 +443,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_AddQuery">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#104-117" title="Go to source code">AddQuery</a>( <span>string <var>$sql</var></span>, <span>string <var>$values</var></span> )</code>
+			<code><a href="source-class-MagratheaDebugger.html#117-130" title="Go to source code">AddQuery</a>( <span>string <var>$sql</var></span>, <span>string <var>$values</var></span> )</code>
 
 			<div class="description short">
 				<p>Adds a query to the debug</p>
@@ -473,7 +479,7 @@ Default: <strong>Log</strong></p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_Show">#</a>
-			<code><a href="source-class-MagratheaDebugger.html#119-126" title="Go to source code">Show</a>( )</code>
+			<code><a href="source-class-MagratheaDebugger.html#132-143" title="Go to source code">Show</a>( )</code>
 
 			<div class="description short">
 				<p>Prints the debug</p>
@@ -501,6 +507,106 @@ Default: <strong>Log</strong></p>
 
 
 
+		<h2>Constants summary</h2>
+		<table class="summary table table-bordered table-striped constants" id="constants">
+		<tr data-order="NONE" id="NONE">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name">
+				<code>
+					<a href="source-class-MagratheaDebugger.html#19" title="Go to source code"><b>NONE</b></a>
+				</code>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#NONE" class="anchor">#</a>
+					<code><span class="php-num">0</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="LOG" id="LOG">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name">
+				<code>
+					<a href="source-class-MagratheaDebugger.html#20" title="Go to source code"><b>LOG</b></a>
+				</code>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#LOG" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="DEBUG" id="DEBUG">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name">
+				<code>
+					<a href="source-class-MagratheaDebugger.html#21" title="Go to source code"><b>DEBUG</b></a>
+				</code>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#DEBUG" class="anchor">#</a>
+					<code><span class="php-num">3</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="DEV" id="DEV">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name">
+				<code>
+					<a href="source-class-MagratheaDebugger.html#22" title="Go to source code"><b>DEV</b></a>
+				</code>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#DEV" class="anchor">#</a>
+					<code><span class="php-num">4</span></code>
+				</div>
+			</td>
+		</tr>
+		</table>
+
 
 
 
@@ -513,7 +619,7 @@ Default: <strong>Log</strong></p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-MagratheaDebugger.html#22" title="Go to source code"><var>$inst</var></a>
+					<a href="source-class-MagratheaDebugger.html#27" title="Go to source code"><var>$inst</var></a>
 
 				<div class="description short">
 					

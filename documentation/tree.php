@@ -45,12 +45,13 @@ Tree:
 |  ├──>  magrathea.conf 		// based on magrathea.conf.default
 |  └──>  magrathea_objects.conf
 |
+├───  logs 				// write permission required
 ├───  Magrathea  		// Magrathea framework
 |  └─── libs
-|  |  ├───  pear	 		// pear
 |  |  └───  Smarty 			// Smarty
-|  └─── Magrathea Admin 
-|		// Magrathea Admin
+|  |
+|  └─── Magrathea Admin    // Magrathea Admin
+|		
 ├───  plugins 			// write permission required
 └───  Tests
 </pre>
