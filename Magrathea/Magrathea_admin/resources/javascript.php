@@ -172,8 +172,7 @@ jQuery.easing['jswing']=jQuery.easing['swing'];jQuery.extend(jQuery.easing,{def:
 /*
 * jquery.ibutton.min.js
 */
-(function(E){E.iButton={version:"1.0.03",setDefaults:function(G){E.extend(F,G)}};E.fn.iButton=function(J){var K=typeof arguments[0]=="string"&&arguments[0];var I=K&&Array.prototype.slice.call(arguments,1)||arguments;var H=(this.length==0)?null:E.data(this[0],"iButton");if(H&&K&&this.length){if(K.toLowerCase()=="object"){return H}else{if(H[K]){var G;this.each(function(L){var M=E.data(this,"iButton")[K].apply(H,I);if(L==0&&M){if(!!M.jquery){G=E([]).add(M)}else{G=M;return false}}else{if(!!M&&!!M.jquery){G=G.add(M)}}});return G||this}else{return this}}}else{return this.each(function(){new C(this,J)})}};var A=0;E.browser.iphone=(navigator.userAgent.toLowerCase().indexOf("iphone")>-1);var C=function(N,I){var S=this,H=E(N),T=++A,K=false,U={},O={dragging:false,clicked:null},W={position:null,offset:null,time:null},I=E.extend({},F,I,(!!E.metadata?H.metadata():{})),Y=(I.labelOn==B&&I.labelOff==D),Z=":checkbox, :radio";if(!H.is(Z)){return H.find(Z).iButton(I)}else{if(E.data(H[0],"iButton")){return }}E.data(H[0],"iButton",S);if(I.resizeHandle=="auto"){I.resizeHandle=!Y}if(I.resizeContainer=="auto"){I.resizeContainer=!Y}this.toggle=function(b){var a=(arguments.length>0)?b:!H[0].checked;H.attr("checked",a).trigger("change")};this.disable=function(b){var a=(arguments.length>0)?b:!K;K=a;H.attr("disabled",a);V[a?"addClass":"removeClass"](I.classDisabled);if(E.isFunction(I.disable)){I.disable.apply(S,[K,H,I])}};this.repaint=function(){X()};this.destroy=function(){E([H[0],V[0]]).unbind(".iButton");E(document).unbind(".iButton_"+T);V.after(H).remove();E.data(H[0],"iButton",null);if(E.isFunction(I.destroy)){I.destroy.apply(S,[H,I])}};H.wrap('<div class="'+E.trim(I.classContainer+" "+I.className)+'" />').after('<div class="'+I.classHandle+'"><div class="'+I.classHandleRight+'"><div class="'+I.classHandleMiddle+'" /></div></div><div class="'+I.classLabelOff+'"><span><label>'+I.labelOff+'</label></span></div><div class="'+I.classLabelOn+'"><span><label>'+I.labelOn+'</label></span></div><div class="'+I.classPaddingLeft+'"></div><div class="'+I.classPaddingRight+'"></div>');var V=H.parent(),G=H.siblings("."+I.classHandle),P=H.siblings("."+I.classLabelOff),M=P.children("span"),J=H.siblings("."+I.classLabelOn),L=J.children("span");if(I.resizeHandle||I.resizeContainer){U.onspan=L.outerWidth();U.offspan=M.outerWidth()}if(I.resizeHandle){U.handle=Math.min(U.onspan,U.offspan);G.css("width",U.handle)}else{U.handle=G.width()}if(I.resizeContainer){U.container=(Math.max(U.onspan,U.offspan)+U.handle+20);V.css("width",U.container);P.css("width",U.container-5)}else{U.container=V.width()}var R=U.container-U.handle-6;var X=function(b){var c=H[0].checked,a=(c)?R:0,b=(arguments.length>0)?arguments[0]:true;if(b&&I.enableFx){G.stop().animate({left:a},I.duration,I.easing);J.stop().animate({width:a+4},I.duration,I.easing);L.stop().animate({marginLeft:a-R},I.duration,I.easing);M.stop().animate({marginRight:-a},I.duration,I.easing)}else{G.css("left",a);J.css("width",a+4);L.css("marginLeft",a-R);M.css("marginRight",-a)}};X(false);var Q=function(a){return a.pageX||((a.originalEvent.changedTouches)?a.originalEvent.changedTouches[0].pageX:0)};V.bind("mousedown.iButton touchstart.iButton",function(a){if(E(a.target).is(Z)||K||(!I.allowRadioUncheck&&H.is(":radio:checked"))){return }a.preventDefault();O.clicked=G;W.position=Q(a);W.offset=W.position-(parseInt(G.css("left"),10)||0);W.time=(new Date()).getTime();return false});if(I.enableDrag){E(document).bind("mousemove.iButton_"+T+" touchmove.iButton_"+T,function(c){if(O.clicked!=G){return }c.preventDefault();var a=Q(c);if(a!=W.offset){O.dragging=true;V.addClass(I.classHandleActive)}var b=Math.min(1,Math.max(0,(a-W.offset)/R));G.css("left",b*R);J.css("width",b*R+4);M.css("marginRight",-b*R);L.css("marginLeft",-(1-b)*R);return false})}E(document).bind("mouseup.iButton_"+T+" touchend.iButton_"+T,function(d){if(O.clicked!=G){return false}d.preventDefault();var f=true;if(!O.dragging||(((new Date()).getTime()-W.time)<I.clickOffset)){var b=H[0].checked;H.attr("checked",!b);if(E.isFunction(I.click)){I.click.apply(S,[!b,H,I])}}else{var a=Q(d);var c=(a-W.offset)/R;var b=(c>=0.5);if(H[0].checked==b){f=false}H.attr("checked",b)}V.removeClass(I.classHandleActive);O.clicked=null;O.dragging=null;if(f){H.trigger("change")}else{X()}return false});H.bind("change.iButton",function(){X();if(H.is(":radio")){var b=H[0];var a=E(b.form?b.form[b.name]:":radio[name="+b.name+"]");a.filter(":not(:checked)").iButton("repaint")}if(E.isFunction(I.change)){I.change.apply(S,[H,I])}}).bind("focus.iButton",function(){V.addClass(I.classFocus)}).bind("blur.iButton",function(){V.removeClass(I.classFocus)});if(E.isFunction(I.click)){H.bind("click.iButton",function(){I.click.apply(S,[H[0].checked,H,I])})}if(H.is(":disabled")){this.disable(true)}if(E.browser.msie){V.find("*").andSelf().attr("unselectable","on");H.bind("click.iButton",function(){H.triggerHandler("change.iButton")})}if(E.isFunction(I.init)){I.init.apply(S,[H,I])}};var F={duration:200,easing:"swing",labelOn:"ON",labelOff:"OFF",resizeHandle:"auto",resizeContainer:"auto",enableDrag:true,enableFx:true,allowRadioUncheck:false,clickOffset:120,className:"",classContainer:"ibutton-container",classDisabled:"ibutton-disabled",classFocus:"ibutton-focus",classLabelOn:"ibutton-label-on",classLabelOff:"ibutton-label-off",classHandle:"ibutton-handle",classHandleMiddle:"ibutton-handle-middle",classHandleRight:"ibutton-handle-right",classHandleActive:"ibutton-active-handle",classPaddingLeft:"ibutton-padding-left",classPaddingRight:"ibutton-padding-right",init:null,change:null,click:null,disable:null,destroy:null},B=F.labelOn,D=F.labelOff})(jQuery);
-/*
+(function(E){E.iButton={version:"1.0.03",setDefaults:function(G){E.extend(F,G)}};E.fn.iButton=function(J){var K=typeof arguments[0]=="string"&&arguments[0];var I=K&&Array.prototype.slice.call(arguments,1)||arguments;var H=(this.length==0)?null:E.data(this[0],"iButton");if(H&&K&&this.length){if(K.toLowerCase()=="object"){return H}else{if(H[K]){var G;this.each(function(L){var M=E.data(this,"iButton")[K].apply(H,I);if(L==0&&M){if(!!M.jquery){G=E([]).add(M)}else{G=M;return false}}else{if(!!M&&!!M.jquery){G=G.add(M)}}});return G||this}else{return this}}}else{return this.each(function(){new C(this,J)})}};var A=0;E.browser.iphone=(navigator.userAgent.toLowerCase().indexOf("iphone")>-1);var C=function(N,I){var S=this,H=E(N),T=++A,K=false,U={},O={dragging:false,clicked:null},W={position:null,offset:null,time:null},I=E.extend({},F,I,(!!E.metadata?H.metadata():{})),Y=(I.labelOn==B&&I.labelOff==D),Z=":checkbox, :radio";if(!H.is(Z)){return H.find(Z).iButton(I)}else{if(E.data(H[0],"iButton")){return }}E.data(H[0],"iButton",S);if(I.resizeHandle=="auto"){I.resizeHandle=!Y}if(I.resizeContainer=="auto"){I.resizeContainer=!Y}this.toggle=function(b){var a=(arguments.length>0)?b:!H[0].checked;H.attr("checked",a).trigger("change")};this.disable=function(b){var a=(arguments.length>0)?b:!K;K=a;H.attr("disabled",a);V[a?"addClass":"removeClass"](I.classDisabled);if(E.isFunction(I.disable)){I.disable.apply(S,[K,H,I])}};this.repaint=function(){X()};this.destroy=function(){E([H[0],V[0]]).unbind(".iButton");E(document).unbind(".iButton_"+T);V.after(H).remove();E.data(H[0],"iButton",null);if(E.isFunction(I.destroy)){I.destroy.apply(S,[H,I])}};H.wrap('<div class="'+E.trim(I.classContainer+" "+I.className)+'" />').after('<div class="'+I.classHandle+'"><div class="'+I.classHandleRight+'"><div class="'+I.classHandleMiddle+'" /></div></div><div class="'+I.classLabelOff+'"><span><label>'+I.labelOff+'</label></span></div><div class="'+I.classLabelOn+'"><span><label>'+I.labelOn+'</label></span></div><div class="'+I.classPaddingLeft+'"></div><div class="'+I.classPaddingRight+'"></div>');var V=H.parent(),G=H.siblings("."+I.classHandle),P=H.siblings("."+I.classLabelOff),M=P.children("span"),J=H.siblings("."+I.classLabelOn),L=J.children("span");if(I.resizeHandle||I.resizeContainer){U.onspan=L.outerWidth();U.offspan=M.outerWidth()}if(I.resizeHandle){U.handle=Math.min(U.onspan,U.offspan);G.css("width",U.handle)}else{U.handle=G.width()}if(I.resizeContainer){U.container=(Math.max(U.onspan,U.offspan)+U.handle+20);V.css("width",U.container);P.css("width",U.container-5)}else{U.container=V.width()}var R=U.container-U.handle-6;var X=function(b){var c=H[0].checked,a=(c)?R:0,b=(arguments.length>0)?arguments[0]:true;if(b&&I.enableFx){G.stop().animate({left:a},I.duration,I.easing);J.stop().animate({width:a+4},I.duration,I.easing);L.stop().animate({marginLeft:a-R},I.duration,I.easing);M.stop().animate({marginRight:-a},I.duration,I.easing)}else{G.css("left",a);J.css("width",a+4);L.css("marginLeft",a-R);M.css("marginRight",-a)}};X(false);var Q=function(a){return a.pageX||((a.originalEvent.changedTouches)?a.originalEvent.changedTouches[0].pageX:0)};V.bind("mousedown.iButton touchstart.iButton",function(a){if(E(a.target).is(Z)||K||(!I.allowRadioUncheck&&H.is(":radio:checked"))){return }a.preventDefault();O.clicked=G;W.position=Q(a);W.offset=W.position-(parseInt(G.css("left"),10)||0);W.time=(new Date()).getTime();return false});if(I.enableDrag){E(document).bind("mousemove.iButton_"+T+" touchmove.iButton_"+T,function(c){if(O.clicked!=G){return }c.preventDefault();var a=Q(c);if(a!=W.offset){O.dragging=true;V.addClass(I.classHandleActive)}var b=Math.min(1,Math.max(0,(a-W.offset)/R));G.css("left",b*R);J.css("width",b*R+4);M.css("marginRight",-b*R);L.css("marginLeft",-(1-b)*R);return false})}E(document).bind("mouseup.iButton_"+T+" touchend.iButton_"+T,function(d){if(O.clicked!=G){return false}d.preventDefault();var f=true;if(!O.dragging||(((new Date()).getTime()-W.time)<I.clickOffset)){var b=H[0].checked;H.attr("checked",!b);if(E.isFunction(I.click)){I.click.apply(S,[!b,H,I])}}else{var a=Q(d);var c=(a-W.offset)/R;var b=(c>=0.5);if(H[0].checked==b){f=false}H.attr("checked",b)}V.removeClass(I.classHandleActive);O.clicked=null;O.dragging=null;if(f){H.trigger("change")}else{X()}return false});H.bind("change.iButton",function(){X();if(H.is(":radio")){var b=H[0];var a=E(b.form?b.form[b.name]:":radio[name="+b.name+"]");a.filter(":not(:checked)").iButton("repaint")}if(E.isFunction(I.change)){I.change.apply(S,[H,I])}}).bind("focus.iButton",function(){V.addClass(I.classFocus)}).bind("blur.iButton",function(){V.removeClass(I.classFocus)});if(E.isFunction(I.click)){H.bind("click.iButton",function(){I.click.apply(S,[H[0].checked,H,I])})}if(H.is(":disabled")){this.disable(true)}if(E.browser.msie){V.find("*").andSelf().attr("unselectable","on");H.bind("click.iButton",function(){H.triggerHandler("change.iButton")})}if(E.isFunction(I.init)){I.init.apply(S,[H,I])}};var F={duration:200,easing:"swing",labelOn:"ON",labelOff:"OFF",resizeHandle:"auto",resizeContainer:"auto",enableDrag:true,enableFx:true,allowRadioUncheck:false,clickOffset:120,className:"",classContainer:"ibutton-container",classDisabled:"ibutton-disabled",classFocus:"ibutton-focus",classLabelOn:"ibutton-label-on",classLabelOff:"ibutton-label-off",classHandle:"ibutton-handle",classHandleMiddle:"ibutton-handle-middle",classHandleRight:"ibutton-handle-right",classHandleActive:"ibutton-active-handle",classPaddingLeft:"ibutton-padding-left",classPaddingRight:"ibutton-padding-right",init:null,change:null,click:null,disable:null,destroy:null},B=F.labelOn,D=F.labelOff})(jQuery);/*
 * layout.js
 */
 jQuery(function($){$(document).on("click",".submenu > a",function(){var parent=$(this).parent("li");var slideArea=$(parent).find("ul:first");if($(slideArea).is(":visible")){$(slideArea).slideUp("easeInQuart")}else{$(slideArea).slideDown("easeOutQuart")}});$(document).on("click","header .arrow",function(e){e.preventDefault();$(this).parents(".mag_section").find("content").slideToggle("fast",function(){})});$(document).on("mouseenter mouseleave","header.hide_opt",function(){$(this).find(".toggle").fadeToggle("fast")})});$(window).load(function(){$("#loader").fadeOut()});
@@ -190,158 +189,17 @@ function MagratheaPost(page, data){
 		success: function(data){
 			console.info(data);
 			$("#main_content").html(data);
-			$scrollTop();
+			scrollToTop();
 		}
 	})
 }
 
-
-function scrollTop(){
+function scrollToTop(){
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 }
 
-function loadCoder(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=coder");
-	$.ajax({
-		url: "?page=load_coder.php",
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Let's code!");
-			$scrollTop();
-		}
-	});
-}
-
-function loadTable(table_name){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=table"+table_name);
-	$.ajax({
-		url: "?page=load_table.php",
-		type: "POST",
-		data: { 
-			table: table_name
-		}, 
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Table: "+table_name);
-			$scrollTop();
-		}
-	});
-}
-
-function loadTableData(table_name){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=tabledata"+table_name);
-	$.ajax({
-		url: "?page=load_tableData.php",
-		type: "POST",
-		data: { 
-			table: table_name
-		}, 
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Table: "+table_name);
-			$scrollTop();
-		}
-	});
-}
-
-
-function loadObject(obj_name){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=obj"+obj_name);
-	$.ajax({
-		url: "?page=load_object.php",
-		type: "POST",
-		data: { 
-			object: obj_name
-		}, 
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Object: "+obj_name);
-			$scrollTop();
-		}
-	});
-}
-
-function loadDatabaseManager(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=migration");
-	$.ajax({
-		url: "?page=load_migration.php",
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Database");
-			$scrollTop();
-		}
-	});
-}
-
-
-function loadConfig(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=config");
-	$.ajax({
-		url: "?page=load_configuration.php",
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Magrathea Configuration");
-			$scrollTop();
-		}
-	});
-}
-function loadConfigSection(){
-	var section = $("#use_environment").val();
-	$.ajax({
-		url: "?page=load_configuration_section.php&section="+section,
-		success: function(data){
-			$("#LoadConfigSection").html(data);
-			$scrollTop();
-		}
-	});
-}
-
-function loadPlugins(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=plugins");
-	$.ajax({
-		url: "?page=load_plugins.php",
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("Plugins");
-			$scrollTop();
-		}
-	});
-}
-
-
-function loadTests(){
-	history.replaceState({}, "Magrathea Admin - Testing...", "admin.php?area=tests");
-	$.ajax({
-		url: "?page=load_tests.php",
-		success: function(data){
-			$("#tests_response").html(data);
-			$("#tests_response > ul").addClass("nav").addClass("nav-list").addClass("menu_sublist");
-			$("#tests_response").find("a").each(function(){
-				var url = $(this).attr("href");
-				$(this).attr("href", "javascript: loadUnitTest('"+url+"');");
-			});
-			$("#pageTitle").html("Tests");
-			$("#main_content").html("That's it! Keep testing...");
-			$scrollTop();
-		}
-	});
-}
-
-function loadUnitTest(test){
-	history.replaceState({}, "Magrathea Admin - Test", "admin.php?area=tests&load="+test);
-	$.ajax({
-		url: "?page=load_tests.php&test="+test,
-		success: function(data){
-			$("#main_content").html(data);
-			$("#main_content h1").html(test);
-			$("#pageTitle").html("Testing: " + test);
-			$scrollTop();
-		}
-	});
-}
 
 function loadCustom(){
-	history.replaceState({}, "Magrathea Admin", "admin.php?area=custom");
 	$.ajax({
 		url: "?page=load_customadmin.php",
 		success: function(data){
@@ -352,105 +210,21 @@ function loadCustom(){
 				$(this).attr("href", "javascript: loadCustomAdmin('"+url+"');");
 			});
 			$("#pageTitle").html("Admin");
-			$("#main_content").html("Custom Admin");
-			$scrollTop();
+//			scrollToTop();
 		}
 	});
 }
 
 function loadCustomAdmin(custom){
-	history.replaceState({}, "Magrathea Admin", "admin.php?area=custom&custom="+custom);
+	history.replaceState({}, "Magrathea Admin", "admin.php?area=custom&custompage="+custom);
 	$.ajax({
 		url: "?page=load_customadmin.php&custom="+custom,
 		success: function(data){
 			$("#main_content").html(data);
-			$scrollTop();
+			scrollToTop();
 		}
 	});
 
-}
-
-function loadPhpInfo(){
-	$.ajax({
-		url: "?page=load_phpinfo.php",
-		success: function(data){
-			$("#main_content").html(data);
-			$("#pageTitle").html("PHP Info");
-			$scrollTop();
-		}
-	});
-}
-
-function createFieldInTable(table_name){
-	$.ajax({
-		url: "?page=add_create_and_update.php",
-		type: "POST",
-		data: { 
-			table: table_name
-		}, 
-		success: function(data){
-			loadTable(table_name);
-			$scrollTop();
-		}
-	});
-}
-
-function createObject(){
-	$.post("?page=create_object.php", 
-		$("#form_object").serialize(),
-		function (data){
-			var success = data.substr(0, 12);
-			$("#object_result").html(data);
-			loadMenu(".tables");
-			$scrollTop();
-		}
-	);
-}
-
-function saveObject(){
-	$.post("?page=save_object.php", 
-		$("#form_object").serialize(),
-		function (data){
-			var success = data.substr(0, 12);
-			$("#object_result").html(data);
-			$scrollTop();
-		}
-	);
-}
-
-function saveConfig(specific){
-	var config_data = null;
-	if(specific){
-		config_data = $("#specific_config").serialize();
-	} else {
-		config_data = $("#general_config").serialize();
-	}
-	console.info(config_data);
-	$.ajax({
-		type: "POST",
-		url: "?page=save_configuration.php",
-		data: config_data,
-		success: function(data){
-			var success_var = data.substr(0, 12);
-//			console.info(success_var);
-			$("#config_result").html(data);
-			$scrollTop();
-		}
-	});
-}
-
-function loadMenu(clickhere){
-	$.ajax({
-		url: "?page=menu.php",
-		success: function(data){
-			$("#main_menu_div").html(data);
-			if( clickhere ){
-				$(clickhere).click();
-			}
-			$("#warning_objexists_bt").click();
-			$scrollTop();
-		}
-	});
 }
 
 
@@ -464,8 +238,8 @@ function selectMenu(menu){
 	if(@$_GET["load"]){
 		echo "loadUnitTest('".$_GET["load"]."');";
 	}
-	if(@$_GET["custom"]){
-		echo "loadCustomAdmin('".$_GET["custom"]."');";
+	if(@$_GET["custompage"]){
+		echo "loadCustomAdmin('".$_GET["custompage"]."');";
 	}
 
 ?>

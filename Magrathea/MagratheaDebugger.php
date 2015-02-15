@@ -38,8 +38,7 @@ class MagratheaDebugger {
 		}
 		return self::$inst;
 	}
-	public function MagratheaDebugger(){
-	}
+	public function MagratheaDebugger(){ }
 
 	/**
 	* Sets the debugger method
@@ -117,7 +116,7 @@ class MagratheaDebugger {
 	 * Adds an error to the debugger
 	 * @param Exception		$err 	Exception
 	 */
-	public function Error($err){
+	public function AddError($err){
 		$this->Add($err->getMessage());
 	}
 

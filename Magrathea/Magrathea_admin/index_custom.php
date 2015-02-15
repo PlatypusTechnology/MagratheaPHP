@@ -32,7 +32,7 @@
     ================================================== -->
     <div class="row">
       <div class="span3 bs-docs-sidebar" id="main_menu_div">
-				<? include("menu.php"); ?>
+				<div id="admin_response"></div>
       </div>
       <div class="span9" id="main_content">
     	</div>
@@ -50,7 +50,12 @@
 </body>
 
     <!-- ===================== JS ===================== -->
-    <? include("resources/javascript_admin.php") ?>
     <? include("resources/javascript.php") ?>
+    <script type="text/javascript">
+      loadCustom();
+<? if (empty($_GET["custompage"])){ ?>
+      loadCustomAdmin("index.php");
+<? } ?>
+    </script>
 
 </html>
