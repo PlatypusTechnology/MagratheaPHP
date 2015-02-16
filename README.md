@@ -1,6 +1,17 @@
 # MagratheaPHP
 PHP Framework developed and used by Platypus Technology
 
-[![API DOCS](http://apigenerator.org/badge.png)](http://magrathea.platypusweb.com.br/docs/)
+[![Magrathea](https://raw.githubusercontent.com/PlatypusTechnology/MagratheaPHP/master/documentation/logo/magrathea.png)]
 
-MoreInfo on [http://platypustechnology.github.io/MagratheaPHP/](http://platypustechnology.github.io/MagratheaPHP/)
+For documentation:
+[http://magrathea.platypusweb.com.br/](http://magrathea.platypusweb.com.br/)
+
+Start developing with Magrathea now!
+
+```
+git clone https://github.com/PlatypusTechnology/MagratheaPHP/
+cp -r MagratheaPHP/Magrathea .
+rm -rf MagratheaPHP
+```
+
+
