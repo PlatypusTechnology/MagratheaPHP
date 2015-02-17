@@ -197,16 +197,19 @@ $.fn.serializeObject = function()
 };
 
 
-function MagratheaPost(page, data){
+function MagratheaPost(page, data, callback){
 	console.info(data);
 	url = "admin.php?page=load_customadmin.php&custom=" + page;
-	$.ajax({
-		url: url, type: "POST", data: data,
-		success: function(data){
+	if(!callback){
+		callback = function(data){
 			console.info(data);
 			$("#main_content").html(data);
 			scrollToTop();
-		}
+		};
+	}
+	$.ajax({
+		url: url, type: "POST", data: data,
+		success: callback
 	})
 }
 
