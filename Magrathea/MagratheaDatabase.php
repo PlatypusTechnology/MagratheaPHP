@@ -167,8 +167,8 @@ class MagratheaDatabase{
 	* @throws	MagratheaDbException
 	*/
 	private function ErrorHandle($result, $sql){ 
-		MagratheaLogger::Log(" ERROR!!! query error: [ ".$sql." ]");
-		MagratheaLogger::LogError($result, "log_mysqlerror");
+		MagratheaDebugger::Instance()->Add(" ERROR!!! query error: [ ".$sql." ]");
+		MagratheaDebugger::Instance()->Add($result);
 	}
 
 	/**
@@ -338,6 +338,7 @@ class MagratheaDatabase{
 		$stm = $this->mysqli->prepare($query);
 		if(!$stm || $this->mysqli->error ){
 			$this->errorHandle(null, $query);
+			return;
 		}
 		$params = "";
 		if($arrTypes){
@@ -363,7 +364,7 @@ class MagratheaDatabase{
 		$args = $arrValues;
 		array_unshift($args, $params);
 		try{
-			call_user_func_array(array($stm, "bind_param"),$this->makeValuesReferenced($args) );
+			call_user_func_array(array($stm, "bind_param"), $this->makeValuesReferenced($args));
 			$stm->execute();
 			if($stm->error) $this->ConnectionErrorHandle($stm->error);
 			$lastId = $stm->insert_id;

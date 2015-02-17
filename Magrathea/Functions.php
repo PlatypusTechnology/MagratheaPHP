@@ -54,6 +54,14 @@ function nice_p_r($debugme, $prev_char = ""){
 }
 
 /**
+ * Date of now - mySQL format
+ * @return 	string 		Y-m-d H:i:s format of date
+ */
+function now(){
+	return date("Y-m-d H:i:s");
+}
+
+/**
  * gets an array and prints a select
  * @param   array 		array to be printed
  * @param 	string 		type to be selected
