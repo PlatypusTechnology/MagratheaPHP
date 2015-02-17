@@ -19,7 +19,10 @@ include(__DIR__."/libs/phpclosure.php");
 ####
 #######################################################################################
 
-// @todo
+/**
+ * Compressor: Magrathea function that works with *MagratheaView* to generate compressed files for CSS and Javascript
+ * @todo  improve and fix some issues. So far, recommended is to turn compression off
+ */
 class MagratheaCompressor {
 
   const COMPRESS_JS = 1;
