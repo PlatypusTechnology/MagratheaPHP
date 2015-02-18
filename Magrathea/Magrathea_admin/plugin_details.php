@@ -25,7 +25,10 @@ if(is_null($config)){
 	$text .= "<p>".$config["description"]."</p>";
 	if( !empty($config["url"]) )
 		$text .= "<p><a href='".$config["url"]."'>".$config["url"]."</a></p>";
+	if(!empty($config["more"]))
+		$text .= "<p><pre>".$config["more"]."</pre></p>";
 }
+$text .= "code: <pre>include(\"plugins/".$plugin_folder."/load.php\");</pre>";
 
 echo $text;
 

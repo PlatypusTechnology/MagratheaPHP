@@ -21,6 +21,15 @@ class MagratheaController {
 	}
 
 	/**
+	 * Gets Smarty object statically
+	 * @return  	Smarty 		Smarty object.
+	 */
+	public static function GetSmarty(){
+		global $Smarty;
+		return $Smarty;
+	}
+
+	/**
 	*	Calls another action without changing the url
 	*
 	*	@param 	string 	$control 	Control to be called

@@ -72,6 +72,7 @@
             <li><a href="#"><i class="icon-cogs"></i> Configuration</a></li>
             <li><a href="#"><i class="icon-pencil"></i> Generate Code</a></li>
             <li class="divider"></li>
+            <li><a href="#"><i class="icon-dashboard"></i> Custom admin</a></li>
             <li><a href="plugins.php"><i class="icon-bullseye"></i> Plugins</a></li>
             <li><a href="#"><i class="icon-beaker"></i> Tests</a></li>
           </ul>

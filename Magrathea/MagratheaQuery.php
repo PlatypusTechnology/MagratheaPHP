@@ -6,6 +6,9 @@
  * 		last modified: 2013-07-29 by Paulo
  * * * * */
 
+/**
+ * Creates queries making use of objects and tables
+ */
 class MagratheaQuery{
 
 	protected $select;
