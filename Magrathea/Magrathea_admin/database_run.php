@@ -8,6 +8,8 @@ $query = $_POST["sql"];
 $queryArr = explode(";", $query);
 
 foreach ($queryArr as $sql_query) {
+	$query = trim($sql_query);
+	if(empty($query)) continue;
 	try{
 		$result = MagratheaDatabase::Instance()->QueryAll($sql_query);
 		?>
@@ -29,8 +31,7 @@ foreach ($queryArr as $sql_query) {
 		if(is_array($result)){
 			if(count($result) == 0){
 				echo "empty table";
-				continue;
-			}
+			} else {
 			$fields = $result[0];
 			?>
 			<table class="table table-striped table-bordered">
@@ -58,8 +59,8 @@ foreach ($queryArr as $sql_query) {
 					?>
 				</tbody>
 			</table>
-			</div></div>
 			<?
+			}
 		}
 	} catch(Exception $ex){
 		?>
@@ -70,8 +71,12 @@ foreach ($queryArr as $sql_query) {
 		</div>
 		<?
 	}
-
-
+	?>
+			</div></div>
+		</content>
+	</div>
+</div>
+	<?
 }
 
 
