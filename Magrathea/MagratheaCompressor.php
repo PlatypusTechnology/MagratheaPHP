@@ -21,7 +21,6 @@ include(__DIR__."/libs/phpclosure.php");
 
 /**
  * Compressor: Magrathea function that works with *MagratheaView* to generate compressed files for CSS and Javascript
- * @todo  improve and fix some issues. So far, recommended is to turn compression off
  */
 class MagratheaCompressor {
 
@@ -46,6 +45,7 @@ class MagratheaCompressor {
   /**
    * Adds a source file to the list of files to compile.  Files will be
    * concatenated in the order they are added.
+   * @todo  improve and fix some issues. So far, recommended is to turn compression off
    */
   function add($file) {
     $this->files[] = $file;

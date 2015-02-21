@@ -4,7 +4,6 @@
 /**
  * Class for handling and loading Magrathea's Admin system
  * More information on @link http://magrathea.platypusweb.com.br/admin_php.php
- * @todo  load plugins for font-awesome and jquery automatically from the function add plugin, instead adding the code on resources
  */
 class MagratheaAdmin { 
 
@@ -46,6 +45,7 @@ class MagratheaAdmin {
 	/**
 	 * Adds a plugin for admin
 	 * @param 	string 		$pluginName 		folder of selected plugin
+	 * @todo  load plugins for font-awesome and jquery automatically from the function add plugin, instead adding the code on resources
 	 */
 	public function AddPlugin($pluginName){
 		$site_path = MagratheaConfig::Instance()->GetFromDefault("site_path");
