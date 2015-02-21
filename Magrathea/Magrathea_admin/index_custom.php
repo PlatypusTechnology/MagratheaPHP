@@ -20,6 +20,7 @@
     
     <!-- ===================== CSS ===================== -->
     <? include("resources/css.php") ?>
+    <?=MagratheaView::Instance()->InlineCSS()?>
 
   </head>
   <body> 
@@ -34,8 +35,7 @@
       <div class="span3 bs-docs-sidebar" id="main_menu_div">
 				<div id="admin_response"></div>
       </div>
-      <div class="span9" id="main_content">
-    	</div>
+      <div class="span9" id="main_content"></div>
     </div>
 
   </div>
@@ -57,5 +57,6 @@
       loadCustomAdmin("index.php");
 <? } ?>
     </script>
+    <?=MagratheaView::Instance()->InlineJavascript()?>
 
 </html>

@@ -23,7 +23,7 @@
 				'admin folder: <br/>[...'.substr($sitePath, -18).'/<b>Admin</b>]</a></li></ul>';
 		}
 	} else {
-		include $adminFolder."/".$adminPage;
+		@include $adminFolder."/".$adminPage;
 	}
 
 ?>

@@ -1,7 +1,11 @@
+<?php
+	$basename = basename($_SERVER['SCRIPT_FILENAME']);
+?>
+
 <script type="text/javascript">
 
 function loadCoder(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=coder");
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=coder");
 	$.ajax({
 		url: "?page=load_coder.php",
 		success: function(data){
@@ -13,7 +17,7 @@ function loadCoder(){
 }
 
 function loadTable(table_name){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=table"+table_name);
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=table"+table_name);
 	$.ajax({
 		url: "?page=load_table.php",
 		type: "POST",
@@ -29,7 +33,7 @@ function loadTable(table_name){
 }
 
 function loadTableData(table_name){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=tabledata"+table_name);
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=tabledata"+table_name);
 	$.ajax({
 		url: "?page=load_tableData.php",
 		type: "POST",
@@ -46,7 +50,7 @@ function loadTableData(table_name){
 
 
 function loadObject(obj_name){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=obj"+obj_name);
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=obj"+obj_name);
 	$.ajax({
 		url: "?page=load_object.php",
 		type: "POST",
@@ -62,7 +66,7 @@ function loadObject(obj_name){
 }
 
 function loadDatabaseManager(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=migration");
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=migration");
 	$.ajax({
 		url: "?page=load_migration.php",
 		success: function(data){
@@ -75,7 +79,7 @@ function loadDatabaseManager(){
 
 
 function loadConfig(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=config");
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=config");
 	$.ajax({
 		url: "?page=load_configuration.php",
 		success: function(data){
@@ -97,7 +101,7 @@ function loadConfigSection(){
 }
 
 function loadPlugins(){
-	history.replaceState({}, "Magrathea Admin - Config", "admin.php?area=plugins");
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=plugins");
 	$.ajax({
 		url: "?page=load_plugins.php",
 		success: function(data){
@@ -110,7 +114,7 @@ function loadPlugins(){
 
 
 function loadTests(){
-	history.replaceState({}, "Magrathea Admin - Testing...", "admin.php?area=tests");
+	history.replaceState({}, "Magrathea Admin - Testing...", "<?=$basename?>?area=tests");
 	$.ajax({
 		url: "?page=load_tests.php",
 		success: function(data){
@@ -128,7 +132,7 @@ function loadTests(){
 }
 
 function loadUnitTest(test){
-	history.replaceState({}, "Magrathea Admin - Test", "admin.php?area=tests&load="+test);
+	history.replaceState({}, "Magrathea Admin - Test", "<?=$basename?>?area=tests&load="+test);
 	$.ajax({
 		url: "?page=load_tests.php&test="+test,
 		success: function(data){

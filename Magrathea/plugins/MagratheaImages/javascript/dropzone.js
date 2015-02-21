@@ -1755,4 +1755,4 @@ if (typeof exports == "object") {
   define(function(){ return require("dropzone"); });
 } else {
   this["Dropzone"] = require("dropzone");
-}})();
+}

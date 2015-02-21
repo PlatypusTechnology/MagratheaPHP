@@ -36,6 +36,12 @@ class MagratheaException extends Exception {
     }
 }
 
+class MagratheaAdminException extends MagratheaException {
+    public function __construct($message = "Magrathea Admin Error", $code = 0, Exception $previous = null) {
+        parent::__construct($message, $code, $previous);
+    }    
+}
+
 class MagratheaConfigException extends MagratheaException {
     public function __construct($message = "Magrathea Config has failed... =(", $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);

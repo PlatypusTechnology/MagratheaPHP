@@ -20,6 +20,7 @@
     
     <!-- ===================== CSS ===================== -->
     <? include("resources/css.php") ?>
+    <?=MagratheaView::Instance()->InlineCSS()?>
 
   </head>
   <body> 
@@ -52,5 +53,6 @@
     <!-- ===================== JS ===================== -->
     <? include("resources/javascript_admin.php") ?>
     <? include("resources/javascript.php") ?>
+    <?=MagratheaView::Instance()->InlineJavascript()?>
 
 </html>

@@ -87,6 +87,11 @@ abstract class MagratheaModel{
 		return $data['auto_increment'];
 	}
 
+	/**
+	 * Saves: Using a insert if pk is not set and an update if pk is set
+	 * Basically, Inserts if id does not exists and updates if id does exists
+	 * @return  id if inserted and true if updated
+	 */
 	public function Save(){
 		$pk = $this->dbPk;
 		if( empty ($this->$pk ) )
@@ -94,6 +99,11 @@ abstract class MagratheaModel{
 		else
 			return $this->Update();
 	}
+	/**
+	 * Inserts the object in database
+	 * @return 	int 		id of inserted object
+	 * @todo  	create query to UPDATE in case of id already exists... (or deal with it with an exception)
+	 */
 	public function Insert(){
 		$arr_Types = array();
 		$arr_Fields = array();
