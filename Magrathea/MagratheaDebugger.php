@@ -7,11 +7,18 @@
 
 /**
  * Debugs what is sent, according with debug configurations
- * @param 	object 	$this object to debug
- * @todo  debug_backtrace
+ * @param 	object 		$this 		object to debug
  */
 function Debug($this){
 	MagratheaDebugger::Instance()->Add($this);
+}
+
+/**
+ * Adds to info debug, according with configurations
+ * @param 	object 		$this 		object to debug
+ */
+function Info($this){
+	MagratheaDebugger::Instance()->Info($this);
 }
 
 class MagratheaDebugger {
@@ -83,7 +90,6 @@ class MagratheaDebugger {
 
 	/**
 	* Returns the debug type
-	*
 	* @return string Debug type (*Dev*, *Debug*, *Log*, *None*)
 	*/
 	public function GetType(){
@@ -92,7 +98,6 @@ class MagratheaDebugger {
 
 	/**
 	* Add an item to the debug array object
-	*
 	* 	@param 	string 	$debug 		debug item
 	*/
 	public function Add($debug){
@@ -108,6 +113,25 @@ class MagratheaDebugger {
 				echo "<pre>".$debug."</pre>";
 			case self::DEBUG:
 				array_push($this->debugItems, $debug);
+				break;
+		}
+	}
+
+	/**
+	 * Add an info item to the debug array object
+	 * 	@param 		string 		$debug 		info item
+	 */
+	public function Info($debug){
+		switch ($this->debugType) {
+			case self::NONE:
+			case self::LOG:
+				MagratheaLogger::Log($debug);
+				return;
+				break;
+			case self::DEV:
+				echo "<pre>INFO: ".$debug."</pre>";
+			case self::DEBUG:
+				array_push($this->debugItems, "<pre>".$debug."</pre>");
 				break;
 		}
 	}

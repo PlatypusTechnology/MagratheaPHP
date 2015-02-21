@@ -2,9 +2,10 @@
 
 	$pluginFolder = "plugins/bootstrap";
 
-	$View->IncludeCSS($pluginFolder."/css/bootstrap-theme.min.css");
-	$View->IncludeCSS($pluginFolder."/css/bootstrap.min.css");
-	$View->IncludeJavascript($pluginFolder."/js/bootstrap.min.js");
+	MagratheaView::Instance()
+		->IncludeCSS($pluginFolder."/css/bootstrap-theme.min.css")
+		->IncludeCSS($pluginFolder."/css/bootstrap.min.css")
+		->IncludeJavascript($pluginFolder."/js/bootstrap.min.js");
 
 
 ?>

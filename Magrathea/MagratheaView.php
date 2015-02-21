@@ -130,7 +130,7 @@ class MagratheaView{
 	 * @param 		boolean 	$compression 		should the code be compressed?
 	 * @return  	string 		Include of Javascripts
 	 */
-	public function Javascript($compression=null){
+	public function Javascript($print=true, $compression=null){
 		$compression = ($compression==null ? $this->ShouldCompressJavascript() : $compression );
 		$array_files = array_unique($this->javascript_files);
 		$jsContent = "<!--JS FILES MANAGED BY MAGRATHEA [compression: ".$compression."] -->\n";
@@ -165,6 +165,7 @@ class MagratheaView{
 				$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."'></script>\n"; 
 			}
 		}
+		if($print) echo $jsContent;
 		return $jsContent;
 	}
 	/**
@@ -196,7 +197,7 @@ class MagratheaView{
 	 * @param 		boolean 	$compression 		should the code be compressed?
 	 * @return  	string 		Include of CSSs
 	 */
-	public function CSS($compression=null){
+	public function CSS($print=true, $compression=null){
 		$compression = ($compression==null ? $this->ShouldCompressCss() : $compression );
 		$array_files = array_unique($this->css_files);
 		$cssContent = "<!--CSS FILES MANAGED BY MAGRATHEA-->\n";
@@ -230,6 +231,7 @@ class MagratheaView{
 				$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."' rel='stylesheet'>\n"; 
 			}
 		}
+		if($print) echo $cssContent;
 		return $cssContent;
 	}
 

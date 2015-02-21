@@ -1,10 +1,8 @@
 <?php
 
 /**
-* This class will manage the controllers for displaying pages
-* 
-*/
-
+ * This class will manage the controllers for displaying pages
+ */
 class MagratheaController {
 
 	protected $Smarty;
@@ -100,14 +98,12 @@ class MagratheaController {
 	/**
 	*	With a given control name and action, calls the right function
 	*	It will start a new object `$controlName` and call the `$action` in it
-	*
 	*	@param 	string 	$controlName 	Control to be called
 	* 	@param 	string 	$action 		Action to be called inside the control
 	*	@param 	string 	$params 		Params to send to the given action
 	*/
 	public static function Load($controlName, $action, $params=""){
-		$controlName = $controlName."Controller";
-
+		$controlName = ucfirst(strtolower($controlName))."Controller";
 		try {
 			if(!class_exists($controlName)){
 				$ex = new MagratheaControllerException("Class ".$controlName." does not exist!");

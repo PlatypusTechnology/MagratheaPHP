@@ -433,6 +433,13 @@ class MagratheaQuery{
 		return $returnArray;
 	}
 
+	/**
+	 * toString
+	 * @return 		string 		SQL 		(when applies)
+	 */
+	public function __toString(){
+		return $this->SQL();
+	}
 
 }
 
