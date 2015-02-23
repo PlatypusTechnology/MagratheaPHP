@@ -93,6 +93,14 @@ class MagratheaQuery{
 	}
 
 	/**
+	 * Generates a UPDATE query
+	 * @return 		MagratheaQueryUpdate
+	 */
+	static public function Update(){
+		return new MagratheaQueryUpdate();
+	}
+
+	/**
 	 * Generates a INSERT query
 	 * @return 		MagratheaQueryInsert
 	 */
@@ -257,6 +265,17 @@ class MagratheaQuery{
 	 */
 	public function WhereArray($arr, $condition = "AND"){
 		$newWhere = $this->BuildWhere($arr, $condition);
+		array_push($this->whereArr, $newWhere);
+		return $this;
+	}
+	/**
+	 * Builds where, receiving the column and the value
+	 * @param 	string 		$where     		column
+	 * @param 	string 		$field     		value for column sent
+	 * @param 	string 		$condition 		glue condition ("AND" or "OR")
+	 */
+	public function W($where, $field, $condition = "AND"){
+		$newWhere = $this->BuildWhere(array($where => $field), $condition);
 		array_push($this->whereArr, $newWhere);
 		return $this;
 	}
@@ -443,6 +462,9 @@ class MagratheaQuery{
 
 }
 
+/**
+ * Extension of Magrathea Query for creating Insert queries
+ */
 class MagratheaQueryInsert extends MagratheaQuery {
 
 	private $fieldNames;
@@ -489,6 +511,71 @@ class MagratheaQueryInsert extends MagratheaQuery {
 
 }
 
+/**
+ * Extension of Magrathea Query for creating Insert queries
+ */
+class MagratheaQueryUpdate extends MagratheaQuery {
+
+	private $fields;
+
+	public function __construct(){
+		$this->obj_array = array();
+		$this->fields = array();
+		$this->where = "";
+		$this->whereArr = array();
+		return $this;
+	}
+
+	/**
+	 * Set field for value
+	 * @param 	string 		$field 		field
+	 * @param 	string 		$value 		value for field sent
+	 */
+	public function Set($field, $value){
+		$this->fields[$field] = $value;
+		return $this;
+	}
+
+	/**
+	 * Set array of fields
+	 * @param 	array 		$arr 		array fields
+	 * @todo  merge array instead of replacing it
+	 */
+	public function SetArray($arr){
+		$this->field = $arr;
+		return $this;
+	}
+
+	/**
+	 * ...and we're gonna build the query for you.
+	 * 	After gathering all the information, this function returns to you
+	 * 		a wonderful SQL query for be executed
+	 * 		or to be hang in the wall of a gallery art exhibition,
+	 * 		depending how good you are in building queries
+	 * @return  	string 		Query!!!
+	 */
+	public function SQL(){
+		$this->sql = "UPDATE ".$this->tables." SET ";
+		$setsArray = array();
+		foreach ($this->fields as $field => $value) {
+			array_push($setsArray, $field." = '".$value."'");
+		}
+		$this->sql .= implode(", ", $setsArray);
+		$sqlWhere = $this->where;
+		if(count($this->whereArr) > 0){
+			$sqlWhere .= $this->where.implode(" AND ", $this->whereArr);
+		}
+		if(trim($sqlWhere)!=""){
+			$this->sql .= " WHERE ".$sqlWhere;
+		}
+		return $this->sql;
+	}
+
+}
+
+/**
+ * Extension of Magrathea Query for creating Delete queries
+ */
 class MagratheaQueryDelete extends MagratheaQuery {
 
 	public function __construct(){
@@ -520,9 +607,6 @@ class MagratheaQueryDelete extends MagratheaQuery {
 		}
 		if(trim($sqlWhere)!=""){
 			$this->sql .= " WHERE ".$sqlWhere;
-		}
-		if(trim($this->order)!=""){
-			$this->sql .= " ORDER BY ".$this->order;
 		}
 		return $this->sql;
 	}

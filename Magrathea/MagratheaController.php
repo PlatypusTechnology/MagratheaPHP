@@ -119,6 +119,25 @@ class MagratheaController {
 		}
 	}
 
+	/**
+	 * Include all Controllers presents on `Controllers` folder
+	 */
+	public static function IncludeAllControllers(){
+		$modelsFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/Controllers";
+		if($handle = @opendir($modelsFolder)){
+			while (false !== ($file = readdir($handle))) {
+				$filename = explode('.', $file);
+				$ext = array_pop($filename);
+				if(empty($ext)) continue;
+				if($ext == "php"){
+					include_once($modelsFolder."/".$file);
+				}
+			}
+			closedir($handle);
+		}
+	}
+
+
 	public static function ErrorHandle($ex){
 		if(is_a($ex, "MagratheaException")){
 			$ex->display();

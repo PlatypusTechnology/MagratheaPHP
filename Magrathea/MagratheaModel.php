@@ -182,19 +182,6 @@ abstract class MagratheaModel{
 			throw new MagratheaModelException("Property ".$key." does not exists in ".get_class($this)."!");
 		}
 	}
-	
-	public function __toString(){
-		$print_this = "Class ".get_class($this).":\n";
-		$print_this .= count($this->dbValues > 0 ) ? "\tProperties\n" : "";
-		foreach( $this->dbValues as $field => $type ){
-			$print_this .= "\t\t[".$field."] (".$type.") = ".$this->$field."\n";
-		}
-		$print_this .= count($this->dbAlias>0) ? "\tAlias\n" : "";
-		foreach( $this->dbAlias as $alias => $field ){ 
-			$print_this .= "\t\t[".$alias."] (alias for ".$field.") = ".$this->$field."\n";
-		}
-		return "<pre>".$print_this."</pre>";
-	}
 
 	public static function GetDataTypeFromField($field){
 		switch($field){
@@ -213,6 +200,9 @@ abstract class MagratheaModel{
 		}
 	}
 
+	/**
+	 * Include all models presents on `Models` folder
+	 */
 	public static function IncludeAllModels(){
 		$modelsFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/Models";
 		if($handle = @opendir($modelsFolder)){
@@ -226,7 +216,19 @@ abstract class MagratheaModel{
 			}
 			closedir($handle);
 		}
-		
+	}
+	
+	public function __toString(){
+		$print_this = "Class ".get_class($this).":\n";
+		$print_this .= count($this->dbValues > 0 ) ? "\tProperties\n" : "";
+		foreach( $this->dbValues as $field => $type ){
+			$print_this .= "\t\t[".$field."] (".$type.") = ".$this->$field."\n";
+		}
+		$print_this .= count($this->dbAlias>0) ? "\tAlias\n" : "";
+		foreach( $this->dbAlias as $alias => $field ){ 
+			$print_this .= "\t\t[".$alias."] (alias for ".$field.") = ".$this->$field."\n";
+		}
+		return "<pre>".$print_this."</pre>";
 	}
 	
 }
