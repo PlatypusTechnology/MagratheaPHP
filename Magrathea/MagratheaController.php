@@ -120,6 +120,16 @@ class MagratheaController {
 	}
 
 	/**
+	 * gives the sent response in json
+	 * @param object $response object to convert to Json
+	 */
+	protected function Json($response){
+		header('Content-Type: application/json');
+		echo json_encode($response);
+	}
+
+
+	/**
 	 * Include all Controllers presents on `Controllers` folder
 	 */
 	public static function IncludeAllControllers(){
@@ -136,6 +146,8 @@ class MagratheaController {
 			closedir($handle);
 		}
 	}
+
+
 
 
 	public static function ErrorHandle($ex){
