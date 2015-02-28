@@ -51,8 +51,8 @@
 </body>
 
     <!-- ===================== JS ===================== -->
+    <?=MagratheaView::Instance()->InlineJavascript()?>
     <? include("resources/javascript_admin.php") ?>
     <? include("resources/javascript.php") ?>
-    <?=MagratheaView::Instance()->InlineJavascript()?>
 
 </html>

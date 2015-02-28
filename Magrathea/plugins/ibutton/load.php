@@ -1,6 +1,6 @@
 <?php
 
-	$pluginFolder = "plugins/iButton";
+	$pluginFolder = "plugins/ibutton";
 
 	MagratheaView::Instance()
 		->IncludeCSS($pluginFolder."/css/jquery.ibutton.min.css")

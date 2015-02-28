@@ -46,6 +46,7 @@ class MagratheaController {
 	*/
 	public function ForwardTo($control, $action){
 		header("Location: /".$control."/".$action);
+		exit;
 	}
 
 	/**
@@ -124,8 +125,11 @@ class MagratheaController {
 	 * @param object $response object to convert to Json
 	 */
 	protected function Json($response){
+		// we remove the debug for printing a Json!
+		MagratheaDebugger::Instance()->SetType(MagratheaDebugger::NONE);
 		header('Content-Type: application/json');
 		echo json_encode($response);
+		exit;
 	}
 
 

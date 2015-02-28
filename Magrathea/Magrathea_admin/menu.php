@@ -2,7 +2,7 @@
 
 require_once ("admin_load.php");
 
-$tables = getAllTables($configSection["db_name"]);
+$tables = getAllTables(@$configSection["db_name"]);
 //p_r($tables);
 $objects = getAllObjects();
 
