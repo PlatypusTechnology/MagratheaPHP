@@ -145,7 +145,6 @@ function installPlugin(pluginFolder){
 			action: "install"
 		}, 
 		success: function(data){
-			console.info(data);
 			if(data.trim() == ""){
 				loadPlugins();
 			} else {

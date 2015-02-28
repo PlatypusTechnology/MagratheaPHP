@@ -22,6 +22,7 @@ require ($path."MagratheaLogger.php");
 
 require ($path."Functions.php");
 
+include ($path."MagratheaRoute.php");
 
 include("load_vars.php");
 
