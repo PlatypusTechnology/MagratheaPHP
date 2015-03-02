@@ -125,7 +125,7 @@ class MagratheaDatabase{
 	public function OpenConnectionPlease(){
 		try{
 			if($this->connDetails["port"])
-				$this->mysqli = new mysqli(
+				$this->mysqli = @new mysqli(
 					$this->connDetails["hostspec"], 
 					$this->connDetails["username"], 
 					$this->connDetails["password"], 
@@ -133,7 +133,7 @@ class MagratheaDatabase{
 					$this->connDetails["port"]
 				);
 			else 
-				$this->mysqli = new mysqli(
+				$this->mysqli = @new mysqli(
 					$this->connDetails["hostspec"], 
 					$this->connDetails["username"], 
 					$this->connDetails["password"], 
