@@ -1,6 +1,6 @@
 <?php
 
-	$pluginFolder = "plugins/ColorBox";
+	$pluginFolder = "plugins/colorbox";
 	$theme = "theme_light";
 
 	MagratheaView::Instance()
