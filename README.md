@@ -10,7 +10,7 @@ Start developing with Magrathea now!
 
 ```
 git clone https://github.com/PlatypusTechnology/MagratheaPHP/
-cp -rv MagratheaPHP/Magrathea .
+cp -rv MagratheaPHP/Magrathea/* .
 rm -rf MagratheaPHP
 ```
 
