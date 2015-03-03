@@ -30,6 +30,7 @@ class MagratheaServer {
 	protected function Json($response){
 		header('Content-Type: application/json');
 		echo json_encode($response);
+		die;
 	}
 
 	protected function Wsdl(){
