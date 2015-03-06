@@ -22,6 +22,7 @@ class MagratheaRoute {
 	private $defaultControl = "Home";
 	private $defaultAction = "Index";
 	private $routes = null;
+	private $controllers = array();
 
 	protected static $inst = null;
 	public static function Instance(){
@@ -42,6 +43,13 @@ class MagratheaRoute {
 	 */
 	public function SetRoute($routes){
 		$this->routes = array_change_key_case( array_map('strtolower', $routes), CASE_LOWER );
+		foreach ($this->routes as $key => $value) {
+			$r = explode("/", $key);
+			if(empty($r[1]))
+				$this->controllers[$r[0]][0] = $value;
+			else
+				$this->controllers[$r[0]][$r[1]] = $value;
+		}
 		return $this;
 	}
 
@@ -66,14 +74,14 @@ class MagratheaRoute {
 	 */
 	public function Route(&$control, &$action, &$params){
 		$params = array();
-		if(!@empty($_GET["control"])) $control = $_GET["control"];
-		if(!@empty($_GET["action"])) $action = $_GET["action"];
-		if(!@empty($_GET["params"])) $params = $_GET["params"];
+		if(!@empty($_GET["magrathea_control"])) $control = $_GET["magrathea_control"];
+		if(!@empty($_GET["magrathea_action"])) $action = $_GET["magrathea_action"];
+		if(!@empty($_GET["magrathea_params"])) $params = $_GET["magrathea_params"];
 		$control = strtolower($control);
 		$action = strtolower($action);
 		$this->LookForRoute($control, $action, $params);
-		if(empty($control)) $control = $this->defaultControl;
-		if(empty($action)) $action = $this->defaultAction;
+		if(empty($control)) $control = strtolower($this->defaultControl);
+		if(empty($action)) $action = strtolower($this->defaultAction);
 		return $this;
 	}
 
@@ -85,9 +93,16 @@ class MagratheaRoute {
 	 * @todo so far we are only accepting full routes. I want this to accept controls, action and everything else!
 	 */
 	private function LookForRoute(&$control, &$action, &$params){
-		$url = $this->RebuildUrl($control, $action, $params);
-		if( empty($this->routes[$url]) ) return;
-		$newRoute = $this->UnbuildUrl($this->routes[$url]);
+//		$url = $this->RebuildUrl($control, $action, $params);
+		if( empty($this->controllers[$control]) ) return;
+		if( !empty($this->controllers[$control][$action]) ){
+			$newRoute = $this->UnbuildUrl($this->controllers[$control][$action]);
+		} else {
+			if( !empty($this->controllers[$control][0]) )
+				$newRoute = $this->UnbuildUrl($this->controllers[$control][0]);
+			else
+				return;
+		}
 		if(!empty($newRoute["control"])) $control = $newRoute["control"];
 		if(!empty($newRoute["action"])) $action = $newRoute["action"];
 		if(!empty($newRoute["params"])) $params = $newRoute["params"];

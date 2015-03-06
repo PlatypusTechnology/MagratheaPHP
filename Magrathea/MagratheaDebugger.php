@@ -28,8 +28,10 @@ class MagratheaDebugger {
 	const DEBUG = 3;
 	const DEV = 4;
 
+	private $logFile = null;
 	private $debugItems = array();
 	private $debugType = self::LOG;
+	private $queries = false;
 	private $oldDebugType = self::NONE;
 	protected static $inst = null;
 
@@ -57,9 +59,32 @@ class MagratheaDebugger {
 	* Default: **LOG**
 	*
 	* @param 	$dType 	string 	type to be set
+	* @return  	itself
 	*/
 	public function SetType($dType){
 		$this->debugType = strtolower($dType);
+		return $this;
+	}
+
+	/**
+	 * Should debugger log queries?
+	 * @param 	boolean 	$q 		true for logging queries, false for not
+	 * @return  itself
+	 */
+	public function LogQueries($q){
+		$this->queries =  $q;
+		return $this;
+	}
+
+	/**
+	 * Set the name of log file that will be used
+	 * 	(it will be created inside "*logs*" folder)
+	 * @param 	string 		$file 		log file name
+	 * @return  itself
+	 */
+	public function SetLogFile($file){
+		$this->logFile = $file;
+		return $this;
 	}
 
 	/**
@@ -106,7 +131,7 @@ class MagratheaDebugger {
 				return;
 				break;
 			case self::LOG:
-				MagratheaLogger::Log($debug);
+				MagratheaLogger::Log($debug, $this->logFile);
 				return;
 				break;
 			case self::DEV:
@@ -125,7 +150,7 @@ class MagratheaDebugger {
 		switch ($this->debugType) {
 			case self::NONE:
 			case self::LOG:
-				MagratheaLogger::Log($debug);
+				MagratheaLogger::Log($debug, $this->logFile);
 				return;
 				break;
 			case self::DEV:
@@ -151,7 +176,7 @@ class MagratheaDebugger {
 	* 	@param 	string 	$values 	values to be added to the query
 	*/
 	public function AddQuery($sql, $values){
-		if($this->debugType == @NONE) return;
+		if($this->debugType == @NONE || !$this->queries) return;
 		$logThis = "query run: [".$sql."]";
 		if(!is_null($values)){
 			$logThis .= " - values: [".implode(',', $values)."]";

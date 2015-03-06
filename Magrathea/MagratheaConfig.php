@@ -248,9 +248,8 @@ class MagratheaConfigFile {
 				else $content .= $key." = \"".$elem."\"\n"; 
 			} 
 		} 
-//		echo "saving to ".$this->path.$this->config_file_name;
-		if(!is_writable($this->path.$this->config_file_name)){
-			throw new MagratheaConfigException("Permission denied on file: ".$this->path.$this->config_file_name, 1);
+		if(!is_writable($this->path)){
+			throw new MagratheaConfigException("Permission denied on path: ".$this->path, 1);
 			return false; 
 		}
 		if(file_exists($this->path.$this->config_file_name)){

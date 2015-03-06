@@ -20,9 +20,9 @@ RewriteEngine On
 	RewriteRule .+ - [L]
 
 	#Respect this rules for redirecting:
-	RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/(.*)$ index.php?control=$1&amp;action=$2&amp;params=$3 [QSA,L]
-	RewriteRule ^([a-zA-Z0-9_-]+)/(.*)$ index.php?control=$1&amp;action=$2 [QSA,L]
-	RewriteRule ^(.*)$ index.php?control=$1 [QSA,L]
+	RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/(.*)$ index.php?magrathea_control=$1&amp;magrathea_action=$2&amp;magrathea_params=$3 [QSA,L]
+	RewriteRule ^([a-zA-Z0-9_-]+)/(.*)$ index.php?magrathea_control=$1&amp;magrathea_action=$2 [QSA,L]
+	RewriteRule ^(.*)$ index.php?magrathea_control=$1 [QSA,L]
 
 &lt;/IfModule&gt;</pre>
 
