@@ -112,6 +112,17 @@ function loadPlugins(){
 	});
 }
 
+function loadLogs(){
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=logs");
+	$.ajax({
+		url: "?page=load_logs.php",
+		success: function(data){
+			$("#main_content").html(data);
+			$("#pageTitle").html("Logs");
+			scrollToTop();
+		}
+	});
+}
 
 function loadTests(){
 	history.replaceState({}, "Magrathea Admin - Testing...", "<?=$basename?>?area=tests");

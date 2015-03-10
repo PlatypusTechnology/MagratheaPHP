@@ -72,7 +72,7 @@ class MagratheaRoute {
 	 * @param 	*array 		&$params  		var to parameters
 	 * @return  itself
 	 */
-	public function Route(&$control, &$action, &$params){
+	public function Route(&$control, &$action, &$params=null){
 		$params = array();
 		if(!@empty($_GET["magrathea_control"])) $control = $_GET["magrathea_control"];
 		if(!@empty($_GET["magrathea_action"])) $action = $_GET["magrathea_action"];

@@ -3,15 +3,11 @@
 require ("admin_load.php");
 	
 	$data = $_POST;
-	if(@$data["use_environment"]){
-		$path = MagratheaConfig::Instance()->GetConfig($data["use_environment"]."/site_path");
-	} else {
-		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
-	}
+	$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 
 	$mconfig = new MagratheaConfigFile();
-	$mconfig->setPath($path);
-	$mconfig->setFile("/../configs/magrathea.conf");
+	$mconfig->setPath($path."/../configs/");
+	$mconfig->setFile("magrathea.conf");
 
 	$config = $mconfig->getConfig();
 
@@ -38,7 +34,7 @@ require ("admin_load.php");
 		<div class="alert alert-error">
 			<button class="close" data-dismiss="alert" type="button">×</button>
 			<strong>Shit... What the fuck happened?!</strong><br/>
-			Could not create object config file. Please, be sure that PHP can write in the folder "Magrathea/configs/"...<br/>
+			Could not create object config file. Please, be sure that PHP can write in the folder "configs"...<br/>
 			<?=(!empty($error) ? $error : "")?>
 		</div>
 		<?

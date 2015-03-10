@@ -10,6 +10,7 @@
 		<div class="alert alert-block">
 		Be sure that your plugins folder (app/plugins) have the correct permissions to be written!
 		</div>
+		chmod -R 777 plugins/
 	</p>
 </div>
 

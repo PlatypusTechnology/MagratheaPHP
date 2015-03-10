@@ -32,6 +32,7 @@ class MagratheaEmail{
 	 * 		array(["smtp_host"] => "", ["smtp_port"] => "", ["smtp_username"] => "", ["smtp_password"] => "")
 	 * @param 	array 		$smtp  	SMTP for use, in the format above
 	 * @return 	$this       itself
+	 * @deprecated for smtp, you should use PEAR library
 	 */
 	function startSMTP($smtp){
 		$this->smtpArr = $smtp;
