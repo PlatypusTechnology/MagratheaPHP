@@ -137,7 +137,7 @@ class MagratheaController {
 	 * Include all Controllers presents on `Controllers` folder
 	 */
 	public static function IncludeAllControllers(){
-		$modelsFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/Controllers";
+		$modelsFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/Controls";
 		if($handle = @opendir($modelsFolder)){
 			while (false !== ($file = readdir($handle))) {
 				$filename = explode('.', $file);

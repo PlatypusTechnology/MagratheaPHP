@@ -30,6 +30,10 @@ class MagratheaView{
 	private $compressionMode = "default";
 	private $relativePath = false;
 	private $urlForAssets = "";
+
+	protected $compressed_path_js = "javascript/_compressed";
+	protected $compressed_path_css = "css/_compressed";
+
 	protected static $inst = null;
 
 	public static function Instance(){
@@ -86,6 +90,39 @@ class MagratheaView{
 	}
 
 	/**
+	 * Set compressed path for js
+	 * @param 	string 		$path 		path for compressed
+	 * @return 	itself
+	 */
+	public function SetCompressedPathJs($path){
+		$this->compressed_path_js = $path;
+		return $this;
+	}
+	/**
+	 * Set compressed path for css
+	 * @param 	string 		$path 		path for compressed
+	 * @return 	itself
+	 */
+	public function SetCompressedPathCss($path){
+		$this->compressed_path_css = $path;
+		return $this;
+	}
+	/**
+	 * Gets compressed path for js
+	 * @return  string 		Path where JS files are saved
+	 */
+	public function GetCompressedPathJs(){
+		return $this->compressed_path_js;
+	}
+	/**
+	 * Gets compressed path for css
+	 * @return  string 		Path where CSS files are saved
+	 */
+	public function GetCompressedPathCss(){
+		return $this->compressed_path_css;
+	}
+
+	/**
 	 * Include JS file
 	 * @param 	string 		$js_file 	file to be included
 	 * @return 	itself
@@ -138,7 +175,7 @@ class MagratheaView{
 			sort($this->javascript_lastmodified_arr);
 			$js_lmod = implode("_", $this->javascript_lastmodified_arr);
 			$js_lmod_hash = md5($js_lmod);
-			$compressedFileName = "javascript/_compressed/".$js_lmod_hash."_compressed.js";
+			$compressedFileName = $this->compressed_path_js.$js_lmod_hash."_compressed.js";
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$jsContent .= "<!--error compressing javascript! could not create file-->";
@@ -205,7 +242,7 @@ class MagratheaView{
 			sort($this->css_lastmodified_arr);
 			$css_lmod = implode("_", $this->css_lastmodified_arr);
 			$css_lmod_hash = md5($css_lmod);
-			$compressedFileName = "css/_compressed/".$css_lmod_hash."_compressed.css";
+			$compressedFileName = $this->compressed_path_css.$css_lmod_hash."_compressed.css";
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$cssContent .= "<!--error compressing css! could not create file-->";
