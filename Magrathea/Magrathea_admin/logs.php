@@ -6,6 +6,8 @@ require ("admin_load.php");
 ?>
 <html>
 
+<head>
+<title><?=$_GET['file']?> - Magrathea Logs</title>
 <?=MagratheaView::Instance()->InlineCSS()?>
 <style>
 #logResult {
@@ -21,6 +23,7 @@ require ("admin_load.php");
 .small {
 	width: 40px;
 }</style>
+</head>
 
 <body>
 	<div class="container">

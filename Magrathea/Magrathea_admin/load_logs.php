@@ -97,8 +97,16 @@ function loadLogs(){
 			foreach($logs as $l){
 				?>
 				<tr <?=($even ? "class='even'" : "")?>>
-					<td>
+					<td style="padding-left: 50px;">
 						<a href="javascript: openLog('<?=$l?>')"><?=$l?></a>
+					</td>
+					<td>
+						<button onClick="removeFile('<?=$l?>');" class="btn">
+							<i class="fa fa-trash-o"></i> Remove file
+						</button>
+						<button onClick="externalize('<?=$l?>');" class="btn">
+							<i class="fa fa-external-link"></i> View in new window
+						</button>
 					</td>
 				</tr>
 				<?
@@ -119,6 +127,16 @@ function openLog(l){
 	logName = l;
 	$("#logName").html(logName);
 	tail();
+}
+
+function removeFile(l){
+	$.ajax({
+		url: "?page=log_remove.php&file="+l,
+		success: function(data){
+			loadLogs();
+		}
+	});
+
 }
 
 function loadTail(){
@@ -142,9 +160,10 @@ function tail(){
 	});
 }
 
-function externalize(){
+function externalize(file){
+	if(!file) file = logName;
 	var lines = parseInt($("#lines").val());
 	if(lines == 0) lines = 50;
-	window.open("?page=logs.php&file="+logName+"&lines="+lines, "MagratheaLogs")
+	window.open("?page=logs.php&file="+file+"&lines="+lines, "MagratheaLogs");
 }
 </script>
