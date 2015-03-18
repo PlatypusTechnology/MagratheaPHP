@@ -38,6 +38,7 @@ function printError($url=null){
 	return $error;
 }
 $writePerm = '<i class="fa fa-pencil-square perm" title="write permission required"></i>';
+$developPerm = '<i class="fa fa-code perm" title="write permission is for development mode"></i>';
 
 ?>
 
@@ -77,10 +78,19 @@ $writePerm = '<i class="fa fa-pencil-square perm" title="write permission requir
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
+						<td><b>Plugins Path</b></td>
+						<td><?=($plugins_path ? $plugins_path : printError())?></td>
+						<td>
+							<?=$writePerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($plugins_path_ok ? "check" : "times")?>-circle"></i>
+						</td>
+					</tr>
+					<tr>
 						<td><b>Magrathea Configs</b></td>
 						<td><?=($magratheaConfig ? $magratheaConfig : printError($site_path."/Configs"))?></td>
 						<td>
-							<?=$writePerm?>
+							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($magratheaConfig_ok ? "check" : "times")?>-circle"></i>
 						</td>
@@ -89,7 +99,7 @@ $writePerm = '<i class="fa fa-pencil-square perm" title="write permission requir
 						<td><b>Magrathea Models</b></td>
 						<td><?=($magratheaModels ? $magratheaModels : printError($site_path."/Models"))?></td>
 						<td>
-							<?=$writePerm?>
+							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($magratheaModels_ok ? "check" : "times")?>-circle"></i>
 						</td>
@@ -98,7 +108,7 @@ $writePerm = '<i class="fa fa-pencil-square perm" title="write permission requir
 						<td><b>Magrathea Models (Base)</b></td>
 						<td><?=($magratheaModelsBase ? $magratheaModelsBase : printError($site_path."/Models/Base"))?></td>
 						<td>
-							<?=$writePerm?>
+							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($magratheaModelsBase_ok ? "check" : "times")?>-circle"></i>
 						</td>
@@ -107,15 +117,6 @@ $writePerm = '<i class="fa fa-pencil-square perm" title="write permission requir
 						<td><b>Magrathea Controls</b></td>
 						<td><?=($magratheaControls ? $magratheaControls : printError($site_path."/Controls"))?></td>
 						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td><b>Plugins Path</b></td>
-						<td><?=($plugins_path ? $plugins_path : printError())?></td>
-						<td>
-							<?=$writePerm?>
-							&nbsp;&nbsp;
-							<i class="fa fa-<?=($plugins_path_ok ? "check" : "times")?>-circle"></i>
-						</td>
 					</tr>
 					<tr>
 						<td><b>Smarty: Templates Directory</b></td>
