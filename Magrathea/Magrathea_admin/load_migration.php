@@ -63,8 +63,8 @@ $config = MagratheaConfig::Instance()->GetConfig();
 						</div>
 					</div>
 					<?
-					$even = !$even;
 				}
+				$even = !$even;
 			}
 			?>
 		</content>
@@ -86,6 +86,7 @@ function databaseDetail(obj, element){
 		}, 
 		success: function(data){
 			$(responseIn).html(data);
+			scrollToTop();
 		}
 	});
 }

@@ -60,7 +60,7 @@ function loadLogs(){
 			<div class='row-fluid'>
 				<div class='span4'>
 					Lines to show:
-					<input type="text" class="small" id="lines" value="50" />
+					<input type="text" class="small" id="lines" value="25" />
 				</div>
 				<div class="span4">
 					Refresh Rate:

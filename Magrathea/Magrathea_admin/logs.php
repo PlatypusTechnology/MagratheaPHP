@@ -65,7 +65,7 @@ function loadTail(){
 
 function tail(){
 	var lines = parseInt($("#lines").val());
-	if(lines == 0) lines = 50;
+	if(lines == 0) lines = 25;
 
 	$.ajax({
 		url: "?page=log_tail.php&file="+logName+"&lines="+lines,

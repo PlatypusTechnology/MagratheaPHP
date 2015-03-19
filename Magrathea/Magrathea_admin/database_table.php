@@ -38,7 +38,7 @@ foreach($obj as $key => $item){
 				$type = "varchar(255)";
 				break;
 		}
-		$createSql .= "\t`".$field_name."` ".$type." NOT NULL, \n";
+		$createSql .= "\t`".$field_name."` ".$type.", \n";
 
 	}
 }
