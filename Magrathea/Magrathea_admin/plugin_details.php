@@ -27,10 +27,22 @@ if(is_null($config)){
 		$text .= "<p><a href='".$config["url"]."'>".$config["url"]."</a></p>";
 	if(!empty($config["more"]))
 		$text .= "<p><pre>".$config["more"]."</pre></p>";
+	if(@!empty($config["database"])){
+		$queryUrl = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path")."/plugins/".$plugin_folder."/".$config["database"];
+		$query = file_get_contents($queryUrl);
+		$database = '<div class="row-fluid"><div class="span12">';
+		$database .= '<button class="btn btn-default" onClick="$(this).hide(\'slow\'); $(\'#'.$plugin_folder.'_db\').show(\'slow\');"><i class="fa fa-database"></i>&nbsp;Plugin database</button>';
+		$database .= '<div id="'.$plugin_folder.'_db" style="display: none;"><textarea class="textarea_large" id="'.$plugin_folder.'_query">'.$query.'</textarea><br/>';
+		$database .= '<button class="btn btn-success" onClick="pluginQueryRun(\''.$plugin_folder.'\');"><i class="fa fa-arrow-right"></i><i class="fa fa-database"></i>&nbsp;Run Query</button>';
+		$database .= "</div></div></div>";
+	}
 }
 $text .= "code: <pre>include(\"plugins/".$plugin_folder."/load.php\");</pre>";
 
-echo $text;
+if(@$database)
+	$text .= $database;
+
+echo $text."<br/><br/>";
 
 ?>
 

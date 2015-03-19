@@ -62,14 +62,14 @@ function loadPluginsList($installed=false){
 			$line_number = 1;
 			foreach($plugins as $p){
 				?>
-				<div class="singlePlugin">
-					<div class='row-fluid <?=($even ? "even" : "")?>' style="padding-top: 5px;">
+				<div class="singlePlugin <?=($even ? "even" : "odd")?>">
+					<div class='row-fluid' style="padding-top: 5px;">
 						<div class="span9" style="padding-left: 20px;"><?=$p?></div>
 						<div class="span3 right" style="padding-right: 20px;">
 							<button class="btn btn-default" onClick="pluginDetail('<?=$p?>', this);"><i class="fa fa-eye"></i>&nbsp;View details</button>
 						</div>
 					</div>
-					<div class='row-fluid <?=($even ? "even" : "")?> plugin_extras' style="padding-left: 10px; display: none;">
+					<div class='row-fluid plugin_extras' style="padding-left: 10px; display: none;">
 						<div class="span9 plugin_details"></div>
 						<div class="span3 plugin_install">
 							<button class="btn btn-default" onClick="installPlugin('<?=$p?>');"><i class="fa fa-download"></i>&nbsp;Install Plugin!</button>
@@ -115,13 +115,11 @@ function loadPluginsList($installed=false){
 </div>
 
 <script type="text/javascript">
-var responseDiv = null;
-
 function pluginDetail(pluginFolder, element){
 	$(element).parent().hide("slow");
 	var parent = $(element).parent().parent().parent();
 	parent.find(".plugin_extras").show("slow");
-	responseDiv = $(parent).find(".plugin_details");
+	var responseDiv = $(parent).find(".plugin_details");
 	$(responseDiv).html("Loading...");
 	$.ajax({
 		url: "?page=plugin_details.php",
@@ -147,9 +145,26 @@ function installPlugin(pluginFolder){
 		success: function(data){
 			if(data.trim() == ""){
 				loadPlugins();
+				scrollToTop();
 			} else {
 				$("#install_response").html(data);
+				scrollToTop();
 			}
+		}
+	});
+}
+
+function pluginQueryRun(pluginFolder){
+	var code = $("#"+pluginFolder+"_query").val();
+	$.ajax({
+		url: "?page=database_run.php",
+		type: "POST",
+		data: { 
+			sql: code
+		}, 
+		success: function(data){
+			$("#install_response").html(data);
+			scrollToTop();
 		}
 	});
 }
@@ -164,6 +179,7 @@ function removePlugin(pluginFolder){
 		}, 
 		success: function(data){
 			loadPlugins();
+			scrollToTop();
 		}
 	});
 }

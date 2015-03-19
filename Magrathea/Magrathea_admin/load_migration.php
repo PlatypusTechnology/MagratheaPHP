@@ -54,8 +54,8 @@ $config = MagratheaConfig::Instance()->GetConfig();
 				$even = false;
 				foreach($objects as $obj => $details){
 					?>
-					<div class="singlePlugin">
-						<div class='row-fluid <?=($even ? "even" : "")?>' style="padding-top: 5px;">
+					<div class="singlePlugin <?=($even ? "even" : "odd")?>">
+						<div class='row-fluid' style="padding-top: 5px;">
 							<div class="span9" style="padding-left: 20px;"><?=$obj?></div>
 							<div class="span3 right" style="padding-right: 20px;">
 								<button class="btn btn-default" onClick="databaseDetail('<?=$obj?>', this);"><i class="fa fa-database"></i> <i class="fa fa-terminal"></i>&nbsp;View query</button>
@@ -63,8 +63,8 @@ $config = MagratheaConfig::Instance()->GetConfig();
 						</div>
 					</div>
 					<?
+					$even = !$even;
 				}
-				$even = !$even;
 			}
 			?>
 		</content>
