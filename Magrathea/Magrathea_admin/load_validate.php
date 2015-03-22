@@ -7,6 +7,8 @@ $magrathea_path = realpath(MagratheaConfig::Instance()->GetFromDefault("magrathe
 
 $magratheaConfig = realpath($site_path."/../configs");
 $magratheaConfig_ok  = is_writeable($magratheaConfig);
+$magratheaConfigFile = is_writable($magratheaConfig."/magrathea.conf");
+$magratheaConfigObjectsFile = is_writable($magratheaConfig."/magrathea_objects.conf");
 $magratheaModels = realpath($site_path."/Models");
 $magratheaModels_ok  = is_writeable($magratheaModels);
 $magratheaModelsBase = realpath($site_path."/Models/Base");
@@ -81,7 +83,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 						<td><b>Plugins Path</b></td>
 						<td><?=($plugins_path ? $plugins_path : printError())?></td>
 						<td>
-							<?=$writePerm?>
+							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($plugins_path_ok ? "check" : "times")?>-circle"></i>
 						</td>
@@ -93,6 +95,24 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($magratheaConfig_ok ? "check" : "times")?>-circle"></i>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Magrathea Configs File</b></td>
+						<td><?=($magratheaConfigFile ? $site_path."/Configs/magrathea.conf file" : $site_path."/Configs/magrathea.conf file don't exist or not writable")?></td>
+						<td>
+							<?=$writePerm?> <?=$developPerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($magratheaConfigFile ? "check" : "times")?>-circle"></i>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Magrathea Configs Object File</b></td>
+						<td><?=($magratheaConfigObjectsFile ? $site_path."/Configs/magrathea_objects.conf file" : $site_path."/Configs/magrathea_objects.conf file don't exist or not writable")?></td>
+						<td>
+							<?=$writePerm?> <?=$developPerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($magratheaConfigObjectsFile ? "check" : "times")?>-circle"></i>
 						</td>
 					</tr>
 					<tr>
@@ -126,7 +146,11 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					<tr>
 						<td><b>Smarty: Configs Directory</b></td>
 						<td><?=($smarty_configsdir ? $smarty_configsdir : printError())?></td>
-						<td>&nbsp;</td>
+						<td>
+							<?=$writePerm?> <?=$developPerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($magratheaConfig_ok ? "check" : "times")?>-circle"></i>
+						</td>
 					</tr>
 					<tr>
 						<td><b>Smarty: Cache Directory</b></td>

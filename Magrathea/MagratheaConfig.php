@@ -163,8 +163,8 @@ class MagratheaConfigFile {
 	*	Loads the configuration file
 	*/
 	private function loadFile(){
-		if(!file_exists($this->path.$this->config_file_name)){
-			throw new MagratheaException("Config file could not be found - ".$this->path.$this->config_file_name);
+		if(!file_exists($this->path."/".$this->config_file_name)){
+			throw new MagratheaException("Config file could not be found - ".$this->path."/".$this->config_file_name);
 		}
 	}
 	/**
@@ -185,7 +185,7 @@ class MagratheaConfigFile {
 	public function getConfig($config_name=""){
 		if( is_null($this->configs) ){
 			$this->loadFile();
-			$this->configs = @parse_ini_file($this->path.$this->config_file_name, true);
+			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
 		}
 		if( empty($config_name) ){
 			return $this->configs;
@@ -249,18 +249,19 @@ class MagratheaConfigFile {
 			} 
 		} 
 		if(!is_writable($this->path)){
-			throw new MagratheaConfigException("Permission denied on path: ".$this->path, 1);
+			throw new MagratheaConfigException("Permission denied on path: ".$this->path);
 			return false; 
 		}
-		if(file_exists($this->path.$this->config_file_name)){
-			@unlink($this->path.$this->config_file_name);
+		$file = $this->path."/".$this->config_file_name;
+		if(file_exists($file)){
+			@unlink($file);
 		}
-		if (!$handle = fopen($this->path.$this->config_file_name, 'w')) { 
-			throw new MagratheaConfigException("Oh noes! Could not open File: ".$this->path.$this->config_file_name, 1);
+		if (!$handle = fopen($file, 'w')) { 
+			throw new MagratheaConfigException("Oh noes! Could not open File: ".$file);
 			return false; 
 		} 
 		if (!fwrite($handle, $content)) { 
-			throw new MagratheaConfigException("Oh noes! Could not save File: ".$this->path.$this->config_file_name, 1);
+			throw new MagratheaConfigException("Oh noes! Could not save File: ".$file);
 			return false; 
 		} 
 		fclose($handle); 

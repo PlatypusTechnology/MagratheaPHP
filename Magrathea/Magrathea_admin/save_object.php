@@ -10,8 +10,8 @@ require ("admin_load.php");
 	$object_data = getObject($object_name);
 	
 	$mconfig = new MagratheaConfigFile();
-	$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path"));
-	$mconfig->setFile("/../configs/magrathea_objects.conf");
+	$mconfig->setPath(realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../configs"));
+	$mconfig->setFile("magrathea_objects.conf");
 	$objdata = $mconfig->getConfig();
 
 	/*
@@ -114,13 +114,24 @@ require ("admin_load.php");
 	$objdata["relations"] = $relations;
 	
 	$mconfig->setConfig($objdata);
-	if( !@$mconfig->Save(true) ){ 
-		echo "<!--false-->";
+	try{
+		if( !@$mconfig->Save(true) ){ 
+			echo "<!--false-->";
+			?>
+			<div class="alert alert-error">
+				<button class="close" data-dismiss="alert" type="button">×</button>
+				<strong>Shit... error saving object!</strong><br/>
+				Could not save object config file. Please, be sure that PHP can write in the folder "Magrathea/configs/"...
+			</div>
+			<?
+			die;
+		}
+	} catch(Excpetion $ex) {
 		?>
 		<div class="alert alert-error">
 			<button class="close" data-dismiss="alert" type="button">×</button>
 			<strong>Shit... error saving object!</strong><br/>
-			Could not save object config file. Please, be sure that PHP can write in the folder "Magrathea/configs/"...
+			<?=$ex->getMessage()?>
 		</div>
 		<?
 		die;

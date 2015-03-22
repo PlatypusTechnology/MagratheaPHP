@@ -51,8 +51,8 @@ require ("admin_load.php");
 	}
 
 	$mconfig = new MagratheaConfigFile();
-	$filePath = "/../configs/magrathea_objects.conf";
-	$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path"));
+	$filePath = "magrathea_objects.conf";
+	$mconfig->setPath(realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../configs"));
 	$mconfig->setFile($filePath);
 	if( !$mconfig->createFileIfNotExists() ){
 		echo "<!--false-->";
