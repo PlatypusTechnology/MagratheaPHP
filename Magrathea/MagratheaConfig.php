@@ -172,7 +172,7 @@ class MagratheaConfigFile {
 	*	@return 	boolean	 	True if the file exists; Return of `Save()` function if it doesn't
 	*/
 	public function createFileIfNotExists(){
-		if(!file_exists($this->path.$this->config_file_name)){
+		if(!file_exists($this->path."/".$this->config_file_name)){
 			return $this->Save();
 		} else return true;
 	}
