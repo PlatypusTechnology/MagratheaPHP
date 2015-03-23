@@ -32,7 +32,9 @@ class MagratheaImage extends MagratheaImageBase {
 		parent::__construct($id);
 	}
 
-	// image manager functions:
+	/**
+	 * load image options
+	 */
 	public function SilentLoad(){
 		$this->LoadConfig();
 		try{
@@ -47,41 +49,73 @@ class MagratheaImage extends MagratheaImageBase {
 		}
 		$this->imgSize = array('width' => $this->width, 'height' => $this->height);
 	}
+	/**
+	 * Load image options and return object itself
+	 * @return itself
+	 */
 	public function Load(){
 		$this->SilentLoad();
 		return $this;
 	}
-	// returns a thumb with the predefined thumb size:
+	/**
+	 * Builds thumb image with the predefined thumb size
+	 * @return itself
+	 */
 	public function Thumb(){
 		$this->ResizeToAndCrop($this->thumbSize);
 		return $this;
 	}
+	/**
+	 * Sets a fixed size for the image
+	 * In case of portrait image:
+	 * 		image will be sliced in the bottom, keeping the top
+	 * In case of landscape:
+	 * 		image will be sliced in the sides, keeping the center
+	 * @param 	int 	$w 		width
+	 * @param 	int 	$h 		height
+	 * @return itself
+	 */	
 	public function FixedSize($w, $h){
 		$this->ResizeToAndCrop(array('width' => $w, 'height' => $h));
 		return $this;
 	}
+	/**
+	 * Sets a fixed width for the image
+	 * The height will differ, respecting the dimensions
+	 * @param 	int 	$w 		width
+	 * @return itself
+	 */
 	public function FixedWidth($w){
-/*
-		$proportion = $this->imgSize['width'] / $w;
-		$new_width = $w;
-		$new_height = ceil($this->imgSize['height'] * $proportion);
-*/
 		$this->ResizeTo(array('width' => $w, 'height' => null));
 		return $this;
 	}
+	/**
+	 * Sets a fixed height for the image
+	 * The width will differ, respecting the dimensions
+	 * @param 	int 	$h 		height
+	 * @return itself
+	 */
 	public function FixedHeight($h){
-/*
-		$proportion = $this->imgSize['height'] / $h;
-		$new_height = $h;
-		$new_width = ceil($this->imgSize['width'] * $proportion);
-*/
 		$this->ResizeTo(array('width' => null, 'height' => $h));
 		return $this;
 	}
+	/**
+	 * Sets a maximum size for the image.
+	 * 	If one of the sides exceeds expected dimension, image will be sliced
+	 * @param 	int 	$w 		max width
+	 * @param 	int 	$h 		max height
+	 * @return itself
+	 */
 	public function MaxSize($w, $h){
 		echo "setting max size ".$w."x".$h;
 		return $this->MaxWidth($w)->MaxHeight($h);
 	}
+	/**
+	 * Sets a maximum width for the image.
+	 * 	Height can be of any size, once width does not exceed this one
+	 * @param 	int 	$w 		maximum width
+	 * @return itself
+	 */
 	public function MaxWidth($w){
 		if($this->imgSize['width'] > $w){
 			return $this->FixedWidth($w);
@@ -89,6 +123,12 @@ class MagratheaImage extends MagratheaImageBase {
 			return $this;
 		}
 	}
+	/**
+	 * Sets a maximum height for the image.
+	 * 	Width can be of any size, once height does not exceed this one
+	 * @param 	int 	$h 		maximum height
+	 * @return itself
+	 */
 	public function MaxHeight($h){
 		if($this->imgSize['height'] > $h){
 			return $this->FixedHeight($h);
@@ -96,6 +136,10 @@ class MagratheaImage extends MagratheaImageBase {
 			return $this;
 		}
 	}
+	/**
+	 * Creates image following required parameters and returns url
+	 * @return 	string 		image url
+	 */
 	public function Url(){
 		if( $this->isError ){
 			return "#?error=".$this->error;
@@ -103,19 +147,37 @@ class MagratheaImage extends MagratheaImageBase {
 		$this->SaveFile();
 		return $this->webImagesGenerated.$this->imgName;
 	}
-	public function Code($title=""){
+	/**
+	 * generates a HTML code for the image and returns it
+	 * @param 	string 		$title    		Title and Alt for the image
+	 * @param 	string 		$moreAttr 		other attributes for the &lt;img html tag
+	 * @return 	string 		HTML code for image
+	 */
+	public function Code($title="", $moreAttr=null){
 		if( $this->isError ){
 			return "error = ".$this->error;
+		}
+		if($moreAttr) {
+			$this->otherAttr($moreAttr);
 		}
 		$this->SaveFile();
 		$code = '<img src="'.$this->webImagesGenerated.$this->imgName.'" alt="'.$title.'" title="'.$title.'" '.$this->otherAttr.' />';
 		return $code;
 	}
+	/**
+	 * set other attributes for the &lt;img html tag
+	 * @param  string 	$moreAttr 	attributes
+	 * @return itself
+	 */
 	public function otherAttr($moreAttr){
 		$this->otherAttr = $moreAttr;
 		return $this;
 	}
 
+	/**
+	 * private function: resize and rop image in the sent height
+	 * @param 	array 	$thisSize 	size, in format: ("width" => width, "height" => "height")
+	 */	
 	private function ResizeToAndCrop($thisSize){
 		if( $this->isError ) return;
 		$proportion = 1;
@@ -139,21 +201,34 @@ class MagratheaImage extends MagratheaImageBase {
 		}
 		$this->imgSize = $thisSize;
 	}
+	/**
+	 * Resizes image to
+	 * @param 	array 	$thisSize 	size, in format: ("width" => width, "height" => "height")
+	 * @return itself
+	 */
 	private function ResizeTo($thisSize){
 		$this->image = $this->image->resize($thisSize['width'], $thisSize['height'], 'fill', 'any');
 		$this->imgSize["width"] = $this->image->getWidth();
 		$this->imgSize["height"] = $this->image->getHeight();
+		return $this;
 	}
 
+	/**
+	 * Saves image file
+	 * @return itself
+	 */
 	private function SaveFile(){
 		$this->imgName = $this->GetFileNameWithoutExtension()."_".implode("x", $this->imgSize).".".$this->extension;
 		$fname = $this->generatedPath.$this->imgName;
 		if(!file_exists($fname))
 			$this->image->saveToFile($fname);
+		return $this;
 	}
 
-	/* configuration functions: */
-	// load the general image config:
+	/**
+	 * Load general configurations for image
+	 * @return itself
+	 */
 	public function LoadConfig(){
 		$environment = MagratheaConfig::Instance()->GetEnvironment();
 		$config = new MagratheaConfigFile();
@@ -164,29 +239,55 @@ class MagratheaImage extends MagratheaImageBase {
 		$this->generatedPath = $config->GetConfig($environment."/generated_path")."/";
 		$this->webImagesFolder = $config->GetConfig($environment."/web_images_folder")."/";
 		$this->webImagesGenerated = $config->GetConfig($environment."/web_images_generated")."/";
+		return $this;
 	}
+	/**
+	 * Gets image url
+	 * @return 	string 		image url, in web format
+	 */
 	public function GetUrl(){
 		return $this->webImagesFolder.$this->filename;
 	}
+	/**
+	 * Get Images Path
+	 * @return 	string 		images path, absolut
+	 */
 	public function GetImagePath(){
 		return $this->imagesPath.$this->filename;
 	}
+	/**
+	 * Sets the width and height from the image
+	 * @return 	array 		width and height in format: array("width" => width, "height" => height)
+	 */
 	public function GetWidthHeight(){
-		$arraySizes = array();
 		list($width, $height) = getimagesize($this->imagesPath.$this->filename);
 		$this->width = $width;
 		$this->height = $height;
-		return $arraySizes;
+		return array('width' => $width, 'height' => $height);
 	}
+	/**
+	 * Sets filename for image
+	 * @param 	string 		$name 		file name
+	 * @return  itself
+	 */
 	public function SetFilename($name){
 		$nextId = $this->GetNextID();
 		$this->filename = $nextId."_".$name;
+		return $this;
 	}
+	/**
+	 * Inserts image (calls parent insert)
+	 * @return  	int 		image inserted id
+	 */
 	public function Insert(){
 		$this->getWidthHeight();
 		parent::Insert();
 	}
-
+	/**
+	 * Gets filename without extension
+	 * 		(whatever, man... may be useful for you)
+	 * 	@return 	string 		filename without extension
+	 */
 	public function GetFileNameWithoutExtension(){
 		$fname = explode('.', $this->filename);
 		array_pop($fname);
@@ -197,7 +298,12 @@ class MagratheaImage extends MagratheaImageBase {
 }
 
 class MagratheaImageControl extends MagratheaImageControlBase {
-	// and here!
+	/**
+	 * Get n last added images
+	 * @param 	integer 	$mostRecent 	amount of images to be returned (default: 20)
+	 * @param 	integer 	$page       	page to pagination (default: 0)
+	 * @return  array<images> 		result of images
+	 */
 	public function GetXMostRecent($mostRecent = 20, $page=0){
 		$query = new MagratheaQuery();
 		$query->Obj("MagratheaImage")->Order("id DESC")->Limit($mostRecent)->Page($page);

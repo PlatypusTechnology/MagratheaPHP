@@ -16,23 +16,31 @@
 	include("Controls/Home.php");
 	include("Models/Users.php");
 	include("Models/Products.php");
+	// or you may prefer insert everything at once, using Magrathea's awesome functions:
+	MagratheaController::IncludeAllControllers();
+	MagratheaModel::IncludeAllModels();
+
+
+	// let's include some of Magrathea's awesome plugins:
+	include("plugins/jquery/load.php");
+	include("plugins/bootstrap/load.php");
+	include("plugins/font-awesome4/load.php");
+	// we already have a bunch of them! =)
 
 	// let's include CSS and JavaScript for the page:
-	$View->IncludeCSS("css/style.css");
-	$View->IncludeJavascript("javascript/jquery/jquery.min.js");
-	$View->IncludeJavascript("javascript/script.js");
+	try {
+		MagratheaView::Instance()
+		->IncludeCSS("css/style.css")
+		->IncludeJavascript("javascript/script.js");
+	} catch(Exception $ex){
+		// probably the file does not exists. What to do now?
+	}
 
-	// let's include plugins:
-	include("plugins/Font-awesome/load.php");
 
-	// set default Controls:
-	$control = "Home";
-	$action = "Index";
-	$params = array();
+	// Magrathea Route will get the path to the correct method in the right class:
+	MagratheaRoute::Instance()
+		->Route($control, $action, $params);
 
-	if(isset($_GET["control"]) && !empty($_GET["control"])) $control = $_GET["control"];
-	if(isset($_GET["action"]) && !empty($_GET["action"])) $action = $_GET["action"];
-	if(isset($_GET["params"]) && !empty($_GET["params"])) $params = $_GET["params"];
 
 	try{
 		// looooooaad!
