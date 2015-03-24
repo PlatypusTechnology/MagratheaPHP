@@ -512,7 +512,7 @@ class MagratheaQueryInsert extends MagratheaQuery {
 }
 
 /**
- * Extension of Magrathea Query for creating Insert queries
+ * Extension of Magrathea Query for creating Update queries
  */
 class MagratheaQueryUpdate extends MagratheaQuery {
 

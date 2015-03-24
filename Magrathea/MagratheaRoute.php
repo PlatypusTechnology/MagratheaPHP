@@ -15,7 +15,7 @@
 #######################################################################################
 
 /**
- * define routes and gives main paths for controllers and actions
+ * Can define routes and gives main paths for controllers and actions
  */
 class MagratheaRoute {
 

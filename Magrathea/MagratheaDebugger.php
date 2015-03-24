@@ -21,6 +21,10 @@ function Info($this){
 	MagratheaDebugger::Instance()->Info($this);
 }
 
+/**
+ * Magrathea Debugger can manage anything for debugging and error-searching through Magrathea Codes.
+ * It can trace errors, save log files, print queries and do a bunch of functions that would help the developer on error searching
+ */
 class MagratheaDebugger {
 
 	const NONE = 0;
