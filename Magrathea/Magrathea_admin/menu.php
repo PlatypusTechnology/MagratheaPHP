@@ -2,7 +2,8 @@
 
 require_once ("admin_load.php");
 
-$tables = getAllTables(@$configSection["db_name"]);
+$tables = getAllTables(@$configSection["db_name"], false);
+//$allTables = getAllTables(@$configSection["db_name"], true);
 //p_r($tables);
 $objects = getAllObjects();
 
@@ -15,7 +16,8 @@ $objects = getAllObjects();
 		<?
 		if(is_array($tables)){
 			foreach($tables as $tb){
-				echo '<li><a onClick="loadTable(\''.$tb['table_name'].'\');" id="menu_table'.$tb['table_name'].'"><i class="fa fa-chevron-right icon_light"></i> '.$tb['table_name'].'</a></li>';
+				$tablename = $tb['table_name'];
+				echo '<li><a onClick="loadTable(\''.$tablename.'\');" id="menu_table'.$tablename.'"><i class="fa fa-chevron-right icon_light"></i> '.$tablename.'</a></li>';
 			}
 		}
 		?>

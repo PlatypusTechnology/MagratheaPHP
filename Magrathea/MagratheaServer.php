@@ -3,7 +3,6 @@
 /**
 * 
 * Creates a server using Magrathea Tools to respond Json files
-* 
 **/
 class MagratheaServer {
 
