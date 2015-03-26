@@ -25,6 +25,7 @@ class MagratheaImage extends MagratheaImageBase {
 
 	private $image;
 	private $otherAttr = "";
+	private $style = "";
 	private $imgSize = array();
 	private $imgName = "";
 
@@ -157,8 +158,15 @@ class MagratheaImage extends MagratheaImageBase {
 		if($moreAttr) {
 			$this->otherAttr($moreAttr);
 		}
+		$attr = "";
+		if(!empty($this->otherAttr)){
+			$attr .= $this->otherAttr;
+		}
+		if(!empty($this->style)){
+			$attr .= ' style="'.$this->style.'"';
+		}
 		$this->SaveFile();
-		$code = '<img src="'.$this->webImagesGenerated.$this->imgName.'" alt="'.$title.'" title="'.$title.'" '.$this->otherAttr.' />';
+		$code = '<img src="'.$this->webImagesGenerated.$this->imgName.'" alt="'.$title.'" title="'.$title.'" '.$attr.' />';
 		return $code;
 	}
 	/**
@@ -167,9 +175,28 @@ class MagratheaImage extends MagratheaImageBase {
 	 * @return itself
 	 */
 	public function otherAttr($moreAttr){
-		$this->otherAttr = $moreAttr;
+		$this->otherAttr .= " ".$moreAttr;
 		return $this;
 	}
+	/**
+	 * sets style for the img code
+	 * @param 	string 		$style 		string with css style
+	 * @return itself
+	 */
+	public function Style($st){
+		$this->style .= $st;
+		return $this;
+	}
+	/**
+	 * sets class for the img code
+	 * @param 	string 		$class 		string with css class
+	 * @return itself
+	 */
+	public function SetClass($cl){
+		$this->otherAttr("class='".$cl."'");
+		return $this;
+	}
+
 
 	/**
 	 * private function: resize and rop image in the sent height
