@@ -37,6 +37,9 @@
 	width: 90%;
 	height: 200px;
 }
+textarea#query_run {
+	font-family: monospace;
+}
 /*!
  *	prettify.css
  */
@@ -62,4 +65,12 @@
 }
 .magratheaShowAll tr:nth-child(even) {background: #DDD}
 .magratheaShowAll tr:nth-child(odd) {background: #FFF}
+
+label.ll {
+	padding-top: 3px !important;
+	display: inline;
+}
+.ll_checkbox {
+	margin-top: -3px;
+}
 </style>

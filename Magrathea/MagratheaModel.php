@@ -31,7 +31,7 @@ interface iMagratheaModel {
 	
 abstract class MagratheaModel{
 	protected $dbTable;
-	protected $lazyLoad = false;
+	protected $autoLoad = null;
 	protected $dbValues = array();
 	protected $dbAlias = array();
 	protected $relations = array();
@@ -61,7 +61,7 @@ abstract class MagratheaModel{
 	}
 	
 	public function GetLazyLoad(){
-		return $this->lazyLoad;
+		return $this->autoLoad;
 	}
 
 	public function LoadObjectFromTableRow($row){
@@ -74,10 +74,30 @@ abstract class MagratheaModel{
 	
 	public function GetById($id){
 		if( empty($id) ) return null;
-		$sql = "SELECT * FROM ".$this->dbTable." WHERE ".$this->dbPk." = ".$id;
-		$result = MagratheaDatabase::Instance()->queryRow($sql);
-		if( empty($result) ) throw new MagratheaModelException("Could not find ".get_class($this)." with id ".$id."!");
-		$this->LoadObjectFromTableRow($result);
+		if( $this->autoload && count($this->autoload) > 0 ) {
+			$sql = MagratheaQuery::Select()->Table($this->dbTable)->SelectObj($this)->Where($this->dbTable.".".$this->dbPk." = ".$id);
+			$tabs = array();
+			foreach ($this->autoload as $objName => $relation) {
+				$obj = new $objName();
+				$sql->InnerObject($obj, $obj->dbTable.".".$obj->GetPkName()." = ".$this->dbTable.".".$relation);
+				$tabs[$objName] = $obj->dbTable;
+			}
+			$result = MagratheaDatabase::Instance()->queryRow($sql->SQL());
+			if( empty($result) ) throw new MagratheaModelException("Could not find ".get_class($this)." with id ".$id."!");
+
+			$splitResult = MagratheaQuery::SplitArrayResult($result);
+			$this->LoadObjectFromTableRow($splitResult[$this->GetDbTable()]);
+			foreach ($tabs as $obj => $table) {
+				$new_object = new $obj();
+				$new_object->LoadObjectFromTableRow($splitResult[$new_object->GetDbTable()]);
+				$this->$obj = $new_object;
+			}
+		} else {
+			$sql = "SELECT * FROM ".$this->dbTable." WHERE ".$this->dbPk." = ".$id;
+			$result = MagratheaDatabase::Instance()->queryRow($sql);
+			if( empty($result) ) throw new MagratheaModelException("Could not find ".get_class($this)." with id ".$id."!");
+			$this->LoadObjectFromTableRow($result);
+		}
 	}
 
 	// Gets the next auto increment id for object:
@@ -158,7 +178,7 @@ abstract class MagratheaModel{
 			return $this->$real_key;
 		} else if( is_array($this->relations["properties"]) && array_key_exists($key, $this->relations["properties"]) ){
 			if( is_null($this->relations["properties"][$key]) ){
-				if( $this->lazyLoad ){
+				if( $this->relations["lazyload"][$key] ){
 					$loadFunction = $this->relations["methods"][$key];
 					$this->relations["properties"][$key] = $this->$loadFunction();
 				}
@@ -175,9 +195,8 @@ abstract class MagratheaModel{
 			$real_key = $this->dbAlias[$key];
 			$this->$real_key = $value;
 		} else if( @is_array($this->relations["properties"]) && array_key_exists($key, $this->relations["properties"]) ){
-			$method_set = $this->relations["methods_set"][$key];
-			$this->relations["properties"][$key] = $value;
-			$this->$method_set($value);
+			$method_set = $this->relations["methods"][$key];
+ 			$this->relations["properties"][$key] = $value;
 		} else {
 			throw new MagratheaModelException("Property ".$key." does not exists in ".get_class($this)."!");
 		}

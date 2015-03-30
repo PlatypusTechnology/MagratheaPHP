@@ -46,7 +46,7 @@ abstract class MagratheaModelControl{
 		return self::Run($magQuery);
 	}
 
-	public static function Run($magQuery){
+	public static function Run($magQuery, $onlyFirst=false){
 		$array_obj = $magQuery->GetObjArray();
 		if(count($array_obj) > 0){
 			$objects = array();
@@ -65,9 +65,11 @@ abstract class MagratheaModelControl{
 				}
 				array_push($objects, clone $new_object);
 			}
-			return $objects;
+			if($onlyFirst){
+				if(count($objects) > 0) return $objects[0];
+			} else return $objects;
 		} else {
-			return static::RunQuery($magQuery->SQL());
+			return $onlyFirst ? static::RunRow($magQuery->SQL()) : static::RunQuery($magQuery->SQL());
 		}
 	}
 

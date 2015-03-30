@@ -26,8 +26,6 @@ require ("admin_load.php");
 		die;
 	*/
 
-	$lazy_load = $data["lazy_load"];
-
 	// relations:
 	$relations = @$objdata["relations"];
 	$i_rel_obj = 0;
@@ -40,6 +38,8 @@ require ("admin_load.php");
 	
 			$property = $data[$rel_name."_property"];
 			$method = $data[$rel_name."_method"];
+			$lazyload = $data[$rel_name."_lazyload"];
+			$autoload = $data[$rel_name."_autoload"];
 
 			if( empty($property) )
 				$property = ($type == "belong_to" ? $object : $object."s" );
@@ -63,6 +63,8 @@ require ("admin_load.php");
 			$relations["rel_field"][$rel_id] = $field;
 			$relations["rel_property"][$rel_id] = $property;
 			$relations["rel_method"][$rel_id] = $method;
+			$relations["rel_lazyload"][$rel_id] = $lazyload;
+			$relations["rel_autoload"][$rel_id] = $autoload;
 	
 			// create mirror relation:
 			$mirror_obj_base = $object;
@@ -88,12 +90,21 @@ require ("admin_load.php");
 				break;
 			}
 			$mirror_name = "rel_".$mirror_obj_base."_".$mirror_type."_".$mirror_obj;
+			$mirror_lazyload = 1;
+			$mirror_autoload = 0;
 
 			$rel_id = @count($relations["rel_name"]);
 			$i = 0;
 			foreach($relations["rel_name"] as $already_exists_name){
-				if( $already_exists_name == $mirror_name ) $rel_id = $i;
-				else $i++;
+				if( $already_exists_name == $mirror_name ){
+					$mirror_lazyload = $relations["rel_lazyload"][$i];
+					$mirror_autoload = $relations["rel_autoload"][$i];
+					$mirror_property = $relations["rel_property"][$i];
+					$mirror_method = $relations["rel_method"][$i];
+					$rel_id = $i;
+					break;
+				} 
+				$i++;
 			}
 	
 			$relations["rel_name"][$rel_id] = $mirror_name;
@@ -104,13 +115,14 @@ require ("admin_load.php");
 			$relations["rel_field"][$rel_id] = $field;
 			$relations["rel_property"][$rel_id] = $mirror_property;
 			$relations["rel_method"][$rel_id] = $mirror_method;
+			$relations["rel_lazyload"][$rel_id] = $mirror_lazyload;
+			$relations["rel_autoload"][$rel_id] = $mirror_autoload;
 	
 			$i_rel_obj++;
 		}
 	}
 
 	$objdata[$object_name] = $object_data;
-	$objdata[$object_name]["lazy_load"] = $lazy_load;
 	$objdata["relations"] = $relations;
 	
 	$mconfig->setConfig($objdata);

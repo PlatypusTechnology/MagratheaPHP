@@ -230,12 +230,43 @@ class MagratheaQuery{
 			throw new MagratheaModelException("MagratheaQuery 'BelongsTo' must be used with MagratheaModels => ".$ex->getMessage());
 		}
 		array_push($this->joinArr, $joinGlue);
+		array_push($this->obj_array, $object);
+		return $this;
+	}
+	/**
+	 * Includes inner join
+	 * @param 	string 		$table 		Table for inner join
+	 * @param 	string 		$clause		Clause for where in the join
+	 * @return  itself
+	 */	
+	public function Inner($table, $clause){
+		try{
+			$joinGlue = " INNER JOIN ".$table." ON ".$clause;
+		} catch(Exception $ex){
+			throw new MagratheaModelException("MagratheaQuery Exception => ".$ex->getMessage());
+		}
+		array_push($this->joinArr, $joinGlue);
+		return $this;
+	}
+	/**
+	 * Includes inner join with Object
+	 * @param 	MagratheaModel 		$object 	object for inner join
+	 * @return  itself
+	 */	
+	public function InnerObject($object, $clause){
+		try{
+			$object = $this->GiveMeThisObjectCorrect($object);
+			$this->SelectObj($object);
+			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$clause;
+		} catch(Exception $ex){
+			throw new MagratheaModelException("MagratheaQuery Exception => ".$ex->getMessage());
+		}
+		array_push($this->joinArr, $joinGlue);
 		return $this;
 	}
 
 	/**
 	 * all the objects that are used in this query
-	 * @deprecated not quite in use (I think)
 	 * @return 		array 	the objects that we have here...
 	 */
 	public function GetObjArray(){
@@ -345,7 +376,7 @@ class MagratheaQuery{
 		$sqlSelect = $this->select;
 		if(count($this->selectArr) > 0){
 			$sqlSelect .= implode(', ', $this->selectArr);
-		} else if(count($this->selectDefaultArr) > 1){
+		} else if(count($this->selectDefaultArr) > 0){
 			$sqlSelect .= implode(', ', $this->selectDefaultArr);
 		} else {
 			$sqlSelect .= "*";

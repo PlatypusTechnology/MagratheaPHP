@@ -10,7 +10,7 @@ $javaScriptRelation = "";
 $relationsProperties = "";
 $relationsMethods = "";
 foreach( $relations as $rel ){
-	$javaScriptRelation .= "HtmlRelation('".$rel["rel_name"]."', '".$rel["rel_type_text"]."', '".$rel["rel_type"]."', '".$rel["rel_object"]."', '".$rel["rel_field"]."', '".$rel["rel_method"]."', '".$rel["rel_property"]."');";
+	$javaScriptRelation .= "HtmlRelation('".$rel["rel_name"]."', '".$rel["rel_type_text"]."', '".$rel["rel_type"]."', '".$rel["rel_object"]."', '".$rel["rel_field"]."', '".$rel["rel_method"]."', '".$rel["rel_property"]."', '".$rel["rel_lazyload"]."', '".$rel["rel_autoload"]."');";
 	$returns = "";
 	if($rel["rel_type"] == "belongs_to"){
 		$returns = $rel["rel_object"];
@@ -126,20 +126,6 @@ foreach( $relations as $rel ){
 					<?=$obj_data["table_name"]?>
 				</div>
 			</div>
-			<div class='row-fluid'>
-				<div class='span3'>Lazy Load:</div>
-				<div class='span9'>
-					<input type='hidden' name='lazy_load' value='false'>
-					<input class='os_chbox_effect' type='checkbox' name='lazy_load' id='lazy_load' value='true' <?=($obj_data["lazy_load"]=="true" ? "checked='checked'" : "")?> >
-				</div>
-			</div>
-			<div class='row-fluid'>
-				<div class='span9'>&nbsp;</div>
-				<div class='span3'>
-					<button class="btn btn-success" onClick="saveObject();"><i class="fa fa-check-circle"></i>&nbsp;Save Object</button>
-				</div>
-			</div>
-		</content>
 	</div>
 </div>
 
@@ -284,24 +270,32 @@ function addNewRelation(){
 	ShowHideNewRelation();
 }
 
-function HtmlRelation(relation_name, rel_type, rel_type_val, rel_object, rel_field, method, property){
-	
+function HtmlRelation(relation_name, rel_type, rel_type_val, rel_object, rel_field, method, property, lazyload, autoload){
+
 	var optionsButtons = '<div class="span4">';
 	optionsButtons += '<button class="btn btn-danger" onClick="DeleteRelation(\''+relation_name+'\'); return false;"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>&nbsp;';
 	optionsButtons += '</div>';
 	var code_manag = '<div class="row-fluid" id="'+relation_name+'_code">';
-	code_manag += '<div class="span5">Public Property:<div class="input-append"><input type="text" name="'+relation_name+'_property" id="'+relation_name+'_property" value="'+property+'"><button class="btn btn-danger" onClick="$('+relation_name+'_property).val(\''+property+'\');" type="button"><i class="fa fa-power-off"></i> (reset)</button></div></div>';
-	code_manag += '<div class="span5">Public Method:<div class="input-append"><input type="text" name="'+relation_name+'_method" id="'+relation_name+'_method" value="'+method+'"><button class="btn btn-danger" onClick="$('+relation_name+'_method).val(\''+method+'\');" type="button"><i class="fa fa-power-off"></i> (reset)</button></div></div>';
-	code_manag += '<div class="span2">&nbsp;</div>';
+	code_manag += '<div class="span4">Public Property:<div class="input-append"><input type="text" name="'+relation_name+'_property" id="'+relation_name+'_property" value="'+property+'"><!--button class="btn btn-danger" onClick="$('+relation_name+'_property).val(\''+property+'\');" type="button"><i class="fa fa-power-off"></i> (reset)</button--></div></div>';
+	code_manag += '<div class="span4">Public Method:<div class="input-append"><input type="text" name="'+relation_name+'_method" id="'+relation_name+'_method" value="'+method+'"><!--button class="btn btn-danger" onClick="$('+relation_name+'_method).val(\''+method+'\');" type="button"><i class="fa fa-power-off"></i> (reset)</button--></div></div>';
+	code_manag += '<div class="span3">';
+	code_manag += '<br/><input type="hidden" value="0" name="'+relation_name+'_lazyload"><input type="checkbox" class="ll_checkbox" value="1" name="'+relation_name+'_lazyload" id="'+relation_name+'_lazyload" '+(lazyload==1 ? 'checked' : "")+'> &nbsp;<label class="ll" for="'+relation_name+'_lazyload">Lazy Load</label>';
+	if(rel_type_val == "belongs_to")
+		code_manag += '<br/><input type="hidden" value="0" name="'+relation_name+'_autoload"><input type="checkbox" class="ll_checkbox" value="1" name="'+relation_name+'_autoload" id="'+relation_name+'_autoload" '+(autoload==1 ? 'checked' : "")+'> &nbsp;<label class="ll" for="'+relation_name+'_autoload">Auto Load</label>';
+	else 
+		code_manag += '<input type="hidden" value="0" name="'+relation_name+'_autoload">';
+	code_manag += '</div>';
+	code_manag += '<div class="span1">&nbsp;</div>';
 	code_manag += '</div>';
 
 	var html_content = '<div id="'+relation_name+'">';
 	html_content += '<div class="row-fluid">';
-	html_content += '<div class="span8">'+rel_type+'&nbsp;<input type="hidden" name="rel_type_text[]" value="'+rel_type+'"><input type="hidden" name="rel_type[]" value="'+rel_type_val+'"><i class="fa fa-chevron-right"></i>&nbsp;'+rel_object+'<input type="hidden" name="rel_object[]" value="'+rel_object+'">';
+	html_content += '<div class="span3">'+rel_type+'&nbsp;<input type="hidden" name="rel_type_text[]" value="'+rel_type+'"><input type="hidden" name="rel_type[]" value="'+rel_type_val+'"><i class="fa fa-chevron-right"></i>&nbsp;'+rel_object+'<input type="hidden" name="rel_object[]" value="'+rel_object+'"></div>';
+	html_content += '<div class="span5">'
 	if( rel_type_val == "belongs_to" ){
-		html_content += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<i class="fa fa-table"></i> using '+rel_field+' field]<input type="hidden" name="rel_field[]" value="'+rel_field+'">';
+		html_content += '[<i class="fa fa-table"></i> using '+rel_field+' field]<input type="hidden" name="rel_field[]" value="'+rel_field+'">';
 	} else if(rel_type_val == "has_many") {
-		html_content += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<i class="fa fa-table"></i> using '+rel_object+'\'s '+rel_field+' field]<input type="hidden" value="'+rel_field+'" name="rel_field[]">'
+		html_content += '[<i class="fa fa-table"></i> using '+rel_object+'\'s '+rel_field+' field]<input type="hidden" value="'+rel_field+'" name="rel_field[]">'
 	}
 	html_content += '</div>';
 	html_content += optionsButtons;

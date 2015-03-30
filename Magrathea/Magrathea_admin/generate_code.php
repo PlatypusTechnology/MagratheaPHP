@@ -32,9 +32,11 @@ require ("admin_load.php");
 		$relations = GetRelationsByObject($object);
 		$relations_properties = "";
 		$relations_functions = "";
+		$relations_autoload = array();
 		foreach($relations as $rel){
 			$relations_properties .= "\t\t\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] = null;\n";
 			$relations_properties .= "\t\t\$this->relations[\"methods\"][\"".$rel["rel_property"]."\"] = \"".$rel["rel_method"]."\";\n";
+			$relations_properties .= "\t\t\$this->relations[\"lazyload\"][\"".$rel["rel_property"]."\"] = \"".($rel["rel_lazyload"] == 1 ? "true" : "false")."\";\n";
 			
 			$relations_functions .= "\tpublic function ".$rel["rel_method"]."(){\n";
 			if( $rel["rel_type"] == "belongs_to" ) {
@@ -45,6 +47,11 @@ require ("admin_load.php");
 			}
 			$relations_functions .= "\t\treturn \$this->relations[\"properties\"][\"".$rel["rel_property"]."\"];\n";
 			$relations_functions .= "\t}\n";
+
+			if($rel["rel_autoload"] == 1){
+				array_push($relations_autoload, "\"".$rel["rel_property"]."\" => \"".$rel["rel_field"]."\"");
+			}
+
 		} // close foreach relations
 	
 		$code = "<?php\n\n";
@@ -54,7 +61,7 @@ require ("admin_load.php");
 		
 		$code .= "\tpublic \$".implode(", $", $obj_fields).";\n";
 		$code .= "\tpublic \$created_at, \$updated_at;\n";
-		$code .= "\tprotected \$lazyLoad = ".$data["lazy_load"].";\n\n";
+		$code .= "\tprotected \$autoload = ".(count($relations_autoload) == 0 ? "null" : "array(".implode(", ", $relations_autoload).")").";\n\n";
 		
 		$code .= "\tpublic function __construct( ".( ($data["db_pk"]) ? " \$".$data["db_pk"]."=0 " : "\$id=0" )." ){ \n";
 			$code .= "\t\t\$this->Start();\n";
