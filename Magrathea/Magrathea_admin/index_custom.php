@@ -50,6 +50,7 @@
 </body>
 
     <!-- ===================== JS ===================== -->
+    <?=MagratheaView::Instance()->InlineJavascript()?>
     <? include("resources/javascript.php") ?>
     <script type="text/javascript">
       loadCustom();
@@ -57,6 +58,5 @@
       loadCustomAdmin("index.php");
 <? } ?>
     </script>
-    <?=MagratheaView::Instance()->InlineJavascript()?>
 
 </html>
