@@ -6,7 +6,7 @@
 class MagratheaImageBase extends MagratheaModel implements iMagratheaModel {
 
 	public $id, $name, $filename, $extension, $width, $height, $file_type, $size;
-	protected $lazyLoad = true;
+	protected $autoload = null;
 
 	public function __construct( $id=0 ){ 
 		$this->Start();

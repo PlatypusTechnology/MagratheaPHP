@@ -176,7 +176,7 @@ abstract class MagratheaModel{
 		if( array_key_exists($key, $this->dbAlias) ){
 			$real_key = $this->dbAlias[$key];
 			return $this->$real_key;
-		} else if( is_array($this->relations["properties"]) && array_key_exists($key, $this->relations["properties"]) ){
+		} else if( @is_array($this->relations["properties"]) && array_key_exists($key, $this->relations["properties"]) ){
 			if( is_null($this->relations["properties"][$key]) ){
 				if( $this->relations["lazyload"][$key] ){
 					$loadFunction = $this->relations["methods"][$key];
