@@ -167,7 +167,7 @@ class MagratheaDatabase{
 	* @throws	MagratheaDbException
 	*/
 	private function ErrorHandle($error, $sql, $values=null){ 
-		$debug = "MagratheaDatabase ERROR => \n".
+		$debug = "MagratheaDatabase ERROR => \n";
 		$debug .= " query: [ ".$sql." ] \n";
 		if($values != null)
 			$debug .= " values: [ ".implode(',', $values)." ] \n";
@@ -253,7 +253,7 @@ class MagratheaDatabase{
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
 		if(!$result){
-			$this->ErrorHandle($this->mysqli, $sql);
+			$this->ErrorHandle($this->mysqli->error, $sql);
 			throw new MagratheaDBException($this->mysqli->error);
 		}
 		if(is_object($result) ){
@@ -318,7 +318,7 @@ class MagratheaDatabase{
 			$this->LogControl($query);
 			$this->mysqli->query($query);
 			if (!$this->mysqli->commit()) {
-				$this->ErrorHandle($this->mysqli, $query);
+				$this->ErrorHandle($this->mysqli->error, $query);
 				return false;
 			}
 		}
