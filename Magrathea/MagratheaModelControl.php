@@ -23,7 +23,10 @@ abstract class MagratheaModelControl{
 		$row = $magdb->QueryRow($sql);
 		$new_object = null;
 		if(!empty($row)){
+			$splitResult = MagratheaQuery::SplitArrayResult($row);
 			$new_object = new static::$modelName();
+			if(count($splitResult) > 0)
+				$row = $splitResult[$new_object->GetDbTable()];
 			$new_object->LoadObjectFromTableRow($row);
 		}
 		return $new_object;
