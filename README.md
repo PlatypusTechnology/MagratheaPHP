@@ -14,4 +14,7 @@ cp -rv MagratheaPHP/Magrathea/* .
 rm -rf MagratheaPHP
 ```
 
+## changelog
+
+### version: 1.0
 
