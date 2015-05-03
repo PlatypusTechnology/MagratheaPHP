@@ -536,7 +536,7 @@ class MagratheaQueryInsert extends MagratheaQuery {
 		$this->sql = "INSERT INTO ".$this->tables;
 		$this->sql .= " (".implode(', ', $this->fieldNames).") ";
 		$this->sql .= " VALUES ";
-		$this->sql .= " (".implode(', ', $this->arrValues).") ";
+		$this->sql .= " ('".implode('\', \'', $this->arrValues)."') ";
 		return $this->sql;
 	}
 
