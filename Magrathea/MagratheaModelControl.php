@@ -4,6 +4,11 @@ abstract class MagratheaModelControl{
 	protected static $modelName;
 	protected static $dbTable;
 
+	/**
+	 * Run a query and return a list of the objects
+	 * @param 	string 	$sql 	query string
+	 * @return  Array<Object> 	List of objects
+	 */
 	public static function RunQuery($sql){
 		$magdb = MagratheaDatabase::Instance();
 		$objects = array();
@@ -18,6 +23,11 @@ abstract class MagratheaModelControl{
 		}
 		return $objects;
 	}
+	/**
+	 * Run a query and return the first object available
+	 * @param 	string 	$sql 	query string
+	 * @return  Object 	First object found
+	 */
 	public static function RunRow($sql){
 		$magdb = MagratheaDatabase::Instance();
 		$row = $magdb->QueryRow($sql);
@@ -31,24 +41,53 @@ abstract class MagratheaModelControl{
 		}
 		return $new_object;
 	}
+	/**
+	 * Runs a query and returns the result
+	 * @param 	string 	$sql 	query string
+	 * @return  resultRow		database result
+	 */
 	public static function QueryResult($sql){
 		return MagratheaDatabase::Instance()->queryAll($sql);
 	}
+	/**
+	 * Runs a query and returns the first row of result
+	 * @param 	string 	$sql 	query string
+	 * @return  resultRow		database result (first line)
+	 */
 	public static function QueryOne($sql){
 		return MagratheaDatabase::Instance()->queryOne($sql);
 	}
 
-
+	/**
+	 * Runs a Magrathea Query and returns a list of objects
+	 * (calls Run function)
+	 * @param 	MagratheaQuery  	$magQuery  		MagratheaQuery query
+	 * @return  Array<Object> 		List of objects
+	 */
 	public static function RunMagQuery($magQuery){ 
 		return self::Run($magQuery); 
 	}
 
+	/**
+	 * Runs query with Pagination. 
+	 * 	This way, is not necessary to worry about including pagination on Magrathea Query, this function can deal with it
+	 * @param 	MagratheaQuery  	$magQuery 		MagratheaQuery query
+	 * @param 	int  				&$total   		total of rows (it will be stored in this variable; it's a pointer!)
+	 * @param 	integer 			$page     		page to get (0 = first)
+	 * @param 	integer 			$limit    		quantity per page (20 = default)
+	 * @return  Array<Object> 		List of objects
+	 */
 	public static function RunPagination($magQuery, &$total, $page=0, $limit=20){
 		$total = self::QueryOne($magQuery->Count());
 		$magQuery->Limit($limit)->Page($page);
 		return self::Run($magQuery);
 	}
-
+	/**
+	 * Runs a Magrathea Query and returns a list of objects
+	 * @param 	MagratheaQuery  	$magQuery  		MagratheaQuery query
+	 * @param 	boolean 			$onlyFirst 		returns all of it or only first row?
+	 * @return  Array<Object> 		List of objects
+	 */
 	public static function Run($magQuery, $onlyFirst=false){
 		$array_obj = $magQuery->GetObjArray();
 		if(count($array_obj) > 0){
@@ -76,16 +115,31 @@ abstract class MagratheaModelControl{
 		}
 	}
 
+	/**
+	 * Gets all from this object
+	 * @return  Array<Object> 	List of objects
+	 */
 	public static function GetAll(){
 		$sql = "SELECT * FROM ".static::$dbTable." ORDER BY created_at DESC";
 		return static::RunQuery($sql);
 	}
 
+	/**
+	 * Builds query with where clause
+	 * @param 	string 			$whereSql 		where clause
+	 * @return  Array<Object> 	List of objects
+	 */
 	public static function GetSimpleWhere($whereSql){
 		$sql = "SELECT * FROM ".static::$dbTable." WHERE ".$whereSql;
 		return static::RunQuery($sql);
 	}
 
+	/**
+	 * Builds query with where clause
+	 * @param 	string or array 	$arr 		where clause
+	 * @param 	string 				$condition 	"AND" or "OR" for multiple clauses
+	 * @return  Array<Object> 		List of objects
+	 */
 	public static function GetWhere($arr, $condition = "AND"){
 		if(!is_array($arr)){
 			return static::GetSimpleWhere($arr);
@@ -95,12 +149,28 @@ abstract class MagratheaModelControl{
 		return static::RunQuery($sql);
 	}
 
+	/**
+	 * Builds query with where clause, returning only first row
+	 * @param 	string or array 	$arr 		where clause
+	 * @param 	string 				$condition 	"AND" or "OR" for multiple clauses
+	 * @return  Object 				First object available
+	 */
 	public static function GetRowWhere($arr, $condition = "AND"){
+		if(!is_array($arr)){
+			return static::GetSimpleWhere($arr);
+		}
 		$whereSql = MagratheaQuery::BuildWhere($arr, $condition);
 		$sql = "SELECT * FROM ".static::$dbTable." WHERE ".$whereSql;
 		return static::RunRow($sql);
 	}
 
+	/**
+	 * This function allows to build a query getting multiple objects at once
+	 * @param Array<objects> 	$array_objects Array of objects
+	 * @param string 			$joinGlue      join string to be used on query
+	 * @param string 			$where         Where clause
+	 * @return  Array<Object> 		List of objects
+	 */
 	public static function GetMultipleObjects($array_objects, $joinGlue, $where=""){
 		$magQuery = new MagratheaQuery();
 		$magQuery->Table(static::$dbTable)->SelectArrObj($array_objects)->Join($joinGlue)->Where($where);
@@ -123,6 +193,9 @@ abstract class MagratheaModelControl{
 		return $objects;
 	}
 
+	/**
+	 * Show all elements from an object
+	 */
 	public static function ShowAll(){
 		$baseObj = new static::$modelName();
 		$all = static::GetAll();
