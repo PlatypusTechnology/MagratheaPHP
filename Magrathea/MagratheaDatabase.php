@@ -72,9 +72,11 @@ class MagratheaDatabase{
 	*						            'username' => $username,
 	*						            'password' => $password,
 	*								);
+	* @return  	itself
 	*/
 	public function SetConnectionArray($dsn_arr){
 		$this->connDetails = $dsn_arr;
+		return $this;
 	}
 	/**
 	* Setups connection
@@ -82,6 +84,7 @@ class MagratheaDatabase{
 	* @param 	string 	$database		database name
 	* @param 	string 	$username 		username for connection
 	* @param 	string 	$password		password for connection
+	* @return  	itself
 	*/	
 	public function SetConnection($host, $database, $username, $password, $port=null){
 		$this->connDetails = array(
@@ -93,6 +96,7 @@ class MagratheaDatabase{
 		if(!$port){
 			$this->connDetails["port"] = $port;
 		}
+		return $this;
 	}
 
 	/**
@@ -104,6 +108,7 @@ class MagratheaDatabase{
 	*									object:
 	*										object with columns as properties
 	*									if anything different from those values is sent, "assoc" is used
+	* @return  	itself
 	*/	
 	public function SetFetchMode($fetch){
 		switch($fetch){
@@ -115,6 +120,7 @@ class MagratheaDatabase{
 			$this->fetchmode = self::FETCH_ASSOC;
 			break;
 		}
+		return $this;
 	}
 
 	/**

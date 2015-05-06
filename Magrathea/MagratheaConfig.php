@@ -38,7 +38,7 @@ class MagratheaConfig {
 	*/
 	private function loadFile(){
 		if(!file_exists($this->path."/".$this->config_file_name)){
-			throw new MagratheaException("Config file could not be found - ".$this->path."/".$this->config_file_name);
+			die ("Config file could not be found - ".$this->path."/".$this->config_file_name);
 		}
 	}
 
