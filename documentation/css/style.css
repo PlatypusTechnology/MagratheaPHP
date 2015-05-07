@@ -72,7 +72,7 @@ ul.menu > li > a > span.number {
     background-color: #F3F3F3;
     text-align: center;
 }
-ul.menu > li > a > i {
+ul.dropdown-menu > li > a > i {
     margin-right: 8px !important;
 }
 

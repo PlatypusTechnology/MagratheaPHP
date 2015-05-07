@@ -10,10 +10,21 @@
 
 		The engine website is <a href="http://www.smarty.net/" target="_blank">http://www.smarty.net/ <i class="icon-external-link"></i></a> and its documentation is also available <a href="http://www.smarty.net/documentation" target="_blank">there <i class="icon-external-link"></i></a>.
 		<br/><br/>
-		<b>Could I just include Smarty in Magrathea's code and get you rid of all this work?</b><br/>
-		Yes. I could. But, if you already use Smarty, then you don't get repeated code in your project. And Smarty guys must get their credit. And I'm giving you the oportunity of building a beautiful structure to your project!<br/>
-		You're welcome, man... you're welcome! ;)
-		<br/>
+		Smarty library is available inside <em>Magrathea/libs</em>, so, if you want to use another version or change anything on it, be my guest!<br/><br/>
+
+		Some sample of how to load Smarty object can be found on <a href="globalphp.php">global.php</a> file, but, if you want some spoilers of what will be necessary to do, here it is:<br/>
+<pre class="prettyprint linenums">
+	$Smarty = new Smarty;
+	$Smarty->template_dir = $site_path."/app/Views/";
+	$Smarty->compile_dir  = $site_path."/app/Views/_compiled";
+	$Smarty->config_dir   = $site_path."/app/Views/configs";
+	$Smarty->cache_dir    = $site_path."/app/Views/_cache";
+	$Smarty->configLoad("site.conf");
+
+	// initialize the MagratheaView and sets it to Smarty	
+	$View = new MagratheaView();
+	$Smarty->assign("View", $View);
+</pre><br/>		
 
     </div>
 

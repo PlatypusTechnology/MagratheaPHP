@@ -42,7 +42,7 @@
 	MagratheaDebugger::Instance()->SetType(MagratheaDebugger::DEBUG);
 ?&gt;</pre><br/>
 
-		As you can see, there are two global variables ($magrathea_path and $site_path). Sorry about that.<br/>
+		As you can see, there are two global variables (<em>$magrathea_path</em> and <em>$site_path</em>). Sorry about that.<br/>
 		The fun is just starting... Now, let's go to the <a href="indexphp.php">index.php</a>...<br/>
 
 	</p>

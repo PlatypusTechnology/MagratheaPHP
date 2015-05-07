@@ -60,6 +60,8 @@
             <li><a href="globalphp.php"><i class="icon-globe"></i> global.php</a></li>
             <li><a href="indexphp.php"><i class="icon-file"></i> index.php</a></li>
             <li class="divider"></li>
+            <li><a href="single.php"><i class="icon-male"></i> Singles</a></li>
+            <li class="divider"></li>
             <li><a href="https://github.com/PlatypusTechnology/MagratheaSample"><i class="icon-compass"></i> Project Sample <i class="icon-github-alt"></i></a></li>
           </ul>
         </li>
