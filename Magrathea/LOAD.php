@@ -24,7 +24,7 @@ require ($path."Functions.php");
 
 include ($path."MagratheaRoute.php");
 
-if($magratheaSingle !== true)
+if(@$magratheaSingle !== true)
 	include("load_vars.php");
 
 ?>
