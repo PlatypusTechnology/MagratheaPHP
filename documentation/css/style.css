@@ -30,7 +30,10 @@ h1 > i {
     font-size: 22px;
     color: #005580;
 }
-
+h5 > i {
+    margin-left: 20px;
+    margin-right: 5px;
+}
 
 /* >> MENU ----- */
 ul.menu {

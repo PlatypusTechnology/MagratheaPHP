@@ -69,14 +69,12 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icon-dashboard"></i> Website Admin <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="admin_php.php"><i class="icon-user"></i> admin.php</a></li>
-            <li><a href="#"><i class="icon-table"></i> Table management</a></li>
-            <li><a href="#"><i class="icon-inbox"></i> Creating objects</a></li>
-            <li><a href="#"><i class="icon-cogs"></i> Configuration</a></li>
-            <li><a href="#"><i class="icon-pencil"></i> Generate Code</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><i class="icon-dashboard"></i> Custom admin</a></li>
+            <li><a href="admin_tables.php"><i class="icon-table"></i> Table management</a></li>
+            <li><a href="admin_objects.php"><i class="icon-inbox"></i> Creating objects</a></li>
+            <li><a href="admin_code.php"><i class="icon-pencil"></i> Generate Code</a></li>
+            <li><a href="admin_custom.php"><i class="icon-dashboard"></i> Custom admin</a></li>
             <li><a href="plugins.php"><i class="icon-bullseye"></i> Plugins</a></li>
-            <li><a href="#"><i class="icon-beaker"></i> Tests</a></li>
+            <li><a href="admin_tests.php"><i class="icon-beaker"></i> Tests</a></li>
           </ul>
         </li>
         <li class="divider-vertical"></li>
