@@ -79,12 +79,6 @@
 		Because we always need it sooner or later...<br/>
 
 	</p>
-
-	<h3>Plugins</h3>
-	<p>
-		First, go set up some plugins! <a href="plugins.php">Here, get into this link</a>.<br/>
-		You can start adding the <em>Font-Awesome</em> plugin that is used in the <em>admin.php</em>. You can get back here later, we wait!<br/>
-	</p>
 </div>
 
 
