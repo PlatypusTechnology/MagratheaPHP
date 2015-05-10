@@ -54,6 +54,7 @@ class MagratheaQuery{
 		$this->obj_array = array();
 		$this->select = "SELECT ";
 		$this->selectArr = array();
+		$this->selectExtra = array();
 		$this->selectDefaultArr = array();
 		$this->join = "";
 		$this->joinArr = array();
@@ -161,6 +162,15 @@ class MagratheaQuery{
 		if(!empty($sel)){
 			array_push($this->selectArr, $sel);
 		}
+		return $this;
+	}
+	/**
+	 * Includes a field to select query to be added in the end of the clause
+	 * @param 	string  	$sel 		string that will be added in the *SELECT* built
+	 * @return  itself
+	 */
+	public function SelectExtra($sel){
+		array_push($this->selectExtra, $sel);
 		return $this;
 	}
 	/**
@@ -381,6 +391,9 @@ class MagratheaQuery{
 		} else {
 			$sqlSelect .= "*";
 		}
+		if(count($this->selectExtra) > 0){
+			$sqlSelect .= ", ".implode(', ', $this->selectExtra);
+		}
 		$this->sql = $sqlSelect." FROM ".$this->tables;
 		if(count($this->joinArr) > 0){
 			$this->sql .= " ".implode(' ', $this->joinArr)." ";
@@ -472,8 +485,7 @@ class MagratheaQuery{
 		$returnArray = array();
 		foreach ($arr as $key => $value) {
 			$position = strpos($key, '/');
-			if(!$position) return;
-
+			if(!$position) continue;
 			$returnTable = substr($key, 0, $position);
 			$returnField = substr($key, $position+1);
 

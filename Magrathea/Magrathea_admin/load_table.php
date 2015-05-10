@@ -5,6 +5,8 @@ require ("admin_load.php");
 $table = $_POST["table"];
 $query = "SHOW columns FROM ".$table;
 $columns = $magdb->queryAll($query);
+$query = "SHOW INDEX FROM ".$table;
+$indexes = $magdb->queryAll($query);
 
 //p_r($columns);
 
@@ -64,18 +66,20 @@ if( !empty($savedData) ){
 		echo "<div class='row-fluid'><div class='span4 right'>".$cl["field"]."</div><div class='span8'>(".$cl["type"].")</div></div>";
 	}
 	$isTableReady = ( array_search("created_at", $inputFields) != FALSE && array_search("updated_at", $inputFields) != FALSE );
-	
 ?>
 				<hr/>
-				<div class='row-fluid'>
-					<div class='span4 right'><i class="fa fa-key"></i>&nbsp;&nbsp;Id Key:</div>
-					<div class='span8'>
-						<?=$pk?>
-						<!--select>
-							<? magrathea_printFields($inputFields, $pk); ?>
-						</select-->
-					</div>
+				<div class="row-fluid">
+					<div class="span2">&nbsp;</div>
+					<div class="span10"><h5>Indexes</h5></div>
 				</div>
+<?
+	foreach($indexes as $i){
+		if( $i["key_name"] == "PRIMARY" ) $type = '<i class="fa fa-key"></i>&nbsp;&nbsp;Id Key';
+		else if( $i["non_unique"] == 0 ) $type = "UNIQUE";
+		else $type = $i["index_type"];
+		echo "<div class='row-fluid'><div class='span4 right'>".$type.":</div><div class='span8'>".$i["column_name"]."</div></div>";
+	}
+?>
 				<div class='row-fluid'>
 					<div class='span12 center'>
 						<?= $isTableReady ? "&nbsp;" : "<button class='btn' onClick='createFieldInTable(\"".$table."\");'>Create \"created_at\" and \"updated_at\" field</button>" ?>&nbsp;&nbsp;&nbsp;

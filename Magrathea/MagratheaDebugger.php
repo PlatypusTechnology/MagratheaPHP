@@ -224,6 +224,10 @@ class MagratheaDebugger {
 			$html .= "<div style='padding-left: 20px;'><b>trace: </b> ==> <br/>";
 			$html .= "<div style='padding-left: 10px;'>".$this->printTrace($deb->getTrace())."</div></div>";
 			$html .= "</div>";
+		} else if (is_array($deb)) {
+			$html .= "<div style='padding: 10px; border: 1px dotted black; margin-bottom: 5px; line-height: 120%;'>";
+			$html .= "<span>".nice_p_r($deb)."</span><br/>";
+			$html .= "</div>";
 		} else {
 			$html .= "<div style='padding: 10px; border: 1px dotted black; margin-bottom: 5px; line-height: 120%;'>";
 			$html .= "<span>".$deb."</span><br/>";

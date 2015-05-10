@@ -65,6 +65,7 @@ abstract class MagratheaModel{
 	}
 
 	public function LoadObjectFromTableRow($row){
+		if(!is_array($row)) return;
 		foreach($row as $field => $value){
 			$field = strtolower($field);
 			if( property_exists($this, $field))
@@ -139,6 +140,7 @@ abstract class MagratheaModel{
 		// old query, for pear mdb2 driver
 		// $query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (:".implode(",:", $arr_Fields).") ";
 		$query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (".implode(", ", array_fill(0, count($arr_Fields), "?")).") ";
+		echo $query_run;
 		$lastId = MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 		$pk = $this->dbPk;
 		$this->$pk = $lastId;

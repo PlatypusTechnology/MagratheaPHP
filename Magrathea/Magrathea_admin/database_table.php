@@ -39,19 +39,35 @@ foreach($obj as $key => $item){
 				break;
 		}
 		$createSql .= "\t`".$field_name."` ".$type.", \n";
-
 	}
 }
 
 
 $createSql .= "\tPRIMARY KEY (`".$obj["db_pk"]."`) \n);";
-
 $createSql .= "\n\n";
 
 $createSql .= "DROP TRIGGER IF EXISTS `".$obj["table_name"]."_create`;\n";
 $createSql .= "DROP TRIGGER IF EXISTS `".$obj["table_name"]."_update`;\n";
 $createSql .= "CREATE TRIGGER `".$obj["table_name"]."_create` BEFORE INSERT ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.created_at = NOW(), NEW.updated_at = NOW();\n";
 $createSql .= "CREATE TRIGGER `".$obj["table_name"]."_update` BEFORE UPDATE ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.updated_at = NOW();\n";
+
+$createSql .= "\n\n";
+
+
+$query = "SHOW INDEX FROM ".$obj["table_name"];
+$indexes = $magdb->queryAll($query);
+$addIndexes = array();
+foreach ($indexes as $i) {
+	if( $i["key_name"] == "PRIMARY" ) continue;
+	else if( $i["non_unique"] == 0 ) array_push($addIndexes, "ADD UNIQUE INDEX(`".$i["column_name"]."`)");
+	else if( $i["index_type"] == "FULLTEXT" ) array_push($addIndexes, "ADD FULLTEXT(`".$i["column_name"]."`)");
+	else array_push($addIndexes, "ADD INDEX(`".$i["column_name"]."`)");
+}
+if(count($addIndexes) > 0){
+	$createSql .= "ALTER TABLE `".$obj["table_name"]."`\n";
+	$createSql .= implode(",\n", $addIndexes).";";
+	$createSql .= "\n\n";
+}
 
 
 die($createSql);
