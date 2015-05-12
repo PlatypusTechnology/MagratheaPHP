@@ -21,8 +21,6 @@
 interface iMagratheaModel {
 	public function __construct($id);
 	
-	public function GetLazyLoad();
-
 	public function Save();
 	public function Insert();
 	public function Update();
@@ -37,8 +35,20 @@ abstract class MagratheaModel{
 	protected $relations = array();
 	protected $dbPk;
 	
+	/**
+	 * Gets table related to model
+	 * @return 	string 		model's table
+	 */
 	public function GetDbTable(){ return $this->dbTable; }
+	/**
+	 * Gets array of table column values
+	 * @return 	array 		model's columns
+	 */
 	public function GetDbValues(){ return $this->dbValues; }
+	/**
+	 * Get all properties from model
+	 * @return 	array 		model's properties
+	 */
 	public function GetProperties(){
 		$properties = $this->dbValues;
 		$properties["created_at"] = "datetime";
@@ -46,24 +56,43 @@ abstract class MagratheaModel{
 		return $properties;
 	} 
 
+	/**
+	 * Prepare fields for this model for a select statement
+	 * @return 	string 		fields for select clause built
+	 */
 	public function GetFieldsForSelect(){
 		$fields = $this->dbValues;
 		array_walk($fields, 'MagratheaQuery::BuildSelect', $this->dbTable);
 		return implode(', ', $fields);
 	}
 	
+	/**
+	 * Gets PK Name
+	 * @return 	string 		PK name column
+	 */
 	public function GetPkName(){
 		return $this->dbPk;
 	}
+	/**
+	 * Gets id value
+	 * @return 	value 		Id value
+	 */
 	public function GetID(){
 		$pk = $this->dbPk;
 		return $this->$pk;
 	}
-	
-	public function GetLazyLoad(){
+	/**
+	 * Gets autoload objects
+	 * @return 	array 		auto load objects or null if none
+	 */
+	public function GetAutoLoad(){
 		return $this->autoLoad;
 	}
 
+	/**
+	 * Receives an array with the columns and values and associates then internally into the object
+	 * @param 	array 		$row 		mysql result for the object
+	 */
 	public function LoadObjectFromTableRow($row){
 		if(!is_array($row)) return;
 		foreach($row as $field => $value){
@@ -73,6 +102,14 @@ abstract class MagratheaModel{
 		}
 	}
 	
+	/**
+	 * Returns object by Id. If null, creates a null instance of the object.
+	 * This will also load any related objects that are set as "autoload" internally.
+	 * if an object with the given id can not be found, or any of the auto-load related objects can not be found an exception will be thrown.
+	 * @param 	val 			$id 		id for the referred object
+	 * @return 	object 			desired object
+	 * @throws 	MagratheaModelException 	object could not be found
+	 */
 	public function GetById($id){
 		if( empty($id) ) return null;
 		if( $this->autoload && count($this->autoload) > 0 ) {
@@ -101,7 +138,10 @@ abstract class MagratheaModel{
 		}
 	}
 
-	// Gets the next auto increment id for object:
+	/**
+	 * Gets the next auto increment id for this object
+	 * @return  int 	next auto-increment value
+	 */
 	public function GetNextID(){
 		$sql = "SHOW TABLE STATUS LIKE '".$this->dbTable."'";
 		$data = MagratheaDatabase::Instance()->QueryRow($sql);
@@ -111,7 +151,7 @@ abstract class MagratheaModel{
 	/**
 	 * Saves: Using a insert if pk is not set and an update if pk is set
 	 * Basically, Inserts if id does not exists and updates if id does exists
-	 * @return  id if inserted and true if updated
+	 * @return  int or boolean 		id if inserted and true if updated
 	 */
 	public function Save(){
 		$pk = $this->dbPk;
@@ -140,12 +180,15 @@ abstract class MagratheaModel{
 		// old query, for pear mdb2 driver
 		// $query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (:".implode(",:", $arr_Fields).") ";
 		$query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (".implode(", ", array_fill(0, count($arr_Fields), "?")).") ";
-		echo $query_run;
 		$lastId = MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 		$pk = $this->dbPk;
 		$this->$pk = $lastId;
 		return $lastId;
 	}
+	/**
+	 * Updates the object in database
+	 * @return 	boolean	 		successfully updated
+	 */
 	public function Update(){
 		$arr_Types = array();
 		$arr_Fields = array();
@@ -161,9 +204,12 @@ abstract class MagratheaModel{
 
 		$arr_Values[$pkField] = $this->$pkField;
 		$arr_Types[$pkField] = $this->GetDataTypeFromField($pkField);
-		MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
-		return true;
+		return MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 	}
+	/**
+	 * Updates the object in database
+	 * @return 	boolean	 		successfully updated
+	 */
 	public function Delete(){
 		$pkField = $this->dbPk;
 		$arr_Types[$pkField] = $this->GetDataTypeFromField($this->dbValues[$pkField]);
@@ -174,6 +220,12 @@ abstract class MagratheaModel{
 		return MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 	}
 
+	/**
+	 * MAGIC FUNCTION: gets required property
+	 * @param  	string 		$key 			property
+	 * @return 	val      	property value
+	 * @throws 	MagratheaModelException 	if property does not exists into object
+	 */
 	public function __get($key){
 		if( array_key_exists($key, $this->dbAlias) ){
 			$real_key = $this->dbAlias[$key];
@@ -191,6 +243,13 @@ abstract class MagratheaModel{
 		}
 	}
 	
+	/**
+	 * MAGIC FUNCTION: updates required property
+	 * @param  	string 		$key 			property
+	 * @param  	object 		$value 			value
+	 * @return 	object     	property value
+	 * @throws 	MagratheaModelException 	if property does not exists into object
+	 */
 	public function __set($key, $value){
 		if( $key == "created_at" || $key == "updated_at" ) return false;
 		if( array_key_exists($key, $this->dbAlias) ){
@@ -204,6 +263,10 @@ abstract class MagratheaModel{
 		}
 	}
 
+	/**
+	 * Get (Magrathea) data type from field
+	 * @param 	string 		$field 		magrathea-related type
+	 */
 	public static function GetDataTypeFromField($field){
 		switch($field){
 			case "text":
@@ -222,7 +285,7 @@ abstract class MagratheaModel{
 	}
 
 	/**
-	 * Include all models presents on `Models` folder
+	 * Include all classes presents on `Models` folder
 	 */
 	public static function IncludeAllModels(){
 		$modelsFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/Models";
@@ -239,6 +302,10 @@ abstract class MagratheaModel{
 		}
 	}
 	
+	/**
+	 * To String! =)
+	 * @return 	string 		Object.toString()
+	 */
 	public function __toString(){
 		$print_this = "Class ".get_class($this).":\n";
 		$print_this .= count($this->dbValues > 0 ) ? "\tProperties\n" : "";
