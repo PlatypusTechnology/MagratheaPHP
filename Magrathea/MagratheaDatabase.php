@@ -383,7 +383,10 @@ class MagratheaDatabase{
 			$this->ConnectionErrorHandle($err, $err);
 		}
 		$this->CloseConnectionThanks();
-		return $lastId;
+		if($lastId)
+			return $lastId;
+		else
+			return true;
 	}
 
 	/**
