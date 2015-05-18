@@ -111,7 +111,7 @@ abstract class MagratheaModelControl{
 				if(count($objects) > 0) return $objects[0];
 			} else return $objects;
 		} else {
-			return $onlyFirst ? static::RunRow($magQuery->SQL()) : static::RunQuery($magQuery->SQL());
+			return $onlyFirst ? self::RunRow($magQuery->SQL()) : self::RunQuery($magQuery->SQL());
 		}
 	}
 

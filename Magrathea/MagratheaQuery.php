@@ -457,7 +457,10 @@ class MagratheaQuery{
 		$whereSql = "";
 		foreach($arr as $field => $value){
 			if( !$first ){ $whereSql .= " ".$condition; $first = false; }
-			$whereSql .= " ".$field." = '".$value."' ";
+			if($value === null)
+				$whereSql .= " ".$field." is null ";
+			else 
+				$whereSql .= " ".$field." = '".$value."' ";
 			$first = false;
 		}
 		return $whereSql;
