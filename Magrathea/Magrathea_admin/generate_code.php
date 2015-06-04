@@ -39,6 +39,7 @@ require ("admin_load.php");
 			$relations_properties .= "\t\t\$this->relations[\"lazyload\"][\"".$rel["rel_property"]."\"] = \"".($rel["rel_lazyload"] == 1 ? "true" : "false")."\";\n";
 			
 			$relations_functions .= "\tpublic function ".$rel["rel_method"]."(){\n";
+			$relations_functions .= "\t\tif(\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] != null) return \$this->relations[\"properties\"][\"".$rel["rel_property"]."\"];\n";
 			if( $rel["rel_type"] == "belongs_to" ) {
 				$relations_functions .= "\t\t\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] = new ".$rel["rel_object"]."(\$this->".$rel["rel_field"].");\n";
 			} else if ( $rel["rel_type"] == "has_many" ) {
@@ -47,6 +48,15 @@ require ("admin_load.php");
 			}
 			$relations_functions .= "\t\treturn \$this->relations[\"properties\"][\"".$rel["rel_property"]."\"];\n";
 			$relations_functions .= "\t}\n";
+
+			if( $rel["rel_type"] == "belongs_to" ) {
+				$obj_var = "\$".strtolower($rel["rel_property"]);
+				$relations_functions .= "\tpublic function Set".$rel["rel_method"]."(".$obj_var."){\n";
+				$relations_functions .= "\t\t\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] = ".$obj_var.";\n";
+				$relations_functions .= "\t\t\$this->".$rel["rel_field"]." = ".$obj_var."->GetID();\n";
+				$relations_functions .= "\t\treturn \$this;\n";
+				$relations_functions .= "\t}\n";
+			}
 
 			if($rel["rel_autoload"] == 1){
 				array_push($relations_autoload, "\"".$rel["rel_property"]."\" => \"".$rel["rel_field"]."\"");
