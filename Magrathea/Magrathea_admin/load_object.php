@@ -19,6 +19,9 @@ foreach( $relations as $rel ){
 	}
 	$relationsProperties .= "<li>".$rel["rel_property"]." (".$returns.")&nbsp;<i class='fa fa-exchange' title='relational property'></i></li>";
 	$relationsMethods .= "<li>".$obj_name."-&gt;".$rel["rel_method"]."();&nbsp;<i class='fa fa-exchange' title='relational method'></i><br/>Gets object related ".$returns."</li>";
+	if($rel["rel_type"] == "belongs_to"){
+		$relationsMethods .= "<li>".$obj_name."-&gt;Set".$returns."(\$".strtolower($returns).");&nbsp;<i class='fa fa-exchange' title='relational method'></i><br/>Associates related ".$returns."</li>";
+	}	
 }
 
 ?>
