@@ -61,7 +61,7 @@ abstract class MagratheaModel{
 	 * @return 	string 		fields for select clause built
 	 */
 	public function GetFieldsForSelect(){
-		$fields = $this->dbValues;
+		$fields = $this->GetProperties();
 		array_walk($fields, 'MagratheaQuery::BuildSelect', $this->dbTable);
 		return implode(', ', $fields);
 	}

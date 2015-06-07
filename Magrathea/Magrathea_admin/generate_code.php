@@ -51,7 +51,7 @@ require ("admin_load.php");
 
 			if( $rel["rel_type"] == "belongs_to" ) {
 				$obj_var = "\$".strtolower($rel["rel_property"]);
-				$relations_functions .= "\tpublic function Set".$rel["rel_method"]."(".$obj_var."){\n";
+				$relations_functions .= "\tpublic function Set".$rel["rel_object"]."(".$obj_var."){\n";
 				$relations_functions .= "\t\t\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] = ".$obj_var.";\n";
 				$relations_functions .= "\t\t\$this->".$rel["rel_field"]." = ".$obj_var."->GetID();\n";
 				$relations_functions .= "\t\treturn \$this;\n";
