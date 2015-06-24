@@ -16,7 +16,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Magrathea</title>
+    <title>Magrathea - <?=$this->title?></title>
     
     <!-- ===================== CSS ===================== -->
     <? include("resources/css.php") ?>
