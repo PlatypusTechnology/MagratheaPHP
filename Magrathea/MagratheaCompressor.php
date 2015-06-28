@@ -87,6 +87,9 @@ class MagratheaCompressor {
     if($this->compressionMode == "advanced"){
       $phpclosure->advancedMode()->useClosureLibrary();
     }
+    if( MagratheaDebugger::Instance()->GetType() == MagratheaDebugger::NONE ){
+      $phpclosure->hideDebugInfo();
+    }
     $this->content = $phpclosure->_compile();
   }
 
