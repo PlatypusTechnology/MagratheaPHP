@@ -175,7 +175,7 @@ class MagratheaView{
 			sort($this->javascript_lastmodified_arr);
 			$js_lmod = implode("_", $this->javascript_lastmodified_arr);
 			$js_lmod_hash = md5($js_lmod);
-			$compressedFileName = $this->compressed_path_js.$js_lmod_hash."_compressed.js";
+			$compressedFileName = $this->compressed_path_js."/".$js_lmod_hash."_compressed.js";
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$jsContent .= "<!--error compressing javascript! could not create file-->";
@@ -242,7 +242,7 @@ class MagratheaView{
 			sort($this->css_lastmodified_arr);
 			$css_lmod = implode("_", $this->css_lastmodified_arr);
 			$css_lmod_hash = md5($css_lmod);
-			$compressedFileName = $this->compressed_path_css.$css_lmod_hash."_compressed.css";
+			$compressedFileName = $this->compressed_path_css."/".$css_lmod_hash."_compressed.css";
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$cssContent .= "<!--error compressing css! could not create file-->";
