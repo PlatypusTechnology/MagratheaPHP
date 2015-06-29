@@ -66,6 +66,7 @@ class MagratheaConfig {
 	* If `$config_name` is empty, the function will return the full config as an Array (**not recommended!**).
 	* @param 	string 		$config_name 	Item to be returned from the `magrathea.conf`.
 	* @return 	array or string
+	* @todo 	exception 704 on key does not exists
 	*/
 	public function GetConfig($config_name=""){
 		if( $this->configs == null ){
@@ -106,13 +107,18 @@ class MagratheaConfig {
 			}
 		}
 		$environment = $this->configs["general"]["use_environment"];
-		return $this->configs[$environment][$config_name];
+		if(array_key_exists($config_name, $this->configs[$environment])){
+			return $this->configs[$environment][$config_name];
+		} else {
+			throw new MagratheaConfigException("Key ".$config_name." does not exist in magratheaconf!", 704);
+		}
 	}
 
 	/**
 	* `$section_name` is the name of the section that will be returned as an array.
 	* @param string $section_name Name of the section to be returned from the `magrathea.conf`.
 	* @return array
+	* @todo 	exception 704 on key does not exists
 	*/
 	public function GetConfigSection($section_name){
 		$this->loadFile();
@@ -181,6 +187,7 @@ class MagratheaConfigFile {
 	*	@param 	string 	$config_name 	Configuration to be got. If empty, returns all the configuration into the file
 	*									If an acceptable config name, returns its value
 	*	@return 	string/int/array	If `$config_name` is empty, returns all the configuration. Otherwise, 
+	*   @todo 	exception 704 on key does not exists
 	*/
 	public function getConfig($config_name=""){
 		if( is_null($this->configs) ){
@@ -200,6 +207,7 @@ class MagratheaConfigFile {
 	*	@param 	string 	$section_name 	Name of the section to be shown
 	*
 	*	@return 	array	 	All the values of the given section
+	*   @todo 	exception 704 on key does not exists
 	*/
 	public function getConfigSection($section_name){
 		$this->loadFile();
