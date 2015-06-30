@@ -267,8 +267,8 @@ class PhpClosure {
       }
     }
    
-    $result = "";
     if ($this->_debug) {
+      $result = "";
       $result = "if(window.console&&window.console.log){\r\n" .
                 "window.console.log('Closure Compiler Stats:\\n" .
                 "-----------------------\\n" .
@@ -281,10 +281,10 @@ class PhpClosure {
       if (isset($errors)) $result .= $this->_printWarnings($errors, "error");
       if (isset($warnings)) $result .= $this->_printWarnings($warnings, "warn");
       $result .= "}\r\n\r\n";
+      echo "<script type='text/javascript'>".$result."</script>";
     }
-    $result .= "$code \r\n";
 
-    return $result;
+    return $code;
   }
    
   function _printWarnings($warnings, $level="log") {
