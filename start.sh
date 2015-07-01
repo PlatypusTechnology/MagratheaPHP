@@ -123,16 +123,16 @@ cat <<EOF >app/inc/global.php
 	include($magrathea_path."/LOAD.php");
  
 	// initialize Smarty. eh.. I don't think there is a more beautiful way of doing this
-	$Smarty = new Smarty;
-	$Smarty->template_dir = $site_path."/app/Views/";
-	$Smarty->compile_dir  = $site_path."/app/Views/_compiled";
-	$Smarty->config_dir   = $site_path."/app/Views/configs";
-	$Smarty->cache_dir    = $site_path."/app/Views/_cache";
-	$Smarty->error_reporting = E_ALL & ~E_NOTICE; 
-	$Smarty->configLoad("site.conf");
+	\$Smarty = new Smarty;
+	\$Smarty->template_dir = \$site_path."/app/Views/";
+	\$Smarty->compile_dir  = \$site_path."/app/Views/_compiled";
+	\$Smarty->config_dir   = \$site_path."/app/Views/configs";
+	\$Smarty->cache_dir    = \$site_path."/app/Views/_cache";
+	\$Smarty->error_reporting = E_ALL & ~E_NOTICE; 
+	\$Smarty->configLoad("site.conf");
 
 	// initialize the MagratheaView and sets it to Smarty	
-	$Smarty->assign("View", MagratheaView::Instance());
+	\$Smarty->assign("View", MagratheaView::Instance());
  
 	// for printing the paths of your css and javascript (that will be included in the index.php)
 	MagratheaView::Instance()->IsRelativePath(false);
@@ -146,9 +146,9 @@ cat <<EOF >app/inc/config.php
 <?php
 
 	// set the path of magrathea framework (this way is possible to have only one instance of the framework for multiple projects)
-	$magrathea_path = "path/to/MagratheaPHP/Magrathea";	// element
+	\$magrathea_path = "path/to/MagratheaPHP/Magrathea";	// element
 	// set the path of your site (you can set this manually as well)
-	$site_path = __DIR__."/../..";
+	\$site_path = __DIR__."/../..";
 
 ?>
 EOF
@@ -159,10 +159,10 @@ echo -e "\nadmin.php... "
 cat <<EOF >app/admin.php
 <?php
 	include("inc/global.php");
-	include($magrathea_path."/MagratheaAdmin.php"); // $magrathea_path should already be declared
+	include(\$magrathea_path."/MagratheaAdmin.php"); // \$magrathea_path should already be declared
 
-	$admin = new MagratheaAdmin(); // adds the admin file
-	$admin->Load(); // load!
+	\$admin = new MagratheaAdmin(); // adds the admin file
+	\$admin->Load(); // load!
 
 ?>
 EOF
