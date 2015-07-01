@@ -147,23 +147,29 @@ class MagratheaConfigFile {
 	/**
 	*	Set the path to the confi file
 	*	@param 	string 	$p 		Path to be set
+	*	@return 	itself
 	*/
 	public function setPath($p){
 		$this->path = $p;
+		return $this;
 	}
 	/**
 	*	Sets the config information
 	*	@param 	array 	$c 		Config to be set
+	*	@return 	itself
 	*/
 	public function setConfig($c){
 		$this->configs = $c;
+		return $this;
 	}
 	/**
 	*	Sets the name of the config file
 	*	@param 	string 	$filePath 	Name of the config file
+	*	@return 	itself
 	*/
 	public function setFile($filePath){
 		$this->config_file_name = $filePath;
+		return $this;
 	}
 	/**
 	*	Loads the configuration file

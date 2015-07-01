@@ -76,7 +76,7 @@ cat <<EOF >configs/magrathea.conf
 	db_user = "root"
 	db_pass = "password"
 	site_path = "$PWD/app"
-	magrathea_path = "$PWD/Magrathea/"
+	magrathea_path = "$PWD/Magrathea"
 	compress_js = "false"
 	compress_css = "false"
 	url = "http://localhost.com"
@@ -87,7 +87,7 @@ cat <<EOF >configs/magrathea.conf
 	db_user = "root"
 	db_pass = "password"
 	site_path = "prod_path/app"
-	magrathea_path = "prod_path/Magrathea/"
+	magrathea_path = "prod_path/Magrathea"
 	compress_js = "false"
 	compress_css = "false"
 	url = "http://localhost.com"
@@ -120,7 +120,7 @@ cat <<EOF >app/inc/global.php
 	include("config.php");
  
 	// looooooaaaadddiiiiiinnnnnnggggg.....
-	include($magrathea_path."/LOAD.php");
+	include(\$magrathea_path."/LOAD.php");
  
 	// initialize Smarty. eh.. I don't think there is a more beautiful way of doing this
 	\$Smarty = new Smarty;
@@ -153,7 +153,66 @@ cat <<EOF >app/inc/config.php
 ?>
 EOF
 cp app/inc/config.php app/inc/config.php.sample
+cat <<EOF >app/index.php
+<?php
+	include("inc/global.php");
+	echo "Welcome to Magrathea!";
 
+	MagratheaController::IncludeAllControllers();
+	MagratheaModel::IncludeAllModels();
+
+	// css & javascript
+	try{
+		MagratheaView::Instance()
+			->IncludeCSS("css/style.css")
+			->IncludeJavascript("javascript/scripts.js");
+	} catch(Exception \$ex){
+		BaseControl::DisplayError(\$ex);
+	}
+	
+	MagratheaRoute::Instance()
+		->Route(\$control, \$action, \$params);
+
+	try{
+		// looooooaad!
+		MagratheaController::Load(\$control, \$action, \$params);
+	} catch (Exception \$ex) {
+		BaseControl::Go404();
+	}
+?>
+EOF
+cat <<EOF >app/Controls/_Controller.php
+<?php
+class BaseControl extends MagratheaController {
+	public static function Go404(){
+		return;
+	}
+	public static function DisplayError(\$error){
+		echo \$error->getMessage();
+		return;
+	}
+}
+?>
+EOF
+cat <<EOF >app/.htaccess
+RewriteEngine On
+ 
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+ 
+	# Do not do anything for already existing files and folders
+	RewriteCond %{REQUEST_FILENAME} -f [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule .+ - [L]
+ 
+	#Respect this rules for redirecting:
+	RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/(.*)\$ index.php?magrathea_control=\$1&magrathea_action=\$2&magrathea_params=\$3 [QSA,L]
+	RewriteRule ^([a-zA-Z0-9_-]+)/(.*)\$ index.php?magrathea_control=\$1&magrathea_action=\$2 [QSA,L]
+	RewriteRule ^(.*)\$ index.php?magrathea_control=\$1 [QSA,L]
+ 
+</IfModule>
+EOF
 
 echo -e "\nadmin.php... "
 cat <<EOF >app/admin.php
