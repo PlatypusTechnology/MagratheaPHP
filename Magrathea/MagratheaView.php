@@ -193,7 +193,7 @@ class MagratheaView{
 					$jsContent .= "<!--error compressing javascript! could not write file-->";
 					$jsContent .= $this->Javascripts("false");
 					return $jsContent;
-				} 
+				}
 				fclose($handle); 
 			}
 			$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."'></script>\n"; 
