@@ -239,6 +239,7 @@ _compressed/
 app/plugins/
 logs
 medias
+*.magratheaDB
 EOF
 
 
