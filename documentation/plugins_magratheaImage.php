@@ -85,13 +85,13 @@ FOR EACH ROW SET NEW.updated_at = NOW();
         <b>magratheaimage_code</b>:<br/>
         Prints magrathea image HTML code:<br/>
         (title, width, height and style are optional parameters.)
-        <pre>{magratheaimage_code title="image name" id="42" width="300" height="200" style="padding-top: 10px" class="img"}</pre>
+        <pre class="prettyprint linenums">{magratheaimage_code title="image name" id="42" width="300" height="200" style="padding-top: 10px" class="img"}</pre>
       </li>
       <li>
         <b>magratheaimage_url</b>:<br/>
         Prints magrathea image direct url:<br/>
         (width and height are optional parameters.)
-        <pre>{magratheaimage_url id="42" width="300" height="200"}</pre>
+        <pre class="prettyprint linenums">{magratheaimage_url id="42" width="300" height="200"}</pre>
       </li>
     </ul>
   </p>

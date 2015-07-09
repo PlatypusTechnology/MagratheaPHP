@@ -13,7 +13,7 @@
 		Be sure that your plugins folder (app/plugins) have the correct permissions to be written!
 		</div>
 		After installing it, you should call the plugin data from your code - example, adding the following to index.php:
-		<pre>include("plugins/angular/load.php");</pre>
+		<pre class="prettyprint linenums">include("plugins/angular/load.php");</pre>
 	</p>
 	<h3>Create your own plugins</h3>
 	<p>
