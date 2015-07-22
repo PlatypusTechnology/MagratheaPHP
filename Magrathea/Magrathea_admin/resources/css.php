@@ -73,4 +73,9 @@ label.ll {
 .ll_checkbox {
 	margin-top: -3px;
 }
+
+ul.nav-list li a i {
+    margin-right: 8px;	
+}
+
 </style>

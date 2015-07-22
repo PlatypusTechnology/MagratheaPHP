@@ -45,7 +45,6 @@ class MagratheaCompressor {
   /**
    * Adds a source file to the list of files to compile.  Files will be
    * concatenated in the order they are added.
-   * @todo  improve and fix some issues. So far, recommended is to turn compression off
    */
   function add($file) {
     $this->files[] = $file;

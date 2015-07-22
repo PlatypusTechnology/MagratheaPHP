@@ -19,8 +19,9 @@
     <title>Magrathea</title>
     
     <!-- ===================== CSS ===================== -->
-    <? include("resources/css.php") ?>
+    <!-- inline: -->
     <?=MagratheaView::Instance()->InlineCSS()?>
+    <? include("resources/css.php") ?>
 
   </head>
   <body> 
