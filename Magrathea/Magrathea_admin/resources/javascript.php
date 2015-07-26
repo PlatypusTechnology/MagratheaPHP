@@ -80,7 +80,7 @@ function MagratheaPost(page, data, callback){
 	});
 }
 
-function ColorBox(page, data, callback){
+function ColorBox(page){
 	var url = "<?=$basename?>?page=load_customadmin.php&custom="+page;
 	$.colorbox({href: url});
 }
@@ -116,6 +116,7 @@ function loadCustomAdmin(custom){
 	$.ajax({
 		url: "?page=load_customadmin.php&custom="+custom,
 		success: function(data){
+			console.info(data);
 			$("#main_content").html(data);
 			scrollToTop();
 		}
