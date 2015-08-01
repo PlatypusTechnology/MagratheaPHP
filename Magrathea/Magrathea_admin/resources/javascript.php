@@ -116,7 +116,7 @@ function loadCustomAdmin(custom){
 	$.ajax({
 		url: "?page=load_customadmin.php&custom="+custom,
 		success: function(data){
-			console.info(data);
+//			console.info(data);
 			$("#main_content").html(data);
 			scrollToTop();
 		}

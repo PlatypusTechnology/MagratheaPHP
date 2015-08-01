@@ -16,7 +16,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Magrathea</title>
+    <title><?=$this->title?> - Magrathea Admin</title>
     
     <!-- ===================== CSS ===================== -->
     <!-- inline: -->
