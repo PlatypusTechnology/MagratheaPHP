@@ -57,6 +57,29 @@ function MagratheaPost(page, data, callback){
 		</ul>
 		Any other javascript for the page should be added inside &lt;script&gt; tags in the pages inside Admin.
 	</p>
+	<p>
+		If dropbox plugin is included in custom admin, you can as well call some of the adapted ColorBox functions:<br/>
+<pre class="prettyprint linenums">
+function ColorBox(page, options){
+	/* magic code here */
+
+	options.href = page;
+	$.colorbox(options);
+}
+function ColorBoxDo(action){
+	switch(action){
+		case "close":
+		$.colorbox.close()
+	}
+}</pre>
+		The parameters for <i>ColorBox</i> are: <br/>
+		<ul>
+			<li><b>page</b>: the page inside Magrathea Admin to be called.</li>
+			<li><b>options</b>: options for color box
+		</ul>
+		<br/>
+		And the actions so far available in <i>ColorBoxDo</i> is only "close".
+	</p>
 	<h3>Magrathea Admin</h3>
 	<p>
 		Lots of possibilities can be done with the <a href="class-MagratheaAdmin.html.php">MagratheaAdmin</a> object.<br/>
