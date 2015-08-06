@@ -79,6 +79,9 @@ function ColorBoxDo(action){
 		</ul>
 		<br/>
 		And the actions so far available in <i>ColorBoxDo</i> is only "close".
+		<br/><br/>
+		More information on Colorbox plugin, as well as options, are available at: <a href="http://www.jacklmoore.com/colorbox/" target="_blank">http://www.jacklmoore.com/colorbox/</a>.
+
 	</p>
 	<h3>Magrathea Admin</h3>
 	<p>
