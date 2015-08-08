@@ -85,7 +85,7 @@ function queryBuilder(){
 	var code = $("#query_build").val();
 	responseHere = $("#query_run");
 	$.ajax({
-		url: "?page=query_builder.php",
+		url: "?magpage=query_builder.php",
 		type: "POST",
 		data: { 
 			exec: code
@@ -100,7 +100,7 @@ function queryRun(){
 	var code = $("#query_run").val();
 	responseDiv = $("#database_result");
 	$.ajax({
-		url: "?page=database_run.php",
+		url: "?magpage=database_run.php",
 		type: "POST",
 		data: { 
 			sql: code

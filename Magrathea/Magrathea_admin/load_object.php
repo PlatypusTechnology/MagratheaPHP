@@ -315,7 +315,7 @@ function DeleteRelation(rel_name){
 	console.info("deleting "+rel_name);
 	if( !confirm("Delete this relation? Are you sure?") ) return false;
 	$.ajax({
-		url: "?page=delete_relation.php",
+		url: "?magpage=delete_relation.php",
 		type: "GET",
 		data: { 
 			relation: rel_name
@@ -333,7 +333,7 @@ function DeleteRelation(rel_name){
 
 function loadFieldsFromObject(obj_name){
 	$.ajax({
-		url: "?page=object_relation_fields.php",
+		url: "?magpage=object_relation_fields.php",
 		type: "POST",
 		data: { 
 			object: obj_name

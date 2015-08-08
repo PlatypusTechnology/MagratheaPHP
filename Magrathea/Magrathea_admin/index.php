@@ -16,11 +16,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Magrathea - <?=$this->title?></title>
+    <title><?=$this->title?> - Magrathea Admin</title>
     
     <!-- ===================== CSS ===================== -->
-    <? include("resources/css.php") ?>
+    <!-- inline: -->
     <?=MagratheaView::Instance()->InlineCSS()?>
+    <? include("resources/css.php") ?>
 
   </head>
   <body> 

@@ -7,7 +7,7 @@
 function loadCoder(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=coder");
 	$.ajax({
-		url: "?page=load_coder.php",
+		url: "?magpage=load_coder.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Let's code!");
@@ -19,7 +19,7 @@ function loadCoder(){
 function loadTable(table_name){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=table"+table_name);
 	$.ajax({
-		url: "?page=load_table.php",
+		url: "?magpage=load_table.php",
 		type: "POST",
 		data: { 
 			table: table_name
@@ -35,7 +35,7 @@ function loadTable(table_name){
 function loadTableData(table_name){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=tabledata"+table_name);
 	$.ajax({
-		url: "?page=load_tableData.php",
+		url: "?magpage=load_tableData.php",
 		type: "POST",
 		data: { 
 			table: table_name
@@ -52,7 +52,7 @@ function loadTableData(table_name){
 function loadObject(obj_name){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=obj"+obj_name);
 	$.ajax({
-		url: "?page=load_object.php",
+		url: "?magpage=load_object.php",
 		type: "POST",
 		data: { 
 			object: obj_name
@@ -68,7 +68,7 @@ function loadObject(obj_name){
 function loadDatabaseManager(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=migration");
 	$.ajax({
-		url: "?page=load_migration.php",
+		url: "?magpage=load_migration.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Database");
@@ -81,7 +81,7 @@ function loadDatabaseManager(){
 function loadConfig(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=config");
 	$.ajax({
-		url: "?page=load_configuration.php",
+		url: "?magpage=load_configuration.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Magrathea Configuration");
@@ -92,7 +92,7 @@ function loadConfig(){
 function loadConfigSection(){
 	var section = $("#use_environment").val();
 	$.ajax({
-		url: "?page=load_configuration_section.php&section="+section,
+		url: "?magpage=load_configuration_section.php&section="+section,
 		success: function(data){
 			$("#LoadConfigSection").html(data);
 			scrollToTop();
@@ -103,7 +103,7 @@ function loadConfigSection(){
 function loadPlugins(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=plugins");
 	$.ajax({
-		url: "?page=load_plugins.php",
+		url: "?magpage=load_plugins.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Plugins");
@@ -115,7 +115,7 @@ function loadPlugins(){
 function loadLogs(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=logs");
 	$.ajax({
-		url: "?page=load_logs.php",
+		url: "?magpage=load_logs.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Logs");
@@ -127,7 +127,7 @@ function loadLogs(){
 function loadValidate(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=validate");
 	$.ajax({
-		url: "?page=load_validate.php",
+		url: "?magpage=load_validate.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("Logs");
@@ -138,7 +138,7 @@ function loadValidate(){
 function loadTests(){
 	history.replaceState({}, "Magrathea Admin - Testing...", "<?=$basename?>?area=tests");
 	$.ajax({
-		url: "?page=load_tests.php",
+		url: "?magpage=load_tests.php",
 		success: function(data){
 			$("#tests_response").html(data);
 			$("#tests_response > ul").addClass("nav").addClass("nav-list").addClass("menu_sublist");
@@ -156,7 +156,7 @@ function loadTests(){
 function loadUnitTest(test){
 	history.replaceState({}, "Magrathea Admin - Test", "<?=$basename?>?area=tests&load="+test);
 	$.ajax({
-		url: "?page=load_tests.php&test="+test,
+		url: "?magpage=load_tests.php&test="+test,
 		success: function(data){
 			$("#main_content").html(data);
 			$("#main_content h1").html(test);
@@ -168,7 +168,7 @@ function loadUnitTest(test){
 
 function loadPhpInfo(){
 	$.ajax({
-		url: "?page=load_phpinfo.php",
+		url: "?magpage=load_phpinfo.php",
 		success: function(data){
 			$("#main_content").html(data);
 			$("#pageTitle").html("PHP Info");
@@ -179,7 +179,7 @@ function loadPhpInfo(){
 
 function createFieldInTable(table_name){
 	$.ajax({
-		url: "?page=add_create_and_update.php",
+		url: "?magpage=add_create_and_update.php",
 		type: "POST",
 		data: { 
 			table: table_name
@@ -192,7 +192,7 @@ function createFieldInTable(table_name){
 }
 
 function createObject(){
-	$.post("?page=create_object.php", 
+	$.post("?magpage=create_object.php", 
 		$("#form_object").serialize(),
 		function (data){
 			var success = data.substr(0, 12);
@@ -204,7 +204,7 @@ function createObject(){
 }
 
 function saveObject(){
-	$.post("?page=save_object.php", 
+	$.post("?magpage=save_object.php", 
 		$("#form_object").serialize(),
 		function (data){
 			var success = data.substr(0, 12);
@@ -224,7 +224,7 @@ function saveConfig(specific){
 	console.info(config_data);
 	$.ajax({
 		type: "POST",
-		url: "?page=save_configuration.php",
+		url: "?magpage=save_configuration.php",
 		data: config_data,
 		success: function(data){
 			var success_var = data.substr(0, 12);
@@ -237,7 +237,7 @@ function saveConfig(specific){
 
 function loadMenu(clickhere){
 	$.ajax({
-		url: "?page=menu.php",
+		url: "?magpage=menu.php",
 		success: function(data){
 			$("#main_menu_div").html(data);
 			if( clickhere ){

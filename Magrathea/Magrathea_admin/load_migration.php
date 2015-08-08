@@ -79,7 +79,7 @@ function databaseDetail(obj, element){
 	responseIn = $("#query_run");
 	$(responseIn).html("Loading...");
 	$.ajax({
-		url: "?page=database_table.php",
+		url: "?magpage=database_table.php",
 		type: "POST",
 		data: { 
 			object: obj
@@ -95,7 +95,7 @@ function queryRun(){
 	var code = $("#query_run").val();
 	responseDiv = $("#database_result");
 	$.ajax({
-		url: "?page=database_run.php",
+		url: "?magpage=database_run.php",
 		type: "POST",
 		data: { 
 			sql: code

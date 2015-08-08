@@ -122,7 +122,7 @@ function pluginDetail(pluginFolder, element){
 	var responseDiv = $(parent).find(".plugin_details");
 	$(responseDiv).html("Loading...");
 	$.ajax({
-		url: "?page=plugin_details.php",
+		url: "?magpage=plugin_details.php",
 		type: "POST",
 		data: { 
 			folder: "Magrathea",
@@ -136,7 +136,7 @@ function pluginDetail(pluginFolder, element){
 
 function installPlugin(pluginFolder){
 	$.ajax({
-		url: "?page=plugin_install.php",
+		url: "?magpage=plugin_install.php",
 		type: "POST",
 		data: { 
 			plugin_folder: pluginFolder,
@@ -157,7 +157,7 @@ function installPlugin(pluginFolder){
 function pluginQueryRun(pluginFolder){
 	var code = $("#"+pluginFolder+"_query").val();
 	$.ajax({
-		url: "?page=database_run.php",
+		url: "?magpage=database_run.php",
 		type: "POST",
 		data: { 
 			sql: code
@@ -171,7 +171,7 @@ function pluginQueryRun(pluginFolder){
 
 function removePlugin(pluginFolder){
 	$.ajax({
-		url: "?page=plugin_install.php",
+		url: "?magpage=plugin_install.php",
 		type: "POST",
 		data: { 
 			plugin_folder: pluginFolder,

@@ -68,7 +68,7 @@ function tail(){
 	if(lines == 0) lines = 25;
 
 	$.ajax({
-		url: "?page=log_tail.php&file="+logName+"&lines="+lines,
+		url: "?magpage=log_tail.php&file="+logName+"&lines="+lines,
 		type: "POST",
 		success: function(data){
 			$("#logResult").slideDown("slow");

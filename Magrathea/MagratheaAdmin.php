@@ -63,7 +63,7 @@ class MagratheaAdmin {
 	 */
 	public function Load(){
 		$dir = __DIR__."/Magrathea_admin/";
-		$page = @$_GET["page"];
+		$page = @$_GET["magpage"];
 		if(empty($page)) $page = "index.php";
 
 		include ($dir.$page);
@@ -74,7 +74,7 @@ class MagratheaAdmin {
 	 */
 	public function LoadCustom(){
 		$dir = __DIR__."/Magrathea_admin/";
-		$page = @$_GET["page"];
+		$page = @$_GET["magpage"];
 		if(empty($page)) $page = "index_custom.php";
 
 		include ($dir.$page);
@@ -83,7 +83,7 @@ class MagratheaAdmin {
 	/**
 	 * Adds a plugin for admin
 	 * @param 	string 		$pluginName 		folder of selected plugin
-	 * @todo  load plugins for font-awesome and jquery automatically from the function add plugin, instead adding the code on resources
+	 * @return 	itself
 	 */
 	public function AddPlugin($pluginName, $required=false){
 		$site_path = MagratheaConfig::Instance()->GetFromDefault("site_path");
@@ -94,19 +94,30 @@ class MagratheaAdmin {
 			}
 			throw new MagratheaAdminException("Plugin [".$pluginName."] could not be found!");
 		}
-			
+		return $this;	
 	}
 
 	/**
 	 * adds CSS to the admin (it will be added inline in page)
 	 * @param 	string 		$cssPath 		path of CSS (have to be in Admin folder)
+	 * @return 	itself
 	 */
 	public function IncludeCSS($cssPath){
-//		$site_path = MagratheaConfig::Instance()->GetFromDefault("site_path");
 		$admin_path = "../Admin";
 		MagratheaView::Instance()->IncludeCSS($admin_path."/".$cssPath);
+		return $this;
 	}
 
+	/**
+	 * adds CSS to the admin (it will be added inline in page)
+	 * @param 	string 		$cssPath 		path of CSS (have to be in Admin folder)
+	 * @return 	itself
+	 */
+	public function IncludeJavascript($jsPath){
+		$admin_path = "../Admin";
+		MagratheaView::Instance()->IncludeJavascript($admin_path."/".$jsPath);
+		return $this;
+	}
 
 }
 

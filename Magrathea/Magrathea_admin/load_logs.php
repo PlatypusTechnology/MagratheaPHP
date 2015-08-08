@@ -131,7 +131,7 @@ function openLog(l){
 
 function removeFile(l){
 	$.ajax({
-		url: "?page=log_remove.php&file="+l,
+		url: "?magpage=log_remove.php&file="+l,
 		success: function(data){
 			loadLogs();
 		}
@@ -150,7 +150,7 @@ function tail(){
 	if(lines == 0) lines = 50;
 
 	$.ajax({
-		url: "?page=log_tail.php&file="+logName+"&lines="+lines,
+		url: "?magpage=log_tail.php&file="+logName+"&lines="+lines,
 		type: "POST",
 		success: function(data){
 			$("#logSection").slideDown("slow");
@@ -164,6 +164,6 @@ function externalize(file){
 	if(!file) file = logName;
 	var lines = parseInt($("#lines").val());
 	if(lines == 0) lines = 50;
-	window.open("?page=logs.php&file="+file+"&lines="+lines, "MagratheaLogs");
+	window.open("?magpage=logs.php&file="+file+"&lines="+lines, "MagratheaLogs");
 }
 </script>

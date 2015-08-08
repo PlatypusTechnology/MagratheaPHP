@@ -67,7 +67,7 @@ $.fn.serializeObject = function(){
 
 
 function MagratheaPost(page, data, callback){
-	var url = "<?=$basename?>?page=load_customadmin.php&custom=" + page;
+	var url = "<?=$basename?>?magpage=load_customadmin.php&custom=" + page;
 	if(!callback){
 		callback = function(data){
 			$("#main_content").html(data);
@@ -80,9 +80,13 @@ function MagratheaPost(page, data, callback){
 	});
 }
 
-function ColorBox(page, data, callback){
-	var url = "<?=$basename?>?page=load_customadmin.php&custom="+page;
-	$.colorbox({href: url});
+function ColorBox(page, options){
+	if(!options){
+		options = {};
+	}
+	var url = "<?=$basename?>?magpage=load_customadmin.php&custom="+page;
+	options.href = url;
+	$.colorbox(options);
 }
 function ColorBoxDo(action){
 	switch(action){
@@ -97,7 +101,7 @@ function scrollToTop(){
 
 function loadCustom(){
 	$.ajax({
-		url: "?page=load_customadmin.php",
+		url: "?magpage=load_customadmin.php",
 		success: function(data){
 			$("#admin_response").html(data);
 			$("#admin_response > ul").addClass("nav").addClass("nav-list").addClass("menu_sublist");
@@ -114,8 +118,9 @@ function loadCustom(){
 function loadCustomAdmin(custom){
 	history.replaceState({}, "Magrathea Admin", "<?=$basename?>?area=custom&custompage="+custom);
 	$.ajax({
-		url: "?page=load_customadmin.php&custom="+custom,
+		url: "?magpage=load_customadmin.php&custom="+custom,
 		success: function(data){
+//			console.info(data);
 			$("#main_content").html(data);
 			scrollToTop();
 		}
