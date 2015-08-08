@@ -60,7 +60,7 @@ require ("admin_load.php");
 <script type="text/javascript">
 function generateCode(){
 	$.ajax({
-		url: "?page=generate_code.php",
+		url: "?magpage=generate_code.php",
 		success: function(data){
 			$("#code_result").html(data);
 		}

@@ -94,7 +94,7 @@ function testConnection(){
 		name: $("input#db_name").val()
 	};
 	$.ajax({
-			url: "?page=database_test.php",
+			url: "?magpage=database_test.php",
 			type: "POST",
 			data: conn, 
 			success: function(data){
