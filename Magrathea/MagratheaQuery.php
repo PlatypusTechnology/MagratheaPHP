@@ -218,7 +218,7 @@ class MagratheaQuery{
 			$this->SelectObj($object);
 			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$this->obj_base->GetDbTable().".".$field." = ".$object->GetDbTable().".".$object->GetPkName();
 		} catch(Exception $ex){
-			throw new MagratheaModelException("MagratheaQuery 'HasOne' must be used with MagratheaModels");
+			throw new MagratheaModelException("MagratheaQuery 'HasOne' must be used with MagratheaModels => ".$ex->getMessage());
 		}
 		array_push($this->joinArr, $joinGlue);
 		array_push($this->obj_array, $object);
@@ -235,7 +235,7 @@ class MagratheaQuery{
 			if(!$this->obj_base) throw new MagratheaModelException("Object Base is not an object");
 			$object = $this->GiveMeThisObjectCorrect($object);
 			$this->SelectObj($object);
-			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$object->GetDbTable().".".$object->GetPkName()." = ".$this->obj_base->GetDbTable().".".$field;
+			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$object->GetDbTable().".".$field." = ".$this->obj_base->GetDbTable().".".$this->obj_base->GetPkName();
 		} catch(Exception $ex){
 			throw new MagratheaModelException("MagratheaQuery 'BelongsTo' must be used with MagratheaModels => ".$ex->getMessage());
 		}
