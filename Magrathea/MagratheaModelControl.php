@@ -89,8 +89,10 @@ abstract class MagratheaModelControl{
 	 * @return  Array<Object> 		List of objects
 	 */
 	public static function Run($magQuery, $onlyFirst=false){
-		$array_obj = $magQuery->GetObjArray();
-		if(count($array_obj) > 0){
+		$array_joins = $magQuery->GetJoins();
+		$arrayObjs = array();
+
+		if(count($array_joins) > 0){
 			$objects = array();
 			$result = static::QueryResult($magQuery->SQL());
 			foreach ($result as $r) {
@@ -99,10 +101,22 @@ abstract class MagratheaModelControl{
 				if(count($splitResult) > 0)
 					$r = $splitResult[$new_object->GetDbTable()];
 				$new_object->LoadObjectFromTableRow($r);
-				foreach($array_obj as $obj){
+				foreach($array_joins as $join){
+					$obj = $join["obj"];
 					$obj->LoadObjectFromTableRow($splitResult[$obj->GetDbTable()]);
 					$objname = get_class($obj);
-					$new_object->$objname = clone $obj;
+					if($join["type"] == "has_many"){
+						$objnameField = $objname."s";
+						if( empty($arrayObjs[$new_object->GetID()]) )
+							$arrayObjs[$new_object->GetID()] = array();
+						if( empty($arrayObjs[$new_object->GetID()][$objnameField]) )
+							$arrayObjs[$new_object->GetID()][$objnameField] = array();
+						$objIndex = count($arrayObjs[$new_object->GetID()][$objnameField]);
+						$arrayObjs[$new_object->GetID()][$objnameField][$objIndex] = clone $obj;
+						$new_object->$objnameField = $arrayObjs[$new_object->GetID()][$objnameField];
+					} else {
+						$new_object->$objname = clone $obj;
+					}
 					unset($obj);
 				}
 				array_push($objects, clone $new_object);

@@ -58,6 +58,7 @@ class MagratheaQuery{
 		$this->selectDefaultArr = array();
 		$this->join = "";
 		$this->joinArr = array();
+		$this->joinType = array();
 		$this->where = "";
 		$this->whereArr = array();
 		$this->order = "";
@@ -221,9 +222,31 @@ class MagratheaQuery{
 			throw new MagratheaModelException("MagratheaQuery 'HasOne' must be used with MagratheaModels => ".$ex->getMessage());
 		}
 		array_push($this->joinArr, $joinGlue);
+		array_push($this->joinType, "has_one");
 		array_push($this->obj_array, $object);
 		return $this;
 	}
+	/**
+	 * Gets automatically related object
+	 * @param 	object or string 		$object 		object or string that will be returned in the query
+	 * @param 	string 					$field  		field that is responsible for the relation (from the main object)
+	 * @return  itself
+	 */	
+	public function HasMany($object, $field){
+		try{
+			if(!$this->obj_base) throw new MagratheaModelException("Object Base is not an object");
+			$object = $this->GiveMeThisObjectCorrect($object);
+			$this->SelectObj($object);
+			$joinGlue = " INNER JOIN ".$object->GetDbTable()." ON ".$object->GetDbTable().".".$field." = ".$this->obj_base->GetDbTable().".".$this->obj_base->GetPkName();
+		} catch(Exception $ex){
+			throw new MagratheaModelException("MagratheaQuery 'HasMany' must be used with MagratheaModels => ".$ex->getMessage());
+		}
+		array_push($this->joinArr, $joinGlue);
+		array_push($this->joinType, "has_many");
+		array_push($this->obj_array, $object);
+		return $this;
+	}
+
 	/**
 	 * Gets automatically related object
 	 * @param 	object or string 		$object 		object or string that will be returned in the query
@@ -240,6 +263,7 @@ class MagratheaQuery{
 			throw new MagratheaModelException("MagratheaQuery 'BelongsTo' must be used with MagratheaModels => ".$ex->getMessage());
 		}
 		array_push($this->joinArr, $joinGlue);
+		array_push($this->joinType, "belongs_to");
 		array_push($this->obj_array, $object);
 		return $this;
 	}
@@ -281,6 +305,22 @@ class MagratheaQuery{
 	 */
 	public function GetObjArray(){
 		return $this->obj_array;
+	}
+	/**
+	 * all the joins that were built in this query
+	 * @return 		array 	the objects that we have here...
+	 */
+	public function GetJoins(){
+		$joins = array();
+		foreach ($this->joinArr as $key => $join) {
+			$j = array( 
+				"type" => $this->joinType[$key], 
+				"obj" => $this->obj_array[$key],
+				"glue" => $this->joinArr[$key]
+			);
+			array_push($joins, $j);
+		}
+		return $joins;
 	}
 
 	/**
