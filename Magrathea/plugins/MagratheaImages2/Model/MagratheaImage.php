@@ -39,7 +39,12 @@ class MagratheaImage extends MagratheaImageBase {
 	public function SilentLoad(){
 		$this->LoadConfig();
 		try{
-			$this->image = WideImage::load($this->imagesPath.$this->filename);
+			/*
+			if(!$this->checkValidGd()){
+				throw new Exception("Image Format invalid");
+			}
+			*/
+			$this->image = WideImage::loadFromFile($this->imagesPath.$this->filename);
 		} catch(Exception $ex){
 			$this->error = $this->error."\n".$ex->getMessage();
 			$this->isError = true;
@@ -47,6 +52,7 @@ class MagratheaImage extends MagratheaImageBase {
 			return;
 		}
 		$this->imgSize = array('width' => $this->width, 'height' => $this->height);
+		return $this;
 	}
 	/**
 	 * Load image options and return object itself
@@ -56,6 +62,24 @@ class MagratheaImage extends MagratheaImageBase {
 		$this->SilentLoad();
 		return $this;
 	}
+	private function checkValidGd(){
+		switch($this->extension){
+			case "png":
+				return function_exists("imagecreatefrompng");
+			case "jpg":
+			case "jpeg":
+				return function_exists("imagecreatefromjpeg");
+			case "gif":
+				return function_exists("imagecreatefromgif");
+			case "bmp":
+			case "tga":
+				return true;
+			default:
+				return false;
+		}
+	}
+
+
 	/**
 	 * Builds thumb image with the predefined thumb size
 	 * @return itself
@@ -318,6 +342,16 @@ class MagratheaImage extends MagratheaImageBase {
 		return implode('.', $fname);
 	}
 
+	/**
+	 * 	Deletes the image - from the database and also deletes the file from server
+	 */
+	public function Delete(){
+		$file = $this->imagesPath.$this->filename; 
+		if(file_exists($file))
+			unlink($file);
+		parent::Delete();
+	}
+
 
 }
 
@@ -328,11 +362,10 @@ class MagratheaImageControl extends MagratheaImageControlBase {
 	 * @param 	integer 	$page       	page to pagination (default: 0)
 	 * @return  array<images> 		result of images
 	 */
-	public function GetXMostRecent($mostRecent = 20, $page=0){
+	public static function GetXMostRecent($mostRecent = 20, $page=0){
 		$query = new MagratheaQuery();
 		$query->Obj("MagratheaImage")->Order("id DESC")->Limit($mostRecent)->Page($page);
 		return self::Run($query);
-
 	}
 }
 
