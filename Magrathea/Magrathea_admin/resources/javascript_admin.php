@@ -124,6 +124,18 @@ function loadLogs(){
 	});
 }
 
+function loadStatic(){
+	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=static");
+	$.ajax({
+		url: "?magpage=load_static.php",
+		success: function(data){
+			$("#main_content").html(data);
+			$("#pageTitle").html("Static Html Generated Files");
+			scrollToTop();
+		}
+	});
+}
+
 function loadValidate(){
 	history.replaceState({}, "Magrathea Admin - Config", "<?=$basename?>?area=validate");
 	$.ajax({

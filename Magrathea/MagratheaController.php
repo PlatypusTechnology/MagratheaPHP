@@ -49,18 +49,91 @@ class MagratheaController {
 		exit;
 	}
 
+
+	private $staticPage = false;
 	/**
-	*	Displays a template with Smarty
-	*
-	*	@param 	string 	$template 	Page to display
+	*	Formats a static page name, adding .html and fixing other issues...
+	*	@param 		string 		$name 		Name of the static page 
 	*/
-	public function Display($template){
-		$this->Smarty->display($template);
+	public function formatStaticPageName($name){
+		$name = strtolower($name);
+		if (!preg_match("(.htm(l)?)$/i", $name)) {
+			$name = $name.".html";
+		}
+		return $name;
 	}
 
 	/**
+	*	Get all static files and return them as an array
+	*/
+	public static function GetAllStatic(){
+		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+		$staticPath = $appFolder."/Static/";
+		$results = scandir($staticPath);
+		$statics = array();
+		foreach ($results as $result) {
+		    if ($result === '.' or $result === '..') continue;
+			array_push($statics, $result);
+		}
+		sort($statics);
+		return $statics;
+	}
+
+	/**
+	*	Removes all static files from static folder
+	*/
+	public static function ClearStatic(){
+		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+		$staticPath = realpath($appFolder."/Static");
+		$output = shell_exec("rm ".$staticPath."/*");
+	}
+
+	/**
+	*	Sets a static name for the page that will be displayed.
+	*	When $die is true, 
+	*		if the page already exists, it will be displayed as it is and the code will be TERMINATED!
+	*	@param 	string 	$name 	Static name page
+	*	@param 	boolean	$die 	Terminate code if static found
+	*/
+	public function GetStatic($name, $die=true){
+		$staticName = $this->formatStaticPageName($name);
+		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+		$filePath = $appFolder."/Static/".$staticName;
+		if( file_exists($filePath) ){
+			$code = file_get_contents($filePath);
+			print($code);
+			if($die) die();
+			return true;
+		} else {
+			$this->staticPage = $staticName;
+			return false;
+		}
+	}
+
+	/**
+	*	Displays a template with Smarty
+	*	@param 	string 	$template 	Page to display
+	*/
+	public function Display($template){
+		if(!$this->staticPage) {
+			$this->Smarty->display($template);
+		} else {
+			$code = $this->Smarty->fetch($template);
+			$code .= "\n<!-- page generated at ".date("Y-m-d h:i:s")." -->";
+			$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+			$filePath = $appFolder."/Static/".$this->staticPage;
+			$file_handler = fopen($filePath, 'w');
+			fwrite($file_handler, $code);
+			fclose($file_handler);
+			echo $code;
+		}
+	}
+
+
+
+	/**
 	*	Creates an static page with the code and displays it
-	*
+	*	@deprecated
 	*	@param 	string 	$staticName 	Name of the static page to be generated
 	* 	@param 	string 	$template 		Template to display
 	*/
@@ -78,9 +151,8 @@ class MagratheaController {
 
 	/**
 	*	Show the static page with the given name, if it exists
-	*
+	*	@deprecated
 	*	@param 	string 	$staticName 	Name of the page to be shown
-	*
 	*	@return 	boolean	 	True if the page exists (and displays it); False if it doesn't 
 	*/
 	public static function LoadIfExists($staticName){

@@ -32,6 +32,8 @@ Tree:
 |  ├───  Models 
 |  |  └───  Base 		// write permission required
 |  | 
+|  ├───  Static			// when using static files, they will be placed here
+|  | 
 |  ├───  Views
 |  |  ├───  _cache			// for Smarty use
 |  |  ├───  _compiled		// for Smarty use

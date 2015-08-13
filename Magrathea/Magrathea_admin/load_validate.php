@@ -16,9 +16,13 @@ $magratheaModelsBase_ok  = is_writeable($magratheaModelsBase);
 $magratheaControls = realpath($site_path."/Controls");
 
 $css_compressed = realpath($site_path."/".MagratheaView::Instance()->GetCompressedPathCss());
-$css_compressed_ok  = is_writeable($css_compressed);
+$css_compressed_ok = is_writeable($css_compressed);
 $js_compressed = realpath($site_path."/".MagratheaView::Instance()->GetCompressedPathJs());
-$js_compressed_ok  = is_writeable($js_compressed);
+$js_compressed_ok = is_writeable($js_compressed);
+
+$staticPath = realpath($site_path."/Static");
+$staticPath_ok = is_writeable($staticPath);
+
 
 $plugins_path = realpath($site_path."/plugins");
 $plugins_path_ok  = is_writeable($plugins_path);
@@ -186,6 +190,15 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 							<?=$writePerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($js_compressed_ok ? "check" : "times")?>-circle"></i>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Static Files Path</b></td>
+						<td><?=($staticPath ? $staticPath : printError())?></td>
+						<td>
+							<?=$writePerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($staticPath_ok ? "check" : "times")?>-circle"></i>
 						</td>
 					</tr>
 				</tbody></table>

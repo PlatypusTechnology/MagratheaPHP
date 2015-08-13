@@ -48,6 +48,7 @@ $objects = getAllObjects();
     <li><a onClick="loadCoder();" id="menu_coder"><i class="fa fa-pencil"></i> Generate Code</a></li>
     <li><a onClick="loadPlugins();" id="menu_plugins"><i class="fa fa-thumb-tack"></i> Plugins</a></li>
 	<li><a onClick="loadDatabaseManager();" id="menu_migration"><i class="fa fa-database"></i> Database</a></li>
+	<li><a onClick="loadStatic();" id="menu_static"><i class="fa fa-file-code-o"></i> Static Generated</a></li>
 	<li><a onClick="loadLogs();" id="menu_logs"><i class="fa fa-files-o"></i> Logs</a></li>
 	<li><a onClick="loadValidate();" id="menu_validate"><i class="fa fa-sitemap"></i> Validate Structure</a></li>
 	<li class="submenu"><a onClick="loadTests();" id="menu_tests"><i class="fa fa-flask"></i> Tests</a>
