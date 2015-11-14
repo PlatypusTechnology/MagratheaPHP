@@ -48,7 +48,7 @@ $config = MagratheaConfig::Instance()->GetConfig();
 			<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-			<?
+			<?php
 			$objects = getAllObjects();
 			if(is_array($objects)){
 				$even = false;
@@ -62,7 +62,7 @@ $config = MagratheaConfig::Instance()->GetConfig();
 							</div>
 						</div>
 					</div>
-					<?
+					<?php
 				}
 				$even = !$even;
 			}

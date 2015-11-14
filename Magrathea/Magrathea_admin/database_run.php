@@ -27,7 +27,7 @@ foreach ($queryArr as $sql_query) {
 					Extended Result: <br/>
 					<textarea class="textarea_large"><?=print_r($result)?></textarea><br/>
 				</div>
-		<?
+		<?php
 		if(is_array($result)){
 			if(count($result) == 0){
 				echo "empty table";
@@ -37,29 +37,29 @@ foreach ($queryArr as $sql_query) {
 			<table class="table table-striped table-bordered">
 				<tbody>
 					<thead>
-						<?
+						<?php
 						foreach ($fields as $key => $value) {
 							echo "<th>".$key."</th>";
 						}
 						?>
 					</thead>
-					<?
+					<?php
 					$even = false;
 					foreach($result as $row){
 						?>
 						<tr <?=($even ? "class='even'" : "")?>>
-							<?
+							<?php
 							foreach ($row as $value) {
 								echo "<td>".$value."</td>";
 							}
 							?>
 						</tr>
-						<?
+						<?php
 					}
 					?>
 				</tbody>
 			</table>
-			<?
+			<?php
 			}
 		}
 	} catch(Exception $ex){
@@ -69,14 +69,14 @@ foreach ($queryArr as $sql_query) {
 			<strong>Error!</strong><br/>
 			<?=$ex->getMessage()?>
 		</div>
-		<?
+		<?php
 	}
 	?>
 			</div></div>
 		</content>
 	</div>
 </div>
-	<?
+	<?php
 }
 
 

@@ -132,7 +132,7 @@ function loadCustomAdmin(custom){
 function selectMenu(menu){
 	$("#menu_"+menu).click();
 }
-<?
+<?php
 	if(@$_GET["area"]){
 		echo "selectMenu('".$_GET["area"]."');";
 	}

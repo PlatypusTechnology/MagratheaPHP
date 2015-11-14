@@ -12,7 +12,6 @@ $indexes = $magdb->queryAll($query);
 
 ?>
 
-
 <div class="row-fluid">
 	<div class="span12 mag_section">
 		<header>
@@ -25,9 +24,7 @@ $indexes = $magdb->queryAll($query);
 	</div>
 </div>
 
-
-<?
-
+<?php
 $savedData = @loadConfig($table);
 $objexists = false;
 if( !empty($savedData) ){
@@ -43,7 +40,7 @@ if( !empty($savedData) ){
 		</div>
 	</div>
 </div>
-	<?
+	<?php
 }
 
 ?>
@@ -57,7 +54,7 @@ if( !empty($savedData) ){
 				<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-<?
+<?php
 	$pk = "";
 	$inputFields = array();
 	foreach($columns as $cl){
@@ -72,7 +69,7 @@ if( !empty($savedData) ){
 					<div class="span2">&nbsp;</div>
 					<div class="span10"><h5>Indexes</h5></div>
 				</div>
-<?
+<?php
 	foreach($indexes as $i){
 		if( $i["key_name"] == "PRIMARY" ) $type = '<i class="fa fa-key"></i>&nbsp;&nbsp;Id Key';
 		else if( $i["non_unique"] == 0 ) $type = "UNIQUE";
@@ -96,7 +93,7 @@ if( !empty($savedData) ){
 				<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-<?	
+<?php
 	if( $isTableReady ){
 		?>
 			<form id="form_object">
@@ -117,7 +114,7 @@ if( !empty($savedData) ){
 							<th>Type</th>
 							<th>Alias</th>
 						</thead>
-						<?
+						<?php
 				$even = false;
 				foreach($columns as $cl){
 					$selectedType = ($objexists && !empty($savedData[$cl["field"]."_type"])) ? $savedData[$cl["field"]."_type"] : getSelectedField($cl["type"]);
@@ -127,7 +124,7 @@ if( !empty($savedData) ){
 						<td><?=buildTypesSelect($cl["field"],$selectedType)?></td>
 						<td><input type="text" name="alias_<?=$cl["field"]?>" id="alias_<?=$cl["field"]?>" class="default input-medium" value="<?=@($objexists ? $savedData[$cl["field"]."_alias"] : "" )?>" /></td>
 					</tr>
-					<?
+					<?php
 					$even = !$even;
 				}
 						?>
@@ -148,7 +145,7 @@ if( !empty($savedData) ){
 			<div id="example_filter" class="dataTables_filter">
 			</div>
 		</div>
-		<?
+		<?php
 	} else {
 		echo "<section class='welly form_align'>Table is not ready to be an object yet...</section>";
 	}
@@ -157,14 +154,11 @@ if( !empty($savedData) ){
 	</div>
 </div>
 
-
-
-<?
+<?php
 
 function loadConfig($table){
 	return getObjectByTable($table);
 }
-
 
 function buildTypesSelect($fieldName, $selected){
 

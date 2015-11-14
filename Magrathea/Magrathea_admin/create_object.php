@@ -17,7 +17,7 @@ require ("admin_load.php");
 			<strong>Oh, crap! =(</strong><br/>
 			You forgot to tell us the name of the object, boy...
 		</div>
-		<?
+		<?php
 		die;
 	} else {
 		if( !ctype_alpha ( $object_name ) ){
@@ -28,7 +28,7 @@ require ("admin_load.php");
 				<strong>Ops, you did it wrong! =(</strong></br/>
 				An object name must have only chars...
 			</div>
-			<?
+			<?php
 			die;
 		} else {
 			$keywords = array('__halt_compiler', 'abstract', 'and', 'array', 'as', 'break', 'callable', 'case', 'catch', 'class', 'clone', 'const', 'continue', 'declare', 'default', 'die', 'do', 'echo', 'else', 'elseif', 'empty', 'enddeclare', 'endfor', 'endforeach', 'endif', 'endswitch', 'endwhile', 'eval', 'exit', 'extends', 'final', 'for', 'foreach', 'function', 'global', 'goto', 'if', 'implements', 'include', 'include_once', 'instanceof', 'insteadof', 'interface', 'isset', 'list', 'namespace', 'new', 'or', 'print', 'private', 'protected', 'public', 'require', 'require_once', 'return', 'static', 'switch', 'throw', 'trait', 'try', 'unset', 'use', 'var', 'while', 'xor');
@@ -42,7 +42,7 @@ require ("admin_load.php");
 					"<?=$object_name?>" is a PHP reserved word. It can't be used as object name.<br/>
 					Choose another one... =)
 				</div>
-				<?
+				<?php
 				die;
 			} else {
 				$object_name = ucfirst($object_name);
@@ -62,7 +62,7 @@ require ("admin_load.php");
 			<strong>Shit... error creating object!</strong><br/>
 			Could not create object config file. Please, be sure that PHP can write in the folder "<?=__DIR__.$filePath?>"...
 		</div>
-		<?
+		<?php
 		die;
 	}
 	$objdata = $mconfig->getConfig();
@@ -89,7 +89,7 @@ require ("admin_load.php");
 			<strong>Shit... error creating object!</strong><br/>
 			Could not create object config file. Please, be sure that PHP can write in the folder "/configs/"...
 		</div>
-		<?
+		<?php
 		die;
 	}
 

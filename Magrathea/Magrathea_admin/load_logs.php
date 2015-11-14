@@ -91,7 +91,7 @@ function loadLogs(){
 			<div class='row-fluid'>
 				<div class='span12 center'>
 				<table class="table table-striped"><tbody>
-			<?
+			<?php
 			$logs = loadLogs();
 			$even = false;
 			foreach($logs as $l){
@@ -109,7 +109,7 @@ function loadLogs(){
 						</button>
 					</td>
 				</tr>
-				<?
+				<?php
 				$even = !$even;
 			}
 			?>

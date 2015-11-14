@@ -21,12 +21,12 @@
     <!-- ===================== CSS ===================== -->
     <!-- inline: -->
     <?=MagratheaView::Instance()->InlineCSS()?>
-    <? include("resources/css.php") ?>
+    <?php include("resources/css.php") ?>
 
   </head>
   <body> 
 
-    <? include("header.php"); ?>              
+    <?php include("header.php"); ?>              
 
 	<div class="container main_container">
 
@@ -34,7 +34,7 @@
     ================================================== -->
     <div class="row">
       <div class="span3 bs-docs-sidebar" id="main_menu_div">
-				<? include("menu.php"); ?>
+				<?php include("menu.php"); ?>
       </div>
       <div class="span9" id="main_content">
     	</div>
@@ -53,7 +53,7 @@
 
     <!-- ===================== JS ===================== -->
     <?=MagratheaView::Instance()->InlineJavascript()?>
-    <? include("resources/javascript_admin.php") ?>
-    <? include("resources/javascript.php") ?>
+    <?php include("resources/javascript_admin.php") ?>
+    <?php include("resources/javascript.php") ?>
 
 </html>

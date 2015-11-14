@@ -24,7 +24,7 @@
 				<strong>There and back again</strong><br/>
 				Yeap... we tried to connect at <?=$host?> using the configuration above and... success!
 			</div>
-		<?
+		<?php
 	} else {
 		?>
 			<div class="alert alert-error">
@@ -34,7 +34,7 @@
 				"<?=$success?>"...<br/>
 				Fix the connection above, man, otherwise nothing will ever work!
 			</div>
-		<?
+		<?php
 	}
 
 

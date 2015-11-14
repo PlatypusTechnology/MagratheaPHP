@@ -56,7 +56,7 @@ function loadPluginsList($installed=false){
 			<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-			<?
+			<?php
 			$plugins = loadPluginsList();
 			$even = false;
 			$line_number = 1;
@@ -76,7 +76,7 @@ function loadPluginsList($installed=false){
 						</div>
 					</div>
 				</div>
-				<?
+				<?php
 				$even = !$even;
 			}
 			?>
@@ -92,7 +92,7 @@ function loadPluginsList($installed=false){
 			<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-			<?
+			<?php
 			$plugins = loadPluginsList(true);
 			if($plugins){
 				$even = false;
@@ -105,7 +105,7 @@ function loadPluginsList($installed=false){
 							<button class="btn btn-default" onClick="removePlugin('<?=$p?>');"><i class="fa fa-trash-o"></i>&nbsp;Unninstal</button>
 						</div>
 					</div>
-					<?
+					<?php
 					$even = !$even;
 				}
 			}

@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once ("admin_load.php");
 
@@ -13,7 +13,7 @@ $objects = getAllObjects();
 	<li><a onClick="loadConfig();" id="menu_config"><i class="fa fa-cogs"></i> Configuration</a></li>
     <li class="submenu"><a href="#"><i class="fa fa-table"></i> Tables <span class="number"><?=count($tables)?></span></a>
     	<ul class="nav nav-list menu_sublist" style="display: none;">
-		<?
+		<?php
 		if(is_array($tables)){
 			foreach($tables as $tb){
 				$tablename = $tb['table_name'];
@@ -25,7 +25,7 @@ $objects = getAllObjects();
     </li>
     <li class="submenu"><a href="#"><i class="fa fa-list"></i> Table Data <span class="number"><?=count($tables)?></span></a>
     	<ul class="nav nav-list menu_sublist" style="display: none;">
-		<?
+		<?php
 		if(is_array($tables)){
 			foreach($tables as $tb){
 				echo '<li><a onClick="loadTableData(\''.$tb['table_name'].'\');" id="menu_tabledata'.$tb['table_name'].'"><i class="fa fa-chevron-right icon_light"></i> '.$tb['table_name'].'</a></li>';
@@ -36,7 +36,7 @@ $objects = getAllObjects();
     </li>
     <li class="submenu"><a href="#"><i class="fa fa-inbox"></i> Objects <span class="number"><?=count($objects)?></span></a>
 			<ul class="nav nav-list menu_sublist" style="display: none;">
-		<?
+		<?php
 		if(is_array($objects)){
 			foreach($objects as $obj => $details){
 				echo '<li><a onClick="loadObject(\''.$obj.'\');" id="menu_obj'.$obj.'"><i class="fa fa-chevron-right icon_light"></i> '.$obj.'</a></li>';

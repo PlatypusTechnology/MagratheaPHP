@@ -34,7 +34,7 @@ require ("admin_load.php");
 		</header>
 		<content>
 			<div class='row-fluid'>
-					<?
+					<?php
 					$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
 					$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
 					if(file_exists($site_path."/../configs/magrathea_objects.conf")){
@@ -43,7 +43,7 @@ require ("admin_load.php");
 						<button class="btn btn-success" onClick="generateCode();"><i class="fa fa-pencil"></i>&nbsp;Generate Code</button>
 				</div>
 				<div class='span9'>&nbsp;</div>
-					<?
+					<?php
 					} else {
 						echo "<div class='span12'>Object file config does not exist yet. Create the objects first! ;D</div>";
 					}

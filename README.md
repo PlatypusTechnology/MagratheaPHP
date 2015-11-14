@@ -16,5 +16,12 @@ rm -rf MagratheaPHP
 
 ## changelog
 
-### version: 1.0
+#### version 1.0.1
+Static generation fixed
+Short PHP tags support fixed
+
+#### version: 1.0
+First stable version
+
+
 

@@ -56,7 +56,7 @@ $statics = MagratheaController::GetAllStatic();
 			<div class='row-fluid'>
 				<div class='span12 center'>
 				<table class="table table-striped"><tbody>
-			<?
+			<?php
 			$even = false;
 			foreach($statics as $s){
 				?>
@@ -73,7 +73,7 @@ $statics = MagratheaController::GetAllStatic();
 						</button>
 					</td>
 				</tr>
-				<?
+				<?php
 				$even = !$even;
 			}
 			?>

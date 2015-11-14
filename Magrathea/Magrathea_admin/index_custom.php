@@ -19,13 +19,13 @@
     <title><?=$this->title?> - Magrathea Admin</title>
     
     <!-- ===================== CSS ===================== -->
-    <? include("resources/css.php") ?>
+    <?php include("resources/css.php") ?>
     <?=MagratheaView::Instance()->InlineCSS()?>
 
   </head>
   <body> 
 
-    <? include("header.php"); ?>              
+    <?php include("header.php"); ?>              
 
 	<div class="container main_container">
 
@@ -51,12 +51,12 @@
 
     <!-- ===================== JS ===================== -->
     <?=MagratheaView::Instance()->InlineJavascript()?>
-    <? include("resources/javascript.php") ?>
+    <?php include("resources/javascript.php") ?>
     <script type="text/javascript">
       loadCustom();
-<? if (empty($_GET["custompage"])){ ?>
+<?php if (empty($_GET["custompage"])){ ?>
       loadCustomAdmin("index.php");
-<? } ?>
+<?php } ?>
     </script>
 
 </html>

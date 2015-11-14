@@ -18,7 +18,7 @@ if(!is_dir($magrathea_path)){
     It seems that source path is incorrect<br/>
     [path: <?=$magrathea_path?>]
   </div>
-  <?
+  <?php
 }
 
 if(!is_writable($site_path)){
@@ -31,7 +31,7 @@ if(!is_writable($site_path)){
     It seems that destination path is incorrect or you don't have permissions<br/>
     [path: <?=$site_path?>]
   </div>
-  <?
+  <?php
 }
 
 $site_path .= "/".$plugin;

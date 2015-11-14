@@ -65,7 +65,7 @@ foreach( $relations as $rel ){
 				<dt>Public Properties</dt>
 				<dd>
 					<ul>
-<?
+<?php
 	$obj_fields = array();
 	foreach($obj_data as $key => $item){
 		if( substr($key, -6) == "_alias" ){
@@ -157,7 +157,7 @@ foreach( $relations as $rel ){
 						</div>
 						<div class="span4">
 							<select id="relation_object" name="relation_object" class='input-medium'>
-	<?
+	<?php
 		$objects = getAllObjects();
 		foreach($objects as $obj => $obj_data){
 			echo "<option value='".$obj."'>".$obj."</option>";
@@ -180,41 +180,7 @@ foreach( $relations as $rel ){
 				</div>
 			</div>
 			<br/><hr/>
-			<div class="row-fluid" id="object_relations">
-<?
-		/*
-	foreach( $relations as $rel ){
-		?>
-<div id="<?=$rel["rel_name"]?>"><div class="row-fluid">
-	<div class="span8"><?=$rel["rel_type_text"]?> 
-		<input type="hidden" name="rel_type_text[]" value="<?=$rel["rel_type_text"]?>"><input type="hidden" value="<?=$rel["rel_type"]?>" name="rel_type[]">
-		<i class="icon-chevron-right"></i> <?=$rel["rel_object"]?>
-		<input type="hidden" value="<?=$rel["rel_object"]?>" name="rel_object[]">
-		<?=($rel["rel_type"]=="belongs_to" ? '[<i class="icon-table"></i> using '.$rel["rel_field"].' field]<input type="hidden" value="'.$rel["rel_field"].'" name="rel_field[]">' : '')?>
-		<?=($rel["rel_type"]=="has_many" ? '[<i class="icon-table"></i> using '.$rel["rel_object"].'\'s '.$rel["rel_field"].' field]<input type="hidden" value="'.$rel["rel_field"].'" name="rel_field[]">' : '')?>
-	</div>
-	<div class="span4">
-		<button class="btn btn-danger" onclick="DeleteRelation('<?=$rel["rel_name"]?>'); return false;"><i class="icon-trash"></i> Delete</button>
-	</div>
-</div>
-<div id="<?=$rel["rel_name"]?>_code" class="row-fluid">
-	<div class="span5">Public Property:
-		<div class="input-append"><input id="<?=$rel["rel_name"]?>_property" type="text" value="<?=$rel["rel_property"]?>" name="<?=$rel["rel_name"]?>_property">
-			<button class="btn btn-danger" type="button" onclick="$(<?=$rel["rel_name"]?>_property).val('<?=($rel["rel_type"]=="belongs_to") ? $rel["rel_object"] : $rel["rel_object"]."s"?>');"><i class="icon-off"></i> (reset)</button>
-		</div>
-	</div>
-	<div class="span5">Public Method:
-		<div class="input-append"><input id="<?=$rel["rel_name"]?>_method" type="text" value="<?=$rel["rel_method"]?>" name="<?=$rel["rel_name"]?>_method">
-			<button class="btn btn-danger" type="button" onclick="$(<?=$rel["rel_name"]?>_method).val('<?=($rel["rel_type"]=="belongs_to") ? "Get".$rel["rel_object"] : "Get".$rel["rel_object"]."s"?>');"><i class="icon-off"></i> (reset)</button>
-		</div>
-	</div>
-	<div class="span2">&nbsp;</div>
-</div><br><hr></div>
-		<?
-	}
-		*/
-?>
-			</div>
+			<div class="row-fluid" id="object_relations"></div>
 			<div class='row-fluid'>
 				<div class='span9'>&nbsp;</div>
 				<div class='span3'>

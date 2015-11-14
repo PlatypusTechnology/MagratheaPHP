@@ -29,7 +29,7 @@ $environment = MagratheaConfig::Instance()->GetEnvironment();
 				<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-<?
+<?php
 	foreach($config["general"] as $key => $value){
 		echo "<div class='row-fluid'><div class='span3 right'>".$key."</div><div class='span9'>";
 		if( $key == "use_environment" ){
@@ -62,7 +62,7 @@ $environment = MagratheaConfig::Instance()->GetEnvironment();
 
 
 <div id="LoadConfigSection">
-	<?
+	<?php
 	include("load_configuration_section.php");
 	?>
 </div>

@@ -18,10 +18,9 @@ require ("admin_load.php");
 
 use this field from <?=$obj_name?> to make the relation:&nbsp;
 <select id="relation_field" name="relation_field" class='input-medium'>
-	<?
+	<?php
 	foreach($obj_fields as $field){
 		echo "<option value='".$field."'>".$field."</option>";
 	}
 	?>
 </select>
-

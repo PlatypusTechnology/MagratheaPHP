@@ -12,7 +12,7 @@ if(!is_dir($magrathea_path)){
     Error installing plugin!<br/>
     It seems that source path is incorrect<br/>
     [path: <?=$magrathea_path?>]
-  <?
+  <?php
   die;
 }
 
@@ -21,7 +21,7 @@ if(!is_writable($site_path)){
     Error installing plugin!<br/>
     It seems that destination path is incorrect or you don't have permissions<br/>
     [path: <?=$site_path?>]
-  <?
+  <?php
   die;
 }
 
@@ -59,7 +59,7 @@ try{
 } catch(Exception $ex) { 
   ?>
     Error installing plugin!<br/>
-  <?
+  <?php
     echo $ex->getMessage();
 }
 

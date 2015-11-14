@@ -4,27 +4,12 @@ require ("admin_load.php");
 
 	$data = $_POST;
 	$object_name = $data["object_name"];
-
-//	p_r($data);
-
 	$object_data = getObject($object_name);
 	
 	$mconfig = new MagratheaConfigFile();
 	$mconfig->setPath(realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../configs"));
 	$mconfig->setFile("magrathea_objects.conf");
 	$objdata = $mconfig->getConfig();
-
-	/*
-		echo "<!--false-->";
-		?>
-		<div class="alert alert-error">
-			<button class="close" data-dismiss="alert" type="button">×</button>
-			<strong>Oh, crap! =(</strong><br/>
-			You forgot to tell us the name of the object, boy...
-		</div>
-		<?
-		die;
-	*/
 
 	// relations:
 	$relations = @$objdata["relations"];
@@ -135,7 +120,7 @@ require ("admin_load.php");
 				<strong>Shit... error saving object!</strong><br/>
 				Could not save object config file. Please, be sure that PHP can write in the folder "Magrathea/configs/"...
 			</div>
-			<?
+			<?php
 			die;
 		}
 	} catch(Excpetion $ex) {
@@ -145,7 +130,7 @@ require ("admin_load.php");
 			<strong>Shit... error saving object!</strong><br/>
 			<?=$ex->getMessage()?>
 		</div>
-		<?
+		<?php
 		die;
 	}
 

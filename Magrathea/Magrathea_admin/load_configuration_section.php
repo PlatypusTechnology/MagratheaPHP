@@ -1,4 +1,4 @@
-<?
+<?php
 	if(!empty($_GET["section"])){
 		$environment = $_GET["section"];
 	}
@@ -16,7 +16,7 @@
 				<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
 		</header>
 		<content>
-<?
+<?php
 	foreach($config[$environment] as $key => $value){
 		echo "<div class='row-fluid'><div class='span3 right'>".$key."</div><div class='span9'>";
 		if( $value == "true" || $value == "false" ){

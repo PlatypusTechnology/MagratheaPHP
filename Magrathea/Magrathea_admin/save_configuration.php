@@ -19,7 +19,6 @@ require ("admin_load.php");
 		$config[$environment] = $data;
 	}
 
-
 	$mconfig->setConfig($config);
 	try{
 		$success = $mconfig->Save(true);
@@ -37,15 +36,8 @@ require ("admin_load.php");
 			Could not create object config file. Please, be sure that PHP can write in the folder "configs"...<br/>
 			<?=(!empty($error) ? $error : "")?>
 		</div>
-		<?
+		<?php
 		die;
 	}
 
 ?>
-<!--true--->
-<div class="alert alert-success">
-	<button class="close" data-dismiss="alert" type="button">×</button>
-	<strong>Yeah, baby!</strong><br/>
-	Configurations are saved! It works! It's alive! muahuhaua!! =P
-</div>
-

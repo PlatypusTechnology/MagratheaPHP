@@ -8,7 +8,8 @@ class MagratheaController {
 	protected $Smarty;
 
 	public $forceMethodCall = false;
-	public $displayStatic = false;
+	protected $displayStatic = false;
+	private $staticPage = false;
 
 	/**
 	*	Just starts Smarty (if is not started yet...)
@@ -49,8 +50,17 @@ class MagratheaController {
 		exit;
 	}
 
+	/**
+	*	Allow static page generation
+	*
+	*	@param 		boolean 	$allow 	Can I save this page as a HTML for you?
+	* 	@return 	itself
+	*/
+	public function AllowCache($allow){
+		$this->displayStatic = $allow;
+		return $this;
+	}
 
-	private $staticPage = false;
 	/**
 	*	Formats a static page name, adding .html and fixing other issues...
 	*	@param 		string 		$name 		Name of the static page 
@@ -64,31 +74,6 @@ class MagratheaController {
 	}
 
 	/**
-	*	Get all static files and return them as an array
-	*/
-	public static function GetAllStatic(){
-		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
-		$staticPath = $appFolder."/Static/";
-		$results = scandir($staticPath);
-		$statics = array();
-		foreach ($results as $result) {
-		    if ($result === '.' or $result === '..') continue;
-			array_push($statics, $result);
-		}
-		sort($statics);
-		return $statics;
-	}
-
-	/**
-	*	Removes all static files from static folder
-	*/
-	public static function ClearStatic(){
-		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
-		$staticPath = realpath($appFolder."/Static");
-		$output = shell_exec("rm ".$staticPath."/*");
-	}
-
-	/**
 	*	Sets a static name for the page that will be displayed.
 	*	When $die is true, 
 	*		if the page already exists, it will be displayed as it is and the code will be TERMINATED!
@@ -96,6 +81,7 @@ class MagratheaController {
 	*	@param 	boolean	$die 	Terminate code if static found
 	*/
 	public function GetStatic($name, $die=true){
+		if(!$this->displayStatic) return false;
 		$staticName = $this->formatStaticPageName($name);
 		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 		$filePath = $appFolder."/Static/".$staticName;
@@ -132,54 +118,17 @@ class MagratheaController {
 
 
 	/**
-	*	Creates an static page with the code and displays it
-	*	@deprecated
-	*	@param 	string 	$staticName 	Name of the static page to be generated
-	* 	@param 	string 	$template 		Template to display
-	*/
-	public function DisplayStatic($staticName, $template){
-		$staticName = strtolower($staticName);
-		$code = $this->Smarty->fetch($template);
-		$code .= "\n<!-- code generated at ".date("Y-m-d h:i:s")." -->";
-		$appFolder = MagratheaConfigStatic::GetConfigFromDefault("/site_path");
-		$filePath = $appFolder."/Static/".$staticName;
-		$file_handler = fopen($filePath, 'w');
-		fwrite($file_handler, $code);
-		fclose($file_handler);
-		$this->LoadIfExists($staticName);
-	}
-
-	/**
-	*	Show the static page with the given name, if it exists
-	*	@deprecated
-	*	@param 	string 	$staticName 	Name of the page to be shown
-	*	@return 	boolean	 	True if the page exists (and displays it); False if it doesn't 
-	*/
-	public static function LoadIfExists($staticName){
-		$staticName = strtolower($staticName);
-		$appFolder = MagratheaConfigStatic::GetConfigFromDefault("/site_path");
-		$filePath = $appFolder."/Static/".$staticName;
-		if( file_exists($filePath) ){
-			$code = file_get_contents($filePath);
-			print($code);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	*	With a given control name and action, calls the right function
 	*	It will start a new object `$controlName` and call the `$action` in it
 	*	@param 	string 	$controlName 	Control to be called
 	* 	@param 	string 	$action 		Action to be called inside the control
 	*	@param 	string 	$params 		Params to send to the given action
 	*/
-	public static function Load($controlName, $action, $params=""){
-		$controlName = ucfirst(strtolower($controlName))."Controller";
+	public static function Load($control, $action, $params=""){
+		$controlName = ucfirst(strtolower($control))."Controller";
 		try {
 			if(!class_exists($controlName)){
-				$ex = new MagratheaControllerException("Class ".$controlName." does not exist!");
+				$ex = new MagratheaControllerException("Class ".$controlName." does not exist! - parameters called [".$control."/".$action."/".$params."]");
 				$ex->killerError = false;
 				throw $ex;
 			}
@@ -223,6 +172,33 @@ class MagratheaController {
 		}
 	}
 
+	/**
+	*	Get all static files and return them as an array
+	*	@return 	array 	static pages found
+	*/
+	public static function GetAllStatic(){
+		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+		$staticPath = $appFolder."/Static/";
+		$results = scandir($staticPath);
+		$statics = array();
+		foreach ($results as $result) {
+		    if ($result === '.' or $result === '..') continue;
+			array_push($statics, $result);
+		}
+		sort($statics);
+		return $statics;
+	}
+
+	/**
+	*	Removes all static files from static folder
+	*	@return 	string 		exec code output
+	*/
+	public static function ClearStatic(){
+		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
+		$staticPath = realpath($appFolder."/Static");
+		$output = shell_exec("rm ".$staticPath."/*");
+		return $output;
+	}
 
 
 
