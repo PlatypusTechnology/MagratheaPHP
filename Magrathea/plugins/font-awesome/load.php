@@ -1,6 +1,6 @@
 <?php
 
-	$pluginFolder = "plugins/Font-awesome";
+	$pluginFolder = "plugins/font-awesome";
 
 	MagratheaView::Instance()
 		->IncludeCSS($pluginFolder."/css/font-awesome.min.css")
