@@ -67,7 +67,7 @@ class MagratheaController {
 	*/
 	public function formatStaticPageName($name){
 		$name = strtolower($name);
-		if (!preg_match("(.htm(l)?)$/i", $name)) {
+		if (!preg_match("(.htm(l)?)/i", $name)) {
 			$name = $name.".html";
 		}
 		return $name;
