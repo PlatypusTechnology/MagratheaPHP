@@ -67,7 +67,7 @@ class MagratheaController {
 	*/
 	public function formatStaticPageName($name){
 		$name = strtolower($name);
-		if (!preg_match("(.htm(l)?)$/i", $name)) {
+		if (!preg_match("{{(.htm(l)?)$/i}}", $name)) {
 			$name = $name.".html";
 		}
 		return $name;
@@ -108,7 +108,7 @@ class MagratheaController {
 			$code .= "\n<!-- page generated at ".date("Y-m-d h:i:s")." -->";
 			$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 			$filePath = $appFolder."/Static/".$this->staticPage;
-			$file_handler = fopen($filePath, 'w');
+			$file_handler = @fopen($filePath, 'w');
 			fwrite($file_handler, $code);
 			fclose($file_handler);
 			echo $code;

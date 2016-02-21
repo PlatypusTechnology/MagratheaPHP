@@ -73,7 +73,7 @@ class MagratheaConfig {
 			$this->loadFile();
 			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
 			if( !$this->configs ){
-				throw new MagratheaException("There was an error trying to load the config file.<br/>");
+				throw new MagratheaConfigException("There was an error trying to load the config file.<br/>");
 			}
 		}
 		if( empty($config_name) ){

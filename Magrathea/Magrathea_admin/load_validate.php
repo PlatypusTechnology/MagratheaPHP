@@ -94,7 +94,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					</tr>
 					<tr>
 						<td><b>Magrathea Configs</b></td>
-						<td><?=($magratheaConfig ? $magratheaConfig : printError($site_path."/Configs"))?></td>
+						<td><?=($magratheaConfig ? $magratheaConfig : printError($site_path."/configs"))?></td>
 						<td>
 							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
@@ -103,7 +103,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					</tr>
 					<tr>
 						<td><b>Magrathea Configs File</b></td>
-						<td><?=($magratheaConfigFile ? $site_path."/Configs/magrathea.conf file" : $site_path."/Configs/magrathea.conf file don't exist or not writable")?></td>
+						<td><?=($magratheaConfigFile ? $magratheaConfig."/magrathea.conf file" : $magratheaConfig."/magrathea.conf file don't exist or not writable")?></td>
 						<td>
 							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
@@ -112,7 +112,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					</tr>
 					<tr>
 						<td><b>Magrathea Configs Object File</b></td>
-						<td><?=($magratheaConfigObjectsFile ? $site_path."/Configs/magrathea_objects.conf file" : $site_path."/Configs/magrathea_objects.conf file don't exist or not writable")?></td>
+						<td><?=($magratheaConfigObjectsFile ? $magratheaConfig."/magrathea_objects.conf file" : $magratheaConfig."/magrathea_objects.conf file don't exist or not writable")?></td>
 						<td>
 							<?=$writePerm?> <?=$developPerm?>
 							&nbsp;&nbsp;
@@ -176,7 +176,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					</tr>
 					<tr>
 						<td><b>CSS Compression Path</b></td>
-						<td><?=($css_compressed ? $css_compressed : printError())?></td>
+						<td><?=($css_compressed ? $css_compressed : printError($css_compressed))?></td>
 						<td>
 							<?=$writePerm?>
 							&nbsp;&nbsp;
@@ -185,7 +185,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					</tr>
 					<tr>
 						<td><b>JS Compression Path</b></td>
-						<td><?=($js_compressed ? $js_compressed : printError())?></td>
+						<td><?=($js_compressed ? $js_compressed : printError($js_compressed))?></td>
 						<td>
 							<?=$writePerm?>
 							&nbsp;&nbsp;
@@ -194,7 +194,7 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 					</tr>
 					<tr>
 						<td><b>Static Files Path</b></td>
-						<td><?=($staticPath ? $staticPath : printError())?></td>
+						<td><?=($staticPath ? $staticPath : printError($staticPath))?></td>
 						<td>
 							<?=$writePerm?>
 							&nbsp;&nbsp;

@@ -55,7 +55,7 @@
             <li><a href="install.php"><i class="icon-bolt"></i> Install</a></li>
             <li class="divider"></li>
             <li><a href="tree.php"><i class="icon-sitemap"></i> Project tree</a></li>
-            <li><a href="config.php"><i class="icon-wrench"></i> Config File</a></li>
+            <li><a href="configphp.php"><i class="icon-wrench"></i> Config File</a></li>
             <li><a href="htaccess.php"><i class="icon-cog"></i> .htaccess</a></li>
             <li><a href="globalphp.php"><i class="icon-globe"></i> global.php</a></li>
             <li><a href="indexphp.php"><i class="icon-file"></i> index.php</a></li>

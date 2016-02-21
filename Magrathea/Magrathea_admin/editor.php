@@ -1,7 +1,7 @@
 <?php
 
-	$file = $_POST["file"];
-	$action = $_POST["action"];
+	$file = @$_POST["file"];
+	$action = @$_POST["action"];
 
 	switch ($action) {
 		case 'delete':

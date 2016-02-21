@@ -22,24 +22,21 @@
 	// looooooaaaadddiiiiiinnnnnnggggg.....
 	include($magrathea_path."/LOAD.php");
 
+	// wanna debug? here's your debug!
+	// options: dev; debug; log; none;	MagratheaDebugger::Instance()->SetType(MagratheaDebugger::DEBUG)->LogQueries(true);
+
 	// initialize Smarty. eh.. I don't think there is a more beautiful way of doing this (I want to be transparent as well, see?)
 	$Smarty = new Smarty;
 	$Smarty->template_dir = $site_path."/app/Views/";
 	$Smarty->compile_dir  = $site_path."/app/Views/_compiled";
-	$Smarty->config_dir   = $site_path."/app/Views/configs";
+	$Smarty->config_dir   = $site_path."/app/Views/_configs";
 	$Smarty->cache_dir    = $site_path."/app/Views/_cache";
-	$Smarty->configLoad("site.conf");
 
 	// initialize the MagratheaView and sets it to Smarty	
-	$View = new MagratheaView();
-	$Smarty->assign("View", $View);
+	$Smarty->assign("View", MagratheaView::Instance());
 
 	// for printing the paths of your css and javascript (that will be included in the index.php)
-	$View->IsRelativePath(false);
-
-	// wanna debug? here's your debug!
-	// options: dev; debug; log; none;
-	MagratheaDebugger::Instance()->SetType(MagratheaDebugger::DEBUG);
+	MagratheaView::Instance()->IsRelativePath(false);
 ?&gt;</pre><br/>
 
 		As you can see, there are two global variables (<em>$magrathea_path</em> and <em>$site_path</em>). Sorry about that.<br/>

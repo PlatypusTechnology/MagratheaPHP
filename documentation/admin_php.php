@@ -72,7 +72,7 @@
 		<h5><i class="icon-dashboard"></i> Custom Admin</h5>
 		This is great!<br/>
 		If all you need is a simple admin for some quick tasks without a killer layout, we can provide you the quickest way to do so.<br/>
-		<a href="admin_tests.php">We have a section explaining it</a>. I bet you will like! ;)<br/>
+		<a href="admin_custom.php">We have a section explaining it</a>. I bet you will like! ;)<br/>
 		
 		<h5><i class="icon-info-sign"></i> PHP info</h5>
 		<pre>phpinfo();</pre>

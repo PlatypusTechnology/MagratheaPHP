@@ -227,17 +227,18 @@ class MagratheaView{
 	 * @deprecated 		Use "CSS" instead
 	 */
 	public function CSSs(){
-		$this->CSS();
+		echo "<!--CSS FILES MANAGED BY MAGRATHEA-->\n";
+		echo $this->CSS();
 	}
 	/**
 	 * Prints all the css files on page
 	 * @param 		boolean 	$compression 		should the code be compressed?
 	 * @return  	string 		Include of CSSs
 	 */
-	public function CSS($print=true, $compression=null){
+	public function CSS($compression=null){
 		$compression = ($compression==null ? $this->ShouldCompressCss() : $compression );
 		$array_files = array_unique($this->css_files);
-		$cssContent = "<!--CSS FILES MANAGED BY MAGRATHEA-->\n";
+		$cssContent = "";
 		if($compression == "true"){
 			sort($this->css_lastmodified_arr);
 			$css_lmod = implode("_", $this->css_lastmodified_arr);
@@ -245,8 +246,8 @@ class MagratheaView{
 			$compressedFileName = $this->compressed_path_css."/".$css_lmod_hash."_compressed.css";
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
-					$cssContent .= "<!--error compressing css! could not create file-->";
-					$cssContent .= $this->CSSs("false");
+					$cssContent .= "<!--error compressing css! could not create file-->\n";
+					$cssContent .= $this->CSS("false");
 					return $cssContent;
 				} 
 				$cssCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPRESS_CSS);
@@ -256,8 +257,8 @@ class MagratheaView{
 				$cssCompressor->compress();
 				$compressed_css = $cssCompressor->GetCompressedContent();
 				if (!fwrite($handle, $compressed_css)) { 
-					$cssContent .= "<!--error compressing css! could not write file-->";
-					$cssContent .= $this->CSSs("false");
+					$cssContent .= "<!--error compressing css! could not write file-->\n";
+					$cssContent .= $this->CSS("false");
 					return $cssContent;
 				} 
 				fclose($handle); 
@@ -268,7 +269,6 @@ class MagratheaView{
 				$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."' rel='stylesheet'>\n"; 
 			}
 		}
-		if($print) echo $cssContent;
 		return $cssContent;
 	}
 

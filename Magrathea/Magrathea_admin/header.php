@@ -16,7 +16,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-          <a class="brand" href="#"><?=$this->title?></a>
+          <a class="brand" href="/"><?=$this->title?></a>
           <div class="nav-collapse collapse">
             <!--form class="navbar-form pull-right" method="post">
               <select name="new_config_section" id="new_config_section" onChange="submit();">

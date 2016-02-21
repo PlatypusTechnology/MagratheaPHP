@@ -311,6 +311,7 @@ class MagratheaQuery{
 	 * @return 		array 	the objects that we have here...
 	 */
 	public function GetJoins(){
+		if(count($this->joinArr) == 0) return array();
 		$joins = array();
 		foreach ($this->joinArr as $key => $join) {
 			$j = array( 
@@ -603,10 +604,12 @@ class MagratheaQueryInsert extends MagratheaQuery {
 class MagratheaQueryUpdate extends MagratheaQuery {
 
 	private $fields;
+	private $rawFields;
 
 	public function __construct(){
 		$this->obj_array = array();
 		$this->fields = array();
+		$this->rawFields = array();
 		$this->where = "";
 		$this->whereArr = array();
 		return $this;
@@ -619,6 +622,17 @@ class MagratheaQueryUpdate extends MagratheaQuery {
 	 */
 	public function Set($field, $value){
 		$this->fields[$field] = $value;
+		return $this;
+	}
+
+	/**
+	 * Set raw condition for update
+	 * @version 1.1 +
+	 * @param 	string 		$field 		field
+	 * @param 	string 		$value 		value for field sent
+	 */
+	public function SetRaw($condition){
+		array_push($this->rawFields, $condition);
 		return $this;
 	}
 
@@ -643,6 +657,9 @@ class MagratheaQueryUpdate extends MagratheaQuery {
 	public function SQL(){
 		$this->sql = "UPDATE ".$this->tables." SET ";
 		$setsArray = array();
+		foreach ($this->rawFields as $field) {
+			array_push($setsArray, $field);
+		}
 		foreach ($this->fields as $field => $value) {
 			array_push($setsArray, $field." = '".$value."'");
 		}

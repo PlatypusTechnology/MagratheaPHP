@@ -9,7 +9,7 @@ if(!is_dir($staticPath)){
 	return;
 }
 
-$action = $_POST["action"];
+$action = @$_POST["action"];
 if($action == "clear")
 	MagratheaController::ClearStatic();
 
