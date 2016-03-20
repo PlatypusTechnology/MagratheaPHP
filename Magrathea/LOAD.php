@@ -2,6 +2,7 @@
 
 $path = __DIR__."/";
 include_once($path."libs/Smarty/Smarty.class.php");
+include_once($path."libs/WideImage/WideImage.php");
 
 // database changing:
 //require ($path."Database.php");

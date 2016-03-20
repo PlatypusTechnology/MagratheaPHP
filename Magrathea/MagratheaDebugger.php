@@ -245,8 +245,8 @@ class MagratheaDebugger {
 		$html = "";
 		foreach ($trace as $key => $val) {
 			$html .= "[".$key."]<br/>";
-			$html .= "&nbsp;&nbsp;&nbsp;&nbsp;<b>[file]</b> = ".$val["file"]." <b>[line]</b> = ".$val["line"]."<br/>";
-			$html .= "&nbsp;&nbsp;&nbsp;&nbsp;<b>[class]</b> = ".$val["class"]." <b>[function]</b> = ".$val["function"]."<br/>";
+			$html .= "&nbsp;&nbsp;&nbsp;&nbsp;<b>[file]</b> = ".@$val["file"]." <b>[line]</b> = ".@$val["line"]."<br/>";
+			$html .= "&nbsp;&nbsp;&nbsp;&nbsp;<b>[class]</b> = ".@$val["class"]." <b>[function]</b> = ".@$val["function"]."<br/>";
 		}
 		return $html;
 	}
