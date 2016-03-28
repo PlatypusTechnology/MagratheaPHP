@@ -16,7 +16,14 @@ rm -rf MagratheaPHP
 
 ## changelog
 
-#### version 1.1
+#### version 1.2.0
+- __NEW :__ WideImage library is now part of Magrathea's libs and is always automatically loaded
+- __FIX :__ MagratheaDebugger doesn't flash notices anymore
+- __FIX :__ Fixed notices in Magrathea Admin 
+- __IMPROVEMENT :__ Magrathea structure validation improved
+- __IMPROVEMENT :__ Magrathea Images plugin fixed notices and removed WideImage load (now it is loaded from beginning)
+
+#### version 1.1.0
 - __FIX :__ MagratheaConfig: Inifinite loop when no config file found
 - __FIX :__ Infinite CSS files generation error when can't access folder for gathering CSS
 - __IMPROVEMENT :__ Better PHP warning messages handling

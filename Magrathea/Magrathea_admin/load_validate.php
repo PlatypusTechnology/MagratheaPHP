@@ -15,6 +15,10 @@ $magratheaModelsBase = realpath($site_path."/Models/Base");
 $magratheaModelsBase_ok  = is_writeable($magratheaModelsBase);
 $magratheaControls = realpath($site_path."/Controls");
 
+$magratheaLogs = realpath($site_path."/../logs");
+$magratheaLogs_ok  = is_writeable($magratheaLogs);
+
+
 $css_compressed = realpath($site_path."/".MagratheaView::Instance()->GetCompressedPathCss());
 $css_compressed_ok = is_writeable($css_compressed);
 $js_compressed = realpath($site_path."/".MagratheaView::Instance()->GetCompressedPathJs());
@@ -141,6 +145,15 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 						<td><b>Magrathea Controls</b></td>
 						<td><?=($magratheaControls ? $magratheaControls : printError($site_path."/Controls"))?></td>
 						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td><b>Logs Folder</b></td>
+						<td><?=($magratheaLogs ? $magratheaLogs : printError($magratheaLogs))?></td>
+						<td>
+							<?=$writePerm?> <?=$developPerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($magratheaLogs_ok ? "check" : "times")?>-circle"></i>
+						</td>
 					</tr>
 					<tr>
 						<td><b>Smarty: Templates Directory</b></td>

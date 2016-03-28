@@ -99,8 +99,8 @@ function ExtractRelFromRelArray($rel_arr, $index){
 	$relation["rel_field"] = $rel_arr["rel_field"][$index];
 	$relation["rel_property"] = $rel_arr["rel_property"][$index];
 	$relation["rel_method"] = $rel_arr["rel_method"][$index];
-	$relation["rel_lazyload"] = $rel_arr["rel_lazyload"][$index];
-	$relation["rel_autoload"] = $rel_arr["rel_autoload"][$index];
+	$relation["rel_lazyload"] = @$rel_arr["rel_lazyload"][$index];
+	$relation["rel_autoload"] = @$rel_arr["rel_autoload"][$index];
 	return $relation;
 }
 

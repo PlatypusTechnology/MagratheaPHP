@@ -10,7 +10,6 @@
 */
 
 include(__DIR__."/MagratheaImageBase.php");
-include 'WideImage/WideImage.php';
 
 class MagratheaImage extends MagratheaImageBase {
 

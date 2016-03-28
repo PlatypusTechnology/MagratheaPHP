@@ -44,7 +44,9 @@ function Smarty_MagratheaImage_Url($params, $smarty){
 
 function Smarty_MagratheaImage_Code($params, $smarty){
         $m_image = Smarty_MagreatheaImage($params);
-        return $m_image->Code($params["title"]);
+        $title = "";
+        if(@$params["title"]) $title = $params["title"];
+        return $m_image->Code($title);
 }
 
 ?>
