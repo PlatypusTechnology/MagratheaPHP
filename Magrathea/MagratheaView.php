@@ -160,6 +160,7 @@ class MagratheaView{
 	 * @deprecated Use Javascript instead
 	 */
 	public function Javascripts(){
+		echo "<!-- deprecated function called -->";
 		$this->Javascript();
 	}
 	/**
@@ -179,7 +180,7 @@ class MagratheaView{
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$jsContent .= "<!--error compressing javascript! could not create file-->";
-					$jsContent .= $this->Javascripts("false");
+					$jsContent .= $this->Javascript(false, "false");
 					return $jsContent;
 				} 
 				$jsCompressor = new MagratheaCompressor(MagratheaCompressor::COMPRESS_JS);
@@ -191,20 +192,23 @@ class MagratheaView{
 				$compressed_js = $jsCompressor->GetCompressedContent();
 				if (!fwrite($handle, $compressed_js)) { 
 					$jsContent .= "<!--error compressing javascript! could not write file-->";
-					$jsContent .= $this->Javascripts("false");
+					$jsContent .= $this->Javascript(false, "false");
 					return $jsContent;
 				}
 				fclose($handle); 
 			}
 			$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."'></script>\n"; 
   		} else {
+  			echo "<!-- not compressed -->";
 			foreach($array_files as $file){
 				$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."'></script>\n"; 
 			}
 		}
 		if($print) echo $jsContent;
+		echo "<!-- ok -->";
 		return $jsContent;
 	}
+
 	/**
 	 * Prints JS inline in page
 	 * @param 	boolean 	$compression 		should we compress JS? (always false, so far)

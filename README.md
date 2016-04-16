@@ -16,6 +16,11 @@ rm -rf MagratheaPHP
 
 ## changelog
 
+#### version 1.2.1
+- __FIX :__ MagratheaAdmin => not required plugins where throwing fatal errors. This was fixed and when a not required plugin is missing, it will display a message with a link for it to be installed.
+- __FIX :__ Inifinite loop on JavaScripts include if js compression was on (js compression still does not work!)
+- __IMPROVEMENT :__ silent load for MagratheaImages: do not load javascripts
+
 #### version 1.2.0
 - __NEW :__ WideImage library is now part of Magrathea's libs and is always automatically loaded
 - __FIX :__ MagratheaDebugger doesn't flash notices anymore
