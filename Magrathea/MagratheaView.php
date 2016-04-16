@@ -160,7 +160,6 @@ class MagratheaView{
 	 * @deprecated Use Javascript instead
 	 */
 	public function Javascripts(){
-		echo "<!-- deprecated function called -->";
 		$this->Javascript();
 	}
 	/**
@@ -199,13 +198,11 @@ class MagratheaView{
 			}
 			$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."'></script>\n"; 
   		} else {
-  			echo "<!-- not compressed -->";
 			foreach($array_files as $file){
 				$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."'></script>\n"; 
 			}
 		}
 		if($print) echo $jsContent;
-		echo "<!-- ok -->";
 		return $jsContent;
 	}
 
