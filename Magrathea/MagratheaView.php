@@ -179,7 +179,7 @@ class MagratheaView{
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$jsContent .= "<!--error compressing javascript! could not create file-->";
-					$jsContent .= $this->Javascripts("false");
+					$jsContent .= $this->Javascript(false, "false");
 					return $jsContent;
 				} 
 				$jsCompressor = new MagratheaCompressor(MagratheaCompressor::COMPRESS_JS);
@@ -191,7 +191,7 @@ class MagratheaView{
 				$compressed_js = $jsCompressor->GetCompressedContent();
 				if (!fwrite($handle, $compressed_js)) { 
 					$jsContent .= "<!--error compressing javascript! could not write file-->";
-					$jsContent .= $this->Javascripts("false");
+					$jsContent .= $this->Javascript(false, "false");
 					return $jsContent;
 				}
 				fclose($handle); 
@@ -205,6 +205,7 @@ class MagratheaView{
 		if($print) echo $jsContent;
 		return $jsContent;
 	}
+
 	/**
 	 * Prints JS inline in page
 	 * @param 	boolean 	$compression 		should we compress JS? (always false, so far)

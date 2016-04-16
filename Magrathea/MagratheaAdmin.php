@@ -89,10 +89,10 @@ class MagratheaAdmin {
 		$site_path = MagratheaConfig::Instance()->GetFromDefault("site_path");
 		$inc = @include($site_path."/plugins/".$pluginName."/load.php");
 		if(!$inc) {
+			echo "<br/><br/><a href='?call=plugin_install_req&plugin=".$pluginName."'>[Install ".$pluginName."]</a><br/><br/>";
 			if($required) {
-				echo "<br/><br/><a href='?call=plugin_install_req&plugin=".$pluginName."'>[Install ".$pluginName."]</a><br/><br/>";
+				throw new MagratheaAdminException("Plugin [".$pluginName."] could not be found!");
 			}
-			throw new MagratheaAdminException("Plugin [".$pluginName."] could not be found!");
 		}
 		return $this;	
 	}
