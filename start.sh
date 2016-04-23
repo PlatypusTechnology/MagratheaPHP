@@ -19,6 +19,10 @@ chmod 777 logs
 touch logs/.gitkeep
 echo -e "\tlogs = ok\n"
 
+mkdir Tests
+touch Tests/.gitkeep
+echo -e "\ttests = ok\n"
+
 mkdir db
 echo -e "\tdb = ok\n"
 
@@ -66,6 +70,8 @@ touch Views/_cache/.gitkeep
 mkdir Views/_compiled
 chmod 777 Views/_compiled
 touch Views/_compiled/.gitkeep
+mkdir Views/_configs
+touch Views/_configs/site.conf
 echo -e "\tViews = ok\n"
 
 mkdir images
@@ -127,9 +133,9 @@ RewriteEngine On
   RewriteRule .+ - [L]
  
   #Respect this rules for redirecting:
-  RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/(.*)$ index.php?magrathea_control=$1&magrathea_action=$2&magrathea_params=$3 [QSA,L]
-  RewriteRule ^([a-zA-Z0-9_-]+)/(.*)$ index.php?magrathea_control=$1&magrathea_action=$2 [QSA,L]
-  RewriteRule ^(.*)$ index.php?magrathea_control=$1 [QSA,L]
+  RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/(.*)\$ index.php?magrathea_control=\$1&magrathea_action=\$2&magrathea_params=\$3 [QSA,L]
+  RewriteRule ^([a-zA-Z0-9_-]+)/(.*)\$ index.php?magrathea_control=\$1&magrathea_action=\$2 [QSA,L]
+  RewriteRule ^(.*)\$ index.php?magrathea_control=\$1 [QSA,L]
  
 </IfModule>
 EOF
@@ -140,9 +146,9 @@ cat <<EOF >app/inc/config.php.sample
 <?php
 
   // set the path of magrathea framework (this way is possible to have only one instance of the framework for multiple projects)
-  $magrathea_path = "/Users/username/Sites/Magrathea";
+  \$magrathea_path = "/Users/username/Sites/Magrathea";
   // set the path of your site (you can set this manually as well)
-  $site_path = __DIR__."/../..";
+  \$site_path = __DIR__."/../..";
 
 ?>
 EOF
@@ -155,27 +161,27 @@ cat <<EOF >app/inc/global.php
   session_start();
 //  error_reporting(1);
 
-  $path = realpath(__DIR__.'/../../lib');
-  set_include_path(get_include_path().PATH_SEPARATOR.$path);
+  \$path = realpath(__DIR__.'/../../lib');
+  set_include_path(get_include_path().PATH_SEPARATOR.\$path);
 
   include("config.php");
  
   // looooooaaaadddiiiiiinnnnnnggggg.....
-  include($magrathea_path."/LOAD.php");
+  include(\$magrathea_path."/LOAD.php");
 
   // debugging settings:
   // options: dev; debug; log; none;
   MagratheaDebugger::Instance()->SetType(MagratheaDebugger::LOG)->LogQueries(false);
 
-  $Smarty = new Smarty();
-  $Smarty->template_dir = $site_path."/app/Views/";
-  $Smarty->compile_dir  = $site_path."/app/Views/_compiled";
-  $Smarty->config_dir   = $site_path."/app/Views/configs";
-  $Smarty->cache_dir    = $site_path."/app/Views/_cache";
-  $Smarty->configLoad("site.conf");
+  \$Smarty = new Smarty();
+  \$Smarty->template_dir = \$site_path."/app/Views/";
+  \$Smarty->compile_dir  = \$site_path."/app/Views/_compiled";
+  \$Smarty->config_dir   = \$site_path."/app/Views/_configs";
+  \$Smarty->cache_dir    = \$site_path."/app/Views/_cache";
+  \$Smarty->configLoad("site.conf");
   
   // initialize the MagratheaView and sets it to Smarty 
-  $Smarty->assign("View", MagratheaView::Instance());
+  \$Smarty->assign("View", MagratheaView::Instance());
  
   // for printing the paths of your css and javascript (that will be included in the index.php)
   MagratheaView::Instance()->IsRelativePath(false);
@@ -191,14 +197,14 @@ cat <<EOF >app/Controls/_Controller.php
 class BaseControl extends MagratheaController {
 
   public static function Go404(){
-    global $Smarty;
-    $Smarty->display("404.html");
+    global \$Smarty;
+    \$Smarty->display("404.html");
     return;
   }
 
   public static function Kill(){
-    global $Smarty;
-    $Smarty->display("error.html");
+    global \$Smarty;
+    \$Smarty->display("error.html");
     return;
   }
 
@@ -223,18 +229,18 @@ cat <<EOF >app/index.php
     MagratheaView::Instance()
     ->IncludeCSS("css/style.css")
     ->IncludeJavascript("javascript/script.js");
-  } catch(Exception $ex){
+  } catch(Exception \$ex){
     // probably the file does not exists. What to do now?
   }
 
   // Magrathea Route will get the path to the correct method in the right class:
   MagratheaRoute::Instance()
-    ->Route($control, $action, $params);
+    ->Route(\$control, \$action, \$params);
 
   try{
-    MagratheaController::Load($control, $action, $params);
-  } catch (Exception $ex) {
-    Debug($ex);
+    MagratheaController::Load(\$control, \$action, \$params);
+  } catch (Exception \$ex) {
+    Debug(\$ex);
     BaseControl::Go404();
   }
  
@@ -246,13 +252,24 @@ echo -e "\tindex ==="
 cat <<EOF >app/admin.php
 <?php
   include("inc/global.php");
-  include($magrathea_path."/MagratheaAdmin.php"); // $magrathea_path should already be declared
+  include(\$magrathea_path."/MagratheaAdmin.php"); // \$magrathea_path should already be declared
  
-  $admin = new MagratheaAdmin(); // adds the admin file
-  $admin->Load(); // load!
+  \$admin = new MagratheaAdmin(); // adds the admin file
+  \$admin->Load(); // load!
 ?>
 EOF
 echo -e "\tapp/admin.php\n"
+
+echo -e "\ttest-base ==="
+cat <<EOF >Tests/app.php
+<?php
+
+  SimpleTest::prefer(new TextReporter());
+//  include("_MagratheaConfig.php");
+
+?>
+EOF
+echo -e "\tTests/app.php\n"
 
 echo -e "\t.gitignore ==="
 cat <<EOF >.gitignore
