@@ -31,55 +31,65 @@ cd app
 echo -e "\tapp = ok\n"
 
 mkdir inc
+touch inc/index.html
 echo -e "\tinc = ok\n"
 
 mkdir Models
 chmod 777 Models
+touch Models/index.html
 mkdir Models/Base
 chmod 777 Models/Base
-touch Models/Base/.gitkeep
+touch Models/Base/index.html
 echo -e "\tModels = ok\n"
 
 mkdir Controls
+touch Controls/index.html
 echo -e "\tControls = ok\n"
 
 mkdir Static
+touch Static/index.html
 echo -e "\tStatic = ok\n"
 
 mkdir javascript
+touch javascript/index.html
 mkdir javascript/_compressed
 chmod 777 javascript/_compressed
-touch javascript/_compressed/.gitkeep
+touch javascript/_compressed/index.html
 echo -e "\tjavascript = ok\n"
 
 mkdir css
 mkdir css/_compressed
 chmod 777 css/_compressed
-touch css/_compressed/.gitkeep
+touch css/index.html
+touch css/_compressed/index.html
 echo -e "\tcss = ok\n"
 
 mkdir plugins
 chmod 777 plugins
-touch plugins/.gitkeep
+touch plugins/index.html
 echo -e "\tplugins = ok\n"
 
 mkdir Views
+touch Views/index.html
 mkdir Views/_cache
 chmod 777 Views/_cache
-touch Views/_cache/.gitkeep
+touch Views/_cache/index.html
 mkdir Views/_compiled
 chmod 777 Views/_compiled
-touch Views/_compiled/.gitkeep
+touch Views/_compiled/index.html
 mkdir Views/_configs
 touch Views/_configs/site.conf
+touch Views/_configs/index.html
 echo -e "\tViews = ok\n"
 
 mkdir images
+touch images/index.html
 mkdir images/medias
+touch images/medias/index.html
 mkdir images/medias/_generated
+touch images/medias/_generated/index.html
 chmod 777 images/medias/_generated
 chmod 777 images/medias
-touch chmod 777 images/medias/_generated/.gitkeep
 echo -e "\tImages = ok\n"
 
 cd ..
