@@ -14,20 +14,33 @@ require ("admin_load.php");
 	}
 
 	$mconfig = new MagratheaConfigFile();
-	$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path"));
-	$mconfig->setFile("/../configs/magrathea_objects.conf");
+	$mconfig->setPath(realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../configs"));
+	$mconfig->setFile("magrathea_objects.conf");
 	$objdata = $mconfig->getConfig();
 	$objdata["relations"] = $relations;
 	$mconfig->setConfig($objdata);
-	if( !$mconfig->saveFile(true) ){ 
-		die("<!--false-->");
+	if( !$mconfig->Save(true) ){ 
+		echo "<!--false-->";
+		?>
+		<div class="alert alert-error">
+			<button class="close" data-dismiss="alert" type="button">×</button>
+			<strong>Shit... error deleting object!</strong><br/>
+			Something really strange happened. Sorry about that.
+		</div>
+		<?php
 	}
-	
-	die("<!--true--->");
+	?>
+	<!--true-->
+	<div class="alert alert-success">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+		<strong>Breakups are never easy</strong><br/>
+		But it was the best for all...
+	</div>
+	<?php
+	die;
 
 
 function DeleteRelation(&$arr_relation, $relation_name, $is_mirror = false){
-	echo "deleting ".$relation_name."<br/>";
 	$index = 0;
 	$rel_index = -1;
 	foreach( $arr_relation["rel_name"] as $rel ){
@@ -40,6 +53,7 @@ function DeleteRelation(&$arr_relation, $relation_name, $is_mirror = false){
 		$type = $arr_relation["rel_type"][$rel_index];
 		$obj = $arr_relation["rel_object"][$rel_index];
 		$base_obj = $arr_relation["rel_obj_base"][$rel_index];
+		$field = $arr_relation["rel_field"][$rel_index];
 		unset($arr_relation["rel_name"][$rel_index]);
 		unset($arr_relation["rel_obj_base"][$rel_index]);
 		unset($arr_relation["rel_type"][$rel_index]);
@@ -49,20 +63,22 @@ function DeleteRelation(&$arr_relation, $relation_name, $is_mirror = false){
 		unset($arr_relation["rel_property"][$rel_index]);
 		unset($arr_relation["rel_method"][$rel_index]);
 		if( !$is_mirror ){
+			$mirror_obj = $base_obj;
+			$mirror_base_obj = $obj;
 			switch($type){
 				case "belongs_to":
 					$mirror_type = "has_many";
+					$mirror_name = "rel_".$mirror_base_obj."_".$mirror_type."_".$mirror_obj."+".$field;
 				break;
 				case "has_many":
 					$mirror_type = "belongs_to";
+					$mirror_name = "rel_".$mirror_base_obj."+".$field."_".$mirror_type."_".$mirror_obj;
 				break;
 				default:
 					$mirror_type = $type;
+					$mirror_name = "rel_".$mirror_base_obj."+".$field."_".$mirror_type."_".$mirror_obj;
 				break;
 			}
-			$mirror_obj = $base_obj;
-			$mirror_base_obj = $obj;
-			$mirror_name = "rel_".$mirror_base_obj."_".$mirror_type."_".$mirror_obj;
 			return DeleteRelation($arr_relation, $mirror_name);
 		}
 	} else {

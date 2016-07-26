@@ -44,6 +44,8 @@ mkdir Controls
 echo -e "\tControls = ok\n"
 
 mkdir Static
+chmod 777 Static
+touch Static/.gitkeep
 echo -e "\tStatic = ok\n"
 
 mkdir javascript
@@ -282,6 +284,7 @@ app/Views/_compiled
 app/javascript/_compressed
 app/css/_compressed
 app/plugins
+app/Static
 *_compressed.js
 *_compressed.css
 *.magratheaDB

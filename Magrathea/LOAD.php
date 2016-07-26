@@ -8,7 +8,6 @@ include_once($path."libs/WideImage/WideImage.php");
 //require ($path."Database.php");
 require ($path."MagratheaDatabase.php");
 
-
 require ($path."Exceptions.php");
 require ($path."MagratheaConfig.php");
 require ($path."MagratheaController.php");

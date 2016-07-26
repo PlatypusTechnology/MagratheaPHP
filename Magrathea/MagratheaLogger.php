@@ -16,8 +16,10 @@ class MagratheaLogger {
 	 * @throws  Exception If path is not writablle
 	 */
 	public static function Log($logThis, $logFile=null){
-		if( is_a($logThis, "MagratheaConfigException") )
-			die("config not properly set!");
+		if( is_a($logThis, "MagratheaConfigException") ){
+			echo "==[config not properly set!]==";
+			return;			
+		} 
 		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs/";
 		if(empty($logFile)) $logFile = "log_".@date("Ym").".txt";
 		$date = @date("Y-m-d h:i:s");

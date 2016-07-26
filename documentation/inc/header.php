@@ -87,6 +87,7 @@
             <li class="divider"></li>
             <li><a href="deprecated.html.php"><i class="icon-warning-sign"></i> deprecated</a></li>
             <li><a href="todo.html.php"><i class="icon-tasks"></i> todo</a></li>
+            <li><a href="https://github.com/PlatypusTechnology/MagratheaPHP/tree/master/documentation/manuals"><i class="icon-tasks"></i> Extra Manuals</a></li>
           </ul>
         </li>
         <li>

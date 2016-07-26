@@ -49,7 +49,7 @@
 	</p>
 
 	<hr/>
-	<em>version: 1.1</em>
+	<em>version: 1.3.0</em>
 </div>
 
 <?php include("inc/footer.php"); ?>

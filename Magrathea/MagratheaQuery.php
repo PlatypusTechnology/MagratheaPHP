@@ -69,6 +69,17 @@ class MagratheaQuery{
 	}
 
 	/**
+	 * Cleans a value in order to avoid SQL injection
+	 * @param 	string 		$query 		string to be cleared
+	 * @return  string 		clean data
+	 */
+	static public function Clean($query){
+		$query = str_replace("'", "\'", $query);
+		$query = str_replace('"', '\"', $query);
+		return $query;
+	}	
+
+	/**
 	 * Creates. Just that. Just like God did.
 	 */
 	static public function Create(){
@@ -333,7 +344,7 @@ class MagratheaQuery{
 	 */
 	public function Where($whereSql, $condition="AND"){
 		if(is_array($whereSql)){
-			return $this->WhereArray($whereSql);
+			return $this->WhereArray($whereSql, $condition);
 		}
 		array_push($this->whereArr, $whereSql);
 		return $this;
