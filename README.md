@@ -26,6 +26,7 @@ rm -rf MagratheaPHP
 - __IMPROVEMENT :__ table query creator always adds `utf8` collation
 - __IMPROVEMENT :__ `Start()` function from models were changed to `MagratheaStart()` in order to avoid conflicts
 - __IMPROVEMENT :__ `ForwardTo($action, $control)` function from `MagratheaControl` now can work if receives only `$action`
+- __IMPROVEMENT :__ Controllers starting with `_` are not included in the `IncludeAllControllers` function
 - __FIX + NEW :__ Magrathea Admin migrations now are based on magrathea objects, not on (considered) existing magrathea tables. This way, it gets easier to import them to a new system.
 - __FIX :__ MagratheaAdmin database and environment always coming from Config
 - __FIX :__ MagratheaAdmin deleting relation

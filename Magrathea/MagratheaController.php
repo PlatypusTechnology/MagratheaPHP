@@ -166,7 +166,7 @@ class MagratheaController {
 			while (false !== ($file = readdir($handle))) {
 				$filename = explode('.', $file);
 				$ext = array_pop($filename);
-				if(empty($ext)) continue;
+				if(empty($ext) || $file[0] == "_") continue;
 				if($ext == "php"){
 					include_once($modelsFolder."/".$file);
 				}
