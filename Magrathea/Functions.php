@@ -15,6 +15,22 @@
 ####
 #######################################################################################
 
+/**
+ * Loads database configuration for the selected environment.
+ * 	If no environment is sent, it will use the information from the default environment
+ * @param 	string 		$env	Environment to load
+ * @return 	MagratheaDatabase Instance
+ */
+function loadMagratheaEnv($env = null){
+	global $magdb;
+	if( empty($env) ){
+		$env = MagratheaConfig::Instance()->GetEnvironment();	
+	}
+	$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
+	$magdb = MagratheaDatabase::Instance();
+	return $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
+}
+
 //.$trace[0]["file"].":".$trace[0]["line"]."\n"
 /**
  * Prints easily and beautifully

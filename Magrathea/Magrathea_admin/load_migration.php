@@ -56,9 +56,9 @@ $config = MagratheaConfig::Instance()->GetConfig();
 					?>
 					<div class="singlePlugin <?=($even ? "even" : "odd")?>">
 						<div class='row-fluid' style="padding-top: 5px;">
-							<div class="span9" style="padding-left: 20px;"><?=$obj?></div>
-							<div class="span3 right" style="padding-right: 20px;">
-								<button class="btn btn-default" onClick="databaseDetail('<?=$obj?>', this);"><i class="fa fa-database"></i> <i class="fa fa-terminal"></i>&nbsp;View query</button>
+							<div class="span6" style="padding-left: 20px;"><?=$obj?></div>
+							<div class="span6 right" style="padding-right: 20px;">
+								<button class="btn btn-default" onClick="objectDetail('<?=$obj?>', this);"><i class="fa fa-book"></i> <i class="fa fa-terminal"></i>&nbsp;Create object query</button>
 							</div>
 						</div>
 					</div>
@@ -75,11 +75,11 @@ $config = MagratheaConfig::Instance()->GetConfig();
 <script type="text/javascript">
 var responseDiv = null;
 
-function databaseDetail(obj, element){
+function objectDetail(obj, element){
 	responseIn = $("#query_run");
 	$(responseIn).html("Loading...");
 	$.ajax({
-		url: "?magpage=database_table.php",
+		url: "?magpage=object_query.php",
 		type: "POST",
 		data: { 
 			object: obj

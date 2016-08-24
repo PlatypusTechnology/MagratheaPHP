@@ -51,7 +51,7 @@ require ("admin_load.php");
 
 			if( $rel["rel_type"] == "belongs_to" ) {
 				$obj_var = "\$".strtolower($rel["rel_property"]);
-				$relations_functions .= "\tpublic function Set".$rel["rel_object"]."(".$obj_var."){\n";
+				$relations_functions .= "\tpublic function Set".$rel["rel_property"]."(".$obj_var."){\n";
 				$relations_functions .= "\t\t\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] = ".$obj_var.";\n";
 				$relations_functions .= "\t\t\$this->".$rel["rel_field"]." = ".$obj_var."->GetID();\n";
 				$relations_functions .= "\t\treturn \$this;\n";
@@ -71,10 +71,11 @@ require ("admin_load.php");
 		
 		$code .= "\tpublic \$".implode(", $", $obj_fields).";\n";
 		$code .= "\tpublic \$created_at, \$updated_at;\n";
+		$code .= "\tpublic \$dbPk;\n";
 		$code .= "\tprotected \$autoload = ".(count($relations_autoload) == 0 ? "null" : "array(".implode(", ", $relations_autoload).")").";\n\n";
 		
 		$code .= "\tpublic function __construct( ".( ($data["db_pk"]) ? " \$".$data["db_pk"]."=0 " : "\$id=0" )." ){ \n";
-			$code .= "\t\t\$this->Start();\n";
+			$code .= "\t\t\$this->MagratheaStart();\n";
 			if($data["db_pk"]){
 				$code .= "\t\tif( !empty(\$".$data["db_pk"].") ){\n";
 					$code .= "\t\t\t\$pk = \$this->dbPk;\n";
@@ -83,7 +84,7 @@ require ("admin_load.php");
 				$code .= "\t\t}\n";
 			}
 		$code .= "\t}\n";
-		$code .= "\tpublic function Start(){\n";
+		$code .= "\tpublic function MagratheaStart(){\n";
 			$code .= "\t\t\$this->dbTable = \"".$data["table_name"]."\";\n";
 			$code .= "\t\t\$this->dbPk = \"".$data["db_pk"]."\";\n";
 			foreach($obj_fields as $f){

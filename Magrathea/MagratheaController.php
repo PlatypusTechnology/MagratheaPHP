@@ -45,8 +45,11 @@ class MagratheaController {
 	*	@param 	string 	$control 	Control to be called
 	* 	@param 	string 	$action 	Action to be called inside the control
 	*/
-	public function ForwardTo($control, $action){
-		header("Location: /".$control."/".$action);
+	public function ForwardTo($control, $action=null){
+		if( $action )
+			header("Location: /".$control."/".$action);
+		else
+			header("Location: /".$control);
 		exit;
 	}
 
@@ -163,7 +166,7 @@ class MagratheaController {
 			while (false !== ($file = readdir($handle))) {
 				$filename = explode('.', $file);
 				$ext = array_pop($filename);
-				if(empty($ext)) continue;
+				if(empty($ext) || $file[0] == "_") continue;
 				if($ext == "php"){
 					include_once($modelsFolder."/".$file);
 				}

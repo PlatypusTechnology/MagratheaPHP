@@ -160,14 +160,14 @@ class MagratheaView{
 	 * @deprecated Use Javascript instead
 	 */
 	public function Javascripts(){
-		$this->Javascript();
+		$this->Javascript(false);
 	}
 	/**
 	 * Prints all the javascripts files on page
 	 * @param 		boolean 	$compression 		should the code be compressed?
 	 * @return  	string 		Include of Javascripts
 	 */
-	public function Javascript($print=true, $compression=null){
+	public function Javascript($print=false, $compression=null){
 		$compression = ($compression==null ? $this->ShouldCompressJavascript() : $compression );
 		$array_files = array_unique($this->javascript_files);
 		$jsContent = "<!--JS FILES MANAGED BY MAGRATHEA [compression: ".$compression."] -->\n";
@@ -202,7 +202,7 @@ class MagratheaView{
 				$jsContent .= "<script type='text/javascript' src='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."'></script>\n"; 
 			}
 		}
-		if($print) echo $jsContent;
+		if($print) echo $jsContent; 
 		return $jsContent;
 	}
 

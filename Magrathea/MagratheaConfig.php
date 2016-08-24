@@ -22,6 +22,7 @@ class MagratheaConfig {
 	private $path = __DIR__;
 	private $config_file_name = "configs/magrathea.conf";
 	private $configs = null;
+	private $environment = null;
 	protected static $inst = null;
 
 	public static function Instance(){
@@ -45,9 +46,21 @@ class MagratheaConfig {
 	/**
 	* set path for config file
 	* @param string $p Path to the file
+	* @return itself
 	*/
 	public function setPath($p){
 		$this->path = $p;
+		return $this;
+	}
+
+	/**
+	* This function will change the default environment to anything that the users wants to.
+	* @param string Environment name
+	* @return itself
+	*/
+	public function SetDefaultEnvironment($env){
+		$this->environment = $env;
+		return $this;
 	}
 
 	/**
@@ -56,7 +69,10 @@ class MagratheaConfig {
 	* @return string Environment name
 	*/
 	public function GetEnvironment(){
-		return $this->GetConfig("general/use_environment");
+		if(!isset($this->environment)){
+			$this->environment = $this->GetConfig("general/use_environment");
+		}
+		return $this->environment;
 	}
 
 	/**

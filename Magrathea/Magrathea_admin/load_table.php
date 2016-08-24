@@ -4,9 +4,9 @@ require ("admin_load.php");
 
 $table = $_POST["table"];
 $query = "SHOW columns FROM ".$table;
-$columns = $magdb->queryAll($query);
+$columns = MagratheaDatabase::Instance()->QueryAll($query);
 $query = "SHOW INDEX FROM ".$table;
-$indexes = $magdb->queryAll($query);
+$indexes = MagratheaDatabase::Instance()->QueryAll($query);
 
 //p_r($columns);
 

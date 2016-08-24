@@ -2,7 +2,10 @@
 
 require ("admin_load.php");
 
+	/*** CAUTION: EXTREMELY COMPLICATED LOGIC ***/
+
 	$data = $_POST;
+//	p_r($data);
 	$object_name = $data["object_name"];
 	$object_data = getObject($object_name);
 	
@@ -19,17 +22,38 @@ require ("admin_load.php");
 			$type_text = $data["rel_type_text"][$i_rel_obj];
 			$object = $data["rel_object"][$i_rel_obj];
 			$field = $data["rel_field"][$i_rel_obj];
-			$rel_name = "rel_".$object_name."_".$type."_".$object;
+
+			switch($type){
+				case "has_many":
+					$rel_name = "rel_".$object_name."_".$type."_".$object."+".$field;
+				break;
+				case "belongs_to":
+				default:
+					$rel_name = "rel_".$object_name."+".$field."_".$type."_".$object;
+				break;
+			}
+
 	
 			$property = $data[$rel_name."_property"];
 			$method = $data[$rel_name."_method"];
 			$lazyload = $data[$rel_name."_lazyload"];
 			$autoload = $data[$rel_name."_autoload"];
 
-			if( empty($property) )
-				$property = ($type == "belong_to" ? $object : $object."s" );
-			if( empty($method) )
-				$method = ($type == "belong_to" ? "Get".$object : "Get".$object."s" );
+			switch($type){
+				case "has_many":
+					if( empty($property) )
+						$property = $object;
+					if( empty($method) )
+						$method = "Get".$object;
+				break;
+				case "belongs_to":
+				default:
+					if( empty($property) )
+						$property = $object."s";
+					if( empty($method) )
+						$method = "Get".$object."s";
+				break;
+			}
 
 			$rel_id = @count($relations["rel_name"]);
 			$i = 0;
@@ -60,21 +84,23 @@ require ("admin_load.php");
 					$mirror_type_text = "has many";
 					$mirror_property = $mirror_obj."s";
 					$mirror_method = "Get".$mirror_obj."s";
+					$mirror_name = "rel_".$mirror_obj_base."_".$mirror_type."_".$mirror_obj."+".$field;
 				break;
 				case "has_many":
 					$mirror_type = "belongs_to";
 					$mirror_type_text = "belongs to";
 					$mirror_property = $mirror_obj;
 					$mirror_method = "Get".$mirror_obj;
+					$mirror_name = "rel_".$mirror_obj_base."+".$field."_".$mirror_type."_".$mirror_obj;
 				break;
 				default:
 					$mirror_type = $type;
 					$mirror_type_text = $type_text;
 					$mirror_property = $mirror_obj."s";
 					$mirror_method = "Get".$mirror_obj."s";
+					$mirror_name = "rel_".$mirror_obj_base."+".$field."_".$mirror_type."_".$mirror_obj;
 				break;
 			}
-			$mirror_name = "rel_".$mirror_obj_base."_".$mirror_type."_".$mirror_obj;
 			$mirror_lazyload = 1;
 			$mirror_autoload = 0;
 
@@ -102,7 +128,6 @@ require ("admin_load.php");
 			$relations["rel_method"][$rel_id] = $mirror_method;
 			$relations["rel_lazyload"][$rel_id] = $mirror_lazyload;
 			$relations["rel_autoload"][$rel_id] = $mirror_autoload;
-	
 			$i_rel_obj++;
 		}
 	}
@@ -135,7 +160,7 @@ require ("admin_load.php");
 	}
 
 ?>
-<!--true--->
+<!--true-->
 <div class="alert alert-success">
 	<button class="close" data-dismiss="alert" type="button">×</button>
 	<strong>Yeah, baby!</strong><br/>

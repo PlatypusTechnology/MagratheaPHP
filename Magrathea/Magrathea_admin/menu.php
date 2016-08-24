@@ -2,7 +2,9 @@
 
 require_once ("admin_load.php");
 
-$tables = getAllTables(@$configSection["db_name"], false);
+$databaseName = MagratheaConfig::Instance()->GetConfigFromDefault("db_name");
+
+$tables = getAllTables($databaseName, false);
 //$allTables = getAllTables(@$configSection["db_name"], true);
 //p_r($tables);
 $objects = getAllObjects();
@@ -10,6 +12,10 @@ $objects = getAllObjects();
 ?>
 
   <ul class="nav nav-list bs-docs-sidenav menu">
+  	<li class="menu-header">
+  		Environment: <?php echo MagratheaConfig::Instance()->GetEnvironment(); ?> <br/>
+  		Database: <?php echo $databaseName; ?> 
+  	</li>
 	<li><a onClick="loadConfig();" id="menu_config"><i class="fa fa-cogs"></i> Configuration</a></li>
     <li class="submenu"><a href="#"><i class="fa fa-table"></i> Tables <span class="number"><?=count($tables)?></span></a>
     	<ul class="nav nav-list menu_sublist" style="display: none;">

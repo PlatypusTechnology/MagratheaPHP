@@ -7,14 +7,11 @@ if(isset($site_path)){
 
 $magdb = null;
 try	{
-	$configSection = MagratheaConfig::Instance()->GetConfigSection(MagratheaConfig::Instance()->GetEnvironment());
-	$magdb = MagratheaDatabase::Instance();
-	$magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
+	loadMagratheaEnv();
 } catch (Exception $ex){
 	$error_msg = "Error: ".$ex->getMessage();
 	echo $error_msg; die;
 }
-
 
 // optional:
 date_default_timezone_set( MagratheaConfig::Instance()->GetConfig("general/time_zone") );

@@ -8,7 +8,6 @@ function getAllTables($db, $allTables=true){
 			$sql = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' ORDER BY TABLE_NAME";
 		else 
 			$sql = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA = '".$db."' AND TABLE_NAME NOT LIKE 'magrathea%' ORDER BY TABLE_NAME";
-
 		$tables = $magdb->queryAll($sql);
 		return $tables;
 	} catch (Exception $ex){

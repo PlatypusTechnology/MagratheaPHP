@@ -102,19 +102,23 @@ class MagratheaDebugger {
 	* Sets a debugger type temporarily
 	* (usefull when need to check a specific operation, for example)
 	*
-	*	@param 	string 	$dType 	type to be temporarily set
+	* @param 	string 	$dType 	type to be temporarily set
+	* @return  	itself
 	*/
 	public function SetTemp($dType){
 		$this->oldDebugType = $this->debugType;
 		$this->debugType = $dType;
+		return $this;
 	}
 
 	/**
 	* After temporarily setting a debugging type, gets it back to what it was
 	*
+	* @return  	itself
 	*/
 	public function BackTemp(){
 		$this->debugType = $this->oldDebugType;
+		return $this;
 	}
 
 	/**

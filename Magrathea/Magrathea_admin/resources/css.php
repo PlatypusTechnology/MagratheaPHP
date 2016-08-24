@@ -78,4 +78,11 @@ ul.nav-list li a i {
     margin-right: 8px;	
 }
 
+li.menu-header {
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+    font-weight: bolder;
+    background-color: #E5E5E5;
+}
+
 </style>

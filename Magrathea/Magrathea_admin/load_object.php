@@ -228,12 +228,17 @@ function addNewRelation(){
 	var rel_type = $("#relation_type option:selected").val();
 	var rel_type_val = $("#relation_type option:selected").val();
 	var rel_object = $("#relation_object option:selected").val();
-	var relation_name = "rel_<?=$obj_name?>_"+rel_type_val+"_"+rel_object;
-
 	var rel_field = $("#relation_field option:selected").val();
-
-	var property = (rel_type == "belongs_to" ? rel_object : rel_object+"s");
-	var method = (rel_type == "belongs_to" ? "Get"+rel_object : "Get"+rel_object+"s");
+	var relation_name, property, method;
+	if( rel_type == "has_many" ) {
+		relation_name = "rel_<?=$obj_name?>_"+rel_type_val+"_"+rel_object+"+"+rel_field;
+		property = rel_object;
+		method = "Get"+rel_object;
+	} else {
+		relation_name = "rel_<?=$obj_name?>"+"+"+rel_field+"_"+rel_type_val+"_"+rel_object;
+		property = rel_object+"s";
+		method = "Get"+rel_object+"s";
+	}
 
 	HtmlRelation(relation_name, rel_type, rel_type_val, rel_object, rel_field, method, property);
 	ShowHideNewRelation();
@@ -287,12 +292,8 @@ function DeleteRelation(rel_name){
 			relation: rel_name
 		}, 
 		success: function(data){
-			if( data == "<!--false-->" ){
-				$.jGrowl("Some error happened when trying to delete this relation!", { header: 'Error', theme:"notification_styled_error" });	
-			} else if (data == "<!--true--->") {
-				$.jGrowl("Relation was deleted", { header: 'Bye bye, relation...', theme:"notification_styled_success" });			
-				$("#"+rel_name).remove();
-			}
+			$("#object_result").html(data);
+			scrollToTop();
 		}
 	});
 }
