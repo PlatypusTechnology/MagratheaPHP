@@ -4,7 +4,7 @@ require ("admin_load.php");
 
 function loadPluginsList($installed=false){
 	if($installed) {
-		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path").'/plugins/';
+		$plugins_path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path").'/../plugins/');
 	} else {
 		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path").'/plugins/';
 	}
@@ -25,7 +25,6 @@ function loadPluginsList($installed=false){
 
 ?>
 
-
 <div class="row-fluid">
 	<div class="span12 mag_section">
 		<header>
@@ -37,17 +36,15 @@ function loadPluginsList($installed=false){
 	</div>
 </div>
 
-
 <div class="row-fluid">
-<div class="span12" id="install_response">
-	<div class="alert alert-info">
-		<button class="close" data-dismiss="alert" type="button" id="warning_objexists_bt">×</button>
-		<strong>Remember, remember...</strong><br/><del>the fifth of November.</del><br/>
-		Watch out removing plugins that are already in use!
+	<div class="span12" id="install_response">
+		<div class="alert alert-info">
+			<button class="close" data-dismiss="alert" type="button" id="warning_objexists_bt">×</button>
+			<strong>Remember, remember...</strong><br/><del>the fifth of November.</del><br/>
+			Watch out removing plugins that are already in use!
+		</div>
 	</div>
 </div>
-</div>
-
 
 <div class="row-fluid">
 	<div class="span12 mag_section">

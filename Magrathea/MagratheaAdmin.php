@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Class for handling and loading Magrathea's Admin system
  * More information on @link http://magrathea.platypusweb.com.br/admin_php.php
@@ -87,7 +86,7 @@ class MagratheaAdmin {
 	 */
 	public function AddPlugin($pluginName, $required=false){
 		$site_path = MagratheaConfig::Instance()->GetFromDefault("site_path");
-		$inc = @include($site_path."/plugins/".$pluginName."/load.php");
+		$inc = @include($site_path."/../plugins/".$pluginName."/load.php");
 		if(!$inc) {
 			echo "<br/><br/><a href='?call=plugin_install_req&plugin=".$pluginName."'>[Install ".$pluginName."]</a><br/><br/>";
 			if($required) {

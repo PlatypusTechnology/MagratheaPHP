@@ -25,6 +25,11 @@ class MagratheaConfig {
 	private $environment = null;
 	protected static $inst = null;
 
+	/**
+	* This is a singleton!
+	* Instance loader
+	* @return 	MagratheaConfig 	Instance of the object
+	*/
 	public static function Instance(){
 		if(!isset(self::$inst)){
 			self::$inst = new MagratheaConfig();
