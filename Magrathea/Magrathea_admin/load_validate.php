@@ -28,7 +28,7 @@ $staticPath = realpath($site_path."/Static");
 $staticPath_ok = is_writeable($staticPath);
 
 
-$plugins_path = realpath($site_path."/../plugins");
+$plugins_path = $site_path."/plugins";
 $plugins_path_ok  = is_writeable($plugins_path);
 
 $smarty = MagratheaController::GetSmarty();
