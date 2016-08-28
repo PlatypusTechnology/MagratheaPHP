@@ -4,7 +4,7 @@ require ("admin_load.php");
 
 function loadPluginsList($installed=false){
 	if($installed) {
-		$plugins_path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path").'/../plugins/');
+		$plugins_path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path").'/plugins/');
 	} else {
 		$plugins_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path").'/plugins/';
 	}
