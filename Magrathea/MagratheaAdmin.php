@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Class for handling and loading Magrathea's Admin system
  * More information on @link http://magrathea.platypusweb.com.br/admin_php.php

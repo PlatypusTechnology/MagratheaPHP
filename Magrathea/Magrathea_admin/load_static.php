@@ -2,7 +2,6 @@
 
 require ("admin_load.php");
 
-
 $staticPath = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/Static";
 if(!is_dir($staticPath)){
 	echo '<div class="alert alert-error"><strong>Directory doesn\'t exists!</strong><br/>Directory: <br/>[<b>'.$staticPath.'</b>]<br/> does not exists. Create it with write permissions, please...</div>';
@@ -33,7 +32,6 @@ $statics = MagratheaController::GetAllStatic();
 	width: 20px;
 }
 </style>
-
 
 <div class="row-fluid">
 	<div class="span12 mag_section">

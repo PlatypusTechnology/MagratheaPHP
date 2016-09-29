@@ -36,6 +36,12 @@ if(!is_writable($site_path)){
 
 $site_path .= "/".$plugin;
 
+function pluginInstall($path) {
+  $installer = $path."/"."install.php";
+  if( file_exists($installer) ) {
+    include $installer;
+  }
+}
 
 function rrmdir($dir) {
   if (is_dir($dir)) {
@@ -69,6 +75,7 @@ try{
   } else {
     $cmd = "copying: ".$magrathea_path." => ".$site_path;
     // echo "executing... ".$cmd;
+    pluginInstall($magrathea_path);
     rcopy($magrathea_path, $site_path);
   }
   // removes files and non-empty directories
