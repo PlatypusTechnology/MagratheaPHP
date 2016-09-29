@@ -10,7 +10,7 @@ $config = null;
 		$mconfig = new MagratheaConfigFile();
 		$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path"));
 //		echo "/../".$folder."/plugins/".$plugin_folder."/info.conf";
-		$mconfig->setFile("/../".$folder."/plugins/".$plugin_folder."/info.conf");
+		$mconfig->setFile("/plugins/".$plugin_folder."/info.conf");
 		$config = $mconfig->getConfig();
 	} catch (Exception $ex){
 		$error_msg = "Error: ".$ex->getMessage();
