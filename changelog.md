@@ -4,6 +4,7 @@
 - __NEW :__ Move `changelog` to a separate file to clean up `readme`
 - __IMPROVEMENT :__ `Magrathea` class with `GetVersion` function
 - __IMPROVEMENT :__ move `plugins` folder one level up
+- __FIX :__ Fixing issue on Magrathea Admin regarding plugin's `info.conf` directory
 
 ### version 1.3.0
 - __WARNING :__ Changed the way the relations are stored in Configuration. Now one object can have more than one relation with another object (task can be related to user from two different columns, for example). So, the way relations created in MagratheaAdmin are stored changed and MagratheaAdmin can possibliy stop working for getting already stabilished relations. - to fix, check our new manual fixes section (acccessing the folder [https://github.com/PlatypusTechnology/MagratheaPHP/tree/master/documentation/manuals](documentation/manuals) on the root of this project)
