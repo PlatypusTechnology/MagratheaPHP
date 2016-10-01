@@ -277,6 +277,7 @@ class MagratheaImage extends MagratheaImageBase {
 	 * @return itself
 	 */
 	public function LoadConfig(){
+		$environment = MagratheaConfig::Instance()->GetEnvironment();
 		$confFile = new MagratheaConfigFile();
 		$confFile->setPath( realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../configs/") );
 		$confFile->setFile( "magrathea_images.conf" );
