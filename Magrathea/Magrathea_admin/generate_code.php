@@ -71,7 +71,6 @@ require ("admin_load.php");
 		
 		$code .= "\tpublic \$".implode(", $", $obj_fields).";\n";
 		$code .= "\tpublic \$created_at, \$updated_at;\n";
-		$code .= "\tpublic \$dbPk;\n";
 		$code .= "\tprotected \$autoload = ".(count($relations_autoload) == 0 ? "null" : "array(".implode(", ", $relations_autoload).")").";\n\n";
 		
 		$code .= "\tpublic function __construct( ".( ($data["db_pk"]) ? " \$".$data["db_pk"]."=0 " : "\$id=0" )." ){ \n";

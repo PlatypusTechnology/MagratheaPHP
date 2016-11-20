@@ -2,6 +2,7 @@
 
 #### version 1.3.2 (minor changes)
 - __IMPROVEMENT :__ cleaning up unused code
+- __FIX :__ Fixing `$dbPk` protected/public permissions on MagratheaModel
 - __FIX :__ Using right config files in `MagratheaImages2` plugin
 
 #### version 1.3.1 (minor changes)
