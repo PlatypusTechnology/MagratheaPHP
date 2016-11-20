@@ -278,14 +278,14 @@ class MagratheaImage extends MagratheaImageBase {
 	 */
 	public function LoadConfig(){
 		$environment = MagratheaConfig::Instance()->GetEnvironment();
-		$config = new MagratheaConfigFile();
-		$config->setPath(__DIR__."/../config/");
-		$config->setFile("MagratheaImages.conf");
+		$confFile = new MagratheaConfigFile();
+		$confFile->setPath( realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../configs/") );
+		$confFile->setFile( "magrathea_images.conf" );
 
-		$this->imagesPath = $config->GetConfig($environment."/images_path")."/";
-		$this->generatedPath = $config->GetConfig($environment."/generated_path")."/";
-		$this->webImagesFolder = $config->GetConfig($environment."/web_images_folder")."/";
-		$this->webImagesGenerated = $config->GetConfig($environment."/web_images_generated")."/";
+		$this->imagesPath = $confFile->GetConfig($environment."/images_path")."/";
+		$this->generatedPath = $confFile->GetConfig($environment."/generated_path")."/";
+		$this->webImagesFolder = $confFile->GetConfig($environment."/web_images_folder")."/";
+		$this->webImagesGenerated = $confFile->GetConfig($environment."/web_images_generated")."/";
 		return $this;
 	}
 	/**

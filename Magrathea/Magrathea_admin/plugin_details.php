@@ -2,14 +2,12 @@
 
 require ("admin_load.php");
 
-$folder = $_POST["folder"];
 $plugin_folder = $_POST["plugin_folder"];
 
 $config = null;
 	try	{
 		$mconfig = new MagratheaConfigFile();
 		$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path"));
-//		echo "/../".$folder."/plugins/".$plugin_folder."/info.conf";
 		$mconfig->setFile("/plugins/".$plugin_folder."/info.conf");
 		$config = $mconfig->getConfig();
 	} catch (Exception $ex){
