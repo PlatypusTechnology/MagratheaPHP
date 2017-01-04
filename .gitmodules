@@ -1,0 +1,3 @@
+[submodule "Magrathea/plugins/MagratheaImages2"]
+	path = Magrathea/plugins/MagratheaImages2
+	url = git@github.com:PlatypusTechnology/MagratheaImages2.git
