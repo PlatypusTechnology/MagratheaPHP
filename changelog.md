@@ -1,5 +1,8 @@
 ## changelog
 
+#### version 1.3.3
+- __NEW :__ archive data in new tables
+
 #### version 1.3.2 (minor changes)
 - __IMPROVEMENT :__ cleaning up unused code
 - __FIX :__ Fixing `$dbPk` protected/public permissions on MagratheaModel

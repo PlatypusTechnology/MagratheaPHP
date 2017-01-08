@@ -5,7 +5,9 @@ require ("admin_load.php");
 //error_reporting(E_ALL);
 
 $query = $_POST["sql"];
+$table = $_POST["table"];
 $queryArr = explode(";", $query);
+$queryIndex = 0;
 
 foreach ($queryArr as $sql_query) {
 	$query = trim($sql_query);
@@ -76,8 +78,41 @@ foreach ($queryArr as $sql_query) {
 		</content>
 	</div>
 </div>
-	<?php
-}
 
+<?php
+	if( strtolower( substr($sql_query, 0, 6) ) == "select" ) {
+		$archive_table_name = "_".$table."_".date("Ym");
+		?>
+	<div class="row-fluid">
+		<div class="span12 mag_section">
+			<header class="hide_opt">
+					<h3>Archive Query</h3>
+					<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
+			</header>
+			<content style="display: none;">
+				<div class="row-fluid">
+					<div class="span7">
+						This will create a table with this content and remove this data from this current table.
+						<hr/>
+						Query:<br/>
+						<pre id="query<?=$queryIndex?>"><?=$sql_query?></pre>
+					</div>
+					<div class="span5 right">
+						<br/><br/><br/>
+						<label for="arcive-table-name">
+							Archive Table name:
+						</label>
+						<input type="text" name="archive-name" id="archive-name<?=$queryIndex?>" value="<?=$archive_table_name?>"><br/>
+						<button class="btn btn-success" onClick="archiveData(<?=$queryIndex?>);"><i class="fa fa-arrow-right"></i><i class="fa fa-database"></i>&nbsp;Archive Data</button>
+					</div>
+				</div>
+			</content>
+		</div>
+	</div>
+
+	<?php
+	}
+	$queryIndex++;
+}
 
 ?>
