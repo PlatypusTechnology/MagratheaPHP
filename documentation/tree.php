@@ -48,6 +48,9 @@ Tree:
 |  ├──>  magrathea.conf 		// based on magrathea.conf.default
 |  └──>  magrathea_objects.conf
 |
+├───  database 			// database files
+|  └─── backups			// write permission required (backups saving)
+|
 ├───  logs 				// write permission required
 ├───  Magrathea  		// Magrathea framework
 |  └─── libs
