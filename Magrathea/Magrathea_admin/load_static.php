@@ -82,7 +82,6 @@ $statics = MagratheaController::GetAllStatic();
 	</div>
 </div>
 
-
 <div class="row-fluid">
 	<div class="span9">&nbsp;</div>
 	<div class="span3">
