@@ -1,6 +1,9 @@
 <?php
 
 	require ("admin_load.php");
+	$config = MagratheaConfig::Instance();
+
+	$site_path = $config->GetFromDefault("site_path");
 
 	$backupFolder = realpath($site_path."/../database/backups");
 
@@ -10,11 +13,14 @@
 	}
 
 	$results = scandir($backupFolder);
-	p_r($results)
 	$backups = array();
-	foreach ($results as $result) {
-		if ($result === '.' or $result === '..') continue;
-		array_push($backups, $result);
+	$size = array();
+	$datec = array();
+	foreach ($results as $file) {
+		if ($file === '.' or $file === '..') continue;
+		array_push($backups, $file);
+		$size[$file] = filesize($backupFolder."/".$file);
+		$datec[$file] = filectime($backupFolder."/".$file);
 	}
 	sort($backups);
 
@@ -39,14 +45,20 @@
 						<a href="javascript: viewCode('<?=$b?>')"><?=$b?></a>
 					</td>
 					<td>
+						<?=number_format($size[$b] / 1048576, 2) . ' MB'?>
+					</td>
+					<td>
+						<?=date("Y-m-d h:i:s", $datec[$b])?>
+					</td>
+					<td>
 						<a href="<?=$backupFolder."/".$b?>" download class="btn">
-							<i class="fa fa-download"></i> Download file
+							<i class="fa fa-download"></i> Download
 						</a>
 						<button onClick="viewCode('<?=$s?>');" class="btn">
-							<i class="fa fa-code"></i> View Code
+							<i class="fa fa-code"></i> View
 						</button>
 						<button onClick="removeFile('<?=$s?>');" class="btn">
-							<i class="fa fa-trash-o"></i> Remove file
+							<i class="fa fa-trash-o"></i> Remove
 						</button>
 					</td>
 				</tr>
