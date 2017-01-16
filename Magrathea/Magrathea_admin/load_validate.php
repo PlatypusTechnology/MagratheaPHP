@@ -27,6 +27,8 @@ $js_compressed_ok = is_writeable($js_compressed);
 $staticPath = realpath($site_path."/Static");
 $staticPath_ok = is_writeable($staticPath);
 
+$backupsFolder = realpath($site_path."/../database/backups");
+$backupsFolder_ok = is_writeable($backupsFolder);
 
 $plugins_path = $site_path."/plugins";
 $plugins_path_ok  = is_writeable($plugins_path);
@@ -42,7 +44,7 @@ $smarty_compiledir_ok  = is_writeable($smarty_compiledir);
 
 
 function printError($url=null){
-	$error = '<i class="fa fa-times-circle" title="url not found"></i>';
+	$error = '<i class="fa fa-times-circle" title="url not found"></i>'.$url;
 	if(!empty($url))
 		$error .= " url not found: [".$url."]";
 	return $error;
@@ -212,6 +214,15 @@ $developPerm = '<i class="fa fa-code perm" title="write permission is for develo
 							<?=$writePerm?>
 							&nbsp;&nbsp;
 							<i class="fa fa-<?=($staticPath_ok ? "check" : "times")?>-circle"></i>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Backups Path</b></td>
+						<td><?=($backupsFolder ? $backupsFolder : printError($backupsFolder))?></td>
+						<td>
+							<?=$writePerm?>
+							&nbsp;&nbsp;
+							<i class="fa fa-<?=($backupsFolder_ok ? "check" : "times")?>-circle"></i>
 						</td>
 					</tr>
 				</tbody></table>

@@ -1,11 +1,9 @@
 <?php
 
 require ("admin_load.php");
-
 $config = MagratheaConfig::Instance()->GetConfig();
 
 ?>
-
 
 <div class="row-fluid">
 	<div class="span12 mag_section">
@@ -14,6 +12,25 @@ $config = MagratheaConfig::Instance()->GetConfig();
 		</header>
 		<content>
 			<p>Manage and update database migrations.</p>
+		</content>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span12 mag_section">
+		<header class="hide_opt">
+			<h3>Backup <i class="fa fa-cloud-download"></i></h3>
+			<span class="arrow toggle" style="display: none;"><a href="#"><i class="fa fa-chevron-down"></i></a></span>
+		</header>
+		<content>
+			<div class="row-fluid">
+				<div class="span6 center">
+					<button class="btn btn-success" onClick="backup();"><i class="fa fa-eye"></i> <i class="fa fa-database"></i>&nbsp;&nbsp;&nbsp;...View saved backup...</button>
+				</div>
+				<div class="span6 center">
+					<button class="btn btn-success" onClick="backup();"><i class="fa fa-save"></i> <i class="fa fa-database"></i> <i class="fa fa-arrow-down"></i>&nbsp;&nbsp;&nbsp;...Create Backup...</button>
+				</div>
+			</div>
 		</content>
 	</div>
 </div>
@@ -102,6 +119,18 @@ function queryRun(){
 		}, 
 		success: function(data){
 			responseDiv.html(data);
+		}
+	});
+}
+
+function backup(){
+	history.replaceState({}, "Magrathea Admin - Backups", "<?=$basename?>?area=migration");
+	$.ajax({
+		url: "?magpage=load_backup.php",
+		success: function(data){
+			$("#main_content").html(data);
+			$("#pageTitle").html("Backups");
+			scrollToTop();
 		}
 	});
 }

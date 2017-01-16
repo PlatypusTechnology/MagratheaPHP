@@ -569,6 +569,7 @@ class MagratheaQueryInsert extends MagratheaQuery {
 	private $arrValues;
 
 	public function __construct(){
+		parent::__construct();
 		$this->obj_array = array();
 		$this->fieldNames = array();
 		$this->arrValues = array();
@@ -618,6 +619,7 @@ class MagratheaQueryUpdate extends MagratheaQuery {
 	private $rawFields;
 
 	public function __construct(){
+		parent::__construct();
 		$this->obj_array = array();
 		$this->fields = array();
 		$this->rawFields = array();
@@ -693,6 +695,7 @@ class MagratheaQueryUpdate extends MagratheaQuery {
 class MagratheaQueryDelete extends MagratheaQuery {
 
 	public function __construct(){
+		parent::__construct();
 		$this->obj_array = array();
 		$this->join = "";
 		$this->joinArr = array();

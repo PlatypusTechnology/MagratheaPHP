@@ -1,5 +1,10 @@
 ## changelog
 
+#### version 1.3.3
+- __NEW :__ MagratheaAdmin => archive data in new tables
+- __NEW :__ MagratheaAdmin => generate and handle table backups
+- __FIX :__ `MagratheaQuery` calling parent constructor in order to avoid a warning regarding null arrays. (hapenning on `MagratheaQueryInsert`, `MagratheaQueryUpdate` and `MagratheaQueryDelete` objects)
+
 #### version 1.3.2 (minor changes)
 - __IMPROVEMENT :__ cleaning up unused code
 - __FIX :__ Fixing `$dbPk` protected/public permissions on MagratheaModel
