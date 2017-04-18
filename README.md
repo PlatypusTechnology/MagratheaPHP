@@ -16,7 +16,7 @@ rm -rf MagratheaPHP
 
 ---
 
-[View Change Log](docs/more_words.md)
+[View Change Log](changelog.md)
 
 ---
 
