@@ -66,7 +66,7 @@ MagratheaQuery::Select()
 			<div class='row-fluid'>
 				<div class='span9'>&nbsp;</div>
 				<div class='span3'>
-					<button class="btn btn-success" onClick="queryRun();"><i class="fa fa-arrow-right"></i><i class="fa fa-database"></i>&nbsp;Run Query</button>
+					<button class="btn btn-success" onClick="mainCodeRun();"><i class="fa fa-arrow-right"></i><i class="fa fa-database"></i>&nbsp;Run Query</button>
 				</div>
 			</div>
 
@@ -76,7 +76,6 @@ MagratheaQuery::Select()
 
 
 <div id="database_result"></div>
-
 
 <script type="text/javascript">
 var responseDiv = null;
@@ -96,14 +95,41 @@ function queryBuilder(){
 	});
 }
 
-function queryRun(){
+function mainCodeRun() {
 	var code = $("#query_run").val();
+	queryRun(code);	
+}
+
+function archiveQueryRun() {
+	var code = $("#query_archive").val();
+	queryRun(code);	
+}
+
+function queryRun(code){
 	responseDiv = $("#database_result");
 	$.ajax({
 		url: "?magpage=database_run.php",
 		type: "POST",
 		data: { 
-			sql: code
+			sql: code,
+			table: "<?=$table?>"
+		}, 
+		success: function(data){
+			responseDiv.html(data);
+		}
+	});
+}
+
+function archiveData(queryIndex) {
+	var tableName = $("#archive-name" + queryIndex).val();
+	var query = $("#query" + queryIndex).html();
+	responseDiv = $("#database_result");
+	$.ajax({
+		url: "?magpage=database_archive.php",
+		type: "POST",
+		data: { 
+			sql: query,
+			table: tableName
 		}, 
 		success: function(data){
 			responseDiv.html(data);
@@ -112,10 +138,3 @@ function queryRun(){
 }
 
 </script>
-
-
-
-
-
-
-

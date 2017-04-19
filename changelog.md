@@ -1,5 +1,26 @@
 ## changelog
 
+### version 1.4.0
+- __NEW :__ function `dump()` that returns a better format debug
+- __IMPROVEMENT :__ `MagratheaDebugger` improved on displaying classes and objects
+- __FIX :__ `MagratheaView->Javascripts` alias to `MagratheaView->Javascript` fixed 
+- __FIX :__ `magrathea.conf` compressing vars are now boolean.
+##### version 1.4.0 new features:
+- __NEW :__ HTML minifier included! Function `MagratheaController->MinifyHTML()` 
+Now it's possible to minify the HTMLs.
+To do so, just include the attribute `minify_html` in `magrathea.conf`.
+Default to `false`.
+- __NEW :__ SCSS compiler and compressor included!
+Now it is possible to include SCSS files.
+`MagratheaView::Instance()->IncludeSCSS($css_file)` includes the file and a simple `MagratheaView::Instance()->CSS()` automatically merges the compiled code on the compressed content and does the magic as usual. So, `IncludeSCSS()` is the new thing basically.
+
+---
+
+#### version 1.3.3
+- __NEW :__ MagratheaAdmin => archive data in new tables
+- __NEW :__ MagratheaAdmin => generate and handle table backups
+- __FIX :__ `MagratheaQuery` calling parent constructor in order to avoid a warning regarding null arrays. (hapenning on `MagratheaQueryInsert`, `MagratheaQueryUpdate` and `MagratheaQueryDelete` objects)
+
 #### version 1.3.2 (minor changes)
 - __IMPROVEMENT :__ cleaning up unused code
 - __FIX :__ Fixing `$dbPk` protected/public permissions on MagratheaModel
@@ -29,6 +50,8 @@
 - __FIX :__ start.sh fixed permissions of static folder
 - __FIX :__ `$dbPk` now public accessible in `MagratheaModels`
 
+---
+
 #### version 1.2.2
 - __FIX :__ start.sh fixed
 #### version 1.2.1
@@ -41,6 +64,8 @@
 - __FIX :__ Fixed notices in Magrathea Admin 
 - __IMPROVEMENT :__ Magrathea structure validation improved
 - __IMPROVEMENT :__ Magrathea Images plugin fixed notices and removed WideImage load (now it is loaded from beginning)
+
+---
 
 ### version 1.1.0
 - __FIX :__ MagratheaConfig: Inifinite loop when no config file found

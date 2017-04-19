@@ -13,12 +13,35 @@ class MagratheaController {
 
 	/**
 	*	Just starts Smarty (if is not started yet...)
+	* 	@return 	itself
 	*/
 	public function StartSmarty(){
 		global $Smarty;
 		$this->Smarty = $Smarty;
+		if ($this->ShouldMinifyHTML()) {
+			$this->MinifyHTML();
+		}
+		return $this;
 	}
 
+	/**
+	*	Checks on magrathea.conf for attribute minify_html
+	* 	@return 	boolean		default: false;
+	*/
+	private function ShouldMinifyHTML() {
+		$minify = MagratheaConfig::Instance()->GetConfigFromDefault("minify_html", false);
+		return $minify;
+	}
+
+	/**
+	*	Asks Smarty to minify HTML
+	* 	@return 	itself
+	*/
+	public function MinifyHTML() {
+		$this->Smarty->loadFilter('output', 'trimwhitespace');
+		return $this;
+	}
+	
 	/**
 	 * Gets Smarty object statically
 	 * @return  	Smarty 		Smarty object.
@@ -84,7 +107,7 @@ class MagratheaController {
 	*	@param 	boolean	$die 	Terminate code if static found
 	*/
 	public function GetStatic($name, $die=true){
-		if(!$this->displayStatic) return false;
+		if($this->displayStatic == false) return false;
 		$staticName = $this->formatStaticPageName($name);
 		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 		$filePath = $appFolder."/Static/".$staticName;
@@ -117,7 +140,6 @@ class MagratheaController {
 			echo $code;
 		}
 	}
-
 
 
 	/**

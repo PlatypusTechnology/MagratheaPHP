@@ -116,10 +116,11 @@ class MagratheaConfig {
 	/**
 	* This function will get the $config_name property from `magrathea.conf`.
 	* It will get from the section defined on `general/use_environment`.
-	* @param 	string 	$config_name Item to be returned from the `magrathea.conf`.
+	* @param 	string 		$config_name 	Item to be returned from the `magrathea.conf`.
+	* @param 	boolean 	$throwable 		should this function throw an exception if array key don't exist?
 	* @return 	string
 	*/
-	public function GetConfigFromDefault($config_name){
+	public function GetConfigFromDefault($config_name, $throwable=true){
 		if( $this->configs == null ){
 			$this->loadFile();
 			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
@@ -131,7 +132,11 @@ class MagratheaConfig {
 		if(array_key_exists($config_name, $this->configs[$environment])){
 			return $this->configs[$environment][$config_name];
 		} else {
-			throw new MagratheaConfigException("Key ".$config_name." does not exist in magratheaconf!", 704);
+			if ($throwable) {
+				throw new MagratheaConfigException("Key ".$config_name." does not exist in magratheaconf!", 704);
+			} else {
+				return null;
+			}
 		}
 	}
 
@@ -247,10 +252,8 @@ class MagratheaConfigFile {
 	}
 	/**
 	*	Saves the config file
-	*
-	*	@param 	boolean 	$save_sections 		A flag indicating if the sections should be saved also.
-	*											Default: `true`
-	*
+	*	@param 		boolean 	$save_sections 		A flag indicating if the sections should be saved also.
+	*												Default: `true`
 	*	@return 	boolean	 	True if the saved succesfully. False if got any error in the process
 	*/
 	public function Save($save_sections=true) { 

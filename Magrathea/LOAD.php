@@ -3,6 +3,7 @@
 $path = __DIR__."/";
 include_once($path."libs/Smarty/Smarty.class.php");
 include_once($path."libs/WideImage/WideImage.php");
+include_once($path."libs/scssphp/scss.inc.php");
 
 require ($path."Magrathea.php");
 

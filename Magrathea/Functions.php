@@ -50,6 +50,7 @@ function p_r($debugme, $beautyme=false){
  * Prints wonderfull debugs!
  * @param 	object 		$debugme 	Object to be printed
  * @param  	string  	$prev_char 	separator
+ * @return  string  	nicely printed var
  */	
 function nice_p_r($debugme, $prev_char = ""){
 	$html = "";
@@ -67,6 +68,17 @@ function nice_p_r($debugme, $prev_char = ""){
 	}
 	$html .= (empty($prev_char) ? "</div>" : "");
 	return $html;
+}
+
+/**
+ * dumps vars
+ * @param 	object 		$debugme 	Object to be printed
+ * @return  string  	nicely printed var
+ */	
+function dump($debugme){
+	ob_start();
+	var_dump($debugme);
+	return ob_get_clean();
 }
 
 /**
