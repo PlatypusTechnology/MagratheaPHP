@@ -10,6 +10,9 @@ Start developing with Magrathea now!
 
 ```
 git clone https://github.com/PlatypusTechnology/MagratheaPHP/
+cd MagratheaPHP
+git submodule update --recursive --remote
+cd ..
 cp -rv MagratheaPHP/Magrathea/* .
 rm -rf MagratheaPHP
 ```
