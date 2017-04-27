@@ -11,7 +11,7 @@ class Magrathea {
 	* @return 	string 		Magrathea version
 	*/
 	public static function GetVersion() {
-		$version_file = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path")."/version";
+		$version_file = MagratheaConfig::Instance()->GetMagratheaPath()."/version";
 		$version = file_get_contents($version_file);
 		return $version;
 	}

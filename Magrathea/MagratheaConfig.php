@@ -81,6 +81,15 @@ class MagratheaConfig {
 	}
 
 	/**
+	* This function will return the magrathea path defined in config.php
+	* @return 	string 		Magrathea Path
+	*/
+	public function GetMagratheaPath() {
+		global $magrathea_path;
+		return $magrathea_path;
+	}
+
+	/**
 	* `$config_name` can be called to get a parameter from inside a section of the config file. To achieve this, you should use a slash (/) to separate the section from the property.
 	* If the slash is not used, the function will return the property only if it's on the root.
 	* If `$config_name` is a section name, the function will return the full section as an Array.

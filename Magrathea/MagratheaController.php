@@ -135,8 +135,8 @@ class MagratheaController {
 			$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 			$filePath = $appFolder."/Static/".$this->staticPage;
 			$file_handler = @fopen($filePath, 'w');
-			fwrite($file_handler, $code);
-			fclose($file_handler);
+			@fwrite($file_handler, $code);
+			@fclose($file_handler);
 			echo $code;
 		}
 	}

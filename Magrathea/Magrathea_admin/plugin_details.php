@@ -7,7 +7,7 @@ $plugin_folder = $_POST["plugin_folder"];
 $config = null;
 	try	{
 		$mconfig = new MagratheaConfigFile();
-		$mconfig->setPath(MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path"));
+		$mconfig->setPath(MagratheaConfig::Instance()->GetMagratheaPath());
 		$mconfig->setFile("/plugins/".$plugin_folder."/info.conf");
 		$config = $mconfig->getConfig();
 	} catch (Exception $ex){
@@ -26,7 +26,7 @@ if(is_null($config)){
 	if(!empty($config["more"]))
 		$text .= "<p><pre>".$config["more"]."</pre></p>";
 	if(@!empty($config["database"])){
-		$queryUrl = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path")."/plugins/".$plugin_folder."/".$config["database"];
+		$queryUrl = MagratheaConfig::Instance()->GetMagratheaPath()."/plugins/".$plugin_folder."/".$config["database"];
 		$query = file_get_contents($queryUrl);
 		$database = '<div class="row-fluid"><div class="span12">';
 		$database .= '<button class="btn btn-default" onClick="$(this).hide(\'slow\'); $(\'#'.$plugin_folder.'_db\').show(\'slow\');"><i class="fa fa-database"></i>&nbsp;Plugin database</button>';

@@ -35,8 +35,8 @@
 		}
 		echo '</ul>';
 	} else {
-		require_once(MagratheaConfig::Instance()->GetFromDefault("magrathea_path")."/libs/simpletest/autorun.php");
-		require_once(MagratheaConfig::Instance()->GetFromDefault("magrathea_path")."/libs/simpletest/web_tester.php");
+		require_once(MagratheaConfig::Instance()->GetMagratheaPath()."/libs/simpletest/autorun.php");
+		require_once(MagratheaConfig::Instance()->GetMagratheaPath()."/libs/simpletest/web_tester.php");
 		SimpleTest::prefer(new TextReporter());
 		include $testFolder."/".$actualTest;
 	}
