@@ -302,6 +302,7 @@ class MagratheaView{
 		$css_lmod = implode("_", $this->css_lastmodified_arr);
 		$css_lmod_hash = md5($css_lmod);
 		$compiledFileName = $this->compressed_path_css."/".$css_lmod_hash."_scss_compiled.css";
+		$cssContent = "";
 		if(!file_exists($compiledFileName)){
 			if (!$handle = @fopen($compiledFileName, 'w')) { 
 				$cssContent .= "<!--error compiling scss! could not create file-->\n";
