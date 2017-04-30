@@ -5,6 +5,7 @@
 - __IMPROVEMENT :__ `MagratheaDebugger` improved on displaying classes and objects
 - __FIX :__ `MagratheaView->Javascripts` alias to `MagratheaView->Javascript` fixed 
 - __FIX :__ `magrathea.conf` compressing vars are now boolean.
+- __FIX :__ MagratheaAdmin: some fixes and quick bug solutions...
 ##### version 1.4.0 new features:
 - __NEW :__ HTML minifier included! Function `MagratheaController->MinifyHTML()` 
 Now it's possible to minify the HTMLs.
