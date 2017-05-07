@@ -14,6 +14,7 @@ Default to `false`.
 - __NEW :__ SCSS compiler and compressor included!
 Now it is possible to include SCSS files.
 `MagratheaView::Instance()->IncludeSCSS($css_file)` includes the file and a simple `MagratheaView::Instance()->CSS()` automatically merges the compiled code on the compressed content and does the magic as usual. So, `IncludeSCSS()` is the new thing basically.
+- __NEW :__ `Default` function for controller: if there isn't a function for the `action` method, `MagratheaController` will now call a function called `Def` sending the action as argument.
 
 ---
 

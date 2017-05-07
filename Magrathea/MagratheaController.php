@@ -225,8 +225,6 @@ class MagratheaController {
 		return $output;
 	}
 
-
-
 	public static function ErrorHandle($ex){
 		if(is_a($ex, "MagratheaException")){
 			$ex->display();
@@ -236,11 +234,20 @@ class MagratheaController {
 	}
 
 	public function __call($method_name, $args = array()){
-		if(method_exists($this->Smarty, $method_name)){
-			return call_user_func_array(array(&$this->Smarty, $method_name), $args);
+		if (method_exists($this, $method_name)){
+			return call_user_func_array(
+				array ( &$this, $method_name ), 
+					$args );
+		} else if (method_exists($this->Smarty, $method_name)){
+			return call_user_func_array(
+				array ( &$this->Smarty, $method_name ), 
+					$args );
+		} else if (method_exists($this, "Def")){
+			return call_user_func(
+				array ( &$this, "Def" ), 
+					$method_name, $args );
 		} else {
-			throw new MagratheaControllerException("Function could not be found (even in Smarty):".$method_name);
-			
+			throw new MagratheaControllerException("Function could not be found and no Default function set: ".$method_name);	
 		}
 	}
 	
