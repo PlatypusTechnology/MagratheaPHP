@@ -37,7 +37,7 @@
   top: 0;
   left: 0;
   width: 0;
-  background: transparent url(images/ibutton-slider-default.png) no-repeat scroll 0 -54px;
+  background: transparent url(/plugins/ibutton/images/ibutton-slider-default.png) no-repeat scroll 0 -54px;
   z-index: 3;
   padding-left: 3px;
 	/* set default width based on ON/OFF labels */
