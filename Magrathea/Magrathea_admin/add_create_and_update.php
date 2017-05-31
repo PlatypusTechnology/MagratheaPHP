@@ -14,7 +14,7 @@ array_push($queryArray, "CREATE TRIGGER ".$table."_update BEFORE UPDATE ON `".$t
 
 p_r($queryArray);
 
-$magdb->QueryTransaction($queryArray);
+MagratheaDatabase::Instance()->QueryTransaction($queryArray);
 
 ?>
 

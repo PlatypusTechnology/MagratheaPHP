@@ -5,7 +5,8 @@
 - __IMPROVEMENT :__ `MagratheaDebugger` improved on displaying classes and objects
 - __FIX :__ `MagratheaView->Javascripts` alias to `MagratheaView->Javascript` fixed 
 - __FIX :__ `magrathea.conf` compressing vars are now boolean.
-- __FIX :__ MagratheaAdmin: some fixes and quick bug solutions...
+- __FIX :__ `MagratheaAdmin`: generation of `created_at`/`updated_at` fields was not working...
+- __FIX :__ `MagratheaAdmin`: some other fixes and quick bug solutions...
 ##### version 1.4.0 new features:
 - __NEW :__ HTML minifier included! Function `MagratheaController->MinifyHTML()` 
 Now it's possible to minify the HTMLs.
@@ -15,6 +16,7 @@ Default to `false`.
 Now it is possible to include SCSS files.
 `MagratheaView::Instance()->IncludeSCSS($css_file)` includes the file and a simple `MagratheaView::Instance()->CSS()` automatically merges the compiled code on the compressed content and does the magic as usual. So, `IncludeSCSS()` is the new thing basically.
 - __NEW :__ `Default` function for controller: if there isn't a function for the `action` method, `MagratheaController` will now call a function called `Def` sending the action as argument.
+- __NEW :__ `MagratheaDatabase.php.simulate` all the function on `MagratheaDatabase`, but as a simuation, for testing purposes or whatever. Queries are saved in a file.
 
 ---
 

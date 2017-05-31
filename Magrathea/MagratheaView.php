@@ -253,7 +253,7 @@ class MagratheaView{
 	 * @return  	string 		Include of CSSs
 	 */
 	public function CSS($compression=null){
-		$compression = ($compression==null ? $this->ShouldCompressCss() : $compression );
+		$compression = ($compression===null ? $this->ShouldCompressCss() : $compression );
 		$array_files = array_unique($this->css_files);
 		$cssContent = "";
 		if($compression){
@@ -264,9 +264,10 @@ class MagratheaView{
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$cssContent .= "<!--error compressing css! could not create file-->\n";
-					$cssContent .= $this->CSS("false");
+					$cssContent .= $this->CSS(false);
 					return $cssContent;
 				} 
+				return;
 				$cssCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPRESS_CSS);
 				foreach($array_files as $file){
 					$cssCompressor->add($file);
@@ -277,12 +278,12 @@ class MagratheaView{
 				$compressed_css = $cssCompressor->compress()->GetCompressedContent();
 				if (!fwrite($handle, $compressed_css)) { 
 					$cssContent .= "<!--error compressing css! could not write file-->\n";
-					$cssContent .= $this->CSS("false");
+					$cssContent .= $this->CSS(false);
 					return $cssContent;
 				} 
 				fclose($handle); 
 			}
-			$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."' rel='stylesheet'>\n"; 
+			$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."' rel='stylesheet'>\n";
   		} else {
 			foreach($array_files as $file){
 				$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."' rel='stylesheet'>\n";
