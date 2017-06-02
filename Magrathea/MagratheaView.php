@@ -185,7 +185,7 @@ class MagratheaView{
 	 * @return  	string 		Include of Javascripts
 	 */
 	public function Javascript($print=false, $compression=null){
-		$compression = ($compression==null ? $this->ShouldCompressJavascript() : $compression );
+		$compression = ($compression===null ? $this->ShouldCompressJavascript() : $compression );
 		$array_files = array_unique($this->javascript_files);
 		$jsContent = "<!--JS FILES MANAGED BY MAGRATHEA [compression: ".$compression."] -->\n";
 		if($compression){
@@ -196,7 +196,7 @@ class MagratheaView{
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$jsContent .= "<!--error compressing javascript! could not create file-->";
-					$jsContent .= $this->Javascript(false, "false");
+					$jsContent .= $this->Javascript(false, false);
 					return $jsContent;
 				} 
 				$jsCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPRESS_JS);
@@ -207,7 +207,7 @@ class MagratheaView{
 				$compressed_js = $jsCompressor->compress()->GetCompressedContent();
 				if (!fwrite($handle, $compressed_js)) { 
 					$jsContent .= "<!--error compressing javascript! could not write file-->";
-					$jsContent .= $this->Javascript(false, "false");
+					$jsContent .= $this->Javascript(false, false);
 					return $jsContent;
 				}
 				fclose($handle); 
