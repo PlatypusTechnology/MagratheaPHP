@@ -53,7 +53,7 @@ class MagratheaDatabase{
 		if(!is_null($values)){
 			$simulation .= " - values: [".implode(',', $values)."]";
 		}
-		return MagratheaDebugger::Instance()->Add($sql);
+		return MagratheaDebugger::Instance()->Add($simulation);
 	}
 
 	/**
@@ -228,7 +228,9 @@ class MagratheaDatabase{
 	* @return 	object 		$result 	Result of the query
 	*/
 	public function Query($sql){
+		$this->OpenConnectionPlease();
 		$this->Simulate("query", $sql);
+		$this->CloseConnectionThanks();
 		return null;
 	}
 	
@@ -239,7 +241,9 @@ class MagratheaDatabase{
 	*/
 	public function QueryAll($sql){
 		$arrRetorno = array();
+		$this->OpenConnectionPlease();
 		$this->Simulate("query", $sql);
+		$this->CloseConnectionThanks();
 		return $arrRetorno;
 	}
 	
@@ -250,7 +254,9 @@ class MagratheaDatabase{
 	*/
 	public function QueryRow($sql){
 		$arrRetorno = array();
+		$this->OpenConnectionPlease();
 		$this->Simulate("query", $sql);
+		$this->CloseConnectionThanks();
 		return $arrRetorno;
 	}
 	
@@ -260,7 +266,9 @@ class MagratheaDatabase{
 	* @return 	object 		$result 	First value of the first line
 	*/
 	public function QueryOne($sql){
+		$this->OpenConnectionPlease();
 		$this->Simulate("query", $sql);
+		$this->CloseConnectionThanks();
 		return null;
 	}
 
