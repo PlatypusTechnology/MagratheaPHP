@@ -395,11 +395,15 @@ class MagratheaDatabase{
 	 * @param  array 	$arr 	array to be "converted"
 	 * @return array 	array as reference, ready to be used!
 	 */
-    private function makeValuesReferenced($arr){ 
+    private function makeValuesReferenced($arr){
+    	//Reference is required for PHP 5.3+
+    	if (strnatcmp(phpversion(),'5.3') >= 0) {
         $refs = array(); 
         foreach($arr as &$val) 
         	array_push($refs, $val);
         return $refs; 
+      }
+      return $arr;
     } 
 	
 }
