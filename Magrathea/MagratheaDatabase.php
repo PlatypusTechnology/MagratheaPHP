@@ -375,7 +375,6 @@ class MagratheaDatabase{
 		array_unshift($args, $params);
 		try{
 			$stm_params = $this->makeValuesReferenced($args);
-			print_r($stm_params);
 			call_user_func_array(array($stm, "bind_param"), $stm_params);
 			$stm->execute();
 			if($stm->error) $this->ConnectionErrorHandle($stm->error);
