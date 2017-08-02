@@ -374,8 +374,7 @@ class MagratheaDatabase{
 		$args = $arrValues;
 		array_unshift($args, $params);
 		try{
-			$stm_params = $this->makeValuesReferenced($args);
-			call_user_func_array(array($stm, "bind_param"), $stm_params);
+			call_user_func_array(array($stm, "bind_param"), $this->makeValuesReferenced($args));
 			$stm->execute();
 			if($stm->error) $this->ConnectionErrorHandle($stm->error);
 			$lastId = $stm->insert_id;
@@ -398,13 +397,10 @@ class MagratheaDatabase{
 	 */
     private function makeValuesReferenced($arr){
     	//Reference is required for PHP 5.3+
-    	if (strnatcmp(phpversion(),'5.3') >= 0) {
         $refs = array(); 
-        foreach($arr as $key => $val) 
-        	$refs[$key] = &$arr[$key];
+        foreach($arr as $key => &$val) 
+        	$refs[$key] = &$val;
         return $refs; 
-      }
-      return $arr;
     } 
 	
 }
