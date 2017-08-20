@@ -21,6 +21,12 @@ if(!is_writable($site_path)){
     Error installing plugin!<br/>
     It seems that destination path is incorrect or you don't have permissions<br/>
     [path: <?=$site_path?>]
+
+    <br/><br/>
+    <hr/>
+    <a href='?call=bootup'>[New setup?]</a>
+    <hr/>
+    <br/><br/><br/><br/>
   <?php
   die;
 }

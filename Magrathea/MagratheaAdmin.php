@@ -89,6 +89,9 @@ class MagratheaAdmin {
 		$inc = @include($site_path."/plugins/".$pluginName."/load.php");
 		if(!$inc) {
 			echo "<br/><br/><a href='?call=plugin_install_req&plugin=".$pluginName."'>[Install ".$pluginName."]</a><br/><br/>";
+			if (!is_dir($site_path."/plugins") ) {
+				echo "<br/><br/><hr/><a href='?call=bootup'>[New setup?]</a><hr/><br/><br/><br/><br/>";
+			}
 			if($required) {
 				throw new MagratheaAdminException("Plugin [".$pluginName."] could not be found!");
 			}
