@@ -7,18 +7,18 @@
 
 /**
  * Debugs what is sent, according with debug configurations
- * @param 	object 		$this 		object to debug
+ * @param 	object 		$bug 		object to debug
  */
-function Debug($this){
-	MagratheaDebugger::Instance()->Add($this);
+function Debug($bug){
+	MagratheaDebugger::Instance()->Add($bug);
 }
 
 /**
  * Adds to info debug, according with configurations
- * @param 	object 		$this 		object to debug
+ * @param 	object 		$bug 		object to debug
  */
-function Info($this){
-	MagratheaDebugger::Instance()->Info($this);
+function Info($bug){
+	MagratheaDebugger::Instance()->Info($bug);
 }
 
 /**
