@@ -19,8 +19,8 @@
 
 
 /**
-* This class will provide a layer for connecting with mysql
-* 
+* This class will provide a simulation of MagratheaDatabase
+* 	queries will be saved on a file.
 */
 class MagratheaDatabase{
 
@@ -29,7 +29,6 @@ class MagratheaDatabase{
 	const FETCH_NUM = 3;
 	const FETCH_ARRAY = 4;
 
-	private $mysqli;
 	private $connDetails;
 	private $fetchmode;
 
@@ -42,6 +41,19 @@ class MagratheaDatabase{
 	* Constructor is private
 	*/
 	private function __construct(){
+	}
+
+	/**
+	* This is a singleton!
+	* Instance loader
+	* @return 	result of MagratheaDebugger
+	*/
+	private function Simulate($fn, $sql, $values=null){
+		$simulation =  "SIMULATING QUERY: (".$fn.")[".$sql."]";
+		if(!is_null($values)){
+			$simulation .= " - values: [".implode(',', $values)."]";
+		}
+		return MagratheaDebugger::Instance()->Add($simulation);
 	}
 
 	/**
@@ -129,36 +141,13 @@ class MagratheaDatabase{
 	* @throws	MagratheaDbException
 	*/
 	public function OpenConnectionPlease(){
-		try{
-			if($this->connDetails["port"])
-				$this->mysqli = @new mysqli(
-					$this->connDetails["hostspec"], 
-					$this->connDetails["username"], 
-					$this->connDetails["password"], 
-					$this->connDetails["database"],
-					$this->connDetails["port"]
-				);
-			else 
-				$this->mysqli = @new mysqli(
-					$this->connDetails["hostspec"], 
-					$this->connDetails["username"], 
-					$this->connDetails["password"], 
-					$this->connDetails["database"]
-				);
-			if($this->mysqli->connect_errno){
-				throw new MagratheaDBException("Failed to connect to MySQL: (".$this->mysqli->connect_errno.") ".$this->mysqli->connect_error);
-			}
-			$this->mysqli->set_charset("utf8");
-		} catch (Exception $ex) {
-			throw new MagratheaDBException($ex->getMessage());
-		}
-		return true;
+		return $this->Simulate("OpenConnection", "mysqli_connect()", $this->connDetails);
 	}
 	/**
 	* Already uses you.. Bye.
 	*/
 	public function CloseConnectionThanks(){
-		$this->mysqli->close();
+		return $this->Simulate("closeConnection", "mysqli_close()", $this->connDetails);
 	}
 	
 	/**
@@ -239,13 +228,10 @@ class MagratheaDatabase{
 	* @return 	object 		$result 	Result of the query
 	*/
 	public function Query($sql){
-		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
-		$result = $this->mysqli->query($sql);
-		if(is_object($result))
-			$this->count = $result->num_rows;
+		$this->Simulate("query", $sql);
 		$this->CloseConnectionThanks();
-		return $result;
+		return null;
 	}
 	
 	/**
@@ -255,18 +241,8 @@ class MagratheaDatabase{
 	*/
 	public function QueryAll($sql){
 		$arrRetorno = array();
-		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
-		$result = $this->mysqli->query($sql);
-		if(!$result){
-			$this->ErrorHandle($this->mysqli->error, $sql);
-			throw new MagratheaDBException($this->mysqli->error);
-		}
-		if(is_object($result) ){
-			$this->count = $result->num_rows;
-			$arrRetorno = $this->FetchResult($result);
-			$result->close();
-		}
+		$this->Simulate("query", $sql);
 		$this->CloseConnectionThanks();
 		return $arrRetorno;
 	}
@@ -278,15 +254,8 @@ class MagratheaDatabase{
 	*/
 	public function QueryRow($sql){
 		$arrRetorno = array();
-		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
-		$result = $this->mysqli->query($sql);
-		if($result){
-			$this->count = $result->num_rows;
-			if($this->count == 0) return $arrRetorno;
-			$arrRetorno = $this->FetchResult($result, true);
-			$result->close();
-		}
+		$this->Simulate("query", $sql);
 		$this->CloseConnectionThanks();
 		return $arrRetorno;
 	}
@@ -297,17 +266,10 @@ class MagratheaDatabase{
 	* @return 	object 		$result 	First value of the first line
 	*/
 	public function QueryOne($sql){
-		$retorno;
-		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
-		$result = $this->mysqli->query($sql);
-		$this->count = $result->num_rows;
-		if($result){
-			$retorno = $result->fetch_row();
-			$result->close();
-		}
+		$this->Simulate("query", $sql);
 		$this->CloseConnectionThanks();
-		return $retorno[0];
+		return null;
 	}
 
 	/**
@@ -318,19 +280,11 @@ class MagratheaDatabase{
 	*/
 	public function QueryTransaction($query_array){
 		$this->OpenConnectionPlease();
-
-		$this->mysqli->autocommit(false);
 		foreach( $query_array as $query ){
-			$this->LogControl($query);
-			$this->mysqli->query($query);
-			if (!$this->mysqli->commit()) {
-				$this->ErrorHandle($this->mysqli->error, $query);
-				return false;
-			}
+			$this->Simulate("query", $query);
 		}
-
 		$this->CloseConnectionThanks();
-		$this->mysqli->autocommit(true);
+		return null;
 	}
 	
 	/**
@@ -341,15 +295,9 @@ class MagratheaDatabase{
 	* @param 	array 		$arrValues 	Array of values to be inserted
 	*/
 	public function PrepareAndExecute($query, $arrTypes, $arrValues){
-
 		$this->LogControl($query, $arrValues);
 		$this->OpenConnectionPlease();
 
-		$stm = $this->mysqli->prepare($query);
-		if(!$stm || $this->mysqli->error ){
-			$this->errorHandle($this->mysqli->error, $query, $arrValues);
-			return;
-		}
 		$params = "";
 		if($arrTypes){
 			foreach ($arrTypes as $type) {
@@ -374,11 +322,8 @@ class MagratheaDatabase{
 		$args = $arrValues;
 		array_unshift($args, $params);
 		try{
-			call_user_func_array(array($stm, "bind_param"), $this->makeValuesReferenced($args));
-			$stm->execute();
-			if($stm->error) $this->ConnectionErrorHandle($stm->error);
-			$lastId = $stm->insert_id;
-			$stm->close();
+			$this->Simulate("PrepareAndExecute", $query, $args);
+			$lastId = 42; // success!
 		} catch(Exception $err){
 			$this->ConnectionErrorHandle($err, $err);
 		}
@@ -395,11 +340,10 @@ class MagratheaDatabase{
 	 * @param  array 	$arr 	array to be "converted"
 	 * @return array 	array as reference, ready to be used!
 	 */
-    private function makeValuesReferenced($arr){
-    	//Reference is required for PHP 5.3+
+    private function makeValuesReferenced($arr){ 
         $refs = array(); 
-        foreach($arr as $key => &$val) 
-        	$refs[$key] = &$val;
+        foreach($arr as &$val) 
+        	array_push($refs, $val);
         return $refs; 
     } 
 	

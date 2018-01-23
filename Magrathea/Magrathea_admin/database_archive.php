@@ -13,7 +13,6 @@ $deleteQuery = "DELETE ".substr($query, $fromPos);
 
 $queryCreate = "CREATE TABLE ".$tableName." ".$query;
 
-
 ?>
 
 <div class="row-fluid">
