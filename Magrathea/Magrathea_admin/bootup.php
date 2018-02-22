@@ -1,4 +1,3 @@
-
 <?php
 
 require ("admin_load.php");
@@ -10,7 +9,6 @@ $types = [
 	"js-compressed",
 	"smarty",
 	"smarty-compiled",
-	"smarty-configs",
 	"smarty-cache",
 	"static"
 	];
@@ -20,7 +18,9 @@ function checkPath($type) {
 
 	echo $type." path: [".$path."]<br/>";
 	echo " - ";
-	if (!isDirOk($path)) {
+	$dirok = isDirOk($path);
+	echo printBoolean($dirok);
+	if (!$dirok) {
 		echo "<br/> - <a href='?call=bootup&action=create&path=".$type."'>[create]</a>";
 	}
 	echo "<br/><hr/>";
@@ -29,14 +29,13 @@ function checkPath($type) {
 function create($type) {
 	$path = getPathByType($type);
 	echo " - ...creating [".$path."]<br/>";
-	changeOwner();
-//	$owner = folderOwner();
-//	echo "owner ".$owner;
+	if(!mkdir($path, 0755)) {
+		echo "FAIL";
+	}
 }
 
 function isDirOk($path) {
 	$isThere = is_dir($path) && is_writable($path);
-	echo printBoolean($isThere);
 	return $isThere;
 }
 function printBoolean($bool) {
@@ -79,33 +78,33 @@ if ( $action == "create" ) {
 	echo "<hr/>";
 }
 
-if ($action == "command") {
-	echo "<br/><br/><hr/>";
-	echo "<pre>";
-	$owner = @$_GET["owner"];
-	if ( empty($owner) ) {
-		echo "\n\nplease, help us filling up php owner\n\n";
-		echo "\nps aux | grep httpd";
-		echo "\n&owner=";
-	} else { 
-		foreach ($types as $t) {
-			$path = getPathByType($t);
-			echo "\nmkdir ".$path;
-		}
-		foreach ( array_reverse($types) as $t) {
-			$path = getPathByType($t);
-			echo "\nsudo chown ".$owner." ".$path;
-		}
-	}
-	echo "</pre>";
-	echo "<br/><br/>";
-}
+echo "site path: [".getPath()."] <br/>";
+echo "PHP running on...  ";
+passthru(id);
+
+echo "<br/><hr/>";
 
 echo "checking paths... <br/><br/><br/>";
 foreach ($types as $t) {
 	checkPath($t);
 }
-echo "<br/> - <a href='?call=bootup&action=command'>[commands]</a>";
+echo "<br/> - <a href='?call=bootup&action=generate_sh'>[generate sh]</a>";
+
+if ($action == "generate_sh") {
+	echo "<br/><br/><hr/>";
+	echo "<pre>";
+
+	$owner = shell_exec( 'whoami' );
+	$owner = trim($owner);
+	foreach ($types as $t) {
+		$path = getPathByType($t);
+		if(isDirOk($path)) continue;
+		echo "\nsudo mkdir ".$path;
+		echo "\nsudo chown ".$owner.":".$owner." ".$path;
+	}
+	echo "</pre>";
+	echo "<br/><br/>";
+}
 
 die;
 

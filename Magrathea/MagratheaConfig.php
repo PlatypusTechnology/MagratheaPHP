@@ -259,6 +259,24 @@ class MagratheaConfigFile {
 		}
 		return $configSection[$section_name];
 	}
+
+	function checkBool($string){
+		$string = strtolower($string);
+		return (in_array($string, array("true", "false", "1", "0", "yes", "no"), true));
+	}
+
+	/**
+	*	Sets the correct format for the value
+	*	@param 		any 		$value to be saved
+	*	@return 	string 		formatted value to be saved on config file
+	*/
+	private function SaveValueOnConfig($value) {
+		if($this->checkBool($value)) {
+			return $value;
+		}
+		return "\"".$value."\"";
+	}
+
 	/**
 	*	Saves the config file
 	*	@param 		boolean 	$save_sections 		A flag indicating if the sections should be saved also.
@@ -279,20 +297,20 @@ class MagratheaConfigFile {
 				foreach ($elem as $key2=>$elem2) { 
 					if(is_array($elem2)) { 
 						for($i=0;$i<count($elem2);$i++) { 
-							$content .= "\t".$key2."[] = \"".$elem2[$i]."\"\n"; 
+							$content .= "\t".$key2."[] = ".$this->SaveValueOnConfig($elem2[$i])."\n";
 						} 
-					} else if($elem2=="") $content .= "\t".$key2." = \n"; 
-					else $content .= "\t".$key2." = \"".$elem2."\"\n"; 
-				} 
-			} 
-		} else { 
+					} else if($elem2=="") $content .= "\t".$key2." = \n";
+					else $content .= "\t".$key2." = ".$this->SaveValueOnConfig($elem2)."\n";
+				}
+			}
+		} else {
 			foreach ($data as $key=>$elem) { 
 				if(is_array($elem)) { 
 					for($i=0;$i<count($elem);$i++) { 
-						$content .= $key."[] = \"".$elem[$i]."\"\n";
-					} 
-				} else if($elem=="") $content .= $key." = \n"; 
-				else $content .= $key." = \"".$elem."\"\n"; 
+						$content .= $key."[] = ".$this->SaveValueOnConfig($elem[$i])."\n";
+					}
+				} else if($elem=="") $content .= $key." = \n";
+				else $content .= $key." = ".$this->SaveValueOnConfig($elem)."\n";
 			} 
 		} 
 		if(!is_writable($this->path)){
