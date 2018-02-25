@@ -260,20 +260,14 @@ class MagratheaConfigFile {
 		return $configSection[$section_name];
 	}
 
-	function checkBool($string){
-		$string = strtolower($string);
-		return (in_array($string, array("true", "false", "1", "0", "yes", "no"), true));
-	}
-
 	/**
 	*	Sets the correct format for the value
 	*	@param 		any 		$value to be saved
 	*	@return 	string 		formatted value to be saved on config file
 	*/
 	private function SaveValueOnConfig($value) {
-		if($this->checkBool($value)) {
-			return $value;
-		}
+		if (in_array($value, array("true", "1", "yes"), true)) return "true";
+		if (in_array($value, array("false", "0", "no"), true)) return "false";
 		return "\"".$value."\"";
 	}
 

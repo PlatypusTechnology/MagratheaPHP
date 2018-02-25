@@ -267,7 +267,6 @@ class MagratheaView{
 					$cssContent .= $this->CSS(false);
 					return $cssContent;
 				} 
-				return;
 				$cssCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPRESS_CSS);
 				foreach($array_files as $file){
 					$cssCompressor->add($file);

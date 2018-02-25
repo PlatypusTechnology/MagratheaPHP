@@ -103,8 +103,7 @@ class MagratheaCompressor {
     foreach ($this->files as $f) {
       $allContent .= file_get_contents($f);
     }
-    $allContent .= $this->content;
-    Debug("compressing CSS...");
+    $this->content = $allContent;
     $this->content = $this->cleanCSSCode($allContent);
     return $this;
   }
@@ -135,7 +134,6 @@ class MagratheaCompressor {
     foreach ($this->files as $f) {
       $allContent .= file_get_contents($f);
     }
-    Debug("compiling SCSS...");
     $scss = new Compiler();
     $this->content .= $scss->compile($allContent);
     return $this;
@@ -156,7 +154,6 @@ class MagratheaCompressor {
     if( MagratheaDebugger::Instance()->GetType() == MagratheaDebugger::NONE ){
       $phpclosure->hideDebugInfo();
     }
-    Debug("compressing Javascript...");
     $this->content = $phpclosure->_compile();
     // removing console messages:
     $consoleRegex = "/({|}|\)|;|\s)console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\\(.*?\\);/i"; 
