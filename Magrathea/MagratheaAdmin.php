@@ -20,7 +20,7 @@ class MagratheaAdmin {
 	/**
 	 * constructor...
 	 */
-	public function MagratheaAdmin(){
+	public function __construct(){
 		$dir = __DIR__."/Magrathea_admin/";
 		$call = @$_GET["call"];
 		if(!empty($call)){

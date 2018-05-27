@@ -116,7 +116,15 @@ class MagratheaConfig {
 
 	/**
 	 * Alias for GetConfigFromDefault
-  	 * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
+   * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
+ 	 * @return 	string
+	 */
+	public function Get($config_name){
+		return $this->GetConfigFromDefault($config_name);
+	}
+	/**
+	 * Alias for GetConfigFromDefault
+   * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
  	 * @return 	string
 	 */
 	public function GetFromDefault($config_name){
@@ -137,9 +145,10 @@ class MagratheaConfig {
 				throw new MagratheaException("There was an error trying to load the config file.<br/>");
 			}
 		}
-		$environment = $this->configs["general"]["use_environment"];
-		if(array_key_exists($config_name, $this->configs[$environment])){
-			return $this->configs[$environment][$config_name];
+		if(!$this->environment)
+			$this->environment = $this->configs["general"]["use_environment"];
+		if(array_key_exists($config_name, $this->configs[$this->environment])){
+			return $this->configs[$this->environment][$config_name];
 		} else {
 			if ($throwable) {
 				throw new MagratheaConfigException("Key ".$config_name." does not exist in magratheaconf!", 704);

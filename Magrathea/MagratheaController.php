@@ -146,13 +146,14 @@ class MagratheaController {
 	*	With a given control name and action, calls the right function
 	*	It will start a new object `$controlName` and call the `$action` in it
 	*	@param 	string 	$controlName 	Control to be called
-	* 	@param 	string 	$action 		Action to be called inside the control
+	* @param 	string 	$action 		Action to be called inside the control
 	*	@param 	string 	$params 		Params to send to the given action
 	*/
 	public static function Load($control, $action, $params=""){
 		$controlName = ucfirst(strtolower($control))."Controller";
 		try {
 			if(!class_exists($controlName)){
+				if(is_array($params)) $params = implode(";", $params);
 				$ex = new MagratheaControllerException("Class ".$controlName." does not exist! - parameters called [".$control."/".$action."/".$params."]");
 				$ex->killerError = false;
 				throw $ex;

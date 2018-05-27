@@ -19,9 +19,11 @@ Now it is possible to include SCSS files.
 - __NEW :__ `Default` function for controller: if there isn't a function for the `action` method, `MagratheaController` will now call a function called `Def` sending the action as argument.
 - __NEW :__ `MagratheaDatabase.php.Simulate` all the function on `MagratheaDatabase`, but as a simuation, for testing purposes or whatever. Queries are saved in a file.
 - __NEW :__ `bootup` now shows sh commands to fix up the folder permissions
+- __NEW :__ `boot.php` to help you out on setting up a new site
 - __NEW :__ new feature to download saved database backups
-
----
+- __IMPROVEMENT :__ fixing deprecated constructors (some of them) for PHP 7
+- __IMPROVEMENT :__ `MagratheaConfig` `$Get` alias for `$GetFromDefault`
+- __FIX :__ `MagratheaConfig` fixing environment gets
 
 #### version 1.3.3
 - __NEW :__ MagratheaAdmin => archive data in new tables

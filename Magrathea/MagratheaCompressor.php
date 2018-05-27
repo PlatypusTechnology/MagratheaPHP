@@ -38,7 +38,7 @@ class MagratheaCompressor {
    * Magrathea Compressor constructor
    * @param   const   $compress_type  compress type (MagratheaCompressor::COMPRESS_JS || MagratheaCompressor::COMPRESS_CSS)
    */
-  function MagratheaCompressor($compress_type=null) { 
+  function __construct($compress_type=null) { 
     if(!is_null($compress_type)){
       $this->type = $compress_type;
     }

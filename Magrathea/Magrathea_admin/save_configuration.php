@@ -39,5 +39,11 @@ require ("admin_load.php");
 		<?php
 		die;
 	}
-
 ?>
+<!--true-->
+<div class="alert alert-success">
+	<button class="close" data-dismiss="alert" type="button">×</button>
+	<strong>Done!</strong><br/>
+	Configuration saved!<br/><br/>
+	[<a href="#" onclick="window.location.reload();">reload</a>]
+</div>
