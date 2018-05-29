@@ -197,6 +197,7 @@ function createFieldInTable(table_name){
 			table: table_name
 		}, 
 		success: function(data){
+			console.info(data);
 			loadTable(table_name);
 			scrollToTop();
 		}

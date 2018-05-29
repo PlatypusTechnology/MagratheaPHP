@@ -24,6 +24,7 @@ Now it is possible to include SCSS files.
 - __IMPROVEMENT :__ fixing deprecated constructors (some of them) for PHP 7
 - __IMPROVEMENT :__ `MagratheaConfig` `$Get` alias for `$GetFromDefault`
 - __FIX :__ `MagratheaConfig` fixing environment gets
+- __IMPROVEMENT :__ Removing triggers for `created_at` and `updated_at` in order to use automatic mySQL commands
 
 #### version 1.3.3
 - __NEW :__ MagratheaAdmin => archive data in new tables

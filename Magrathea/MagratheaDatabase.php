@@ -319,18 +319,23 @@ class MagratheaDatabase{
 	public function QueryTransaction($query_array){
 		$this->OpenConnectionPlease();
 
-		$this->mysqli->autocommit(false);
-		foreach( $query_array as $query ){
-			$this->LogControl($query);
-			$this->mysqli->query($query);
-			if (!$this->mysqli->commit()) {
+		try {
+			$this->mysqli->autocommit(false);
+			$this->mysqli->begin_transaction();
+			foreach( $query_array as $query ){
+				$this->LogControl($query);
+				$this->mysqli->query($query);
+			}
+			if ($this->mysqli->error) {
 				$this->ErrorHandle($this->mysqli->error, $query);
 				return false;
 			}
-		}
+			$this->mysqli->commit();
 
-		$this->CloseConnectionThanks();
+		} catch(Exception $ex) {
+		}
 		$this->mysqli->autocommit(true);
+		$this->CloseConnectionThanks();
 	}
 	
 	/**
