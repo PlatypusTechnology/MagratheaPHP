@@ -7,8 +7,7 @@ require ("admin_load.php");
 	$mconfig->setFile("/../configs/magrathea_objects.conf");
 	$objdata = $mconfig->getConfig();
 
-	$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
-	$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
+	$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 	$models_dir = $site_path."/Models";
 	$base_dir = $models_dir."/Base";
 
