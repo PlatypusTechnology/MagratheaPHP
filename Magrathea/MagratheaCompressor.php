@@ -30,6 +30,7 @@ class MagratheaCompressor {
   const COMPILE_SCSS = 3;
 
   private $files = array();
+  private $rawContent = "";
   private $content = "";
   private $type = self::COMPRESS_JS;
   private $compressionMode = "advanced";
@@ -71,7 +72,7 @@ class MagratheaCompressor {
    * @return  itself
    */
   function addContent($content) {
-    $this->content .= $content;
+    $this->rawContent .= $content;
     return $this;
   }
 
@@ -104,7 +105,8 @@ class MagratheaCompressor {
       $allContent .= file_get_contents($f);
     }
     $this->content = $allContent;
-    $this->content = $this->cleanCSSCode($allContent);
+    $this->content .= $this->rawContent;
+    $this->content = $this->cleanCSSCode($this->content);
     return $this;
   }
   /**

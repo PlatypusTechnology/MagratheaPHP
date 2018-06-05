@@ -283,7 +283,7 @@ class MagratheaView{
 				fclose($handle); 
 			}
 			$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."' rel='stylesheet'>\n";
-  		} else {
+  	} else {
 			foreach($array_files as $file){
 				$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."' rel='stylesheet'>\n";
 			}
