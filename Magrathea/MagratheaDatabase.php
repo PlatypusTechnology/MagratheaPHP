@@ -165,7 +165,7 @@ class MagratheaDatabase{
 	* Handle connection errors @todo
 	* @throws	MagratheaDbException
 	*/
-	private function ConnectionErrorHandle($msg="", $data){ 
+	private function ConnectionErrorHandle($msg="", $data=null){ 
 		throw new MagratheaDBException($msg);
 	}
 	/**
@@ -385,6 +385,7 @@ class MagratheaDatabase{
 			$lastId = $stm->insert_id;
 			$stm->close();
 		} catch(Exception $err){
+			p_r($err);
 			$this->ConnectionErrorHandle($err, $err);
 		}
 		$this->CloseConnectionThanks();
@@ -404,8 +405,8 @@ class MagratheaDatabase{
     	//Reference is required for PHP 5.3+
     	if (strnatcmp(phpversion(),'5.3') >= 0) {
         $refs = array(); 
-        foreach($arr as &$val) 
-        	array_push($refs, $val);
+        foreach($arr as $key => $value) 
+        	$refs[$key] = &$arr[$key];
         return $refs; 
       }
       return $arr;

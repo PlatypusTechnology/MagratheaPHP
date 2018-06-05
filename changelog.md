@@ -25,6 +25,8 @@ Now it is possible to include SCSS files.
 - __IMPROVEMENT :__ `MagratheaConfig` `$Get` alias for `$GetFromDefault`
 - __FIX :__ `MagratheaConfig` fixing environment gets
 - __IMPROVEMENT :__ Removing triggers for `created_at` and `updated_at` in order to use automatic mySQL commands
+- __NEW :__ plugin `jquery3.3`
+- __NEW :__ plugin `bootstrap4.1`
 
 #### version 1.3.3
 - __NEW :__ MagratheaAdmin => archive data in new tables

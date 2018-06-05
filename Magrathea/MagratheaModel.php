@@ -94,7 +94,7 @@ abstract class MagratheaModel{
 	 * @param 	array 		$row 		mysql result for the object
 	 */
 	public function LoadObjectFromTableRow($row){
-		if(!is_array($row)) return;
+		if(!is_array($row) && !is_object($row)) return;
 		foreach($row as $field => $value){
 			$field = strtolower($field);
 			if( property_exists($this, $field))
