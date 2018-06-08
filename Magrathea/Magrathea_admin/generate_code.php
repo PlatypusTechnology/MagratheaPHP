@@ -87,14 +87,14 @@ require ("admin_load.php");
 			$code .= "\t\t\$this->dbPk = \"".$data["db_pk"]."\";\n";
 			foreach($obj_fields as $f){
 				$code .= "\t\t\$this->dbValues[\"".$f."\"] = \"".$data[$f."_type"]."\";\n";
+				$code .= "\t\t\$this->dbValues[\"created_at\"] =  \"datetime\";\n";
+				$code .= "\t\t\$this->dbValues[\"updated_at\"] =  \"datetime\";\n";
 				if( !empty($data[$f."_alias"]) )
 					$code .= "\t\t\$this->dbAlias[\"".$data[$f."_alias"]."\"] = \"".$f."\";\n";
 			}
 			
 			$code .= "\n".$relations_properties;
 			$code .= "\n";
-			$code .= "\t\t\$this->dbAlias[\"created_at\"] =  \"datetime\";\n";
-			$code .= "\t\t\$this->dbAlias[\"updated_at\"] =  \"datetime\";\n";
 		$code .= "\t}\n\n";
 
 		$code .= "\t// >>> relations:\n".$relations_functions."\n";
