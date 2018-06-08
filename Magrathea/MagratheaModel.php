@@ -175,7 +175,11 @@ abstract class MagratheaModel{
 			} 
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field);
-			$arr_Values[$field] = $this->$field;
+			if( is_a($this->$field, "MagratheaModel") ) {
+				$arr_Values[$field] = $this->$field->GetID();
+			} else {
+				$arr_Values[$field] = $this->$field;
+			}
 		}
 		// old query, for pear mdb2 driver
 		// $query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (:".implode(",:", $arr_Fields).") ";
@@ -196,7 +200,11 @@ abstract class MagratheaModel{
 		$pkField = $this->dbPk;
 		foreach( $this->dbValues as $field => $type ){
 			if( $field == $pkField ) continue;
-			$arr_Values[$field] = $this->$field;
+			if( is_a($this->$field, "MagratheaModel") ) {
+				$arr_Values[$field] = $this->$field->GetID();
+			} else {
+				$arr_Values[$field] = $this->$field;
+			}
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field."= ? ");
 		}
