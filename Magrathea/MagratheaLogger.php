@@ -16,7 +16,8 @@ class MagratheaLogger {
 	 * @throws  Exception If path is not writablle
 	 */
 	public static function Log($logThis, $logFile=null){
-		if( is_a($logThis, "MagratheaConfigException") ){
+		if( is_a($logThis, "MagratheaConfigException") ) {
+			p_r($logThis);
 			echo "==[config not properly set!]==";
 			return;			
 		} 
