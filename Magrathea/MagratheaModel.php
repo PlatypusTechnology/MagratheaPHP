@@ -172,13 +172,17 @@ abstract class MagratheaModel{
 		foreach( $this->dbValues as $field => $type ){
 			if( $field == $this->dbPk ){
 				if(empty($this->$field)) continue;
-			} 
+			}
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field);
 			if( is_a($this->$field, "MagratheaModel") ) {
 				$arr_Values[$field] = $this->$field->GetID();
 			} else {
-				$arr_Values[$field] = $this->$field;
+				if( $field == "created_at" || $field == "updated_at" ) {
+					$arr_Values[$field] = now();
+				} else {
+					$arr_Values[$field] = $this->$field;
+				}
 			}
 		}
 		// old query, for pear mdb2 driver
@@ -200,10 +204,15 @@ abstract class MagratheaModel{
 		$pkField = $this->dbPk;
 		foreach( $this->dbValues as $field => $type ){
 			if( $field == $pkField ) continue;
+			if( $field == "created_at" ) continue;
 			if( is_a($this->$field, "MagratheaModel") ) {
 				$arr_Values[$field] = $this->$field->GetID();
 			} else {
-				$arr_Values[$field] = $this->$field;
+				if( $field == "updated_at" ) {
+					$arr_Values[$field] = now();
+				} else {
+					$arr_Values[$field] = $this->$field;
+				}
 			}
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field."= ? ");

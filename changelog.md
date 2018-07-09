@@ -28,6 +28,7 @@ Now it is possible to include SCSS files.
 - __NEW :__ plugin `jquery3.3`
 - __NEW :__ plugin `bootstrap4.1`
 - __IMPROVEMENT :__ When saving objects with references, gets the ids
+- __IMPROVEMENT :__ automatically setting `created_at` and `updated_at` in Magrathea Model
 
 #### version 1.3.3
 - __NEW :__ MagratheaAdmin => archive data in new tables
