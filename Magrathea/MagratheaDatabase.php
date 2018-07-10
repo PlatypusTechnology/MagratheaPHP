@@ -55,6 +55,15 @@ class MagratheaDatabase{
 		}
 		return self::$inst;
 	}
+
+	/**
+	*	Mocker
+	*	For Unit Testing
+	*/
+	public static function Mock($mocker) {
+		self::$inst = $mocker;
+		return $this;
+	}
 	
 	/**
 	* This is a singleton!
