@@ -15,7 +15,8 @@ class MagratheaLogger {
 	 * @param 	string 		$logFile 	file name that should be written
 	 * @throws  Exception If path is not writablle
 	 */
-	public static function Log($logThis, $logFile=null){
+	public static function Log($logThis, $logFile=null) {
+		if(MagratheaConfig::Instance()->GetEnvironment() == "test") return;
 		if( is_a($logThis, "MagratheaConfigException") ) {
 			p_r($logThis);
 			echo "==[config not properly set!]==";
