@@ -61,6 +61,7 @@ class MagratheaServer {
 		echo "===\n";
 		echo "=== CALLS:\n";
 		foreach ($methods as $m) {
+			if($m[0] == "_") continue;
 			echo "=== \t[".$url."?".$m."] \n";
 		}
 		echo "===\n===\n";
