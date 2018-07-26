@@ -149,6 +149,19 @@ abstract class MagratheaModel{
 	}
 
 	/**
+	 * When updating an object with a relation returns the relation ID or inserts it.
+	 * @param 	object 	MagratheaModelObject
+	 * @return 	int 		object id
+	 */
+	private function GetRelationId($obj) {
+		$id = $obj->GetID();
+		if( empty($id) ) {
+			$id = $obj->Insert();
+		}
+		return $id;
+	}
+
+	/**
 	 * Saves: Using a insert if pk is not set and an update if pk is set
 	 * Basically, Inserts if id does not exists and updates if id does exists
 	 * @return  int or boolean 		id if inserted and true if updated
@@ -176,7 +189,7 @@ abstract class MagratheaModel{
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field);
 			if( is_a($this->$field, "MagratheaModel") ) {
-				$arr_Values[$field] = $this->$field->GetID();
+				$arr_Values[$field] = $this->GetRelationId($this->$field);
 			} else {
 				if( $field == "created_at" || $field == "updated_at" ) {
 					$arr_Values[$field] = now();
@@ -206,7 +219,7 @@ abstract class MagratheaModel{
 			if( $field == $pkField ) continue;
 			if( $field == "created_at" ) continue;
 			if( is_a($this->$field, "MagratheaModel") ) {
-				$arr_Values[$field] = $this->$field->GetID();
+				$arr_Values[$field] = $this->GetRelationId($this->$field);
 			} else {
 				if( $field == "updated_at" ) {
 					$arr_Values[$field] = now();
@@ -224,7 +237,7 @@ abstract class MagratheaModel{
 		return MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 	}
 	/**
-	 * Updates the object in database
+	 * Deletes the object in database
 	 * @return 	boolean	 		successfully updated
 	 */
 	public function Delete(){
