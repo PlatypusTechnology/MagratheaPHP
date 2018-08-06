@@ -32,6 +32,7 @@ Now it is possible to include SCSS files.
 - __NEW :__ mock functions for unit test on `MagratheaDatabase`
 - __IMPROVEMENT :__ `MagratheaServer` ignores displaying functions that starts with `_`
 - __NEW :__ `jQuery Growl` plugin added
+- __FIX :__ Function `QueryRow` inside `MagratheaModelControl` fixed (it was messed up with `QueryOne`)
 
 #### version 1.3.3
 - __NEW :__ MagratheaAdmin => archive data in new tables

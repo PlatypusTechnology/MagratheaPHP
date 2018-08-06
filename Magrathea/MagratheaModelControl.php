@@ -47,15 +47,23 @@ abstract class MagratheaModelControl{
 	 * @return  resultRow		database result
 	 */
 	public static function QueryResult($sql){
-		return MagratheaDatabase::Instance()->queryAll($sql);
+		return MagratheaDatabase::Instance()->QueryAll($sql);
 	}
 	/**
 	 * Runs a query and returns the first row of result
 	 * @param 	string 	$sql 	query string
 	 * @return  resultRow		database result (first line)
 	 */
+	public static function QueryRow($sql){
+		return MagratheaDatabase::Instance()->QueryRow($sql);
+	}
+	/**
+	 * Runs a query and returns the first result
+	 * @param 	string 	$sql 	query string
+	 * @return  resultRow		database result (first item)
+	 */
 	public static function QueryOne($sql){
-		return MagratheaDatabase::Instance()->queryOne($sql);
+		return MagratheaDatabase::Instance()->QueryOne($sql);
 	}
 
 	/**
