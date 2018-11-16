@@ -106,11 +106,12 @@ abstract class MagratheaModelControl{
 			foreach ($result as $r) {
 				$splitResult = MagratheaQuery::SplitArrayResult($r);
 				$new_object = new static::$modelName();
-				if(count($splitResult) > 0)
+				if(count($splitResult) > 1)
 					$r = $splitResult[$new_object->GetDbTable()];
 				$new_object->LoadObjectFromTableRow($r);
 				foreach($array_joins as $join){
 					$obj = $join["obj"];
+					if(empty($obj)) continue;
 					$obj->LoadObjectFromTableRow($splitResult[$obj->GetDbTable()]);
 					$objname = get_class($obj);
 					if($join["type"] == "has_many"){

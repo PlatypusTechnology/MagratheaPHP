@@ -394,7 +394,6 @@ class MagratheaDatabase{
 			$lastId = $stm->insert_id;
 			$stm->close();
 		} catch(Exception $err){
-			p_r($err);
 			$this->ConnectionErrorHandle($err, $err);
 		}
 		$this->CloseConnectionThanks();

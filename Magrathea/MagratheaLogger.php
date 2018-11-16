@@ -29,6 +29,7 @@ class MagratheaLogger {
 		$file = $path.$logFile;
 		if(!is_writable($path)){
 			$message = "error trying to save file at [".$path."] - confirm permission for writing";
+			$message .= " - - error message: [".$logThis."]";
 			throw new Exception($message);
 			return;
 		}
