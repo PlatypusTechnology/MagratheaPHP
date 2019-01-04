@@ -63,8 +63,8 @@ class MagratheaConfig {
 	* @param string Environment name
 	* @return itself
 	*/
-	public function SetDefaultEnvironment($env){
-		$this->environment = $env;
+	public function SetDefaultEnvironment($e){
+		$this->environment = $e;
 		return $this;
 	}
 
@@ -169,6 +169,9 @@ class MagratheaConfig {
 		$configSection = @parse_ini_file($this->path."/".$this->config_file_name, true);
 		if( !$configSection ){
 			throw new MagratheaException("There was an error trying to load the config file.<br/>");
+		}
+		if(empty($configSection[$section_name])) {
+			throw new Exception("Conig [".$section_name."] not available in magrathea.conf", 1);
 		}
 		return $configSection[$section_name];
 	}

@@ -29,10 +29,15 @@ function loadMagratheaEnv($env = null){
 	} else {
 		MagratheaConfig::Instance()->SetDefaultEnvironment($env);
 	}
-	$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
-	$magdb = MagratheaDatabase::Instance();
-	date_default_timezone_set( MagratheaConfig::Instance()->GetConfig("general/time_zone") );
-	return $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
+	try {
+		$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
+		$magdb = MagratheaDatabase::Instance();
+		date_default_timezone_set( MagratheaConfig::Instance()->GetConfig("general/time_zone") );
+		$conn = $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
+	} catch(Exception $ex) {
+		throw $ex;
+	}
+	return $conn;
 }
 
 //.$trace[0]["file"].":".$trace[0]["line"]."\n"
