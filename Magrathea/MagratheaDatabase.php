@@ -62,7 +62,7 @@ class MagratheaDatabase{
 	*/
 	public static function Mock($mocker) {
 		self::$inst = $mocker;
-		return $this;
+		return self::$inst;
 	}
 	
 	/**

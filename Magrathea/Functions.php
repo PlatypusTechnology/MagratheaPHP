@@ -24,7 +24,9 @@
 function loadMagratheaEnv($env = null){
 	global $magdb;
 	if( empty($env) ){
-		$env = MagratheaConfig::Instance()->GetEnvironment();
+		try {
+			$env = MagratheaConfig::Instance()->GetEnvironment();
+		} catch(Exception $ex) { return false; }
 		if(empty($env)) return false;
 	} else {
 		MagratheaConfig::Instance()->SetDefaultEnvironment($env);
