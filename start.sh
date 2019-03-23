@@ -1,6 +1,9 @@
 #!/bin/bash
 clear
 
+phpUser="www-data"
+
+
 echo -e "MAGRATHEA STARTER \n"
 echo -e "by Paulo Henrique Martins - Platypus Technology \n\n"
 echo -e "Creating base structure data for a Magrathea Application\n"
@@ -9,14 +12,14 @@ sleep 1
 
 echo -e "Structure ********\n"
 mkdir configs
-chmod 777 configs
 touch configs/.gitkeep
 touch configs/index.html
+sudo chown $phpUser:$phpUser configs
 echo -e "\tconfig = ok\n"
 
 mkdir logs
-chmod 777 logs
 touch logs/.gitkeep
+sudo chown $phpUser:$phpUser logs
 echo -e "\tlogs = ok\n"
 
 mkdir Tests
@@ -35,11 +38,11 @@ touch inc/index.html
 echo -e "\tinc = ok\n"
 
 mkdir Models
-chmod 777 Models
 touch Models/index.html
 mkdir Models/Base
-chmod 777 Models/Base
 touch Models/Base/index.html
+sudo chown $phpUser:$phpUser Models/Base
+sudo chown $phpUser:$phpUser Models
 echo -e "\tModels = ok\n"
 
 mkdir Controls
@@ -47,37 +50,37 @@ touch Controls/index.html
 echo -e "\tControls = ok\n"
 
 mkdir Static
-chmod 777 Static
 touch Static/.gitkeep
+sudo chown $phpUser:$phpUser Static
 echo -e "\tStatic = ok\n"
 
 mkdir javascript
 touch javascript/index.html
 mkdir javascript/_compressed
-chmod 777 javascript/_compressed
 touch javascript/_compressed/index.html
+sudo chown $phpUser:$phpUser javascript/_compressed
 echo -e "\tjavascript = ok\n"
 
 mkdir css
 mkdir css/_compressed
-chmod 777 css/_compressed
 touch css/index.html
 touch css/_compressed/index.html
+sudo chown $phpUser:$phpUser css/_compressed
 echo -e "\tcss = ok\n"
 
 mkdir plugins
-chmod 777 plugins
 touch plugins/index.html
+sudo chown $phpUser:$phpUser plugins
 echo -e "\tplugins = ok\n"
 
 mkdir Views
 touch Views/index.html
 mkdir Views/_cache
-chmod 777 Views/_cache
 touch Views/_cache/index.html
+sudo chown $phpUser:$phpUser Views/_cache
 mkdir Views/_compiled
-chmod 777 Views/_compiled
 touch Views/_compiled/index.html
+sudo chown $phpUser:$phpUser Views/_compiled
 mkdir Views/_configs
 touch Views/_configs/site.conf
 touch Views/_configs/index.html
@@ -89,8 +92,8 @@ mkdir images/medias
 touch images/medias/index.html
 mkdir images/medias/_generated
 touch images/medias/_generated/index.html
-chmod 777 images/medias/_generated
-chmod 777 images/medias
+sudo chown $phpUser:$phpUser images/medias/_generated
+sudo chown $phpUser:$phpUser images/medias
 echo -e "\tImages = ok\n"
 
 cd ..
