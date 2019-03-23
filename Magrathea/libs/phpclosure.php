@@ -52,7 +52,7 @@ class PhpClosure {
   var $_cache_dir = "";
   var $_code_url_prefix = "";
 
-  function PhpClosure() { }
+  function __construct() { }
 
   /**
    * Adds a source file to the list of files to compile.  Files will be

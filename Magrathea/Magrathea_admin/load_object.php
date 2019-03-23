@@ -293,6 +293,7 @@ function DeleteRelation(rel_name){
 		}, 
 		success: function(data){
 			$("#object_result").html(data);
+			$("#" + rel_name.replace(/\+/g, '\\+')).remove();
 			scrollToTop();
 		}
 	});

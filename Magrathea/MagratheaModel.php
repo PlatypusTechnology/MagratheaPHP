@@ -94,7 +94,7 @@ abstract class MagratheaModel{
 	 * @param 	array 		$row 		mysql result for the object
 	 */
 	public function LoadObjectFromTableRow($row){
-		if(!is_array($row)) return;
+		if(!is_array($row) && !is_object($row)) return;
 		foreach($row as $field => $value){
 			$field = strtolower($field);
 			if( property_exists($this, $field))
@@ -149,6 +149,19 @@ abstract class MagratheaModel{
 	}
 
 	/**
+	 * When updating an object with a relation returns the relation ID or inserts it.
+	 * @param 	object 	MagratheaModelObject
+	 * @return 	int 		object id
+	 */
+	private function GetRelationId($obj) {
+		$id = $obj->GetID();
+		if( empty($id) ) {
+			$id = $obj->Insert();
+		}
+		return $id;
+	}
+
+	/**
 	 * Saves: Using a insert if pk is not set and an update if pk is set
 	 * Basically, Inserts if id does not exists and updates if id does exists
 	 * @return  int or boolean 		id if inserted and true if updated
@@ -172,15 +185,27 @@ abstract class MagratheaModel{
 		foreach( $this->dbValues as $field => $type ){
 			if( $field == $this->dbPk ){
 				if(empty($this->$field)) continue;
-			} 
+			}
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field);
-			$arr_Values[$field] = $this->$field;
+			if( is_a($this->$field, "MagratheaModel") ) {
+				$arr_Values[$field] = $this->GetRelationId($this->$field);
+			} else {
+				if( $field == "created_at" || $field == "updated_at" ) {
+					$arr_Values[$field] = now();
+				} else {
+					$arr_Values[$field] = $this->$field;
+				}
+			}
 		}
 		// old query, for pear mdb2 driver
 		// $query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (:".implode(",:", $arr_Fields).") ";
 		$query_run = "INSERT INTO ".$this->dbTable." (".implode(",", $arr_Fields).") VALUES (".implode(", ", array_fill(0, count($arr_Fields), "?")).") ";
-		$lastId = MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
+		try {
+			$lastId = MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
+		} catch(Exception $ex) {
+			throw $ex;
+		}
 		$pk = $this->dbPk;
 		$this->$pk = $lastId;
 		return $lastId;
@@ -196,7 +221,16 @@ abstract class MagratheaModel{
 		$pkField = $this->dbPk;
 		foreach( $this->dbValues as $field => $type ){
 			if( $field == $pkField ) continue;
-			$arr_Values[$field] = $this->$field;
+			if( $field == "created_at" ) continue;
+			if( is_a($this->$field, "MagratheaModel") ) {
+				$arr_Values[$field] = $this->GetRelationId($this->$field);
+			} else {
+				if( $field == "updated_at" ) {
+					$arr_Values[$field] = now();
+				} else {
+					$arr_Values[$field] = $this->$field;
+				}
+			}
 			array_push($arr_Types, $this->GetDataTypeFromField($type));
 			array_push($arr_Fields, $field."= ? ");
 		}
@@ -207,7 +241,7 @@ abstract class MagratheaModel{
 		return MagratheaDatabase::Instance()->PrepareAndExecute($query_run, $arr_Types, $arr_Values);
 	}
 	/**
-	 * Updates the object in database
+	 * Deletes the object in database
 	 * @return 	boolean	 		successfully updated
 	 */
 	public function Delete(){

@@ -13,12 +13,35 @@ class MagratheaController {
 
 	/**
 	*	Just starts Smarty (if is not started yet...)
+	* 	@return 	itself
 	*/
 	public function StartSmarty(){
 		global $Smarty;
 		$this->Smarty = $Smarty;
+		if ($this->ShouldMinifyHTML()) {
+			$this->MinifyHTML();
+		}
+		return $this;
 	}
 
+	/**
+	*	Checks on magrathea.conf for attribute minify_html
+	* 	@return 	boolean		default: false;
+	*/
+	private function ShouldMinifyHTML() {
+		$minify = MagratheaConfig::Instance()->GetConfigFromDefault("minify_html", false);
+		return $minify;
+	}
+
+	/**
+	*	Asks Smarty to minify HTML
+	* 	@return 	itself
+	*/
+	public function MinifyHTML() {
+		$this->Smarty->loadFilter('output', 'trimwhitespace');
+		return $this;
+	}
+	
 	/**
 	 * Gets Smarty object statically
 	 * @return  	Smarty 		Smarty object.
@@ -84,7 +107,7 @@ class MagratheaController {
 	*	@param 	boolean	$die 	Terminate code if static found
 	*/
 	public function GetStatic($name, $die=true){
-		if(!$this->displayStatic) return false;
+		if($this->displayStatic == false) return false;
 		$staticName = $this->formatStaticPageName($name);
 		$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 		$filePath = $appFolder."/Static/".$staticName;
@@ -112,25 +135,25 @@ class MagratheaController {
 			$appFolder = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 			$filePath = $appFolder."/Static/".$this->staticPage;
 			$file_handler = @fopen($filePath, 'w');
-			fwrite($file_handler, $code);
-			fclose($file_handler);
+			@fwrite($file_handler, $code);
+			@fclose($file_handler);
 			echo $code;
 		}
 	}
-
 
 
 	/**
 	*	With a given control name and action, calls the right function
 	*	It will start a new object `$controlName` and call the `$action` in it
 	*	@param 	string 	$controlName 	Control to be called
-	* 	@param 	string 	$action 		Action to be called inside the control
+	* @param 	string 	$action 		Action to be called inside the control
 	*	@param 	string 	$params 		Params to send to the given action
 	*/
 	public static function Load($control, $action, $params=""){
 		$controlName = ucfirst(strtolower($control))."Controller";
 		try {
 			if(!class_exists($controlName)){
+				if(is_array($params)) $params = implode(";", $params);
 				$ex = new MagratheaControllerException("Class ".$controlName." does not exist! - parameters called [".$control."/".$action."/".$params."]");
 				$ex->killerError = false;
 				throw $ex;
@@ -203,8 +226,6 @@ class MagratheaController {
 		return $output;
 	}
 
-
-
 	public static function ErrorHandle($ex){
 		if(is_a($ex, "MagratheaException")){
 			$ex->display();
@@ -214,11 +235,20 @@ class MagratheaController {
 	}
 
 	public function __call($method_name, $args = array()){
-		if(method_exists($this->Smarty, $method_name)){
-			return call_user_func_array(array(&$this->Smarty, $method_name), $args);
+		if (method_exists($this, $method_name)){
+			return call_user_func_array(
+				array ( &$this, $method_name ), 
+					$args );
+		} else if (method_exists($this->Smarty, $method_name)){
+			return call_user_func_array(
+				array ( &$this->Smarty, $method_name ), 
+					$args );
+		} else if (method_exists($this, "Def")){
+			return call_user_func(
+				array ( &$this, "Def" ), 
+					$method_name, $args );
 		} else {
-			throw new MagratheaControllerException("Function could not be found (even in Smarty):".$method_name);
-			
+			throw new MagratheaControllerException("Function could not be found and no Default function set: ".$method_name);	
 		}
 	}
 	

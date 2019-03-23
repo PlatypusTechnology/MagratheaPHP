@@ -4,7 +4,7 @@ require ("admin_load.php");
 
 $plugin = $_GET["plugin"];
 
-$magrathea_path = MagratheaConfig::Instance()->GetConfigFromDefault("magrathea_path")."/plugins/".$plugin;
+$magrathea_path = MagratheaConfig::Instance()->GetMagratheaPath()."/plugins/".$plugin;
 $site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/plugins";
 
 if(!is_dir($magrathea_path)){
@@ -21,6 +21,12 @@ if(!is_writable($site_path)){
     Error installing plugin!<br/>
     It seems that destination path is incorrect or you don't have permissions<br/>
     [path: <?=$site_path?>]
+
+    <br/><br/>
+    <hr/>
+    <a href='?call=bootup'>[New setup?]</a>
+    <hr/>
+    <br/><br/><br/><br/>
   <?php
   die;
 }

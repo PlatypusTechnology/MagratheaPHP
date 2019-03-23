@@ -51,13 +51,13 @@
 						<?=date("Y-m-d h:i:s", $datec[$b])?>
 					</td>
 					<td>
-						<a href="<?=$backupFolder."/".$b?>" download class="btn">
+						<button onclick="downloadCode('<?=$b?>');" class="btn">
 							<i class="fa fa-download"></i> Download
-						</a>
-						<button onClick="viewCode('<?=$s?>');" class="btn">
+						</button>
+						<button onClick="viewCode('<?=$b?>');" class="btn">
 							<i class="fa fa-code"></i> View
 						</button>
-						<button onClick="removeFile('<?=$s?>');" class="btn">
+						<button onClick="removeFile('<?=$b?>');" class="btn">
 							<i class="fa fa-trash-o"></i> Remove
 						</button>
 					</td>
@@ -74,8 +74,9 @@
 </div>
 
 <script type="text/javascript">
-function download() {
 
+function downloadCode(file) {
+	window.location.href = "?magpage=backup_download.php&db_file=" + file;	
 }
 
 function viewCode(file){

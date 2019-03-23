@@ -19,7 +19,7 @@
 <?php
 	foreach($config[$environment] as $key => $value){
 		echo "<div class='row-fluid'><div class='span3 right'>".$key."</div><div class='span9'>";
-		if( $value == "true" || $value == "false" ){
+		if( is_bool($value) ){
 			echo "<input type='hidden' name='".$key."' value='false'>"; // don't worry... if the value is true, this will be overwritten...
 			echo "<input class='ibutton' type='checkbox' name='".$key."' id='".$key."' value='true' ".($value=="true" ? "checked='checked'" : "")." />";
 		} else {

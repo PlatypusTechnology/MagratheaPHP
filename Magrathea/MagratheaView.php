@@ -25,6 +25,7 @@ class MagratheaView{
 	private $javascript_files = array();
 	private $javascript_lastmodified_arr = array();
 	private $css_files = array();
+	private $scss_files = array();
 	private $css_lastmodified_arr = array();
 	private $site_path = "";
 	private $compressionMode = "default";
@@ -154,13 +155,29 @@ class MagratheaView{
 		array_push($this->css_lastmodified_arr, $lastm);
 		return $this;
 	}
+	/**
+	 * Include CSS file
+	 * @param 	string 		$css_file 	file to be included
+	 * @return 	itself
+	 */
+	public function IncludeSCSS($scss_file){
+		array_push($this->scss_files, $scss_file);
+		$file_full = $this->site_path."/".$scss_file;
+		if(file_exists($file_full)){
+			$lastm = filemtime($file_full);
+		} else {
+			throw new MagratheaViewException("File ".$file_full." could not be reached!");
+		}
+		array_push($this->css_lastmodified_arr, $lastm);
+		return $this;
+	}
 	
 	/**
 	 * Alias for Javascript
 	 * @deprecated Use Javascript instead
 	 */
 	public function Javascripts(){
-		$this->Javascript(false);
+		return $this->Javascript(false);
 	}
 	/**
 	 * Prints all the javascripts files on page
@@ -168,10 +185,10 @@ class MagratheaView{
 	 * @return  	string 		Include of Javascripts
 	 */
 	public function Javascript($print=false, $compression=null){
-		$compression = ($compression==null ? $this->ShouldCompressJavascript() : $compression );
+		$compression = ($compression===null ? $this->ShouldCompressJavascript() : $compression );
 		$array_files = array_unique($this->javascript_files);
 		$jsContent = "<!--JS FILES MANAGED BY MAGRATHEA [compression: ".$compression."] -->\n";
-		if($compression == "true"){
+		if($compression){
 			sort($this->javascript_lastmodified_arr);
 			$js_lmod = implode("_", $this->javascript_lastmodified_arr);
 			$js_lmod_hash = md5($js_lmod);
@@ -179,19 +196,18 @@ class MagratheaView{
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$jsContent .= "<!--error compressing javascript! could not create file-->";
-					$jsContent .= $this->Javascript(false, "false");
+					$jsContent .= $this->Javascript(false, false);
 					return $jsContent;
 				} 
-				$jsCompressor = new MagratheaCompressor(MagratheaCompressor::COMPRESS_JS);
+				$jsCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPRESS_JS);
 				$jsCompressor->setCompressionMode($this->compressionMode);
 				foreach($array_files as $file){
 					$jsCompressor->add($file);
 				}
-				$jsCompressor->compress();
-				$compressed_js = $jsCompressor->GetCompressedContent();
+				$compressed_js = $jsCompressor->compress()->GetCompressedContent();
 				if (!fwrite($handle, $compressed_js)) { 
 					$jsContent .= "<!--error compressing javascript! could not write file-->";
-					$jsContent .= $this->Javascript(false, "false");
+					$jsContent .= $this->Javascript(false, false);
 					return $jsContent;
 				}
 				fclose($handle); 
@@ -237,10 +253,10 @@ class MagratheaView{
 	 * @return  	string 		Include of CSSs
 	 */
 	public function CSS($compression=null){
-		$compression = ($compression==null ? $this->ShouldCompressCss() : $compression );
+		$compression = ($compression===null ? $this->ShouldCompressCss() : $compression );
 		$array_files = array_unique($this->css_files);
 		$cssContent = "";
-		if($compression == "true"){
+		if($compression){
 			sort($this->css_lastmodified_arr);
 			$css_lmod = implode("_", $this->css_lastmodified_arr);
 			$css_lmod_hash = md5($css_lmod);
@@ -248,30 +264,79 @@ class MagratheaView{
 			if(!file_exists($compressedFileName)){
 				if (!$handle = @fopen($compressedFileName, 'w')) { 
 					$cssContent .= "<!--error compressing css! could not create file-->\n";
-					$cssContent .= $this->CSS("false");
+					$cssContent .= $this->CSS(false);
 					return $cssContent;
 				} 
 				$cssCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPRESS_CSS);
 				foreach($array_files as $file){
 					$cssCompressor->add($file);
 				}
-				$cssCompressor->compress();
-				$compressed_css = $cssCompressor->GetCompressedContent();
+				if($this->ShouldCompileSCSS()) {
+					$cssCompressor->addContent($this->compileSCSS());
+				}
+				$compressed_css = $cssCompressor->compress()->GetCompressedContent();
 				if (!fwrite($handle, $compressed_css)) { 
 					$cssContent .= "<!--error compressing css! could not write file-->\n";
-					$cssContent .= $this->CSS("false");
+					$cssContent .= $this->CSS(false);
 					return $cssContent;
 				} 
 				fclose($handle); 
 			}
-			$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."' rel='stylesheet'>\n"; 
-  		} else {
+			$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$compressedFileName."' rel='stylesheet'>\n";
+  	} else {
 			foreach($array_files as $file){
-				$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."' rel='stylesheet'>\n"; 
+				$cssContent .= "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$file."' rel='stylesheet'>\n";
+			}
+			if($this->ShouldCompileSCSS()) {
+				$cssContent .= $this->SCSS();
 			}
 		}
 		return $cssContent;
 	}
+	/**
+	 * Prints all the scss files on page
+	 * @return  	string 		file with compiled SCSS
+	 */
+	public function SCSS() {
+		sort($this->css_lastmodified_arr);
+		$css_lmod = implode("_", $this->css_lastmodified_arr);
+		$css_lmod_hash = md5($css_lmod);
+		$compiledFileName = $this->compressed_path_css."/".$css_lmod_hash."_scss_compiled.css";
+		$cssContent = "";
+		if(!file_exists($compiledFileName)){
+			if (!$handle = @fopen($compiledFileName, 'w')) { 
+				$cssContent .= "<!--error compiling scss! could not create file-->\n";
+				return $cssContent;
+			}
+			$cssContent = $this->compileSCSS();
+			if (!fwrite($handle, $cssContent)) { 
+				$cssContent .= "<!--error compiling scss! could not write file-->\n";
+				return $cssContent;
+			} 
+			fclose($handle); 
+		}
+		return "<link href='".$this->urlForAssets.($this->relativePath ? "" : "/").$compiledFileName."' rel='stylesheet'>\n";
+	}
+	/**
+	 * Compiles SCSS and returns content
+	 * @return  	string 		compiled SCSS content in CSS
+	 */
+	public function compileSCSS() {
+		$array_files = array_unique($this->scss_files);
+		$cssCompressor = new MagratheaCompressor(@MagratheaCompressor::COMPILE_SCSS);
+		foreach($array_files as $file){
+			$cssCompressor->add($file);
+		}
+		return $cssCompressor->compileSCSS()->GetCompressedContent();
+	}
+	/**
+	 * Do I have SCSS files to compile?
+	 * @return  	boolean 		Do I?
+	 */
+	public function ShouldCompileSCSS() {
+		return ( count($this->scss_files) > 0 );
+	}
+
 
 	/**
 	 * Prints CSS inline in page

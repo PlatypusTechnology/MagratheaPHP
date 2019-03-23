@@ -208,6 +208,4 @@ function getSelectedField($fieldType){
 	return $currentType;
 }
 
-
 ?>
-

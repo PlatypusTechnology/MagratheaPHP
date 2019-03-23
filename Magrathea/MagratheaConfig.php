@@ -63,8 +63,8 @@ class MagratheaConfig {
 	* @param string Environment name
 	* @return itself
 	*/
-	public function SetDefaultEnvironment($env){
-		$this->environment = $env;
+	public function SetDefaultEnvironment($e){
+		$this->environment = $e;
 		return $this;
 	}
 
@@ -81,6 +81,15 @@ class MagratheaConfig {
 	}
 
 	/**
+	* This function will return the magrathea path defined in config.php
+	* @return 	string 		Magrathea Path
+	*/
+	public function GetMagratheaPath() {
+		global $magrathea_path;
+		return $magrathea_path;
+	}
+
+	/**
 	* `$config_name` can be called to get a parameter from inside a section of the config file. To achieve this, you should use a slash (/) to separate the section from the property.
 	* If the slash is not used, the function will return the property only if it's on the root.
 	* If `$config_name` is a section name, the function will return the full section as an Array.
@@ -92,9 +101,9 @@ class MagratheaConfig {
 	public function GetConfig($config_name=""){
 		if( $this->configs == null ){
 			$this->loadFile();
-			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
+			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true, INI_SCANNER_TYPED);
 			if( !$this->configs ){
-				throw new MagratheaConfigException("There was an error trying to load the config file.<br/>");
+				throw new MagratheaConfigException("There was an error trying to load the config file. [".$this->path."/".$this->config_file_name."]<br/>");
 			}
 		}
 		if( empty($config_name) ){
@@ -107,7 +116,15 @@ class MagratheaConfig {
 
 	/**
 	 * Alias for GetConfigFromDefault
-  	 * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
+   * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
+ 	 * @return 	string
+	 */
+	public function Get($config_name){
+		return $this->GetConfigFromDefault($config_name);
+	}
+	/**
+	 * Alias for GetConfigFromDefault
+   * @param 	string 	$config_name Item to be returned from the `magrathea.conf`. 
  	 * @return 	string
 	 */
 	public function GetFromDefault($config_name){
@@ -116,10 +133,11 @@ class MagratheaConfig {
 	/**
 	* This function will get the $config_name property from `magrathea.conf`.
 	* It will get from the section defined on `general/use_environment`.
-	* @param 	string 	$config_name Item to be returned from the `magrathea.conf`.
+	* @param 	string 		$config_name 	Item to be returned from the `magrathea.conf`.
+	* @param 	boolean 	$throwable 		should this function throw an exception if array key don't exist?
 	* @return 	string
 	*/
-	public function GetConfigFromDefault($config_name){
+	public function GetConfigFromDefault($config_name, $throwable=true){
 		if( $this->configs == null ){
 			$this->loadFile();
 			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);
@@ -127,11 +145,16 @@ class MagratheaConfig {
 				throw new MagratheaException("There was an error trying to load the config file.<br/>");
 			}
 		}
-		$environment = $this->configs["general"]["use_environment"];
-		if(array_key_exists($config_name, $this->configs[$environment])){
-			return $this->configs[$environment][$config_name];
+		if(!$this->environment)
+			$this->environment = $this->configs["general"]["use_environment"];
+		if(array_key_exists($config_name, $this->configs[$this->environment])){
+			return $this->configs[$this->environment][$config_name];
 		} else {
-			throw new MagratheaConfigException("Key ".$config_name." does not exist in magratheaconf!", 704);
+			if ($throwable) {
+				throw new MagratheaConfigException("Key ".$config_name." does not exist in magratheaconf!", 704);
+			} else {
+				return null;
+			}
 		}
 	}
 
@@ -146,6 +169,9 @@ class MagratheaConfig {
 		$configSection = @parse_ini_file($this->path."/".$this->config_file_name, true);
 		if( !$configSection ){
 			throw new MagratheaException("There was an error trying to load the config file.<br/>");
+		}
+		if(empty($configSection[$section_name])) {
+			throw new Exception("Conig [".$section_name."] not available in magrathea.conf", 1);
 		}
 		return $configSection[$section_name];
 	}
@@ -245,12 +271,22 @@ class MagratheaConfigFile {
 		}
 		return $configSection[$section_name];
 	}
+
+	/**
+	*	Sets the correct format for the value
+	*	@param 		any 		$value to be saved
+	*	@return 	string 		formatted value to be saved on config file
+	*/
+	private function SaveValueOnConfig($value) {
+		if (in_array($value, array("true", "1", "yes"), true)) return "true";
+		if (in_array($value, array("false", "0", "no"), true)) return "false";
+		return "\"".$value."\"";
+	}
+
 	/**
 	*	Saves the config file
-	*
-	*	@param 	boolean 	$save_sections 		A flag indicating if the sections should be saved also.
-	*											Default: `true`
-	*
+	*	@param 		boolean 	$save_sections 		A flag indicating if the sections should be saved also.
+	*												Default: `true`
 	*	@return 	boolean	 	True if the saved succesfully. False if got any error in the process
 	*/
 	public function Save($save_sections=true) { 
@@ -267,20 +303,20 @@ class MagratheaConfigFile {
 				foreach ($elem as $key2=>$elem2) { 
 					if(is_array($elem2)) { 
 						for($i=0;$i<count($elem2);$i++) { 
-							$content .= "\t".$key2."[] = \"".$elem2[$i]."\"\n"; 
+							$content .= "\t".$key2."[] = ".$this->SaveValueOnConfig($elem2[$i])."\n";
 						} 
-					} else if($elem2=="") $content .= "\t".$key2." = \n"; 
-					else $content .= "\t".$key2." = \"".$elem2."\"\n"; 
-				} 
-			} 
-		} else { 
+					} else if($elem2=="") $content .= "\t".$key2." = \n";
+					else $content .= "\t".$key2." = ".$this->SaveValueOnConfig($elem2)."\n";
+				}
+			}
+		} else {
 			foreach ($data as $key=>$elem) { 
 				if(is_array($elem)) { 
 					for($i=0;$i<count($elem);$i++) { 
-						$content .= $key."[] = \"".$elem[$i]."\"\n";
-					} 
-				} else if($elem=="") $content .= $key." = \n"; 
-				else $content .= $key." = \"".$elem."\"\n"; 
+						$content .= $key."[] = ".$this->SaveValueOnConfig($elem[$i])."\n";
+					}
+				} else if($elem=="") $content .= $key." = \n";
+				else $content .= $key." = ".$this->SaveValueOnConfig($elem)."\n";
 			} 
 		} 
 		if(!is_writable($this->path)){

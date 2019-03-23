@@ -47,15 +47,23 @@ abstract class MagratheaModelControl{
 	 * @return  resultRow		database result
 	 */
 	public static function QueryResult($sql){
-		return MagratheaDatabase::Instance()->queryAll($sql);
+		return MagratheaDatabase::Instance()->QueryAll($sql);
 	}
 	/**
 	 * Runs a query and returns the first row of result
 	 * @param 	string 	$sql 	query string
 	 * @return  resultRow		database result (first line)
 	 */
+	public static function QueryRow($sql){
+		return MagratheaDatabase::Instance()->QueryRow($sql);
+	}
+	/**
+	 * Runs a query and returns the first result
+	 * @param 	string 	$sql 	query string
+	 * @return  resultRow		database result (first item)
+	 */
 	public static function QueryOne($sql){
-		return MagratheaDatabase::Instance()->queryOne($sql);
+		return MagratheaDatabase::Instance()->QueryOne($sql);
 	}
 
 	/**
@@ -98,11 +106,12 @@ abstract class MagratheaModelControl{
 			foreach ($result as $r) {
 				$splitResult = MagratheaQuery::SplitArrayResult($r);
 				$new_object = new static::$modelName();
-				if(count($splitResult) > 0)
+				if(count($splitResult) > 1)
 					$r = $splitResult[$new_object->GetDbTable()];
 				$new_object->LoadObjectFromTableRow($r);
 				foreach($array_joins as $join){
 					$obj = $join["obj"];
+					if(empty($obj)) continue;
 					$obj->LoadObjectFromTableRow($splitResult[$obj->GetDbTable()]);
 					$objname = get_class($obj);
 					if($join["type"] == "has_many"){

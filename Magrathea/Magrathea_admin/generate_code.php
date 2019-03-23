@@ -7,8 +7,7 @@ require ("admin_load.php");
 	$mconfig->setFile("/../configs/magrathea_objects.conf");
 	$objdata = $mconfig->getConfig();
 
-	$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
-	$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
+	$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 	$models_dir = $site_path."/Models";
 	$base_dir = $models_dir."/Base";
 
@@ -91,11 +90,11 @@ require ("admin_load.php");
 				if( !empty($data[$f."_alias"]) )
 					$code .= "\t\t\$this->dbAlias[\"".$data[$f."_alias"]."\"] = \"".$f."\";\n";
 			}
-			
+
 			$code .= "\n".$relations_properties;
+			$code .= "\t\t\$this->dbValues[\"created_at\"] =  \"datetime\";\n";
+			$code .= "\t\t\$this->dbValues[\"updated_at\"] =  \"datetime\";\n";			
 			$code .= "\n";
-			$code .= "\t\t\$this->dbAlias[\"created_at\"] =  \"datetime\";\n";
-			$code .= "\t\t\$this->dbAlias[\"updated_at\"] =  \"datetime\";\n";
 		$code .= "\t}\n\n";
 
 		$code .= "\t// >>> relations:\n".$relations_functions."\n";

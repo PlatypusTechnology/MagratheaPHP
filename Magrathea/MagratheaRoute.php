@@ -25,6 +25,14 @@ class MagratheaRoute {
 	private $controllers = array();
 
 	protected static $inst = null;
+
+	/**
+	* This is a singleton!
+	* Constructor is private
+	*/
+	private function __construct(){
+	}
+
 	public static function Instance(){
 		if(!isset(self::$inst)){
 			self::$inst = new MagratheaRoute();

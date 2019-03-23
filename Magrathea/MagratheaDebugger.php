@@ -7,18 +7,18 @@
 
 /**
  * Debugs what is sent, according with debug configurations
- * @param 	object 		$this 		object to debug
+ * @param 	object 		$bug 		object to debug
  */
-function Debug($this){
-	MagratheaDebugger::Instance()->Add($this);
+function Debug($bug){
+	MagratheaDebugger::Instance()->Add($bug);
 }
 
 /**
  * Adds to info debug, according with configurations
- * @param 	object 		$this 		object to debug
+ * @param 	object 		$bug 		object to debug
  */
-function Info($this){
-	MagratheaDebugger::Instance()->Info($this);
+function Info($bug){
+	MagratheaDebugger::Instance()->Info($bug);
 }
 
 /**
@@ -139,7 +139,7 @@ class MagratheaDebugger {
 				return;
 				break;
 			case self::LOG:
-				MagratheaLogger::Log($debug, $this->logFile);
+				MagratheaLogger::Log(dump($debug), $this->logFile);
 				return;
 				break;
 			case self::DEV:
@@ -158,7 +158,7 @@ class MagratheaDebugger {
 		switch ($this->debugType) {
 			case self::NONE:
 			case self::LOG:
-				MagratheaLogger::Log($debug, $this->logFile);
+				MagratheaLogger::Log(dump($debug), $this->logFile);
 				return;
 				break;
 			case self::DEV:
@@ -234,7 +234,7 @@ class MagratheaDebugger {
 			$html .= "</div>";
 		} else {
 			$html .= "<div style='padding: 10px; border: 1px dotted black; margin-bottom: 5px; line-height: 120%;'>";
-			$html .= "<span>".$deb."</span><br/>";
+			$html .= "<span>".p_r($deb)."</span><br/>";
 			$html .= "</div>";
 		}
 		return $html;

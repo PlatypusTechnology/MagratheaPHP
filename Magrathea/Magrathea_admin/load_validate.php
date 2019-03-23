@@ -3,7 +3,7 @@
 require ("admin_load.php");
 
 $site_path = realpath(MagratheaConfig::Instance()->GetFromDefault("site_path"));
-$magrathea_path = realpath(MagratheaConfig::Instance()->GetFromDefault("magrathea_path"));
+$magrathea_path = realpath(MagratheaConfig::Instance()->GetMagratheaPath());
 
 $magratheaConfig = realpath($site_path."/../configs");
 $magratheaConfig_ok  = is_writeable($magratheaConfig);

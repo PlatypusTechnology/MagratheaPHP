@@ -24,11 +24,20 @@
 function loadMagratheaEnv($env = null){
 	global $magdb;
 	if( empty($env) ){
-		$env = MagratheaConfig::Instance()->GetEnvironment();	
+		$env = MagratheaConfig::Instance()->GetEnvironment();
+		if(empty($env)) return false;
+	} else {
+		MagratheaConfig::Instance()->SetDefaultEnvironment($env);
 	}
-	$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
-	$magdb = MagratheaDatabase::Instance();
-	return $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
+	try {
+		$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
+		$magdb = MagratheaDatabase::Instance();
+		date_default_timezone_set( MagratheaConfig::Instance()->GetConfig("general/time_zone") );
+		$conn = $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
+	} catch(Exception $ex) {
+		throw $ex;
+	}
+	return $conn;
 }
 
 //.$trace[0]["file"].":".$trace[0]["line"]."\n"
@@ -50,6 +59,7 @@ function p_r($debugme, $beautyme=false){
  * Prints wonderfull debugs!
  * @param 	object 		$debugme 	Object to be printed
  * @param  	string  	$prev_char 	separator
+ * @return  string  	nicely printed var
  */	
 function nice_p_r($debugme, $prev_char = ""){
 	$html = "";
@@ -67,6 +77,17 @@ function nice_p_r($debugme, $prev_char = ""){
 	}
 	$html .= (empty($prev_char) ? "</div>" : "");
 	return $html;
+}
+
+/**
+ * dumps vars
+ * @param 	object 		$debugme 	Object to be printed
+ * @return  string  	nicely printed var
+ */	
+function dump($debugme){
+	ob_start();
+	var_dump($debugme);
+	return ob_get_clean();
 }
 
 /**

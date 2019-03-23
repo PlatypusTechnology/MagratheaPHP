@@ -90,8 +90,6 @@ $config = MagratheaConfig::Instance()->GetConfig();
 
 
 <script type="text/javascript">
-var responseDiv = null;
-
 function objectDetail(obj, element){
 	responseIn = $("#query_run");
 	$(responseIn).html("Loading...");
@@ -110,7 +108,7 @@ function objectDetail(obj, element){
 
 function queryRun(){
 	var code = $("#query_run").val();
-	responseDiv = $("#database_result");
+	var responseDiv = $("#database_result");
 	$.ajax({
 		url: "?magpage=database_run.php",
 		type: "POST",
@@ -124,7 +122,7 @@ function queryRun(){
 }
 
 function backup(){
-	history.replaceState({}, "Magrathea Admin - Backups", "<?=$basename?>?area=migration");
+	history.replaceState({}, "Magrathea Admin - Backups", "<?=@$basename?>?area=migration");
 	$.ajax({
 		url: "?magpage=load_backup.php",
 		success: function(data){

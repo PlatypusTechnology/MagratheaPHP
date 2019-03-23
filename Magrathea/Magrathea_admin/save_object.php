@@ -34,10 +34,10 @@ require ("admin_load.php");
 			}
 
 	
-			$property = $data[$rel_name."_property"];
-			$method = $data[$rel_name."_method"];
-			$lazyload = $data[$rel_name."_lazyload"];
-			$autoload = $data[$rel_name."_autoload"];
+			$property = @$data[$rel_name."_property"];
+			$method = @$data[$rel_name."_method"];
+			$lazyload = @$data[$rel_name."_lazyload"];
+			$autoload = @$data[$rel_name."_autoload"];
 
 			switch($type){
 				case "has_many":
@@ -108,9 +108,9 @@ require ("admin_load.php");
 			$i = 0;
 			foreach($relations["rel_name"] as $already_exists_name){
 				if( $already_exists_name == $mirror_name ){
-					$mirror_lazyload = $relations["rel_lazyload"][$i];
-					$mirror_autoload = $relations["rel_autoload"][$i];
-					$mirror_property = $relations["rel_property"][$i];
+					$mirror_lazyload = @$relations["rel_lazyload"][$i];
+					$mirror_autoload = @$relations["rel_autoload"][$i];
+					$mirror_property = @$relations["rel_property"][$i];
 					$mirror_method = $relations["rel_method"][$i];
 					$rel_id = $i;
 					break;

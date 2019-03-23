@@ -35,8 +35,7 @@ require ("admin_load.php");
 		<content>
 			<div class='row-fluid'>
 					<?php
-					$env = MagratheaConfig::Instance()->GetConfig("general/use_environment");
-					$site_path = MagratheaConfig::Instance()->GetConfig($env."/site_path");
+					$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 					if(file_exists($site_path."/../configs/magrathea_objects.conf")){
 					?>
 				<div class='span3'>

@@ -15,8 +15,10 @@ class MagratheaLogger {
 	 * @param 	string 		$logFile 	file name that should be written
 	 * @throws  Exception If path is not writablle
 	 */
-	public static function Log($logThis, $logFile=null){
-		if( is_a($logThis, "MagratheaConfigException") ){
+	public static function Log($logThis, $logFile=null) {
+		if(MagratheaConfig::Instance()->GetEnvironment() == "test") return;
+		if( is_a($logThis, "MagratheaConfigException") ) {
+			p_r($logThis);
 			echo "==[config not properly set!]==";
 			return;			
 		} 
@@ -27,6 +29,7 @@ class MagratheaLogger {
 		$file = $path.$logFile;
 		if(!is_writable($path)){
 			$message = "error trying to save file at [".$path."] - confirm permission for writing";
+			$message .= " - - error message: [".$logThis."]";
 			throw new Exception($message);
 			return;
 		}

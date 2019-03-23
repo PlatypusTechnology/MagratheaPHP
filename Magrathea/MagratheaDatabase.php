@@ -55,6 +55,15 @@ class MagratheaDatabase{
 		}
 		return self::$inst;
 	}
+
+	/**
+	*	Mocker
+	*	For Unit Testing
+	*/
+	public static function Mock($mocker) {
+		self::$inst = $mocker;
+		return $this;
+	}
 	
 	/**
 	* This is a singleton!
@@ -165,7 +174,7 @@ class MagratheaDatabase{
 	* Handle connection errors @todo
 	* @throws	MagratheaDbException
 	*/
-	private function ConnectionErrorHandle($msg="", $data){ 
+	private function ConnectionErrorHandle($msg="", $data=null){ 
 		throw new MagratheaDBException($msg);
 	}
 	/**
@@ -319,18 +328,23 @@ class MagratheaDatabase{
 	public function QueryTransaction($query_array){
 		$this->OpenConnectionPlease();
 
-		$this->mysqli->autocommit(false);
-		foreach( $query_array as $query ){
-			$this->LogControl($query);
-			$this->mysqli->query($query);
-			if (!$this->mysqli->commit()) {
+		try {
+			$this->mysqli->autocommit(false);
+			$this->mysqli->begin_transaction();
+			foreach( $query_array as $query ){
+				$this->LogControl($query);
+				$this->mysqli->query($query);
+			}
+			if ($this->mysqli->error) {
 				$this->ErrorHandle($this->mysqli->error, $query);
 				return false;
 			}
-		}
+			$this->mysqli->commit();
 
-		$this->CloseConnectionThanks();
+		} catch(Exception $ex) {
+		}
 		$this->mysqli->autocommit(true);
+		$this->CloseConnectionThanks();
 	}
 	
 	/**
@@ -395,11 +409,15 @@ class MagratheaDatabase{
 	 * @param  array 	$arr 	array to be "converted"
 	 * @return array 	array as reference, ready to be used!
 	 */
-    private function makeValuesReferenced($arr){ 
+    private function makeValuesReferenced($arr){
+    	//Reference is required for PHP 5.3+
+    	if (strnatcmp(phpversion(),'5.3') >= 0) {
         $refs = array(); 
-        foreach($arr as &$val) 
-        	array_push($refs, $val);
+        foreach($arr as $key => $value) 
+        	$refs[$key] = &$arr[$key];
         return $refs; 
+      }
+      return $arr;
     } 
 	
 }

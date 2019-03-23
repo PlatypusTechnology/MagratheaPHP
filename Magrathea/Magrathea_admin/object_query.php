@@ -16,7 +16,6 @@ foreach($obj as $key => $item){
 		$field_name = substr($key, 0, -6);
 		if($field_name == $obj["db_pk"]) continue;
 		if( $field_name == "created_at" || $field_name == "updated_at" ){
-			$createSql .= "\t`".$field_name."` timestamp NOT NULL, \n";
 			continue;
 		}
 		$type = "";
@@ -42,16 +41,13 @@ foreach($obj as $key => $item){
 	}
 }
 
-
+$createSql .= "\t`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP, \n";
+$createSql .= "\t`updated_at` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP, \n";
 
 $createSql .= "\tPRIMARY KEY (`".$obj["db_pk"]."`)\n";
 $createSql .= "\n) DEFAULT CHARSET=utf8 ;";
 $createSql .= "\n\n";
 
-$createSql .= "DROP TRIGGER IF EXISTS `".$obj["table_name"]."_create`;\n";
-$createSql .= "DROP TRIGGER IF EXISTS `".$obj["table_name"]."_update`;\n";
-$createSql .= "CREATE TRIGGER `".$obj["table_name"]."_create` BEFORE INSERT ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.created_at = NOW(), NEW.updated_at = NOW();\n";
-$createSql .= "CREATE TRIGGER `".$obj["table_name"]."_update` BEFORE UPDATE ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.updated_at = NOW();\n";
 
 $createSql .= "\n\n";
 

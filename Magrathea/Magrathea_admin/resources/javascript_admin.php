@@ -197,6 +197,7 @@ function createFieldInTable(table_name){
 			table: table_name
 		}, 
 		success: function(data){
+			console.info(data);
 			loadTable(table_name);
 			scrollToTop();
 		}
@@ -242,7 +243,7 @@ function saveConfig(specific){
 			var success_var = data.substr(0, 12);
 //			console.info(success_var);
 			$("#config_result").html(data);
-			window.location.reload();
+//			window.location.reload();
 		}
 	});
 }

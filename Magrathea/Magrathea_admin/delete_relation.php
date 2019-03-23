@@ -50,10 +50,10 @@ function DeleteRelation(&$arr_relation, $relation_name, $is_mirror = false){
 		$index++;
 	}
 	if( $rel_index >= 0 ){
-		$type = $arr_relation["rel_type"][$rel_index];
-		$obj = $arr_relation["rel_object"][$rel_index];
-		$base_obj = $arr_relation["rel_obj_base"][$rel_index];
-		$field = $arr_relation["rel_field"][$rel_index];
+		$type = @$arr_relation["rel_type"][$rel_index];
+		$obj = @$arr_relation["rel_object"][$rel_index];
+		$base_obj = @$arr_relation["rel_obj_base"][$rel_index];
+		$field = @$arr_relation["rel_field"][$rel_index];
 		unset($arr_relation["rel_name"][$rel_index]);
 		unset($arr_relation["rel_obj_base"][$rel_index]);
 		unset($arr_relation["rel_type"][$rel_index]);
