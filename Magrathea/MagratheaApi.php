@@ -30,19 +30,26 @@ class MagratheaApi {
 	}
 
 	/**
-	 * Start the server, getting base calls
+	 * Singleton...
 	 */
-	public static function Start(){
+	public static function Instance() {
 		if(!isset(self::$inst)){
 			self::$inst = new MagratheaApi();
 		}
+		return self::$inst;
+	}
+
+	/**
+	 * Start the server, getting base calls
+	 */
+	public function Start(){
 		if(!@empty($_GET["magrathea_control"])) self::$inst->control = $_GET["magrathea_control"];
 		if(!@empty($_GET["magrathea_action"])) self::$inst->action = $_GET["magrathea_action"];
 		if(!@empty($_GET["magrathea_params"])) self::$inst->params = $_GET["magrathea_params"];
 		header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS'); 
 		header('Access-Control-Max-Age: 1000');
 		header('Access-Control-Allow-Headers: Content-Type');
-		return self::$inst;
+		return $this;
 	}
 
 	/**
@@ -63,6 +70,15 @@ class MagratheaApi {
 		if (in_array($_SERVER["HTTP_ORIGIN"], $allowedOrigins)) {
 			header('Access-Control-Allow-Origin: '.$_SERVER["HTTP_ORIGIN"]);
 		}
+		return $this;
+	}
+
+	/**
+	 * Api will return the result instead of printing it
+	 * @return 		itself
+	 */
+	public function SetRaw() {
+		$this->returnRaw = true;
 		return $this;
 	}
 
@@ -218,7 +234,7 @@ class MagratheaApi {
 
 	/**
 	 * Start the server, getting base calls
-	 * @return 		itself
+	 * @return 		response or nothing
 	 */
 	public function Run($returnRaw = false) {
 		$urlCtrl = $_GET["magrathea_control"];
@@ -228,11 +244,20 @@ class MagratheaApi {
 		$this->returnRaw = $returnRaw;
 
 		$fullUrl = strtolower($urlCtrl."/".$action."/".$params);
+		return $this->ExecuteUrl($fullUrl, $method);
+	}
+
+	/**
+	 * Execute URL
+	 * @return 		response or nothing
+	 */
+	public function ExecuteUrl($fullUrl, $method="GET") {
 		$url = explode("/", $fullUrl);
 		$url = array_filter($url);
 
 		$endpoints = @$this->endpoints[$method];
 		$route = $this->FindRoute($url, $endpoints);
+
 		if(!$route) {
 			return $this->Return404();
 		}
@@ -257,7 +282,7 @@ class MagratheaApi {
 			}
 			return $this->ReturnSuccess($data);
 		} catch (Exception $ex) {
-			$this->ReturnError($ex->getCode(), $ex->getMessage(), $ex);
+			return $this->ReturnError($ex->getCode(), $ex->getMessage());
 		}
 	}
 
@@ -322,6 +347,7 @@ class MagratheaApiControl {
 	protected $service = null;
 
 	public function GetPut() {
+		if($_SERVER["PUT"]) return $_SERVER["PUT"];
 		if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 			parse_str(file_get_contents("php://input"), $_PUT);
 			foreach ($_PUT as $key => $value){
@@ -353,7 +379,7 @@ class MagratheaApiControl {
 	public function Create() {
 		$m = new $this->model();
 		$data = $_POST;
-		if($data["id"]) delete($data["id"]);
+		if($data["id"]) unset($data["id"]);
 		foreach ($data as $key => $value) {
 			if(property_exists($m, $key)) {
 				$m->$key = $value;
@@ -372,6 +398,7 @@ class MagratheaApiControl {
 		$id = $params["id"];
 		$m = new $this->model($id);
 		$data = $this->GetPut();
+		if(!$data) throw new Exception("Empty Data Sent", 500);
 		foreach ($data as $key => $value) {
 			if(property_exists($m, $key)) {
 				$m->$key = $value;

@@ -22,6 +22,7 @@
 					array_push($testFiles, $file);
 				}
 			}
+			sort($testFiles);
 			closedir($handle);
 			if(count($testFiles) == 0){
 				echo '<li><a><i class="fa fa-exclamation-triangle"></i> No tests found</a></li>';

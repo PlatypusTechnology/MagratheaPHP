@@ -33,8 +33,9 @@ function loadMagratheaEnv($env = null){
 	}
 	try {
 		$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
-		$magdb = MagratheaDatabase::Instance();
 		date_default_timezone_set( MagratheaConfig::Instance()->GetConfig("general/time_zone") );
+
+		$magdb = MagratheaDatabase::Instance();
 		$conn = $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
 	} catch(Exception $ex) {
 		throw $ex;

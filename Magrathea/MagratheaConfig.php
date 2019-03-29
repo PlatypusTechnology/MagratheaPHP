@@ -66,6 +66,16 @@ class MagratheaConfig {
 	* @param string Environment name
 	* @return itself
 	*/
+	public function ChangeEnvironment($e) {
+		loadMagratheaEnv($e);
+		return $this;
+	}
+
+	/**
+	* This function will set the environment for future operations
+	* @param string Environment name
+	* @return itself
+	*/
 	public function SetDefaultEnvironment($e){
 		$this->environment = $e;
 		return $this;
