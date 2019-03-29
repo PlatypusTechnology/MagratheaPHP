@@ -1,2 +1,2 @@
-php apigen.phar generate -s Magrathea/ -d documentation/docs --debug
+php vendor/bin/apigen generate Magrathea --destination documentation/docs --verbose
 php editDocs.php -s documentation/docs -o documentation

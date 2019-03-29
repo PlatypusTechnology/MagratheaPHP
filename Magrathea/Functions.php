@@ -24,15 +24,18 @@
 function loadMagratheaEnv($env = null){
 	global $magdb;
 	if( empty($env) ){
-		$env = MagratheaConfig::Instance()->GetEnvironment();
+		try {
+			$env = MagratheaConfig::Instance()->GetEnvironment();
+		} catch(Exception $ex) { return false; }
 		if(empty($env)) return false;
 	} else {
 		MagratheaConfig::Instance()->SetDefaultEnvironment($env);
 	}
 	try {
 		$configSection = MagratheaConfig::Instance()->GetConfigSection($env);
-		$magdb = MagratheaDatabase::Instance();
 		date_default_timezone_set( MagratheaConfig::Instance()->GetConfig("general/time_zone") );
+
+		$magdb = MagratheaDatabase::Instance();
 		$conn = $magdb->SetConnection($configSection["db_host"], $configSection["db_name"], $configSection["db_user"], $configSection["db_pass"]);
 	} catch(Exception $ex) {
 		throw $ex;

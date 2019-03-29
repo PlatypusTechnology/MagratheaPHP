@@ -19,7 +19,7 @@
 * 
 */
 class MagratheaConfig {
-	private $path = __DIR__;
+	private $path = false;
 	private $config_file_name = "configs/magrathea.conf";
 	private $configs = null;
 	private $environment = null;
@@ -44,7 +44,10 @@ class MagratheaConfig {
 	*/
 	private function loadFile(){
 		if(!file_exists($this->path."/".$this->config_file_name)){
-			die ("Config file could not be found - ".$this->path."/".$this->config_file_name);
+			if(!$this->path) {
+				echo "WARNING: \$site_path is empty!... ";
+			}
+			die ("MagratheaConfig: Config file could not be found - ".$this->path."/".$this->config_file_name);
 		}
 	}
 
@@ -60,6 +63,16 @@ class MagratheaConfig {
 
 	/**
 	* This function will change the default environment to anything that the users wants to.
+	* @param string Environment name
+	* @return itself
+	*/
+	public function ChangeEnvironment($e) {
+		loadMagratheaEnv($e);
+		return $this;
+	}
+
+	/**
+	* This function will set the environment for future operations
 	* @param string Environment name
 	* @return itself
 	*/
