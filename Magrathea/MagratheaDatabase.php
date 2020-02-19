@@ -388,7 +388,8 @@ class MagratheaDatabase{
 		$args = $arrValues;
 		array_unshift($args, $params);
 		try{
-			call_user_func_array(array($stm, "bind_param"), $this->makeValuesReferenced($args));
+			$valArgs = $this->makeValuesReferenced($args);
+			call_user_func_array(array($stm, "bind_param"), $valArgs);
 			$stm->execute();
 			if($stm->error) $this->ConnectionErrorHandle($stm->error);
 			$lastId = $stm->insert_id;
@@ -413,8 +414,12 @@ class MagratheaDatabase{
     	//Reference is required for PHP 5.3+
     	if (strnatcmp(phpversion(),'5.3') >= 0) {
         $refs = array(); 
-        foreach($arr as $key => $value) 
+        foreach($arr as $key => $value) {
+        	if(is_object($value)) {
+        		throw new MagratheaDBException("MySQL operation does not work with given object - query-key=".$key, 5022);
+        	}
         	$refs[$key] = &$arr[$key];
+        }
         return $refs; 
       }
       return $arr;

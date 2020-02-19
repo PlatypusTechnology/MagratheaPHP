@@ -45,6 +45,22 @@ class MagratheaException extends Exception {
     }
 }
 
+class MagratheaApiException extends MagratheaException {
+    protected $_data;
+    public function __construct($message = "Magrathea Admin Error", $code = 0, Exception $previous = null) {
+        parent::__construct($message, $code, $previous);
+    }
+
+
+    public function SetData($data) {
+        $this->_data = $data;
+    }
+    public function GetData() {
+        return $this->_data;
+    }
+
+}
+
 class MagratheaAdminException extends MagratheaException {
     public function __construct($message = "Magrathea Admin Error", $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);

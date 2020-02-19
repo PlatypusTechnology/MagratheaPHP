@@ -187,7 +187,8 @@ class MagratheaDebugger {
 		if($this->debugType == @NONE || !$this->queries) return;
 		$logThis = "query run: [".$sql."]";
 		if(!is_null($values)){
-			$logThis .= " - values: [".implode(',', $values)."]";
+			$values = print_r($values, true);
+			$logThis .= " - values: [".$values."]";
 		}
 		$this->Add($logThis);
 	}

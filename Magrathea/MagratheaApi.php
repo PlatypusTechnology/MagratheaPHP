@@ -48,7 +48,7 @@ class MagratheaApi {
 		if(!@empty($_GET["magrathea_params"])) self::$inst->params = $_GET["magrathea_params"];
 		header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS'); 
 		header('Access-Control-Max-Age: 1000');
-		header('Access-Control-Allow-Headers: Content-Type');
+		header('Access-Control-Allow-Headers: Authorization, Content-Type');
 		return $this;
 	}
 
@@ -57,7 +57,9 @@ class MagratheaApi {
 	 * @return 		itself
 	 */
 	public function AllowAll(){
-		header('Access-Control-Allow-Origin: *');
+		if (isset($_SERVER['HTTP_ORIGIN'])) {
+			return $this->Allow([ $_SERVER['HTTP_ORIGIN'] ]);
+		}
 		return $this;
 	}
 
@@ -112,12 +114,21 @@ class MagratheaApi {
 	 * @return  itself
 	 */
 	public function Crud($url, $control, $auth=true) {
+
+		if(is_array($url)) {
+			$singular = $url[0];
+			$plural = $url[1];
+		} else {
+			$singular = $url;
+			$plural = $singular."s";
+		}
+
 		$authFunction = $this->getAuthFunction($auth);
-		$this->endpoints["POST"][$url] = [ "control" => $control, "action" => "Create", "auth" => $authFunction ];
-		$this->endpoints["GET"][$url] = [ "control" => $control, "action" => "Read", "auth" => $authFunction ];
-		$this->endpoints["GET"][$url."/:id"] = [ "control" => $control, "action" => "Read", "auth" => $authFunction ];
-		$this->endpoints["PUT"][$url."/:id"] = [ "control" => $control, "action" => "Update", "auth" => $authFunction ];
-		$this->endpoints["DELETE"][$url."/:id"] = [ "control" => $control, "action" => "Delete", "auth" => $authFunction ];
+		$this->endpoints["POST"][$plural] = [ "control" => $control, "action" => "Create", "auth" => $authFunction ];
+		$this->endpoints["GET"][$plural] = [ "control" => $control, "action" => "Read", "auth" => $authFunction ];
+		$this->endpoints["GET"][$singular."/:id"] = [ "control" => $control, "action" => "Read", "auth" => $authFunction ];
+		$this->endpoints["PUT"][$singular."/:id"] = [ "control" => $control, "action" => "Update", "auth" => $authFunction ];
+		$this->endpoints["DELETE"][$singular."/:id"] = [ "control" => $control, "action" => "Delete", "auth" => $authFunction ];
 		return $this;
 	}
 
@@ -145,9 +156,13 @@ class MagratheaApi {
 		$baseUrls = array();
 		foreach ($this->endpoints as $method => $functions) {
 			foreach ($functions as $url => $fn) {
+//				p_r($fn);
 				$params = array();
 				$urlPieces = explode("/", $url);
-				$base = $urlPieces[0];
+//				$base = $urlPieces[0];
+				$base = get_class($fn["control"]);
+//				$basePieces = explode("->", $fn);
+//				$base = $fn;
 				if(!$baseUrls[$base]) $baseUrls[$base] = array();
 				if(!$baseUrls[$base][$method]) $baseUrls[$base][$method] = array();
 				foreach ($urlPieces as $piece) {
@@ -217,13 +232,19 @@ class MagratheaApi {
 		return $params;
 	}
 
+	private $acceptControlAllowHeaders = ["Authorization", "Content-Type"];
+	public function AddAcceptHeaders($accept) {
+		$this->acceptControlAllowHeaders = $accept;
+	}
+	public function AcceptHeaders() {
+		header('Access-Control-Allow-Headers: '.implode($this->acceptControlAllowHeaders, ","));
+	}
+
 	private function getMethod() {
 		$method = $_SERVER['REQUEST_METHOD'];
 		if($method == "OPTIONS") {
-			$host = $_SERVER['HTTP_ORIGIN'];
 			$realMethod = $_SERVER["HTTP_ACCESS_CONTROL_REQUEST_METHOD"];
-			header('Access-Control-Allow-Origin: '.$host);
-			header('Access-Control-Allow-Headers: Authorization, Content-Type');
+			$this->AcceptHeaders();
 			header('Access-Control-Allow-Methods: '.$realMethod);
 			header('Access-Control-Max-Age: 1728000');
 			header("Content-Length: 0");
@@ -267,13 +288,22 @@ class MagratheaApi {
 		$control = $ctrl["control"];
 		$fn = $ctrl["action"];
 		$auth = $ctrl["auth"];
-		if($auth) {
-			if(!$this->authClass->$auth()) {
-				$this->ReturnError(401, "Authorization Failed (".$auth." = false)");
+		try {
+			if($auth) {
+				if(!$this->authClass->$auth()) {
+					$this->ReturnError(401, "Authorization Failed (".$auth." = false)");
+				}
 			}
+		} catch(MagratheaApiException $ex) {
+			return $this->ReturnApiException($ex);
+		} catch (Exception $ex) {
+			return $this->ReturnError($ex->getCode(), $ex->getMessage(), $ex);
 		}
 		$params = $this->GetParamsFromRoute($route, $url);
 
+		if(!method_exists($control, $fn)) {
+			return $this->ReturnError(500, "Function (".$fn.") does not exists in class ".get_class($control));
+		}
 		try {
 			if($params) {
 				$data = $control->$fn($params);
@@ -281,8 +311,14 @@ class MagratheaApi {
 				$data = $control->$fn();
 			}
 			return $this->ReturnSuccess($data);
+		} catch(MagratheaApiException $ex) {
+			return $this->ReturnApiException($ex);
 		} catch (Exception $ex) {
-			return $this->ReturnError($ex->getCode(), $ex->getMessage());
+			if($ex->getCode() == 0) {
+				return $this->ReturnFail($ex);
+			} else {
+				return $this->ReturnError($ex->getCode(), $ex->getMessage(), $ex);
+			}
 		}
 	}
 
@@ -315,6 +351,21 @@ class MagratheaApi {
 	 * @param 	string 		$message 		error message
 	 * @param 	any 			$data 			error data
 	 */
+	public function ReturnApiException($exception) {
+		return $this->Json(array(
+			"success" => false,
+			"data" => $exception->GetData(),
+			"code" => $exception->getCode(),
+			"message" => $exception->getMessage()
+		));
+	}
+
+	/**
+	 * returns a json error message
+	 * @param 	string 		$code 			error code
+	 * @param 	string 		$message 		error message
+	 * @param 	any 			$data 			error data
+	 */
 	public function ReturnError($code=500, $message="", $data=null) {
 		return $this->Json(array(
 			"success" => false,
@@ -334,8 +385,13 @@ class MagratheaApi {
 			"data" => $data
 		));
 	}
+	public function ReturnFail($data) {
+		return $this->Json(array(
+			"success" => false,
+			"data" => $data
+		));
+	}
 }
-
 
 /**
 * 
@@ -346,17 +402,30 @@ class MagratheaApiControl {
 	protected $model = null;
 	protected $service = null;
 
-	public function GetPut() {
-		if($_SERVER["PUT"]) return $_SERVER["PUT"];
-		if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-			parse_str(file_get_contents("php://input"), $_PUT);
-			foreach ($_PUT as $key => $value){
-				unset($_PUT[$key]);
-				$_PUT[str_replace('amp;', '', $key)] = $value;
-			}
-			$_REQUEST = array_merge($_REQUEST, $_PUT);
+	public function GetPhpInput() {
+		$json = file_get_contents('php://input');
+		$jsonData = json_decode($json);
+		$data = [];
+		if(!$jsonData) return;
+		foreach ($jsonData as $key => $value) {
+			$data[str_replace('amp;', '', $key)] = $value;
 		}
-		return $_PUT;
+		return $data;
+	}
+
+	public function GetPut() {
+		if($_PUT) return $_PUT;
+		if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+			return $this->GetPhpInput();
+		}
+		return null;
+	}
+	public function GetPost() {
+		if($_POST) return $_POST;
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			return $this->GetPhpInput();
+		}
+		return null;
 	}
 
 	public function List() {
@@ -378,7 +447,7 @@ class MagratheaApiControl {
 
 	public function Create() {
 		$m = new $this->model();
-		$data = $_POST;
+		$data = $this->GetPost();
 		if($data["id"]) unset($data["id"]);
 		foreach ($data as $key => $value) {
 			if(property_exists($m, $key)) {
@@ -398,6 +467,7 @@ class MagratheaApiControl {
 		$id = $params["id"];
 		$m = new $this->model($id);
 		$data = $this->GetPut();
+
 		if(!$data) throw new Exception("Empty Data Sent", 500);
 		foreach ($data as $key => $value) {
 			if(property_exists($m, $key)) {
