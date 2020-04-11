@@ -1,5 +1,10 @@
 ## changelog
 
+### version 1.4.1
+- __NEW :__ dockerizing improvements!
+- __NEW :__ `MagratheaPlugins`, for installing plugins dinamically!
+
+
 ### version 1.4.0
 - __NEW :__ function `dump()` that returns a better format debug
 - __IMPROVEMENT :__ `MagratheaDebugger` improved on displaying classes and objects

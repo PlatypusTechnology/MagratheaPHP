@@ -57,7 +57,7 @@ class MagratheaConfig {
 	* @return itself
 	*/
 	public function setPath($p){
-		$this->path = $p;
+		$this->path = rtrim($p, '/').'/';
 		return $this;
 	}
 
@@ -210,7 +210,7 @@ class MagratheaConfigFile {
 	*	@return 	itself
 	*/
 	public function setPath($p){
-		$this->path = $p;
+		$this->path = rtrim($p, '/').'/';
 		return $this;
 	}
 	/**
