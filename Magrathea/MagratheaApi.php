@@ -163,8 +163,8 @@ class MagratheaApi {
 				$base = get_class($fn["control"]);
 //				$basePieces = explode("->", $fn);
 //				$base = $fn;
-				if(!$baseUrls[$base]) $baseUrls[$base] = array();
-				if(!$baseUrls[$base][$method]) $baseUrls[$base][$method] = array();
+				if(!@$baseUrls[$base]) $baseUrls[$base] = array();
+				if(!@$baseUrls[$base][$method]) $baseUrls[$base][$method] = array();
 				foreach ($urlPieces as $piece) {
 					if($piece[0] == ":") array_push($params, substr($piece, 1));
 				}

@@ -22,7 +22,7 @@ class MagratheaLogger {
 			echo "==[config not properly set!]==";
 			return;			
 		} 
-		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs/";
+		$path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs/");
 		if(empty($logFile)) $logFile = "log_".@date("Ym").".txt";
 		$date = @date("Y-m-d h:i:s");
 		$line = "[".$date."] = ".$logThis."\n";

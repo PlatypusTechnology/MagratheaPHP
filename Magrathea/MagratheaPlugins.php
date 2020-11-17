@@ -40,8 +40,9 @@ class MagratheaPlugins {
 		if (is_dir($src)) {
 			mkdir($dst);
 			$files = scandir($src);
-			foreach ($files as $file)
-				if ($file != "." && $file != "..") $this->rcopy("$src/$file", "$dst/$file");
+			foreach ($files as $file) {
+				if ($file != "." && $file != ".." && $file != ".git") $this->rcopy("$src/$file", "$dst/$file");
+			}
 		}
 		else if (file_exists($src)) copy($src, $dst);
 	}
