@@ -448,7 +448,7 @@ class MagratheaApiControl {
 	public function Create() {
 		$m = new $this->model();
 		$data = $this->GetPost();
-		if($data["id"]) unset($data["id"]);
+		if(@$data["id"]) unset($data["id"]);
 		foreach ($data as $key => $value) {
 			if(property_exists($m, $key)) {
 				$m->$key = $value;

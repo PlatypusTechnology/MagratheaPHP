@@ -7,12 +7,6 @@
 class MagratheaServer {
 
 	/**
-	 * Constructor...
-	 */
-	public function MagratheaServer(){
-	}
-
-	/**
 	 * includes header to allow all
 	 * @return 		itself
 	 */
