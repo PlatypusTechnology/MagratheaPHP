@@ -314,6 +314,7 @@ class MagratheaApi {
 		} catch(MagratheaApiException $ex) {
 			return $this->ReturnApiException($ex);
 		} catch (Exception $ex) {
+//			p_r($ex);
 			if($ex->getCode() == 0) {
 				return $this->ReturnFail($ex);
 			} else {
@@ -401,6 +402,15 @@ class MagratheaApiControl {
 	
 	protected $model = null;
 	protected $service = null;
+
+	public function GetAuthorizationBearer() {
+		$token = getallheaders()["Authorization"];
+		if (substr($token, 0, 7) !== 'Bearer ') {
+			throw new MagratheaApiException("Invalid Bearer Token: [".$token."]", 401);
+		}
+		$token = trim(substr($token, 7));
+		return $token;
+	}
 
 	public function GetPhpInput() {
 		$json = file_get_contents('php://input');
