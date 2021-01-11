@@ -248,7 +248,7 @@ class MagratheaApi {
 			header('Access-Control-Allow-Methods: '.$realMethod);
 			header('Access-Control-Max-Age: 1728000');
 			header("Content-Length: 0");
-			header("Content-Type: text/plain");
+			header('Content-Type: application/json');
 			exit(0);
 		} else { return $method; }
 	}
@@ -424,14 +424,14 @@ class MagratheaApiControl {
 	}
 
 	public function GetPut() {
-		if($_PUT) return $_PUT;
+		if(@$_PUT) return $_PUT;
 		if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 			return $this->GetPhpInput();
 		}
 		return null;
 	}
 	public function GetPost() {
-		if($_POST) return $_POST;
+		if(@$_POST) return $_POST;
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			return $this->GetPhpInput();
 		}
