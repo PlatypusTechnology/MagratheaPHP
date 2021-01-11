@@ -69,9 +69,9 @@ class MagratheaApi {
 	 * @return 		itself
 	 */
 	public function AllowAll(){
-		if (isset($_SERVER['HTTP_ORIGIN'])) {
-			return $this->Allow([ $_SERVER['HTTP_ORIGIN'] ]);
-		}
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Credentials: true');
+		header('Access-Control-Max-Age: 86400');    // cache for 1 day
 		return $this;
 	}
 
