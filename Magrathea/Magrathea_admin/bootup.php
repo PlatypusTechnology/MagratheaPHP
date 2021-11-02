@@ -5,8 +5,12 @@ require ("admin_load.php");
 $types = [
 	"plugins", 
 	"logs", 
+	"css",
+	"js",
 	"css-compressed",
 	"js-compressed",
+	"controls",
+	"views",
 	"smarty",
 	"smarty-compiled",
 	"smarty-cache",
@@ -42,26 +46,38 @@ function printBoolean($bool) {
 	return $bool ? "(( true ))" : "(( false ))";
 }
 function getPathByType($type) {
-	$site_path = getPath();
+	$site_path = getSitePath();
+	$path = getPath();
 	switch ($type) {
 		case "plugins":
-			return $site_path."/app/plugins";
+			return $site_path."/plugins";
+		case "css":
+			return $site_path."/css";
+		case "js":
+			return $site_path."/javascript";
 		case "css-compressed":
-			return $site_path."/app/".MagratheaView::Instance()->GetCompressedPathCss();
+			return $site_path."/".MagratheaView::Instance()->GetCompressedPathCss();
 		case "js-compressed":
-			return $site_path."/app/".MagratheaView::Instance()->GetCompressedPathJs();
+			return $site_path."/".MagratheaView::Instance()->GetCompressedPathJs();
 		case "logs":
-			return $site_path."/logs";
+			return $path."/logs";
 		case "static":
-			return $site_path."/Static";
+			return $path."/Static";
+		case "controls":
+			return $path."/Controls";
+		case "Views":
+			return $path."/Views";
 		case "smarty":
-			return $site_path."/smarty";
+			return $path."/Views/_configs";
 		case "smarty-compiled":
-			return $site_path."/smarty/compiled";
+			return $path."/Views/_compiled";
 		case "smarty-cache":
-			return $site_path."/smarty/cache";
+			return $path."/Views/_cache";
 	}
 	return "";
+}
+function getSitePath() {
+	return MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
 }
 function getPath() {
 	$site_path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path");
@@ -101,8 +117,8 @@ if ($action == "generate_sh") {
 	foreach ($types as $t) {
 		$path = getPathByType($t);
 		if(isDirOk($path)) continue;
-		echo "\nsudo mkdir ".$path;
-		echo "\nsudo chown ".$owner.":".$owner." ".$path;
+		echo "\nmkdir ".$path;
+//		echo "\nchown ".$owner.":".$owner." ".$path;
 	}
 	echo "</pre>";
 	echo "<br/><br/>";
