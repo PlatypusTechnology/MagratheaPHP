@@ -303,7 +303,7 @@ class MagratheaApi {
 		try {
 			if($auth) {
 				if(!$this->authClass->$auth()) {
-					$this->ReturnError(401, "Authorization Failed (".$auth." = false)");
+					$this->ReturnError(401, "Authorization Failed (".$auth." = false)", null, 401);
 				}
 			}
 		} catch(MagratheaApiException $ex) {
@@ -339,9 +339,20 @@ class MagratheaApi {
 	 * returns the sent parameters in JSON format - and ends the execution with "die";
 	 * @param 	object 		$response 		parameter to be printed in json
 	 */
-	public function Json($response){
+	public function Json($response, $code=200){
 		if($this->returnRaw) return $response;
 		header('Content-Type: application/json');
+		if($code != 200) {
+			$status = array(
+				200 => '200 OK',
+				400 => '400 Bad Request',
+				401 => 'Unauthorized',
+				422 => 'Unprocessable Entity',
+				500 => '500 Internal Server Error'
+			);
+			http_response_code($code);
+			header('Status: '.$status[$code]);
+		}
 		echo json_encode($response);
 		die;
 	}
@@ -379,13 +390,13 @@ class MagratheaApi {
 	 * @param 	string 		$message 		error message
 	 * @param 	any 			$data 			error data
 	 */
-	public function ReturnError($code=500, $message="", $data=null) {
+	public function ReturnError($code=500, $message="", $data=null, $status=200) {
 		return $this->Json(array(
 			"success" => false,
 			"error" => $data,
 			"code" => $code,
 			"message" => $message
-		));
+		), $status);
 	}
 
 	/**
