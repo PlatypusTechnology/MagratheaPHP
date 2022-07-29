@@ -32,6 +32,7 @@ require ("admin_load.php");
 		$relations_properties = "";
 		$relations_functions = "";
 		$relations_autoload = array();
+		$autoload_objs = array();
 		foreach($relations as $rel){
 			$relations_properties .= "\t\t\$this->relations[\"properties\"][\"".$rel["rel_property"]."\"] = null;\n";
 			$relations_properties .= "\t\t\$this->relations[\"methods\"][\"".$rel["rel_property"]."\"] = \"".$rel["rel_method"]."\";\n";
@@ -59,6 +60,7 @@ require ("admin_load.php");
 
 			if($rel["rel_autoload"] == 1){
 				array_push($relations_autoload, "\"".$rel["rel_property"]."\" => \"".$rel["rel_field"]."\"");
+				array_push($autoload_objs, $rel["rel_property"]);
 			}
 
 		} // close foreach relations
@@ -70,7 +72,11 @@ require ("admin_load.php");
 		
 		$code .= "\tpublic \$".implode(", $", $obj_fields).";\n";
 		$code .= "\tpublic \$created_at, \$updated_at;\n";
-		$code .= "\tprotected \$autoload = ".(count($relations_autoload) == 0 ? "null" : "array(".implode(", ", $relations_autoload).")").";\n\n";
+		$code .= "\tprotected \$autoload = ".(count($relations_autoload) == 0 ? "null" : "array(".implode(", ", $relations_autoload).")").";\n";
+		if(count($autoload_objs) > 0) {
+			$code .= "\tpublic \$".implode(", $", $autoload_objs).";\n";
+		}
+		$code .= "\n";
 		
 		$code .= "\tpublic function __construct( ".( ($data["db_pk"]) ? " \$".$data["db_pk"]."=0 " : "\$id=0" )." ){ \n";
 			$code .= "\t\t\$this->MagratheaStart();\n";
