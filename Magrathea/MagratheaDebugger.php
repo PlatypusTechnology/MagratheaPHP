@@ -184,7 +184,7 @@ class MagratheaDebugger {
 	* 	@param 	string 	$values 	values to be added to the query
 	*/
 	public function AddQuery($sql, $values){
-		if($this->debugType == @NONE || !$this->queries) return;
+		if($this->debugType == self::NONE || !$this->queries) return;
 		$logThis = "query run: [".$sql."]";
 		if(!is_null($values)){
 			$values = print_r($values, true);

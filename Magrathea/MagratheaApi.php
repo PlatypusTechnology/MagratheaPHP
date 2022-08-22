@@ -69,9 +69,11 @@ class MagratheaApi {
 	 * @return 		itself
 	 */
 	public function AllowAll(){
+		header('Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type, Authorization');
 		header('Access-Control-Allow-Origin: *');
 		header('Access-Control-Allow-Credentials: true');
 		header('Access-Control-Max-Age: 86400');    // cache for 1 day
+		header('Content-Type: application/json, charset=utf-8');
 		return $this;
 	}
 

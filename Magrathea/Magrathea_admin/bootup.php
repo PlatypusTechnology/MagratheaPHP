@@ -98,7 +98,7 @@ echo "<br/>";
 echo "environmment: [".MagratheaConfig::Instance()->GetEnvironment()."] <br/>";
 echo "site path: [".getPath()."] <br/>";
 echo "PHP running on...  ";
-passthru(id);
+//passthru(id);
 
 echo "<br/><hr/>";
 
