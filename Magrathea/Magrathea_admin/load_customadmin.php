@@ -4,11 +4,14 @@
 
 	@$adminPage = $_GET["custom"];
 
-	$sitePath = MagratheaConfig::Instance()->GetFromDefault("site_path");
-	$sPath = explode("/", $sitePath);
-	array_pop($sPath);
-	$sitePath = implode("/", $sPath);
-	$adminFolder = $sitePath."/Admin";
+	$adminFolder = MagratheaConfig::Instance()->GetFromDefault("admin_path");
+	if(!$adminFolder) {
+		$sitePath = MagratheaConfig::Instance()->GetFromDefault("site_path");
+		$sPath = explode("/", $sitePath);
+		array_pop($sPath);
+		$sitePath = implode("/", $sPath);
+		$adminFolder = $sitePath."/Admin";
+	}
 
 	if(empty($adminPage)){
 		if($handle = @opendir($adminFolder)){
