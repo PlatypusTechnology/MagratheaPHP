@@ -1,9 +1,14 @@
 ## changelog
 
+### version 1.5
+##### Q4/2022
+- __NEW :__ custom admin folder: now it's possible to set a config `admin_path` and admin folder can be anywhere
+- __NEW :__ `MagratheaAPI`! Brand new!
+
+
 ### version 1.4.1
 - __NEW :__ dockerizing improvements!
 - __NEW :__ `MagratheaPlugins`, for installing plugins dinamically!
-
 
 ### version 1.4.0
 - __NEW :__ function `dump()` that returns a better format debug
