@@ -4,7 +4,11 @@
 
 	@$adminPage = $_GET["custom"];
 
-	$adminFolder = MagratheaConfig::Instance()->GetFromDefault("admin_path");
+	try {
+		$adminFolder = MagratheaConfig::Instance()->GetFromDefault("admin_path");
+	} catch(Exception $ex) {
+		$adminFolder = null;
+	}
 	if(!$adminFolder) {
 		$sitePath = MagratheaConfig::Instance()->GetFromDefault("site_path");
 		$sPath = explode("/", $sitePath);

@@ -2,11 +2,18 @@
 
 	@$actualTest = $_GET["test"];
 
-	$sitePath = MagratheaConfig::Instance()->GetFromDefault("site_path");
-	$sPath = explode("/", $sitePath);
-	array_pop($sPath);
-	$sitePath = implode("/", $sPath);
-	$testFolder = $sitePath."/Tests";
+	try {
+		$testFolder = MagratheaConfig::Instance()->GetFromDefault("tests_path");
+	} catch(Exception $ex) {
+		$testFolder = null;
+	}
+	if(!$testFolder) {
+		$sitePath = MagratheaConfig::Instance()->GetFromDefault("site_path");
+		$sPath = explode("/", $sitePath);
+		array_pop($sPath);
+		$sitePath = implode("/", $sPath);
+		$testFolder = $sitePath."/Tests";
+	}
 
 	if(empty($actualTest)){
 		echo '<ul class="nav nav-list menu_sublist">';
