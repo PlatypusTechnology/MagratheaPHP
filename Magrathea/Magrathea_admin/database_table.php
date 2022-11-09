@@ -47,10 +47,13 @@ $createSql .= "\tPRIMARY KEY (`".$obj["db_pk"]."`)\n";
 $createSql .= "\n) DEFAULT CHARSET=utf8 ;";
 $createSql .= "\n\n";
 
+/*
+// UPDATE v. 1.5: removing triggers
 $createSql .= "DROP TRIGGER IF EXISTS `".$obj["table_name"]."_create`;\n";
 $createSql .= "DROP TRIGGER IF EXISTS `".$obj["table_name"]."_update`;\n";
 $createSql .= "CREATE TRIGGER `".$obj["table_name"]."_create` BEFORE INSERT ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.created_at = NOW(), NEW.updated_at = NOW();\n";
 $createSql .= "CREATE TRIGGER `".$obj["table_name"]."_update` BEFORE UPDATE ON `".$obj["table_name"]."` FOR EACH ROW SET NEW.updated_at = NOW();\n";
+*/
 
 $createSql .= "\n\n";
 
