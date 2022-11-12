@@ -4,6 +4,7 @@
 ##### Q4/2022
 - __NEW :__ custom admin folder: now it's possible to set a config `admin_path` and admin folder can be anywhere
 - __NEW :__ `MagratheaAPI`! Brand new!
+- __IMPROVEMENT :__ `Smarty` updated to version 4!
 
 
 ### version 1.4.1
