@@ -150,7 +150,7 @@ class MagratheaConfig {
 	* @param 	boolean 	$throwable 		should this function throw an exception if array key don't exist?
 	* @return 	string
 	*/
-	public function GetConfigFromDefault($config_name, $throwable=true){
+	public function GetConfigFromDefault($config_name, $throwable=false){
 		if( $this->configs == null ){
 			$this->loadFile();
 			$this->configs = @parse_ini_file($this->path."/".$this->config_file_name, true);

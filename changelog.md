@@ -6,6 +6,7 @@
 - __NEW :__ `MagratheaAPI`! Brand new!
 - __IMPROVEMENT :__ `Smarty` updated to version 4!
 - __NEW :__ optional `logs_path` variable added to `magrathea.conf`: now you can set a folder for your logs
+- __IMPROVEMENT :__ Missing `magrathea.conf` properties will not throw an erro by default anymore
 
 
 ### version 1.4.1
