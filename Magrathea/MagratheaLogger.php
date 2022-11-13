@@ -21,8 +21,11 @@ class MagratheaLogger {
 			p_r($logThis);
 			echo "==[config not properly set!]==";
 			return;			
-		} 
-		$path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs");
+		}
+		$path = MagratheaConfig::Instance()->GetConfigFromDefault("logs_path");
+		if(empty($path)) {
+			$path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs");
+		}
 		if(empty($logFile)) $logFile = "log_".@date("Ym").".txt";
 		$date = @date("Y-m-d h:i:s");
 		$line = "[".$date."] = ".$logThis."\n";
@@ -42,11 +45,14 @@ class MagratheaLogger {
 	 * @throws  Exception If path is not writablle
 	 */
 	public static function LogError($error, $filename=null){
-		$path = MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs/";
+		$path = MagratheaConfig::Instance()->GetConfigFromDefault("logs_path");
+		if(empty($path)) {
+			$path = realpath(MagratheaConfig::Instance()->GetConfigFromDefault("site_path")."/../logs");
+		}
 		if(empty($filename)) $filename = "log_error";
 		$date = @date("Y-m-d_his");
 		$filename .= $date.".txt";
-		$line = "[".$date."] = ".$logThis."\n";
+		$line = "MagratheaERROR Catch: [".$date."] = ".$logThis."\n";
 		$file = $path.$filename;
 		if(!is_writable($path)){
 			throw new Exception("error trying to save file at [".$path."] - confirm permission for writing");
