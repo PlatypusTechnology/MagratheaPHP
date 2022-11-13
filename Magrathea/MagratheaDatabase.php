@@ -187,7 +187,11 @@ class MagratheaDatabase{
 		if($values != null)
 			$debug .= " values: [ ".implode(',', $values)." ] \n";
 		$debug .= " error: [ ".$error." ] \n";
-		MagratheaDebugger::Instance()->Add($debug);
+		if($debug->message) { 
+			MagratheaDebugger::Instance()->Add("ERROR MESSAGE: ".$debug->message);
+		} else {
+			MagratheaDebugger::Instance()->Add($debug);
+		}
 	}
 
 	/**
