@@ -144,7 +144,7 @@ class MagratheaDebugger {
 	*/
 	public function Add($debug){
 		if($debug instanceof Exception) {
-			$this->AddError($debug);
+			return $this->AddError($debug);
 		}
 		switch ($this->debugType) {
 			case self::NONE:
