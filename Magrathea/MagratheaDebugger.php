@@ -75,7 +75,7 @@ class MagratheaDebugger {
 	* @return  	itself
 	*/
 	public function SetType($dType){
-		$this->debugType = strtolower($dType);
+		$this->debugType = $dType;
 		return $this;
 	}
 
