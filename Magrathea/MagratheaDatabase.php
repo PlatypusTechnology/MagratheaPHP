@@ -187,11 +187,7 @@ class MagratheaDatabase{
 		if($values != null)
 			$debug .= " values: [ ".implode(',', $values)." ] \n";
 		$debug .= " error: [ ".$error." ] \n";
-		if($debug->message) { 
-			MagratheaDebugger::Instance()->Add("ERROR MESSAGE: ".$debug->message);
-		} else {
-			MagratheaDebugger::Instance()->Add($debug);
-		}
+		MagratheaDebugger::Instance()->Add($debug);
 	}
 
 	/**
@@ -310,7 +306,6 @@ class MagratheaDatabase{
 	* @return 	object 		$result 	First value of the first line
 	*/
 	public function QueryOne($sql){
-		$retorno;
 		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
