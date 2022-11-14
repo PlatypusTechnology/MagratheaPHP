@@ -159,6 +159,7 @@ class MagratheaDatabase{
 			}
 			$this->mysqli->set_charset("utf8");
 		} catch (Exception $ex) {
+			MagratheaDebugger::Instance()->AddError($ex);
 			throw new MagratheaDBException($ex->getMessage());
 		}
 		return true;
@@ -182,6 +183,7 @@ class MagratheaDatabase{
 	* @throws	MagratheaDbException
 	*/
 	private function ErrorHandle($error, $sql, $values=null){ 
+
 		$debug = "MagratheaDatabase ERROR => \n";
 		$debug .= " query: [ ".$sql." ] \n";
 		if($values != null)

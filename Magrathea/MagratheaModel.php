@@ -342,11 +342,11 @@ abstract class MagratheaModel{
 	 */
 	public function __toString(){
 		$print_this = "Class ".get_class($this).":\n";
-		$print_this .= count($this->dbValues > 0 ) ? "\tProperties\n" : "";
+		$print_this .= count($this->dbValues) > 0 ? "\tProperties\n" : "";
 		foreach( $this->dbValues as $field => $type ){
 			$print_this .= "\t\t[".$field."] (".$type.") = ".$this->$field."\n";
 		}
-		$print_this .= count($this->dbAlias>0) ? "\tAlias\n" : "";
+		$print_this .= count($this->dbAlias) > 0 ? "\tAlias\n" : "";
 		foreach( $this->dbAlias as $alias => $field ){ 
 			$print_this .= "\t\t[".$alias."] (alias for ".$field.") = ".$this->$field."\n";
 		}
