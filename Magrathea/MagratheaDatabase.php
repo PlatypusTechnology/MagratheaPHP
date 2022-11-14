@@ -271,7 +271,9 @@ class MagratheaDatabase{
 		$result = $this->mysqli->query($sql);
 		if(!$result){
 			$this->ErrorHandle($this->mysqli->error, $sql);
-			throw new MagratheaDBException($this->mysqli->error);
+			$ex = new MagratheaDBException($this->mysqli->error);
+			$ex->query = $sql;
+			throw $ex;
 		}
 		if(is_object($result) ){
 			$this->count = $result->num_rows;
@@ -292,7 +294,13 @@ class MagratheaDatabase{
 		$this->LogControl($sql);
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
-		if($result){
+		if(!$result){
+			$this->ErrorHandle($this->mysqli->error, $sql);
+			$ex = new MagratheaDBException($this->mysqli->error);
+			$ex->query = $sql;
+			throw $ex;
+		}
+		if(is_object($result) ){
 			$this->count = $result->num_rows;
 			if($this->count == 0) return $arrRetorno;
 			$arrRetorno = $this->FetchResult($result, true);
@@ -312,7 +320,13 @@ class MagratheaDatabase{
 		$this->OpenConnectionPlease();
 		$result = $this->mysqli->query($sql);
 		$this->count = $result->num_rows;
-		if($result){
+		if(!$result){
+			$this->ErrorHandle($this->mysqli->error, $sql);
+			$ex = new MagratheaDBException($this->mysqli->error);
+			$ex->query = $sql;
+			throw $ex;
+		}
+		if(is_object($result) ){
 			$retorno = $result->fetch_row();
 			$result->close();
 		}
@@ -363,7 +377,9 @@ class MagratheaDatabase{
 		$stm = $this->mysqli->prepare($query);
 		if(!$stm || $this->mysqli->error ){
 			$this->errorHandle($this->mysqli->error, $query, $arrValues);
-			return;
+			$ex = new MagratheaDBException($this->mysqli->error);
+			$ex->query = $query;
+			throw $ex;
 		}
 		$params = "";
 		if($arrTypes){

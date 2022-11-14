@@ -143,15 +143,16 @@ class MagratheaDebugger {
 	* 	@param 	string 	$debug 		debug item
 	*/
 	public function Add($debug){
-		if($debug instanceof Exception) {
-			return $this->AddError($debug);
-		}
 		switch ($this->debugType) {
 			case self::NONE:
 				return;
 				break;
 			case self::LOG:
-				MagratheaLogger::Log(dump($debug), $this->logFile);
+				if($debug instanceof Exception) {
+					MagratheaLogger::LogError(dump($debug), $this->logFile);
+				} else {
+					MagratheaLogger::Log(dump($debug), $this->logFile);
+				}
 				return;
 				break;
 			case self::DEV:
@@ -186,7 +187,7 @@ class MagratheaDebugger {
 	 * @param Exception		$err 	Exception
 	 */
 	public function AddError($err){
-		$this->Add($err->getMessage());
+		$this->Add($err);
 	}
 
 	/** 

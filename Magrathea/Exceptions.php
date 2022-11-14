@@ -74,7 +74,7 @@ class MagratheaConfigException extends MagratheaException {
 }
 
 class MagratheaDBException extends MagratheaException {
-    private $query = null;
+    public $query = "no_query_logged";
     public function __construct($message = "Magrathea Database has failed... =(", $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }    

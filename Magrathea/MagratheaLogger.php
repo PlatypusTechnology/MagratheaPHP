@@ -52,7 +52,10 @@ class MagratheaLogger {
 		if(empty($filename)) $filename = "log_error";
 		$date = @date("Y-m-d_his");
 		$filename .= $date.".txt";
-		$line = "MagratheaERROR Catch: [".$date."] = ".$logThis."\n";
+		$line = "MagratheaError Catch: [".$date."] = ".$logThis."\n";
+		if ($error instanceof MagratheaDBException) {
+			$line .= " ==> SQL: [".$error->query."]";
+		}
 		$file = $path.$filename;
 		if(!is_writable($path)){
 			throw new Exception("error trying to save file at [".$path."] - confirm permission for writing");
