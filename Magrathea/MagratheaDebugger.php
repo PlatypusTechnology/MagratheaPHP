@@ -14,6 +14,15 @@ function Debug($bug){
 }
 
 /**
+ * Debugs error, according with debug configurations
+ * @param 	object 		$bug 		object to debug
+ */
+function DebugError($error){
+	MagratheaDebugger::Instance()->AddError($error);
+}
+
+
+/**
  * Adds to info debug, according with configurations
  * @param 	object 		$bug 		object to debug
  */
